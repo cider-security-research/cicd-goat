@@ -1,0 +1,2 @@
+[ x509_exts ]
+extendedKeyUsage = clientAuth

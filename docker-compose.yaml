@@ -6,7 +6,7 @@ networks:
 
 services:
   jenkins_server:
-    image: cidersecurity/workshop_js:1.2
+    image: cidersecurity/workshop_js:1.3
     networks:
       - jenkins
     container_name: JenkinsServer

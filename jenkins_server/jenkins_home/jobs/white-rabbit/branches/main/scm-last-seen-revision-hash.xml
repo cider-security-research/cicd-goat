@@ -3,5 +3,5 @@
   <head class="org.jenkinsci.plugin.gitea.BranchSCMHead">
     <name>main</name>
   </head>
-  <hash>e57cc2adb92b37808adef1e766b89d24db0f65e6</hash>
+  <hash>3a2abf9757ca6d949eeaf551063e3aad0fed36d2</hash>
 </org.jenkinsci.plugin.gitea.BranchSCMRevision>

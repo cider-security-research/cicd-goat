@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<l:dependencies xmlns:l='licenses' groupId='org.jenkins-ci.plugins' artifactId='variant' version='1.4'><l:dependency name='Variant Plugin' groupId='org.jenkins-ci.plugins' artifactId='variant' version='1.4' url='https://github.com/jenkinsci/variant-plugin'><l:description>This user-invisible library plugin allows other multi-modal plugins to behave differently depending on where they run.</l:description><l:license name='MIT License' url='http://opensource.org/licenses/MIT'/></l:dependency></l:dependencies>

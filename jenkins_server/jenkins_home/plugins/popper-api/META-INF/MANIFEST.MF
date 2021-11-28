@@ -1,0 +1,22 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Created-By: Apache Maven
+Built-By: hafner
+Build-Jdk: 11.0.10
+Extension-Name: popper-api
+Specification-Title: Provides Popper.js for Jenkins plugins.
+Implementation-Title: popper-api
+Implementation-Version: 1.16.1-2
+Group-Id: io.jenkins.plugins
+Short-Name: popper-api
+Long-Name: Popper.js API Plugin
+Url: https://github.com/jenkinsci/popper-api-plugin
+Minimum-Java-Version: 1.8
+Plugin-Version: 1.16.1-2
+Hudson-Version: 2.249.1
+Jenkins-Version: 2.249.1
+Plugin-Developers: Ullrich Hafner:uhafner:ullrich.hafner@gmail.com
+Support-Dynamic-Loading: true
+Plugin-License-Name: MIT license
+Plugin-ScmUrl: https://github.com/jenkinsci/popper-api-plugin
+

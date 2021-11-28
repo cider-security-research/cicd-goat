@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<l:dependencies xmlns:l='licenses' groupId='org.jenkins-ci.plugins' artifactId='jdk-tool' version='1.0'><l:dependency name='JDK Tool Plugin' groupId='org.jenkins-ci.plugins' artifactId='jdk-tool' version='1.0' url='https://wiki.jenkins.io/display/JENKINS/JDK+Tool+Plugin'><l:description>Allows the JDK tool to be installed via download from Oracle's website.</l:description><l:license name='MIT License' url='https://opensource.org/licenses/MIT'/></l:dependency></l:dependencies>

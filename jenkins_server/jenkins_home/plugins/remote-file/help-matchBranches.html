@@ -1,0 +1,9 @@
+<div>
+    Remote Jenkinsfile Provider Plugin tries to find matching branch in repository which defined in Plugin SCM definition with in the Branch Sources SCM definition.<br>
+    By this, Jenkins Files will be used in the branch of Jenkins File repository which have the same branch name in code source repository.<br>
+    <b>Branch Specifier will be ignored if this options is checked.</b><br>
+    If plugin can not find same branch name in the Jenkins File repository, it will automatically fall back to branch,
+    <b>which is defined in below "Fallback Branch" field (default is <code>master</code>)</b>, and will search for Jenkins file in it.
+    <br>
+    <b>This feature only work for Git SCM definitions</b>
+</div>

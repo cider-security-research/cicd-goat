@@ -1,0 +1,2 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<l:dependencies xmlns:l='licenses' groupId='org.jenkins-ci.plugins' artifactId='authorize-project' version='1.4.0'><l:dependency name='Authorize Project' groupId='org.jenkins-ci.plugins' artifactId='authorize-project' version='1.4.0' url='https://github.com/jenkinsci/authorize-project-plugin'><l:description>Configure projects to run with specified authorization.</l:description><l:license name='The MIT license' url='https://opensource.org/licenses/MIT'/></l:dependency></l:dependencies>

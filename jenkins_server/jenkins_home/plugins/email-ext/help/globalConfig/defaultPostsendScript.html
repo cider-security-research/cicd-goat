@@ -1,0 +1,13 @@
+<div>
+    This script will be run after sending the email to allow
+    acting upon the send result. The <em>MimeMessage</em> variable
+    is <tt>msg</tt>, the <em>SMTPTransport</em> <tt>transport</tt>, the session
+    properties <tt>props</tt>, the <em>build</em> is also available as <tt>build</tt>
+    and a <em>logger</em> is available as <tt>logger</tt>. The <em>trigger</em> that
+    caused the email is available as <tt>trigger</tt> and all triggered
+    builds are available as a map <tt>triggered</tt>.
+    <br/><br/>
+    You can set the default post-send script here and then use
+    <tt>${DEFAULT_POSTSEND_SCRIPT}</tt> in the project settings to use
+    the script written here.
+</div>

@@ -1,0 +1,28 @@
+<?xml version='1.1' encoding='UTF-8'?>
+<jenkins.security.QueueItemAuthenticatorConfiguration>
+  <authenticators>
+    <org.jenkinsci.plugins.authorizeproject.ProjectQueueItemAuthenticator plugin="authorize-project@1.4.0">
+      <strategyEnabledMap>
+        <entry>
+          <string>org.jenkinsci.plugins.authorizeproject.strategy.SpecificUsersAuthorizationStrategy</string>
+          <boolean>true</boolean>
+        </entry>
+        <entry>
+          <string>org.jenkinsci.plugins.authorizeproject.strategy.TriggeringUsersAuthorizationStrategy</string>
+          <boolean>false</boolean>
+        </entry>
+        <entry>
+          <string>org.jenkinsci.plugins.authorizeproject.strategy.SystemAuthorizationStrategy</string>
+          <boolean>false</boolean>
+        </entry>
+        <entry>
+          <string>org.jenkinsci.plugins.authorizeproject.strategy.AnonymousAuthorizationStrategy</string>
+          <boolean>false</boolean>
+        </entry>
+      </strategyEnabledMap>
+    </org.jenkinsci.plugins.authorizeproject.ProjectQueueItemAuthenticator>
+    <org.jenkinsci.plugins.authorizeproject.GlobalQueueItemAuthenticator plugin="authorize-project@1.4.0">
+      <strategy class="org.jenkinsci.plugins.authorizeproject.strategy.TriggeringUsersAuthorizationStrategy"/>
+    </org.jenkinsci.plugins.authorizeproject.GlobalQueueItemAuthenticator>
+  </authenticators>
+</jenkins.security.QueueItemAuthenticatorConfiguration>

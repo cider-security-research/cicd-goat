@@ -1,0 +1,2 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<l:dependencies xmlns:l='licenses' groupId='io.jenkins.plugins' artifactId='popper-api' version='1.16.1-2'><l:dependency name='Popper.js API Plugin' groupId='io.jenkins.plugins' artifactId='popper-api' version='1.16.1-2' url='https://github.com/jenkinsci/popper-api-plugin'><l:description>Provides Popper.js for Jenkins plugins.</l:description><l:license name='MIT license' url=''/></l:dependency></l:dependencies>

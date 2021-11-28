@@ -1,0 +1,26 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Created-By: Apache Maven
+Built-By: olamy
+Build-Jdk: 11.0.9.1
+Extension-Name: blueocean-display-url
+Specification-Title: Provides an implementation of the display url plu
+ gin for BlueOcean URLs
+Implementation-Title: blueocean-display-url
+Implementation-Version: 2.4.1
+Group-Id: org.jenkins-ci.plugins
+Short-Name: blueocean-display-url
+Long-Name: Display URL for Blue Ocean
+Url: https://github.com/jenkinsci/blueocean-display-url-plugin
+Minimum-Java-Version: 1.8
+Plugin-Version: 2.4.1
+Hudson-Version: 2.222.4
+Jenkins-Version: 2.222.4
+Plugin-Dependencies: blueocean-rest:1.24.4,workflow-job:2.40,workflow-
+ multibranch:2.22,display-url-api:2.3.4,scm-api:2.6.4,script-security:
+ 1.75,structs:1.20
+Plugin-Developers: Ivan Meredith:imeredith:ivan@ivan.net.nz
+Plugin-License-Name: MIT License
+Plugin-License-Url: http://opensource.org/licenses/MIT
+Plugin-ScmUrl: http://github.com/jenkinsci/blueocean-display-url-plugin
+

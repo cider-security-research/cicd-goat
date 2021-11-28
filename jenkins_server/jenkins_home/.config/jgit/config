@@ -1,0 +1,9 @@
+[filesystem "Eclipse Adoptium|11.0.13|grpcfuse"]
+	timestampResolution = 11000 nanoseconds
+	minRacyThreshold = 0 nanoseconds
+[filesystem "Eclipse Adoptium|11.0.13|C:\\"]
+	timestampResolution = 378 milliseconds
+	minRacyThreshold = 0 nanoseconds
+[filesystem "Eclipse Adoptium|11.0.13|/dev/vda1"]
+	timestampResolution = 3000 nanoseconds
+	minRacyThreshold = 1485 microseconds

@@ -1,0 +1,25 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Created-By: Apache Maven
+Built-By: carroll
+Build-Jdk: 1.8.0_282
+Extension-Name: workflow-basic-steps
+Specification-Title: The Jenkins Plugins Parent POM Project
+Implementation-Title: workflow-basic-steps
+Implementation-Version: 2.24
+Group-Id: org.jenkins-ci.plugins.workflow
+Short-Name: workflow-basic-steps
+Long-Name: Pipeline: Basic Steps
+Url: https://github.com/jenkinsci/workflow-basic-steps-plugin
+Minimum-Java-Version: 1.8
+Plugin-Version: 2.24
+Hudson-Version: 2.263.1
+Jenkins-Version: 2.263.1
+Plugin-Dependencies: workflow-api:2.46,workflow-durable-task-step:2.39
+ ,workflow-step-api:2.24,apache-httpcomponents-client-4-api:4.5.13-1.0
+ ,mailer:1.34,structs:1.23
+Plugin-Developers: 
+Plugin-License-Name: MIT License
+Plugin-License-Url: https://opensource.org/licenses/MIT
+Plugin-ScmUrl: https://github.com/jenkinsci/workflow-basic-steps-plugin
+

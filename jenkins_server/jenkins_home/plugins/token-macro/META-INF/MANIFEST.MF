@@ -1,0 +1,25 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Created-By: Apache Maven
+Built-By: runner
+Build-Jdk: 1.8.0_292
+Extension-Name: token-macro
+Specification-Title: This plugin adds reusable macro expansion capabil
+ ity for other plugins to use.
+Implementation-Title: token-macro
+Implementation-Version: 267.vcdaea6462991
+Group-Id: org.jenkins-ci.plugins
+Short-Name: token-macro
+Long-Name: Token Macro Plugin
+Url: https://github.com/jenkinsci/token-macro-plugin
+Minimum-Java-Version: 1.8
+Plugin-Version: 267.vcdaea6462991
+Hudson-Version: 2.277.1
+Jenkins-Version: 2.277.1
+Plugin-Dependencies: workflow-step-api:2.23,structs:1.22
+Plugin-Developers: Kohsuke Kawaguchi:kohsuke:kkawaguchi@cloudbees.com,
+ Alex Earl:slide_o_mix:slide.o.mix@gmail.com
+Plugin-License-Name: The MIT License (MIT)
+Plugin-License-Url: http://opensource.org/licenses/MIT
+Plugin-ScmUrl: https://github.com/jenkinsci/token-macro-plugin
+

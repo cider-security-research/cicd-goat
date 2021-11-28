@@ -1,0 +1,22 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Created-By: Apache Maven
+Built-By: inifc
+Build-Jdk: 11.0.10
+Extension-Name: sshd
+Specification-Title: Adds SSH server functionality to Jenkins, exposin
+ g CLI commands through it
+Implementation-Title: sshd
+Implementation-Version: 3.1.0
+Group-Id: org.jenkins-ci.modules
+Short-Name: sshd
+Long-Name: SSH server
+Minimum-Java-Version: 1.8
+Plugin-Version: 3.1.0
+Hudson-Version: 2.289.1
+Jenkins-Version: 2.289.1
+Plugin-Developers: 
+Plugin-License-Name: MIT License
+Plugin-License-Url: https://opensource.org/licenses/MIT
+Plugin-ScmUrl: https://github.com/jenkinsci/sshd-plugin
+

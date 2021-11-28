@@ -1,0 +1,24 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Created-By: Apache Maven
+Built-By: olamy
+Build-Jdk: 11.0.11
+Extension-Name: pipeline-build-step
+Specification-Title: The Jenkins Plugins Parent POM Project
+Implementation-Title: pipeline-build-step
+Implementation-Version: 2.15
+Group-Id: org.jenkins-ci.plugins
+Short-Name: pipeline-build-step
+Long-Name: Pipeline: Build Step
+Url: https://github.com/jenkinsci/pipeline-build-step-plugin
+Minimum-Java-Version: 1.8
+Plugin-Version: 2.15
+Hudson-Version: 2.222.4
+Jenkins-Version: 2.222.4
+Plugin-Dependencies: workflow-api:2.46,workflow-step-api:2.23,workflow
+ -support:3.8,script-security:1.77,structs:1.23
+Plugin-Developers: 
+Plugin-License-Name: MIT License
+Plugin-License-Url: https://opensource.org/licenses/MIT
+Plugin-ScmUrl: https://github.com/jenkinsci/pipeline-build-step-plugin
+

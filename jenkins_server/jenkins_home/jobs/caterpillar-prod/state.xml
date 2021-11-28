@@ -1,0 +1,18 @@
+<?xml version='1.1' encoding='UTF-8'?>
+<jenkins.branch.MultiBranchProject_-State plugin="branch-api@2.7.0">
+  <sourceActions>
+    <entry>
+      <string>bea7d2a3-d744-4c1d-8944-a815c7c3f693</string>
+      <list>
+        <jenkins.scm.api.metadata.ObjectMetadataAction plugin="scm-api@2.6.5">
+          <objectDescription></objectDescription>
+          <objectUrl></objectUrl>
+        </jenkins.scm.api.metadata.ObjectMetadataAction>
+        <org.jenkinsci.plugin.gitea.GiteaLink plugin="gitea@1.3.0">
+          <iconClassName>icon-gitea-repo</iconClassName>
+          <url>http://gitea:3000/Wonderland/caterpillar</url>
+        </org.jenkinsci.plugin.gitea.GiteaLink>
+      </list>
+    </entry>
+  </sourceActions>
+</jenkins.branch.MultiBranchProject_-State>

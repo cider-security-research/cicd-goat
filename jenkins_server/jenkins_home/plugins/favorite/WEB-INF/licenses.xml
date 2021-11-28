@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<l:dependencies xmlns:l='licenses' groupId='org.jvnet.hudson.plugins' artifactId='favorite' version='2.3.3'><l:dependency name='Favorite' groupId='org.jvnet.hudson.plugins' artifactId='favorite' version='2.3.3' url='https://wiki.jenkins.io/display/JENKINS/Favorite+Plugin'><l:description>The Jenkins Plugins Parent POM Project</l:description><l:license name='MIT License' url='https://opensource.org/licenses/MIT'/></l:dependency></l:dependencies>

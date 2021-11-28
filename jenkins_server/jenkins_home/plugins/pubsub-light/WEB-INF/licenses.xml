@@ -1,0 +1,2 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<l:dependencies xmlns:l='licenses' groupId='org.jenkins-ci.plugins' artifactId='pubsub-light' version='1.16'><l:dependency name='Jenkins Pub-Sub "light" Bus' groupId='org.jenkins-ci.plugins' artifactId='pubsub-light' version='1.16' url='https://github.com/jenkinsci/pubsub-light-plugin'><l:description>A simple Publish-Subscribe light-weight event bus for Jenkins</l:description></l:dependency></l:dependencies>

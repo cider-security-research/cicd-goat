@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<l:dependencies xmlns:l='licenses' groupId='org.jenkins-ci.plugins' artifactId='antisamy-markup-formatter' version='2.4'><l:dependency name='OWASP Markup Formatter Plugin' groupId='org.jenkins-ci.plugins' artifactId='antisamy-markup-formatter' version='2.4' url='https://github.com/jenkinsci/antisamy-markup-formatter-plugin'><l:description>Sanitize HTML markup in user-submitted text to be displayed on the Jenkins UI.</l:description><l:license name='MIT' url='https://opensource.org/licenses/MIT'/></l:dependency><l:dependency name='FindBugs-jsr305' groupId='com.google.code.findbugs' artifactId='jsr305' version='3.0.2' url='http://findbugs.sourceforge.net/'><l:description>JSR305 Annotations for Findbugs</l:description><l:license name='The Apache Software License, Version 2.0' url='http://www.apache.org/licenses/LICENSE-2.0.txt'/></l:dependency><l:dependency name='OWASP Java HTML Sanitizer' groupId='com.googlecode.owasp-java-html-sanitizer' artifactId='owasp-java-html-sanitizer' version='20211018.1' url='https://github.com/OWASP/java-html-sanitizer/owasp-java-html-sanitizer'><l:description>Takes third-party HTML and produces HTML that is safe to embed in
+    your web application.
+    Fast and easy to configure.</l:description><l:license name='Apache License, Version 2.0' url='http://www.apache.org/licenses/LICENSE-2.0.txt'/></l:dependency><l:dependency name='Guava: Google Core Libraries for Java' groupId='com.google.guava' artifactId='guava' version='11.0.1' url='http://code.google.com/p/guava-libraries/guava'><l:description>Guava is a suite of core and expanded libraries that include
+    utility classes, google's collections, io classes, and much
+    much more.
+
+    This project is a complete packaging of all the Guava libraries
+    into a single jar.  Individual portions of Guava can be used
+    by downloading the appropriate module and its dependencies.
+
+    Guava (complete) has only one code dependency - javax.annotation,
+    per the JSR-305 spec.</l:description><l:license name='The Apache Software License, Version 2.0' url='http://www.apache.org/licenses/LICENSE-2.0.txt'/></l:dependency></l:dependencies>

@@ -6,7 +6,7 @@ networks:
 
 services:
   jenkins_server:
-    image: cidersecurity/workshop_js:1.3
+    image: cidersecurity/workshop_js:1.4
     networks:
       - jenkins
     container_name: JenkinsServer
@@ -19,12 +19,10 @@ services:
       - "9090:8080"
       - "50000:50000"
     volumes:
-      - ./data/jenkins-certs:/certs/client:ro
+      - ./jenkins_server/jenkins-certs:/certs/client:ro
   jenkins_agent:
-    image: cidersecurity/workshop_ja
+    image: cidersecurity/workshop_ja:1.4
     container_name: jenkinsagent
-    volumes:
-      - ./data/jenkins-agent/jenkins:/home/jenkins
     networks:
       - jenkins
     environment:

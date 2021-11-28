@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<l:dependencies xmlns:l='licenses' groupId='org.jenkins-ci.plugins' artifactId='ssh-slaves' version='1.33.0'><l:dependency name='SSH Build Agents plugin' groupId='org.jenkins-ci.plugins' artifactId='ssh-slaves' version='1.33.0' url='https://github.com/jenkinsci/ssh-slaves-plugin'><l:description>Allows to launch agents over SSH, using a Java implementation of the SSH protocol</l:description><l:license name='MIT License' url='https://opensource.org/licenses/MIT'/></l:dependency><l:dependency name='JSON in Java' groupId='org.json' artifactId='json' version='20201115' url='https://github.com/douglascrockford/JSON-java'><l:description>JSON is a light-weight, language independent, data interchange format.
+        See http://www.JSON.org/
+
+        The files in this package implement JSON encoders/decoders in Java.
+        It also includes the capability to convert between JSON and XML, HTTP
+        headers, Cookies, and CDL.
+
+        This is a reference implementation. There is a large number of JSON packages
+        in Java. Perhaps someday the Java community will standardize on one. Until
+        then, choose carefully.
+
+        The license includes this restriction: "The software shall be used for good,
+        not evil." If your conscience cannot live with that, then choose a different
+        package.</l:description><l:license name='The JSON License' url='http://json.org/license.html'/></l:dependency><l:dependency name='EdDSA-Java' groupId='net.i2p.crypto' artifactId='eddsa' version='0.3.0' url='https://github.com/str4d/ed25519-java'><l:description>Implementation of EdDSA in Java</l:description><l:license name='CC0 1.0 Universal' url='https://creativecommons.org/publicdomain/zero/1.0/'/></l:dependency></l:dependencies>

@@ -1,0 +1,14 @@
+<div>
+  Defines in which case a build on the next node should be triggered.<br />
+  If you choose to disallow multi node selection, the user will get a dropdown with the possible nodes when triggering a build - otherwise a multi selection is possible...
+  <br><br>
+  There are different options to define when the next build/job should be triggered:
+  <ul>
+  	<li>Run next build only if current build succeeds.</li>
+	<li>Run next build only if current build succeeds or is unstable.</li>
+	<li>Run next build regardless of current build result, but wait until current build finished.</li>
+	<li>Disallow multi node selection at all, user will get a dropdown to select the node to execute the job on.</li>
+	<li>Allow multi node selection for concurrent builds - this option only makes sense (and must be selected!) in case the job is configured with: "Execute concurrent builds if necessary". With this configuration the build will be executed on all the selected nodes in parallel.</li>
+  </ul>
+  Note: in case of concurrent job execution, the first job will trigger all the other ones, therefore it is important the selected nodes are online - otherwise you risk that none of the jobs will be triggered, because the first is waiting for an executor in the queue.
+</div>

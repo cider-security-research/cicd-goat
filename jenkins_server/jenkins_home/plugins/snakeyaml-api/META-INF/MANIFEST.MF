@@ -1,0 +1,23 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Created-By: Apache Maven
+Built-By: timja
+Build-Jdk: 11.0.9.1
+Extension-Name: snakeyaml-api
+Specification-Title: This plugin packages stock Snakeyaml library
+Implementation-Title: snakeyaml-api
+Implementation-Version: 1.29.1
+Group-Id: io.jenkins.plugins
+Short-Name: snakeyaml-api
+Long-Name: Snakeyaml API Plugin
+Url: https://github.com/jenkinsci/snakeyaml-api-plugin
+Minimum-Java-Version: 1.8
+Plugin-Version: 1.29.1
+Hudson-Version: 2.204.6
+Jenkins-Version: 2.204.6
+Plugin-Developers: 
+Support-Dynamic-Loading: true
+Plugin-License-Name: The MIT License (MIT)
+Plugin-License-Url: http://opensource.org/licenses/MIT
+Plugin-ScmUrl: https://github.com/jenkinsci/plugin-pom/snakeyaml-api
+

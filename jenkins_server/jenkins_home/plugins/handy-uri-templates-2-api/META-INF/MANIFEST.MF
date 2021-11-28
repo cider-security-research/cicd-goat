@@ -1,0 +1,26 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Created-By: Apache Maven
+Built-By: josep
+Build-Jdk: 1.8.0_222
+Extension-Name: handy-uri-templates-2-api
+Specification-Title: Bundles Handy Uri Templates 2.x and allows it to 
+ be used by Jenkins plugins
+Implementation-Title: handy-uri-templates-2-api
+Implementation-Version: 2.1.8-1.0
+Group-Id: org.jenkins-ci.plugins
+Short-Name: handy-uri-templates-2-api
+Long-Name: Handy Uri Templates 2.x API Plugin
+Url: https://wiki.jenkins.io/display/JENKINS/Handy+Uri+Templates+2+API
+ +Plugin
+Minimum-Java-Version: 1.7
+Plugin-Version: 2.1.8-1.0
+Hudson-Version: 1.625.3
+Jenkins-Version: 1.625.3
+Plugin-Developers: Joseph Petersen:casz:
+Support-Dynamic-Loading: true
+Plugin-License-Name: MIT License
+Plugin-License-Url: https://opensource.org/licenses/MIT
+Plugin-ScmUrl: https://github.com/jenkinsci/handy-uri-templates-2-api-
+ plugin
+

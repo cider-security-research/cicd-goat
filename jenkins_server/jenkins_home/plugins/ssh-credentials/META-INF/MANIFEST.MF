@@ -1,0 +1,25 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Created-By: Apache Maven
+Built-By: jglick
+Build-Jdk: 1.8.0_292
+Extension-Name: ssh-credentials
+Specification-Title: Allows storage of SSH credentials in Jenkins
+Implementation-Title: ssh-credentials
+Implementation-Version: 1.19
+Group-Id: org.jenkins-ci.plugins
+Short-Name: ssh-credentials
+Long-Name: SSH Credentials Plugin
+Url: https://github.com/jenkinsci/ssh-credentials-plugin/blob/master/d
+ oc/README.md
+Minimum-Java-Version: 1.8
+Plugin-Version: 1.19
+Hudson-Version: 2.282
+Jenkins-Version: 2.282
+Plugin-Dependencies: credentials:2.5,trilead-api:1.0.13
+Plugin-Developers: Stephen Connolly:stephenconnolly:,Oleg Nenashev:ole
+ g_nenashev:,Matt Sicker:jvz:
+Plugin-License-Name: MIT License
+Plugin-License-Url: https://opensource.org/licenses/MIT
+Plugin-ScmUrl: http://github.com/jenkinsci/ssh-credentials-plugin
+

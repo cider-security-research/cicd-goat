@@ -1,0 +1,16 @@
+<?xml version='1.1' encoding='UTF-8'?>
+<Tag plugin="workflow-support@3.8">
+  <node class="cps.n.StepEndNode" plugin="workflow-cps@2633.v6baeedc13805">
+    <parentIds>
+      <string>42</string>
+    </parentIds>
+    <id>43</id>
+    <startId>13</startId>
+  </node>
+  <actions>
+    <wf.a.BodyInvocationAction plugin="workflow-api@2.47"/>
+    <wf.a.TimingAction plugin="workflow-api@2.47">
+      <startTime>1637774600425</startTime>
+    </wf.a.TimingAction>
+  </actions>
+</Tag>

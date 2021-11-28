@@ -1,0 +1,21 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Created-By: Apache Maven
+Built-By: olamy
+Build-Jdk: 11.0.11
+Extension-Name: pubsub-light
+Specification-Title: A simple Publish-Subscribe light-weight event bus
+  for Jenkins
+Implementation-Title: pubsub-light
+Implementation-Version: 1.16
+Group-Id: org.jenkins-ci.plugins
+Short-Name: pubsub-light
+Long-Name: Jenkins Pub-Sub "light" Bus
+Url: https://github.com/jenkinsci/pubsub-light-plugin
+Minimum-Java-Version: 1.8
+Plugin-Version: 1.16
+Hudson-Version: 2.270
+Jenkins-Version: 2.270
+Plugin-Developers: 
+Plugin-ScmUrl: https://github.com/jenkinsci/pubsub-light-module
+

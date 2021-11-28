@@ -1,0 +1,25 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Created-By: Apache Maven
+Built-By: jglick
+Build-Jdk: 1.8.0_292
+Extension-Name: credentials-binding
+Specification-Title: Allows credentials to be bound to environment var
+ iables for use from miscellaneous build steps.
+Implementation-Title: credentials-binding
+Implementation-Version: 1.27
+Group-Id: org.jenkins-ci.plugins
+Short-Name: credentials-binding
+Long-Name: Credentials Binding Plugin
+Url: https://github.com/jenkinsci/credentials-binding-plugin
+Minimum-Java-Version: 1.8
+Plugin-Version: 1.27
+Hudson-Version: 2.235.5
+Jenkins-Version: 2.235.5
+Plugin-Dependencies: workflow-step-api:2.23,credentials:2.5,plain-cred
+ entials:1.7,ssh-credentials:1.18.1,structs:1.23
+Plugin-Developers: 
+Plugin-License-Name: MIT
+Plugin-License-Url: https://opensource.org/licenses/MIT
+Plugin-ScmUrl: https://github.com/jenkinsci/credentials-binding-plugin
+

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.jenkins-ci.ui</groupId>
+        <artifactId>jenkins-js-libs</artifactId>
+        <version>2.0.0</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>handlebars</artifactId>
+    <version>3.0.8</version>
+    <packaging>hpi</packaging>
+
+    <name>JavaScript GUI Lib: Handlebars bundle plugin</name>
+    <url>https://wiki.jenkins.io/display/JENKINS/Handlebars.js</url>
+
+    <scm>
+        <connection>scm:git:git://github.com/jenkinsci/js-libs.git</connection>
+        <developerConnection>scm:git:git@github.com:jenkinsci/js-libs.git</developerConnection>
+        <url>https://github.com/jenkinsci/js-libs/tree/master/handlebars</url>
+        <tag>handlebars-3.0.8</tag>
+    </scm>
+
+    <licenses>
+        <license>
+            <name>MIT License</name>
+            <url>https://opensource.org/licenses/MIT</url>
+        </license>
+    </licenses>
+
+</project>

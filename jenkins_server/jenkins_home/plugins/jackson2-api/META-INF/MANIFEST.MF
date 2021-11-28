@@ -1,0 +1,26 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Created-By: Apache Maven
+Built-By: runner
+Build-Jdk: 1.8.0_292
+Extension-Name: jackson2-api
+Specification-Title: This plugin exposes the Jackson 2 JSON APIs to ot
+ her Jenkins plugins.
+Implementation-Title: jackson2-api
+Implementation-Version: 2.13.0-230.v59243c64b0a5
+Group-Id: org.jenkins-ci.plugins
+Short-Name: jackson2-api
+Long-Name: Jackson 2 API Plugin
+Url: https://github.com/jenkinsci/jackson2-api-plugin
+Minimum-Java-Version: 1.8
+Plugin-Version: 2.13.0-230.v59243c64b0a5
+Hudson-Version: 2.249.1
+Jenkins-Version: 2.249.1
+Plugin-Dependencies: snakeyaml-api:1.29.1
+Plugin-Developers: Stephen Connolly:stephenconnolly:,Oleg Nenashev:ole
+ g_nenashev:,Matt Sicker:jvz:
+Support-Dynamic-Loading: true
+Plugin-License-Name: The Apache Software License, Version 2.0
+Plugin-License-Url: https://www.apache.org/licenses/LICENSE-2.0.txt
+Plugin-ScmUrl: https://github.com/jenkinsci/jackson2-api-plugin
+

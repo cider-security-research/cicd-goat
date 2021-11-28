@@ -1,0 +1,21 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Created-By: Apache Maven
+Built-By: tiste
+Build-Jdk: 11.0.1
+Extension-Name: jaxb
+Specification-Title: Detached packaging for JAXB for more transparent 
+ Java 9+ compatibility
+Implementation-Title: jaxb
+Implementation-Version: 2.3.0
+Group-Id: io.jenkins.plugins
+Short-Name: jaxb
+Long-Name: JAXB plugin
+Url: http://wiki.jenkins-ci.org/display/JENKINS/JAXB+Plugin
+Minimum-Java-Version: 1.8
+Plugin-Version: 2.3.0
+Hudson-Version: 2.60.3
+Jenkins-Version: 2.60.3
+Plugin-Developers: 
+Support-Dynamic-Loading: true
+

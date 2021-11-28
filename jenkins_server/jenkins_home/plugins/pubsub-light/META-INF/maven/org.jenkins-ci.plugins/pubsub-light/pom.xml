@@ -1,0 +1,94 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.jenkins-ci.plugins</groupId>
+    <artifactId>plugin</artifactId>
+    <version>4.19</version>
+  </parent>
+  
+  <artifactId>pubsub-light</artifactId>
+  <version>1.16</version>
+  <packaging>hpi</packaging>
+
+  <name>Jenkins Pub-Sub "light" Bus</name>
+  <description>A simple Publish-Subscribe light-weight event bus for Jenkins</description>
+  <url>https://github.com/jenkinsci/pubsub-light-plugin</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <java.level>8</java.level>
+    <jenkins.version>2.270</jenkins.version>
+  </properties>
+
+  <scm>
+    <connection>scm:git:git://github.com/jenkinsci/pubsub-light-module.git</connection>
+    <developerConnection>scm:git:git@github.com:jenkinsci/pubsub-light-module.git</developerConnection>
+    <url>https://github.com/jenkinsci/pubsub-light-module</url>
+    <tag>pubsub-light-1.16</tag>
+  </scm>
+
+  <repositories>
+    <repository>
+      <id>repo.jenkins-ci.org</id>
+      <url>https://repo.jenkins-ci.org/public/</url>
+    </repository>
+  </repositories>
+  <pluginRepositories>
+    <pluginRepository>
+      <id>repo.jenkins-ci.org</id>
+      <url>https://repo.jenkins-ci.org/public/</url>
+    </pluginRepository>
+  </pluginRepositories>
+
+  <dependencies>
+
+    <dependency>
+      <groupId>org.jenkins-ci.modules</groupId>
+      <artifactId>instance-identity</artifactId>
+      <version>2.2</version>
+      <scope>provided</scope>
+    </dependency>
+    
+    <!-- Test dependencies. -->
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.13.2</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.jenkins-ci.plugins</groupId>
+      <artifactId>matrix-auth</artifactId>
+      <version>2.6.7</version>
+      <scope>test</scope>
+    </dependency>
+    
+  </dependencies>
+  
+  <!--
+    TODO: remove this after https://github.com/jenkinsci/maven-hpi-plugin/pull/32 is merged, released and updated in the parent pom.    
+  -->
+  <build>
+    <plugins>
+        <plugin>
+          <groupId>org.jenkins-ci.tools</groupId>
+          <artifactId>maven-hpi-plugin</artifactId>
+          <extensions>true</extensions>
+          <configuration>
+            <contextPath>/jenkins</contextPath>
+            <!-- TODO specify ${java.level} when JENKINS-20679 implemented -->
+            <disabledTestInjection>true</disabledTestInjection>
+          </configuration>
+        </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <configuration>
+          <reuseForks>false</reuseForks>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+  
+</project>

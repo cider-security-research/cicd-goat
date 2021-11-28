@@ -1,0 +1,2 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<l:dependencies xmlns:l='licenses' groupId='io.jenkins.plugins' artifactId='jquery3-api' version='3.6.0-2'><l:dependency name='JQuery3 API Plugin' groupId='io.jenkins.plugins' artifactId='jquery3-api' version='3.6.0-2' url='https://github.com/jenkinsci/jquery3-api-plugin'><l:description>Provides jQuery 3.x for Jenkins plugins.</l:description><l:license name='MIT license' url=''/></l:dependency></l:dependencies>

@@ -1,0 +1,24 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Created-By: Apache Maven
+Built-By: amuniz
+Build-Jdk: 1.8.0_151
+Extension-Name: pipeline-milestone-step
+Specification-Title: Plugin that provides the milestone step
+Implementation-Title: pipeline-milestone-step
+Implementation-Version: 1.3.2
+Group-Id: org.jenkins-ci.plugins
+Short-Name: pipeline-milestone-step
+Long-Name: Pipeline: Milestone Step
+Url: https://github.com/jenkinsci/pipeline-milestone-step-plugin
+Minimum-Java-Version: 1.8
+Plugin-Version: 1.3.2
+Hudson-Version: 2.60.3
+Jenkins-Version: 2.60.3
+Plugin-Dependencies: workflow-api:2.11,workflow-step-api:2.9
+Plugin-Developers: 
+Plugin-License-Name: MIT License
+Plugin-License-Url: https://opensource.org/licenses/MIT
+Plugin-ScmUrl: https://github.com/jenkinsci/pipeline-milestone-step-pl
+ ugin
+

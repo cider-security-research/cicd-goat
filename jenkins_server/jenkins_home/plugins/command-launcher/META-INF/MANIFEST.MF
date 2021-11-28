@@ -1,0 +1,21 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Created-By: Apache Maven
+Built-By: jglick
+Build-Jdk: 1.8.0_151
+Extension-Name: command-launcher
+Specification-Title: Allows agents to be launched using a specified co
+ mmand.
+Implementation-Title: command-launcher
+Implementation-Version: 1.2
+Group-Id: org.jenkins-ci.plugins
+Short-Name: command-launcher
+Long-Name: Command Agent Launcher Plugin
+Url: https://wiki.jenkins.io/display/JENKINS/Command+Agent+Launcher+Pl
+ ugin
+Plugin-Version: 1.2
+Hudson-Version: 2.86
+Jenkins-Version: 2.86
+Plugin-Dependencies: script-security:1.36
+Plugin-Developers: 
+

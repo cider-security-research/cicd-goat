@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<l:dependencies xmlns:l='licenses' groupId='org.jenkins-ci.plugins' artifactId='email-ext' version='2.84'><l:dependency name='Email Extension Plugin' groupId='org.jenkins-ci.plugins' artifactId='email-ext' version='2.84' url='https://github.com/jenkinsci/email-ext-plugin'><l:description>Allows to configure every aspect of email notifications: when an email is sent, who should receive it and what the email says</l:description><l:license name='The MIT License (MIT)' url='https://opensource.org/licenses/MIT'/></l:dependency><l:dependency name='Jericho HTML Parser' groupId='net.htmlparser.jericho' artifactId='jericho-html' version='3.4' url='http://jericho.htmlparser.net'><l:description>Jericho HTML Parser is a java library allowing analysis and manipulation of parts of an HTML document, including server-side tags, while reproducing verbatim any unrecognised or invalid HTML.</l:description><l:license name='GNU Lesser General Public License (LGPL)' url='http://www.gnu.org/licenses/lgpl.txt'/><l:license name='Apache License' url='http://www.apache.org/licenses/'/><l:license name='Eclipse Public License (EPL)' url='http://www.eclipse.org/legal/epl-v10.html'/></l:dependency><l:dependency name='jsoup Java HTML Parser' groupId='org.jsoup' artifactId='jsoup' version='1.14.3' url='https://jsoup.org/'><l:description>jsoup is a Java library for working with real-world HTML. It provides a very convenient API for fetching URLs and extracting and manipulating data, using the best of HTML5 DOM methods and CSS selectors. jsoup implements the WHATWG HTML5 specification, and parses HTML to the same DOM as modern browsers do.</l:description><l:license name='The MIT License' url='https://jsoup.org/license'/></l:dependency><l:dependency name='JSON in Java' groupId='org.json' artifactId='json' version='20201115' url='https://github.com/douglascrockford/JSON-java'><l:description>JSON is a light-weight, language independent, data interchange format.
+        See http://www.JSON.org/
+
+        The files in this package implement JSON encoders/decoders in Java.
+        It also includes the capability to convert between JSON and XML, HTTP
+        headers, Cookies, and CDL.
+
+        This is a reference implementation. There is a large number of JSON packages
+        in Java. Perhaps someday the Java community will standardize on one. Until
+        then, choose carefully.
+
+        The license includes this restriction: "The software shall be used for good,
+        not evil." If your conscience cannot live with that, then choose a different
+        package.</l:description><l:license name='The JSON License' url='http://json.org/license.html'/></l:dependency><l:dependency name='EdDSA-Java' groupId='net.i2p.crypto' artifactId='eddsa' version='0.3.0' url='https://github.com/str4d/ed25519-java'><l:description>Implementation of EdDSA in Java</l:description><l:license name='CC0 1.0 Universal' url='https://creativecommons.org/publicdomain/zero/1.0/'/></l:dependency></l:dependencies>

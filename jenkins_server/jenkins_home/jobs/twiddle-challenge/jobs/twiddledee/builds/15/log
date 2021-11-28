@@ -1,0 +1,35 @@
+Started by timer
+Running as SYSTEM
+Building remotely on [8mha:////4JF0hcL6Gl1hrGKQlCASJuFYPmvFPRLy3GjSy5h8U8xaAAAAnB+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAy2EgYB/eT83ILSktQi/cT01LwSQwA2IiAFxQAAAA==[0magent1 (myagent) in workspace /home/jenkins/workspace/twiddle-challenge/twiddledee
+The recommended git tool is: NONE
+No credentials specified
+ > git rev-parse --resolve-git-dir /home/jenkins/workspace/twiddle-challenge/twiddledee/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url http://gitea:3000/Wonderland/twiddledum # timeout=10
+Fetching upstream changes from http://gitea:3000/Wonderland/twiddledum
+ > git --version # timeout=10
+ > git --version # 'git version 2.30.2'
+ > git fetch --tags --force --progress -- http://gitea:3000/Wonderland/twiddledum +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/main^{commit} # timeout=10
+Checking out Revision c3522cf486793f5c772e70f0f30fc0870adbdd72 (refs/remotes/origin/main)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f c3522cf486793f5c772e70f0f30fc0870adbdd72 # timeout=10
+Commit message: "upgrading package"
+ > git rev-list --no-walk c3522cf486793f5c772e70f0f30fc0870adbdd72 # timeout=10
+[twiddledee] $ /bin/sh -xe /tmp/jenkins15389720080655271268.sh
++ npm ci --ignore-scripts
+npm WARN ancient lockfile 
+npm WARN ancient lockfile The package-lock.json file was created with an old version of npm,
+npm WARN ancient lockfile so supplemental metadata must be fetched from the registry.
+npm WARN ancient lockfile 
+npm WARN ancient lockfile This is a one-time fix-up, please be patient...
+npm WARN ancient lockfile 
+
+added 1 package, and audited 2 packages in 3s
+
+found 0 vulnerabilities
+[twiddledee] $ /bin/sh -xe /tmp/jenkins9848767584758113604.sh
++ node index.js
+twiddledee - 1.30.0
+twiddledum - 1.0.0
+Finished: SUCCESS

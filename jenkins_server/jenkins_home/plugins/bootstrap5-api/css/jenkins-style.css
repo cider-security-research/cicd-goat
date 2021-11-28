@@ -1,0 +1,86 @@
+/* ------------------------------------------------------------------------------------------------------------------- */
+/* Undo problematic bootstrap styles
+/* These styles will only be picked up on Jenkins >=2.239
+/* ------------------------------------------------------------------------------------------------------------------- */
+
+body {
+    background-color: var(--background);
+    color: var(--text-color);
+}
+
+.table {
+    color: inherit;
+}
+
+.form-control {
+    background-color: var(--input-color);
+    border: 1px solid var(--input-border);
+    color: var(--text-color);
+}
+
+.custom-select {
+    color: var(--text-color);
+}
+
+pre {
+    color: var(--text-color);
+}
+
+/* ------------------------------------------------------------------------------------------------------------------- */
+/* Bootstrap Carousel                                                                                                  */
+/* ------------------------------------------------------------------------------------------------------------------- */
+
+.carousel-control-prev {
+    width: 20px;
+}
+
+.carousel-control-next {
+    width: 20px;
+}
+
+/* ------------------------------------------------------------------------------------------------------------------- */
+/* Font awesome icons float right                                                                                      */
+/* ------------------------------------------------------------------------------------------------------------------- */
+.card {
+    background-color: var(--background);
+    color: var(--text-color);
+    font-size: inherit;
+}
+
+
+.card-title {
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+}
+
+.icon-right {
+    float: right;
+    fill: #b4b4b4;
+    height: 48px;
+    width: 48px;
+    position: absolute;
+    right: 25px;
+    top: 10px;
+}
+
+.tooltip-inner {
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.tooltip.bs-tooltip-auto[x-placement^=top] .arrow::before, .tooltip.bs-tooltip-top .arrow::before {
+    border-top-color: rgba(0, 0, 0, 0.8);
+}
+
+.tooltip.bs-tooltip-auto[x-placement^=right] .arrow::before, .tooltip.bs-tooltip-right .arrow::before {
+    border-right-color: rgba(0, 0, 0, 0.8);
+}
+
+.tooltip.bs-tooltip-auto[x-placement^=bottom] .arrow::before, .tooltip.bs-tooltip-bottom .arrow::before {
+    border-bottom-color: rgba(0, 0, 0, 0.8);
+}
+
+.tooltip.bs-tooltip-auto[x-placement^=left] .arrow::before, .tooltip.bs-tooltip-left .arrow::before {
+    border-left-color: rgba(0, 0, 0, 0.8);
+}

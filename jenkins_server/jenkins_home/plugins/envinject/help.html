@@ -1,0 +1,14 @@
+<div>
+    <p>If this option is checked, Jenkins makes it possible to set an environment for the build job (or for each run on
+        a matrix project) by defining environment variables and execute a script (a setup script).</p>
+
+    <p>All these actions will be executed before a SCM checkout.</p>
+
+    <p>By default, after the set up, only injected variables (with Jenkins variables) will be available in the build
+        scripts, in the Jenkins post-actions, and so on.</p>
+
+    <p>Default inherited environment variables (inherited variables by the Jenkins process which often contains
+        machine-specific information, like <code>PATH</code>, <code>TIMEZONE</code>, etc.) can be unset if you enable
+        the <strong>envInject</strong> property and
+        check <strong>Unset system variables</strong> in the node configuration page.</p>
+</div>

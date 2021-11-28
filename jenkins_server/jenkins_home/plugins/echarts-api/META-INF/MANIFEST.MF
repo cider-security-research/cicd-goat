@@ -1,0 +1,24 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Created-By: Apache Maven
+Built-By: hafner
+Build-Jdk: 11.0.11
+Extension-Name: echarts-api
+Specification-Title: Provides ECharts for Jenkins plugins.
+Implementation-Title: echarts-api
+Implementation-Version: 5.2.2-1
+Group-Id: io.jenkins.plugins
+Short-Name: echarts-api
+Long-Name: ECharts API Plugin
+Url: https://github.com/jenkinsci/echarts-api-plugin
+Minimum-Java-Version: 1.8
+Plugin-Version: 5.2.2-1
+Hudson-Version: 2.289.1
+Jenkins-Version: 2.289.1
+Plugin-Dependencies: bootstrap5-api:5.1.1-1,font-awesome-api:5.15.4-1,
+ jquery3-api:3.6.0-2,plugin-util-api:2.5.1,jackson2-api:2.12.4
+Plugin-Developers: Ullrich Hafner:uhafner:ullrich.hafner@gmail.com
+Support-Dynamic-Loading: true
+Plugin-License-Name: MIT license
+Plugin-ScmUrl: https://github.com/jenkinsci/echarts-api-plugin
+

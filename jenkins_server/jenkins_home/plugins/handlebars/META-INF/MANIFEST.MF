@@ -1,0 +1,24 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Created-By: Apache Maven
+Built-By: alecharp
+Build-Jdk: 1.8.0_232
+Extension-Name: handlebars
+Specification-Title: The Jenkins Plugins Parent POM Project
+Implementation-Title: handlebars
+Implementation-Version: 3.0.8
+Group-Id: org.jenkins-ci.ui
+Short-Name: handlebars
+Long-Name: JavaScript GUI Lib: Handlebars bundle plugin
+Url: https://wiki.jenkins.io/display/JENKINS/Handlebars.js
+Minimum-Java-Version: 1.8
+Plugin-Version: 3.0.8
+Hudson-Version: 2.204
+Jenkins-Version: 2.204
+Plugin-Developers: 
+Support-Dynamic-Loading: true
+Plugin-License-Name: MIT License
+Plugin-License-Url: https://opensource.org/licenses/MIT
+Plugin-ScmUrl: https://github.com/jenkinsci/js-libs/tree/master/handle
+ bars
+

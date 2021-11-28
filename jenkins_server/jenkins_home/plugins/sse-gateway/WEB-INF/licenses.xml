@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<l:dependencies xmlns:l='licenses' groupId='org.jenkins-ci.plugins' artifactId='sse-gateway' version='1.24'><l:dependency name='Server Sent Events (SSE) Gateway Plugin' groupId='org.jenkins-ci.plugins' artifactId='sse-gateway' version='1.24' url='https://github.com/jenkinsci/sse-gateway-plugin'><l:description>Server Sent Events (SSE) Gateway Plugin</l:description><l:license name='MIT License' url='https://opensource.org/licenses/MIT'/></l:dependency></l:dependencies>

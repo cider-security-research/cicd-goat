@@ -1,0 +1,24 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Created-By: Apache Maven
+Built-By: Oleg
+Build-Jdk: 1.8.0_201
+Extension-Name: authorize-project
+Specification-Title: Configure projects to run with specified authoriz
+ ation.
+Implementation-Title: authorize-project
+Implementation-Version: 1.4.0
+Group-Id: org.jenkins-ci.plugins
+Short-Name: authorize-project
+Long-Name: Authorize Project
+Url: https://github.com/jenkinsci/authorize-project-plugin
+Compatible-Since-Version: 1.3.0
+Minimum-Java-Version: 1.8
+Plugin-Version: 1.4.0
+Hudson-Version: 2.235.1
+Jenkins-Version: 2.235.1
+Plugin-Developers: IKEDA Yasuyuki:ikedam:
+Plugin-License-Name: The MIT license
+Plugin-License-Url: https://opensource.org/licenses/MIT
+Plugin-ScmUrl: https://github.com/jenkinsci/authorize-project-plugin
+

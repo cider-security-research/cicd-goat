@@ -1,0 +1,28 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Created-By: Apache Maven
+Built-By: Oleg
+Build-Jdk: 1.8.0_201
+Extension-Name: envinject
+Specification-Title: The Jenkins Plugins Parent POM Project
+Implementation-Title: envinject
+Implementation-Version: 2.4.0
+Plugin-Class: org.jenkinsci.plugins.envinject.EnvInjectPlugin
+Group-Id: org.jenkins-ci.plugins
+Short-Name: envinject
+Long-Name: Environment Injector Plugin
+Url: https://github.com/jenkinsci/envinject-plugin
+Compatible-Since-Version: 2.1.4
+Minimum-Java-Version: 1.8
+Plugin-Version: 2.4.0
+Hudson-Version: 2.264
+Jenkins-Version: 2.264
+Plugin-Dependencies: envinject-api:1.6,ivy:1.21;resolution:=optional,m
+ atrix-project:1.7,script-security:1.22
+Plugin-Developers: Gregory Boissinot:gbois:gregory.boissinot@gmail.com
+ ,Oleg Nenashev:oleg_nenashev:o.v.nenashev@gmail.com,Manuel Recena:rec
+ ena:recena@gmail.com
+Plugin-License-Name: MIT license
+Plugin-License-Url: https://opensource.org/licenses/MIT
+Plugin-ScmUrl: https://github.com/jenkinsci/plugin-pom/envinject
+

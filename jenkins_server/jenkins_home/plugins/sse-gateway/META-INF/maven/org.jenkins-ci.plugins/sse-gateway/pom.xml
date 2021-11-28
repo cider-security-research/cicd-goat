@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.jenkins-ci.plugins</groupId>
+    <artifactId>plugin</artifactId>
+    <version>4.1</version>
+    <relativePath />
+  </parent>
+  <artifactId>sse-gateway</artifactId>
+  <version>1.24</version>
+  <packaging>hpi</packaging>
+
+  <properties>
+    <jenkins.version>2.176.4</jenkins.version>
+    <java.level>8</java.level>
+    <node.version>5.8.0</node.version>
+    <npm.version>3.7.3</npm.version>
+    <localRepoPath>${project.build.directory}/local-repo</localRepoPath>
+    <settingsPath>src/it/settings.xml</settingsPath>
+    <maven.dependency.plugin.version>3.1.1</maven.dependency.plugin.version>
+  </properties>
+
+  <name>Server Sent Events (SSE) Gateway Plugin</name>
+  <description>Server Sent Events (SSE) Gateway Plugin</description>
+  <url>https://github.com/jenkinsci/sse-gateway-plugin</url>
+
+  <scm>
+    <connection>scm:git:https://github.com/jenkinsci/sse-gateway-plugin.git</connection>
+    <developerConnection>scm:git:https://github.com/jenkinsci/sse-gateway-plugin.git</developerConnection>
+    <url>https://github.com/jenkinsci/sse-gateway-plugin</url>
+    <tag>sse-gateway-1.24</tag>
+  </scm>
+
+  <licenses>
+    <license>
+      <name>MIT License</name>
+      <url>https://opensource.org/licenses/MIT</url>
+    </license>
+  </licenses>
+
+  <repositories>
+    <repository>
+      <id>repo.jenkins-ci.org</id>
+      <url>https://repo.jenkins-ci.org/public/</url>
+    </repository>
+  </repositories>
+  <pluginRepositories>
+    <pluginRepository>
+      <id>repo.jenkins-ci.org</id>
+      <url>https://repo.jenkins-ci.org/public/</url>
+    </pluginRepository>
+  </pluginRepositories>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>io.jenkins.tools.bom</groupId>
+        <artifactId>bom-2.176.x</artifactId>
+        <version>9</version>
+        <scope>import</scope>
+        <type>pom</type>
+      </dependency>
+      <dependency>
+        <groupId>com.github.spotbugs</groupId>
+        <artifactId>spotbugs-annotations</artifactId>
+        <version>3.1.12</version>
+      </dependency>
+      <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>4.13.1</version>
+        <scope>test</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <dependencies>
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <version>3.1.0</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.jenkins-ci.plugins</groupId>
+      <artifactId>pubsub-light</artifactId>
+      <version>1.13</version>
+    </dependency>
+    
+    <!-- Test deps -->
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-core</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.github.eirslett</groupId>
+      <artifactId>frontend-plugin-core</artifactId>
+      <version>1.7.6</version>
+      <scope>test</scope>
+      <exclusions>
+        <!-- We want to pick these up as dependencies of Jenkins core in provided scope -->
+        <exclusion>
+          <groupId>commons-io</groupId>
+          <artifactId>commons-io</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.apache.commons</groupId>
+          <artifactId>commons-compress</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.jenkins-ci.tools</groupId>
+        <artifactId>maven-hpi-plugin</artifactId>
+        <extensions>true</extensions>
+        <configuration>
+          <showDeprecation>true</showDeprecation>
+          <contextPath>/jenkins</contextPath>
+          <!-- TODO specify ${java.level} when JENKINS-20679 implemented -->
+          <disabledTestInjection>true</disabledTestInjection>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-invoker-plugin</artifactId>
+        <version>3.2.1</version>
+        <executions>
+          <execution>
+            <id>integration-test</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>install</goal>
+              <goal>integration-test</goal>
+              <goal>verify</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <cloneProjectsTo>${project.build.directory}/it</cloneProjectsTo>
+          <localRepositoryPath>${localRepoPath}</localRepositoryPath>
+          <settingsFile>${settingsPath}</settingsFile>
+          <goals>
+            <goal>clean</goal>
+          </goals>
+        </configuration>
+      </plugin>
+    </plugins>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-resources-plugin</artifactId>
+          <!--
+          maven totally change his way to copy symlink
+          this mean the symlink is copied as a symlink and not anymore as a new file
+          see JENKINS-59291
+          https://issues.apache.org/jira/browse/MRESOURCES-237
+          -->
+          <version>2.7</version>
+        </plugin>
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>findbugs-maven-plugin</artifactId>
+          <version>3.0.5</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>3.0.0-M3</version>
+          <configuration>
+            <reuseForks>false</reuseForks>
+            <runOrder>alphabetical</runOrder>
+            <systemPropertyVariables>
+              <jenkins.test.timeout>90</jenkins.test.timeout>
+            </systemPropertyVariables>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+  
+</project>

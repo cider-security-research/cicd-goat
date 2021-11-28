@@ -1,0 +1,30 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Created-By: Apache Maven
+Built-By: basil
+Build-Jdk: 1.8.0_292
+Extension-Name: email-ext
+Specification-Title: Allows to configure every aspect of email notific
+ ations: when an email is sent, who should receive it and what the ema
+ il says
+Implementation-Title: email-ext
+Implementation-Version: 2.84
+Plugin-Class: hudson.plugins.emailext.EmailExtensionPlugin
+Group-Id: org.jenkins-ci.plugins
+Short-Name: email-ext
+Long-Name: Email Extension Plugin
+Url: https://github.com/jenkinsci/email-ext-plugin
+Compatible-Since-Version: 2.57.2
+Minimum-Java-Version: 1.8
+Plugin-Version: 2.84
+Hudson-Version: 2.222.4
+Jenkins-Version: 2.222.4
+Plugin-Dependencies: workflow-job:2.41;resolution:=optional,workflow-s
+ tep-api:2.23;resolution:=optional,config-file-provider:3.7.1;resoluti
+ on:=optional,jackson2-api:2.12.3,junit:1.50,mailer:1.32.1,matrix-proj
+ ect:1.18,script-security:1.77,structs:1.23,token-macro:2.13
+Plugin-Developers: Basil Crow:basil:me@basilcrow.com
+Plugin-License-Name: The MIT License (MIT)
+Plugin-License-Url: https://opensource.org/licenses/MIT
+Plugin-ScmUrl: https://github.com/jenkinsci/email-ext-plugin
+

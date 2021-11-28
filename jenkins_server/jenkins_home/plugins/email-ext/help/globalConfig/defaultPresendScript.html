@@ -1,0 +1,15 @@
+<div>
+	This script will be run prior to sending the email to allow
+	modifying the email before sending. The <em>MimeMessage</em> variable
+	is <tt>msg</tt>, the <em>build</em> is available as <tt>build</tt>, a <em>logger</em>
+	is available as <tt>logger</tt>. The <em>trigger</em> that caused the email
+        is available as <tt>trigger</tt> and all triggered builds are available
+        as a map <tt>triggered</tt>.
+	<br/><br/>
+	You may also cancel sending the email by setting the boolean
+	variable <tt>cancel</tt> to true.
+        <br/><br/>
+        You can set the default pre-send script here and then use
+        <tt>${DEFAULT_PRESEND_SCRIPT}</tt> in the project settings to use
+        the script written here.
+</div>

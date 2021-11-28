@@ -1,0 +1,24 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Created-By: Apache Maven
+Built-By: runner
+Build-Jdk: 1.8.0_282
+Extension-Name: jjwt-api
+Specification-Title: The Jenkins Plugins Parent POM Project
+Implementation-Title: jjwt-api
+Implementation-Version: 0.11.2-9.c8b45b8bb173
+Group-Id: io.jenkins.plugins
+Short-Name: jjwt-api
+Long-Name: Java JSON Web Token (JJWT) Plugin
+Url: https://github.com/jenkinsci/jjwt-api-plugin
+Minimum-Java-Version: 1.8
+Plugin-Version: 0.11.2-9.c8b45b8bb173
+Hudson-Version: 2.222.4
+Jenkins-Version: 2.222.4
+Plugin-Dependencies: jackson2-api:2.12.1
+Plugin-Developers: 
+Support-Dynamic-Loading: true
+Plugin-License-Name: MIT License
+Plugin-License-Url: https://opensource.org/licenses/MIT
+Plugin-ScmUrl: https://github.com/jenkinsci/jjwt-api-plugin
+

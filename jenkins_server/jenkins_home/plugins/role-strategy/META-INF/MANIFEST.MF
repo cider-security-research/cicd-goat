@@ -1,0 +1,25 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Created-By: Apache Maven
+Built-By: Oleg
+Build-Jdk: 1.8.0_201
+Extension-Name: role-strategy
+Specification-Title: The Jenkins Plugins Parent POM Project
+Implementation-Title: role-strategy
+Implementation-Version: 3.2.0
+Group-Id: org.jenkins-ci.plugins
+Short-Name: role-strategy
+Long-Name: Role-based Authorization Strategy
+Url: https://github.com/jenkinsci/role-strategy-plugin
+Minimum-Java-Version: 1.8
+Plugin-Version: 3.2.0
+Hudson-Version: 2.222.4
+Jenkins-Version: 2.222.4
+Plugin-Dependencies: caffeine-api:2.9.1-23.v51c4e2c879c8,configuration
+ -as-code:1.51;resolution:=optional,matrix-auth:2.6.7
+Plugin-Developers: Thomas Maurel:tmaurel:,Romain Seguy:rseguy:,Oleg Ne
+ nashev:oleg_nenashev:o.v.nenashev@gmail.com
+Plugin-License-Name: MIT License
+Plugin-License-Url: https://opensource.org/licenses/MIT
+Plugin-ScmUrl: https://github.com/jenkinsci/role-strategy-plugin
+

@@ -1,0 +1,23 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Created-By: Apache Maven
+Built-By: olamy
+Build-Jdk: 11.0.9
+Extension-Name: sse-gateway
+Specification-Title: Server Sent Events (SSE) Gateway Plugin
+Implementation-Title: sse-gateway
+Implementation-Version: 1.24
+Group-Id: org.jenkins-ci.plugins
+Short-Name: sse-gateway
+Long-Name: Server Sent Events (SSE) Gateway Plugin
+Url: https://github.com/jenkinsci/sse-gateway-plugin
+Minimum-Java-Version: 1.8
+Plugin-Version: 1.24
+Hudson-Version: 2.176.4
+Jenkins-Version: 2.176.4
+Plugin-Dependencies: pubsub-light:1.13
+Plugin-Developers: 
+Plugin-License-Name: MIT License
+Plugin-License-Url: https://opensource.org/licenses/MIT
+Plugin-ScmUrl: https://github.com/jenkinsci/sse-gateway-plugin
+

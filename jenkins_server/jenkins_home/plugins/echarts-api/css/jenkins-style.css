@@ -1,0 +1,99 @@
+.card-chart {
+    width: 100%;
+    min-height: 256px;
+    min-width: 256px;
+    display: block;
+}
+
+.range-slider {
+    width: 100%;
+}
+
+.range-slider-range {
+    -webkit-appearance: none;
+    width: calc(100% - (73px));
+    height: 8px;
+    border-radius: 5px;
+    background: #d7dcdf;
+    outline: none;
+    padding: 0;
+    margin: 0;
+}
+
+.range-slider-range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: #2c3e50;
+    cursor: pointer;
+    -webkit-transition: background 0.15s ease-in-out;
+    transition: background 0.15s ease-in-out;
+}
+
+.range-slider-range::-webkit-slider-thumb:hover {
+    background: #0d6efd;
+}
+
+.range-slider-range:active::-webkit-slider-thumb {
+    background: #0d6efd;
+}
+
+.range-slider-range::-moz-range-thumb {
+    width: 15px;
+    height: 15px;
+    border: 0;
+    border-radius: 50%;
+    background: #2c3e50;
+    cursor: pointer;
+    -moz-transition: background 0.15s ease-in-out;
+    transition: background 0.15s ease-in-out;
+}
+
+.range-slider-range::-moz-range-thumb:hover {
+    background: #0d6efd;
+}
+
+.range-slider-range:active::-moz-range-thumb {
+    background: #0d6efd;
+}
+
+.range-slider-range:focus::-webkit-slider-thumb {
+    box-shadow: 0 0 0 3px #fff, 0 0 0 6px #0d6efd;
+}
+
+.range-slider-value {
+    display: inline-block;
+    position: relative;
+    width: 60px;
+    color: #fff;
+    line-height: 18px;
+    text-align: center;
+    border-radius: 3px;
+    background: #2c3e50;
+    padding: 5px 10px;
+    margin-left: 8px;
+}
+
+.range-slider-value:after {
+    position: absolute;
+    top: 8px;
+    left: -7px;
+    width: 0;
+    height: 0;
+    border-top: 7px solid transparent;
+    border-right: 7px solid #2c3e50;
+    border-bottom: 7px solid transparent;
+    content: "";
+}
+
+::-moz-range-track {
+    background: #d7dcdf;
+    border: 0;
+}
+
+input::-moz-focus-inner,
+input::-moz-focus-outer {
+    border: 0;
+}

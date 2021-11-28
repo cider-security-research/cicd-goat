@@ -1,0 +1,73 @@
+<?xml version='1.1' encoding='UTF-8'?>
+<Tag plugin="workflow-support@3.8">
+  <node class="org.jenkinsci.plugins.workflow.graph.FlowEndNode" plugin="workflow-api@2.47">
+    <parentIds>
+      <string>16</string>
+    </parentIds>
+    <id>17</id>
+    <startId>2</startId>
+    <result>
+      <name>FAILURE</name>
+      <ordinal>2</ordinal>
+      <color>RED</color>
+      <completeBuild>true</completeBuild>
+    </result>
+  </node>
+  <actions>
+    <wf.a.ErrorAction plugin="workflow-api@2.47">
+      <error class="java.nio.file.NoSuchFileException">
+        <stackTrace>
+          <trace>java.base/sun.nio.fs.UnixException.translateToIOException(UnixException.java:92)</trace>
+          <trace>java.base/sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:111)</trace>
+          <trace>java.base/sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:116)</trace>
+          <trace>java.base/sun.nio.fs.UnixFileSystemProvider.createDirectory(UnixFileSystemProvider.java:389)</trace>
+          <trace>java.base/java.nio.file.Files.createDirectory(Files.java:690)</trace>
+          <trace>java.base/java.nio.file.Files.createAndCheckIsDirectory(Files.java:797)</trace>
+          <trace>java.base/java.nio.file.Files.createDirectories(Files.java:783)</trace>
+          <trace>hudson.FilePath.mkdirs(FilePath.java:3549)</trace>
+          <trace>hudson.FilePath.access$1500(FilePath.java:212)</trace>
+          <trace>hudson.FilePath$Mkdirs.invoke(FilePath.java:1348)</trace>
+          <trace>hudson.FilePath$Mkdirs.invoke(FilePath.java:1344)</trace>
+          <trace>hudson.FilePath$FileCallableWrapper.call(FilePath.java:3329)</trace>
+          <trace>hudson.remoting.UserRequest.perform(UserRequest.java:211)</trace>
+          <trace>hudson.remoting.UserRequest.perform(UserRequest.java:54)</trace>
+          <trace>hudson.remoting.Request$2.run(Request.java:376)</trace>
+          <trace>hudson.remoting.InterceptingExecutorService.lambda$wrap$0(InterceptingExecutorService.java:78)</trace>
+          <trace>java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)</trace>
+          <trace>java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)</trace>
+          <trace>java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)</trace>
+          <trace>java.base/java.lang.Thread.run(Thread.java:829)</trace>
+        </stackTrace>
+        <suppressedExceptions>
+          <hudson.remoting.Channel_-CallSiteStackTrace>
+            <detailMessage>Remote call to agent1</detailMessage>
+            <stackTrace>
+              <trace>hudson.remoting.Channel.attachCallSiteStackTrace(Channel.java:1797)</trace>
+              <trace>hudson.remoting.UserRequest$ExceptionResponse.retrieve(UserRequest.java:356)</trace>
+              <trace>hudson.remoting.Channel.call(Channel.java:1001)</trace>
+              <trace>hudson.FilePath.act(FilePath.java:1165)</trace>
+              <trace>hudson.FilePath.act(FilePath.java:1154)</trace>
+              <trace>hudson.FilePath.mkdirs(FilePath.java:1340)</trace>
+              <trace>hudson.plugins.git.GitSCM.createClient(GitSCM.java:836)</trace>
+              <trace>hudson.plugins.git.GitSCM.checkout(GitSCM.java:1291)</trace>
+              <trace>org.jenkinsci.plugins.workflow.steps.scm.SCMStep.checkout(SCMStep.java:129)</trace>
+              <trace>org.jenkinsci.plugins.workflow.steps.scm.SCMStep$StepExecutionImpl.run(SCMStep.java:97)</trace>
+              <trace>org.jenkinsci.plugins.workflow.steps.scm.SCMStep$StepExecutionImpl.run(SCMStep.java:84)</trace>
+              <trace>org.jenkinsci.plugins.workflow.steps.SynchronousNonBlockingStepExecution.lambda$start$0(SynchronousNonBlockingStepExecution.java:47)</trace>
+              <trace>java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)</trace>
+              <trace>java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)</trace>
+              <trace>java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)</trace>
+              <trace>java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)</trace>
+              <trace>java.base/java.lang.Thread.run(Thread.java:829)</trace>
+            </stackTrace>
+            <suppressedExceptions class="empty-list"/>
+          </hudson.remoting.Channel_-CallSiteStackTrace>
+        </suppressedExceptions>
+        <file>/home/jenkins/workspace</file>
+      </error>
+    </wf.a.ErrorAction>
+    <wf.a.TimingAction plugin="workflow-api@2.47">
+      <startTime>1638107114502</startTime>
+    </wf.a.TimingAction>
+  </actions>
+</Tag>

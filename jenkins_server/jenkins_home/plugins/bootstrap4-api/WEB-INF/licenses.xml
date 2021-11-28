@@ -1,0 +1,2 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<l:dependencies xmlns:l='licenses' groupId='io.jenkins.plugins' artifactId='bootstrap4-api' version='4.6.0-3'><l:dependency name='Bootstrap 4 API Plugin' groupId='io.jenkins.plugins' artifactId='bootstrap4-api' version='4.6.0-3' url='https://github.com/jenkinsci/bootstrap4-api-plugin'><l:description>Provides Bootstrap 4 for Jenkins plugins.</l:description><l:license name='MIT license' url=''/></l:dependency></l:dependencies>

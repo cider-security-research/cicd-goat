@@ -1,0 +1,26 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Created-By: Apache Maven
+Built-By: olamy
+Build-Jdk: 11.0.9
+Extension-Name: favorite
+Specification-Title: The Jenkins Plugins Parent POM Project
+Implementation-Title: favorite
+Implementation-Version: 2.3.3
+Plugin-Class: hudson.plugins.favorite.FavoritePlugin
+Group-Id: org.jvnet.hudson.plugins
+Short-Name: favorite
+Long-Name: Favorite
+Url: https://wiki.jenkins.io/display/JENKINS/Favorite+Plugin
+Minimum-Java-Version: 1.8
+Plugin-Version: 2.3.3
+Hudson-Version: 2.270
+Jenkins-Version: 2.270
+Plugin-Dependencies: mailer:1.32.1,matrix-project:1.18,token-macro:2.12
+Plugin-Developers: Larry Shatzer, Jr.:lshatzer:larrys@gmail.com,James 
+ Dumay:jamesdumay:jdumay@cloudbees.com,Michael Neale:michaelneale:mnea
+ le@cloudbees.com
+Plugin-License-Name: MIT License
+Plugin-License-Url: https://opensource.org/licenses/MIT
+Plugin-ScmUrl: https://github.com/jenkinsci/favorite-plugin
+

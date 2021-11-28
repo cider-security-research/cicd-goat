@@ -1,0 +1,123 @@
+--- Copying files at Thu Nov 11 11:13:29 UTC 2021
+INSTALLED plugins/workflow-durable-task-step.jpi : 1097.veac1aacfbda8
+INSTALLED plugins/sse-gateway.jpi : 1.24
+INSTALLED plugins/variant.jpi : 1.4
+INSTALLED plugins/blueocean-i18n.jpi : 1.25.1
+INSTALLED plugins/authentication-tokens.jpi : 1.4
+INSTALLED plugins/blueocean-config.jpi : 1.25.1
+INSTALLED plugins/blueocean-jwt.jpi : 1.25.1
+INSTALLED plugins/matrix-project.jpi : 1.19
+INSTALLED plugins/pipeline-model-definition.jpi : 1.9.2
+INSTALLED plugins/workflow-multibranch.jpi : 2.26
+INSTALLED plugins/blueocean-pipeline-scm-api.jpi : 1.25.1
+INSTALLED plugins/ace-editor.jpi : 1.1
+INSTALLED plugins/git.jpi : 4.10.0
+INSTALLED plugins/popper2-api.jpi : 2.10.2-1
+INSTALLED plugins/pipeline-build-step.jpi : 2.15
+INSTALLED plugins/workflow-cps.jpi : 2633.v6baeedc13805
+INSTALLED plugins/workflow-job.jpi : 2.42
+INSTALLED plugins/workflow-support.jpi : 3.8
+INSTALLED plugins/trilead-api.jpi : 1.0.13
+INSTALLED plugins/blueocean-bitbucket-pipeline.jpi : 1.25.1
+INSTALLED plugins/htmlpublisher.jpi : 1.27
+INSTALLED plugins/font-awesome-api.jpi : 5.15.4-1
+INSTALLED plugins/blueocean-core-js.jpi : 1.25.1
+INSTALLED plugins/plain-credentials.jpi : 1.7
+INSTALLED plugins/favorite.jpi : 2.3.3
+INSTALLED plugins/github-branch-source.jpi : 2.11.3
+INSTALLED plugins/okhttp-api.jpi : 4.9.2-20211102
+INSTALLED plugins/display-url-api.jpi : 2.3.5
+INSTALLED plugins/blueocean-dashboard.jpi : 1.25.1
+INSTALLED plugins/bootstrap4-api.jpi : 4.6.0-3
+INSTALLED plugins/workflow-scm-step.jpi : 2.13
+INSTALLED plugins/durable-task.jpi : 493.v195aefbb0ff2
+INSTALLED plugins/pipeline-stage-tags-metadata.jpi : 1.9.2
+INSTALLED plugins/git-server.jpi : 1.10
+INSTALLED plugins/pipeline-milestone-step.jpi : 1.3.2
+INSTALLED plugins/handy-uri-templates-2-api.jpi : 2.1.8-1.0
+INSTALLED plugins/apache-httpcomponents-client-4-api.jpi : 4.5.13-1.0
+INSTALLED plugins/blueocean-display-url.jpi : 2.4.1
+INSTALLED plugins/script-security.jpi : 1.78
+INSTALLED plugins/blueocean-personalization.jpi : 1.25.1
+INSTALLED plugins/workflow-cps-global-lib.jpi : 545.v7b28cce323cf
+INSTALLED plugins/blueocean.jpi : 1.25.1
+INSTALLED plugins/blueocean-pipeline-api-impl.jpi : 1.25.1
+INSTALLED plugins/workflow-step-api.jpi : 2.24
+INSTALLED plugins/blueocean-web.jpi : 1.25.1
+INSTALLED plugins/pipeline-model-extensions.jpi : 1.9.2
+INSTALLED plugins/echarts-api.jpi : 5.2.2-1
+INSTALLED plugins/credentials-binding.jpi : 1.27
+INSTALLED plugins/blueocean-commons.jpi : 1.25.1
+INSTALLED plugins/structs.jpi : 1.23
+INSTALLED plugins/blueocean-rest.jpi : 1.25.1
+INSTALLED plugins/popper-api.jpi : 1.16.1-2
+INSTALLED plugins/jjwt-api.jpi : 0.11.2-9.c8b45b8bb173
+INSTALLED plugins/jsch.jpi : 0.1.55.2
+INSTALLED plugins/blueocean-autofavorite.jpi : 1.2.4
+INSTALLED plugins/pubsub-light.jpi : 1.16
+INSTALLED plugins/token-macro.jpi : 267.vcdaea6462991
+INSTALLED plugins/pipeline-stage-step.jpi : 2.5
+INSTALLED plugins/bootstrap5-api.jpi : 5.1.3-1
+INSTALLED plugins/blueocean-git-pipeline.jpi : 1.25.1
+INSTALLED plugins/jquery3-api.jpi : 3.6.0-2
+INSTALLED plugins/blueocean-github-pipeline.jpi : 1.25.1
+INSTALLED plugins/credentials.jpi : 2.6.2
+INSTALLED plugins/blueocean-rest-impl.jpi : 1.25.1
+INSTALLED plugins/mailer.jpi : 1.34
+INSTALLED plugins/github.jpi : 1.34.1
+INSTALLED plugins/cloudbees-bitbucket-branch-source.jpi : 2.9.11
+INSTALLED plugins/github-api.jpi : 1.133
+INSTALLED plugins/git-client.jpi : 3.10.0
+INSTALLED plugins/cloudbees-folder.jpi : 6.16
+INSTALLED plugins/pipeline-model-api.jpi : 1.9.2
+INSTALLED plugins/sshd.jpi : 3.1.0
+INSTALLED plugins/blueocean-events.jpi : 1.25.1
+INSTALLED plugins/ssh-credentials.jpi : 1.19
+INSTALLED plugins/checks-api.jpi : 1.7.2
+INSTALLED plugins/plugin-util-api.jpi : 2.5.1
+INSTALLED plugins/jenkins-design-language.jpi : 1.25.1
+INSTALLED plugins/workflow-api.jpi : 2.47
+INSTALLED plugins/snakeyaml-api.jpi : 1.29.1
+INSTALLED plugins/caffeine-api.jpi : 2.9.2-29.v717aac953ff3
+INSTALLED plugins/pipeline-graph-analysis.jpi : 1.11
+INSTALLED plugins/jackson2-api.jpi : 2.13.0-230.v59243c64b0a5
+INSTALLED plugins/pipeline-input-step.jpi : 2.12
+INSTALLED plugins/junit.jpi : 1.53
+INSTALLED plugins/workflow-basic-steps.jpi : 2.24
+INSTALLED plugins/branch-api.jpi : 2.7.0
+INSTALLED plugins/scm-api.jpi : 2.6.5
+INSTALLED plugins/blueocean-pipeline-editor.jpi : 1.25.1
+--- Copying files at Thu Nov 11 11:16:36 UTC 2021
+--- Copying files at Thu Nov 11 11:20:42 UTC 2021
+--- Copying files at Sun Nov 14 07:52:29 UTC 2021
+--- Copying files at Tue Nov 16 08:21:37 UTC 2021
+--- Copying files at Tue Nov 16 08:22:22 UTC 2021
+--- Copying files at Tue Nov 16 13:00:16 UTC 2021
+--- Copying files at Tue Nov 16 14:12:01 UTC 2021
+--- Copying files at Wed Nov 17 09:41:14 UTC 2021
+--- Copying files at Wed Nov 17 10:02:02 UTC 2021
+--- Copying files at Wed Nov 17 13:23:18 UTC 2021
+--- Copying files at Thu Nov 18 13:44:09 UTC 2021
+--- Copying files at Sun Nov 21 09:57:50 UTC 2021
+--- Copying files at Sun Nov 21 10:12:20 UTC 2021
+--- Copying files at Sun Nov 21 13:40:01 UTC 2021
+--- Copying files at Sun Nov 21 15:15:32 UTC 2021
+--- Copying files at Sun Nov 21 15:18:51 UTC 2021
+--- Copying files at Sun Nov 21 15:26:06 UTC 2021
+--- Copying files at Sun Nov 21 15:27:23 UTC 2021
+--- Copying files at Sun Nov 21 15:30:00 UTC 2021
+--- Copying files at Sun Nov 21 16:02:53 UTC 2021
+--- Copying files at Sun Nov 21 16:46:00 UTC 2021
+--- Copying files at Mon Nov 22 08:57:09 UTC 2021
+--- Copying files at Mon Nov 22 12:36:55 UTC 2021
+--- Copying files at Mon Nov 22 14:41:57 UTC 2021
+--- Copying files at Mon Nov 22 14:48:05 UTC 2021
+--- Copying files at Mon Nov 22 14:59:19 UTC 2021
+--- Copying files at Tue Nov 23 07:43:53 UTC 2021
+--- Copying files at Tue Nov 23 08:57:28 UTC 2021
+--- Copying files at Tue Nov 23 09:06:13 UTC 2021
+--- Copying files at Tue Nov 23 10:46:12 UTC 2021
+--- Copying files at Tue Nov 23 14:09:18 UTC 2021
+--- Copying files at Tue Nov 23 14:12:19 UTC 2021
+--- Copying files at Wed Nov 24 14:26:36 UTC 2021
+--- Copying files at Thu Nov 25 10:24:58 UTC 2021

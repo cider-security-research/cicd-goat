@@ -1,0 +1,65 @@
+<?xml version='1.1' encoding='UTF-8'?>
+<flow-definition plugin="workflow-job@2.42">
+  <actions>
+    <org.jenkinsci.plugins.pipeline.modeldefinition.actions.DeclarativeJobAction plugin="pipeline-model-definition@1.9.2"/>
+    <org.jenkinsci.plugins.pipeline.modeldefinition.actions.DeclarativeJobPropertyTrackerAction plugin="pipeline-model-definition@1.9.2">
+      <jobProperties/>
+      <triggers/>
+      <parameters/>
+      <options/>
+    </org.jenkinsci.plugins.pipeline.modeldefinition.actions.DeclarativeJobPropertyTrackerAction>
+  </actions>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <org.jenkinsci.plugins.workflow.multibranch.BranchJobProperty plugin="workflow-multibranch@2.26">
+      <branch plugin="branch-api@2.7.0">
+        <sourceId>bea7d2a3-d744-4c1d-8944-a815c7c3f693</sourceId>
+        <head class="org.jenkinsci.plugin.gitea.BranchSCMHead" plugin="gitea@1.3.0">
+          <name>main</name>
+        </head>
+        <scm class="hudson.plugins.git.GitSCM" plugin="git@4.10.0">
+          <configVersion>2</configVersion>
+          <userRemoteConfigs>
+            <hudson.plugins.git.UserRemoteConfig>
+              <name>origin</name>
+              <refspec>+refs/heads/main:refs/remotes/origin/main</refspec>
+              <url>http://a644940c92efe2d1876e16a5d29e6c6d7e199b68@gitea:3000/Wonderland/caterpillar.git</url>
+              <credentialsId>gitea-access-token</credentialsId>
+            </hudson.plugins.git.UserRemoteConfig>
+          </userRemoteConfigs>
+          <branches class="singleton-list">
+            <hudson.plugins.git.BranchSpec>
+              <name>main</name>
+            </hudson.plugins.git.BranchSpec>
+          </branches>
+          <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+          <browser class="org.jenkinsci.plugin.gitea.GiteaBrowser" plugin="gitea@1.3.0">
+            <url>http://gitea:3000/Wonderland/caterpillar</url>
+          </browser>
+          <submoduleCfg class="empty-list"/>
+          <extensions>
+            <jenkins.plugins.git.GitSCMSourceDefaults>
+              <includeTags>false</includeTags>
+            </jenkins.plugins.git.GitSCMSourceDefaults>
+          </extensions>
+        </scm>
+        <properties/>
+        <actions>
+          <jenkins.scm.api.metadata.ObjectMetadataAction plugin="scm-api@2.6.5">
+            <objectUrl>http://gitea:3000/Wonderland/caterpillar/src/branch/main</objectUrl>
+          </jenkins.scm.api.metadata.ObjectMetadataAction>
+          <org.jenkinsci.plugin.gitea.GiteaLink plugin="gitea@1.3.0">
+            <iconClassName>icon-gitea-branch</iconClassName>
+            <url>http://gitea:3000/Wonderland/caterpillar/src/branch/main</url>
+          </org.jenkinsci.plugin.gitea.GiteaLink>
+          <jenkins.scm.api.metadata.PrimaryInstanceMetadataAction plugin="scm-api@2.6.5"/>
+        </actions>
+      </branch>
+    </org.jenkinsci.plugins.workflow.multibranch.BranchJobProperty>
+  </properties>
+  <definition class="org.jenkinsci.plugins.workflow.multibranch.SCMBinder" plugin="workflow-multibranch@2.26">
+    <scriptPath>Jenkinsfile</scriptPath>
+  </definition>
+  <triggers/>
+  <disabled>false</disabled>
+</flow-definition>

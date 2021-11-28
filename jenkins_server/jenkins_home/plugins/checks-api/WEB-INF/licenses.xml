@@ -1,0 +1,2 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<l:dependencies xmlns:l='licenses' groupId='io.jenkins.plugins' artifactId='checks-api' version='1.7.2'><l:dependency name='Checks API plugin' groupId='io.jenkins.plugins' artifactId='checks-api' version='1.7.2' url='https://github.com/jenkinsci/checks-api-plugin'><l:description>Defines an API for Jenkins to publish checks to SCM platforms.</l:description><l:license name='MIT License' url='https://opensource.org/licenses/MIT'/></l:dependency></l:dependencies>

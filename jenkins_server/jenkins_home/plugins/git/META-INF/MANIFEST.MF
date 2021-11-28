@@ -1,0 +1,31 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Created-By: Apache Maven
+Built-By: mwaite
+Build-Jdk: 1.8.0_302
+Extension-Name: git
+Specification-Title: Integrates Jenkins with Git SCM
+Implementation-Title: git
+Implementation-Version: 4.10.0
+Group-Id: org.jenkins-ci.plugins
+Short-Name: git
+Long-Name: Jenkins Git plugin
+Url: https://github.com/jenkinsci/git-plugin/blob/master/README.adoc
+Minimum-Java-Version: 1.8
+Plugin-Version: 4.10.0
+Hudson-Version: 2.289.1
+Jenkins-Version: 2.289.1
+Plugin-Dependencies: configuration-as-code:1.54;resolution:=optional,w
+ orkflow-scm-step:2.13,workflow-step-api:2.24,credentials-binding:1.27
+ ,credentials:2.6.1,git-client:3.10.0,mailer:1.34,matrix-project:1.19;
+ resolution:=optional,parameterized-trigger:2.39;resolution:=optional,
+ promoted-builds:3.9.1;resolution:=optional,scm-api:2.6.5,script-secur
+ ity:1.78,ssh-credentials:1.19,structs:1.23,token-macro:2.15;resolutio
+ n:=optional
+Plugin-Developers: Mark Waite:markewaite:mark.earl.waite@gmail.com,Rob
+ ert Sandell:rsandell:rsandell@cloudbees.com,M Ramon Leon:mramonleon:r
+ leon@cloudbees.com,Olivier Lamy:olamy:olamy@apache.org
+Plugin-License-Name: The MIT License (MIT)
+Plugin-License-Url: https://opensource.org/licenses/MIT
+Plugin-ScmUrl: https://github.com/jenkinsci/git-plugin
+

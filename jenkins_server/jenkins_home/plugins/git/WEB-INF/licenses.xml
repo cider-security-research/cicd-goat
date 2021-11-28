@@ -1,0 +1,2 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<l:dependencies xmlns:l='licenses' groupId='org.jenkins-ci.plugins' artifactId='git' version='4.10.0'><l:dependency name='Jenkins Git plugin' groupId='org.jenkins-ci.plugins' artifactId='git' version='4.10.0' url='https://github.com/jenkinsci/git-plugin/blob/master/README.adoc'><l:description>Integrates Jenkins with Git SCM</l:description><l:license name='The MIT License (MIT)' url='https://opensource.org/licenses/MIT'/></l:dependency></l:dependencies>

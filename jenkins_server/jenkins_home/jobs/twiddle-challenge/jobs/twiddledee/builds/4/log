@@ -1,0 +1,35 @@
+Started by user [8mha:////4F7pF6Rk15w0MCjL29wTH2bLhx8P9NoxJ/uQmwIoyfodAAAAlx+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAzWEgZu/dLi1CL9xJTczDwAj6GcLcAAAAA=[0madmin
+Running as [8mha:////4F7pF6Rk15w0MCjL29wTH2bLhx8P9NoxJ/uQmwIoyfodAAAAlx+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAzWEgZu/dLi1CL9xJTczDwAj6GcLcAAAAA=[0madmin
+Building remotely on [8mha:////4JF0hcL6Gl1hrGKQlCASJuFYPmvFPRLy3GjSy5h8U8xaAAAAnB+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAy2EgYB/eT83ILSktQi/cT01LwSQwA2IiAFxQAAAA==[0magent1 (myagent) in workspace /home/jenkins/workspace/twiddledee
+The recommended git tool is: NONE
+No credentials specified
+ > git rev-parse --resolve-git-dir /home/jenkins/workspace/twiddledee/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url http://gitea:3000/Wonderland/twiddledum # timeout=10
+Fetching upstream changes from http://gitea:3000/Wonderland/twiddledum
+ > git --version # timeout=10
+ > git --version # 'git version 2.30.2'
+ > git fetch --tags --force --progress -- http://gitea:3000/Wonderland/twiddledum +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/main^{commit} # timeout=10
+Checking out Revision bbfefc8c1c55ddee610cd830d7786f6352eda809 (refs/remotes/origin/main)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f bbfefc8c1c55ddee610cd830d7786f6352eda809 # timeout=10
+Commit message: "Initial commit"
+ > git rev-list --no-walk bbfefc8c1c55ddee610cd830d7786f6352eda809 # timeout=10
+[twiddledee] $ /bin/sh -xe /tmp/jenkins3327998701967092945.sh
++ npm ci --ignore-scripts
+npm WARN ancient lockfile 
+npm WARN ancient lockfile The package-lock.json file was created with an old version of npm,
+npm WARN ancient lockfile so supplemental metadata must be fetched from the registry.
+npm WARN ancient lockfile 
+npm WARN ancient lockfile This is a one-time fix-up, please be patient...
+npm WARN ancient lockfile 
+npm ERR! code 128
+npm ERR! An unknown git error occurred
+npm ERR! command git --no-replace-objects ls-remote http://localhost:4000/Wonderland/twiddledee
+npm ERR! fatal: unable to access 'http://localhost:4000/Wonderland/twiddledee/': Failed to connect to localhost port 4000: Connection refused
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /home/jenkins/.npm/_logs/2021-11-22T16_06_52_408Z-debug.log
+Build step 'Execute shell' marked build as failure
+Finished: FAILURE

@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<l:dependencies xmlns:l='licenses' groupId='org.jenkins-ci.plugins' artifactId='matrix-auth' version='2.6.8'><l:dependency name='Matrix Authorization Strategy Plugin' groupId='org.jenkins-ci.plugins' artifactId='matrix-auth' version='2.6.8' url='https://github.com/jenkinsci/matrix-auth-plugin'><l:description>The Jenkins Plugins Parent POM Project</l:description><l:license name='MIT' url='https://opensource.org/licenses/MIT'/></l:dependency></l:dependencies>

@@ -1,0 +1,21 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Created-By: Apache Maven
+Built-By: jglick
+Build-Jdk: 1.8.0_302
+Extension-Name: envinject-api
+Specification-Title: Stores shared logic for Environment Injection man
+ agement
+Implementation-Title: envinject-api
+Implementation-Version: 1.8
+Group-Id: org.jenkins-ci.plugins
+Short-Name: envinject-api
+Long-Name: EnvInject API Plugin
+Url: https://github.com/jenkinsci/envinject-api-plugin
+Minimum-Java-Version: 1.8
+Plugin-Version: 1.8
+Hudson-Version: 2.138.4
+Jenkins-Version: 2.138.4
+Plugin-Developers: Oleg Nenashev:oleg_nenashev:
+Support-Dynamic-Loading: true
+

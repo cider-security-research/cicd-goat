@@ -1,0 +1,64 @@
+<?xml version='1.1' encoding='UTF-8'?>
+<fingerprint>
+  <timestamp>2021-11-18 11:07:28.447 UTC</timestamp>
+  <md5sum>fc0fd6944d9a67aaaf8fd5835fdabc79</md5sum>
+  <fileName>Credential id=jenkins-gitea name=jenkins-gitea</fileName>
+  <usages/>
+  <facets>
+    <com.cloudbees.plugins.credentials.fingerprints.ItemCredentialsFingerprintFacet plugin="credentials@2.6.2">
+      <timestamp>1637236447537</timestamp>
+      <itemFullName>challenge-2-tst</itemFullName>
+      <timestamp0>1637236447093</timestamp0>
+    </com.cloudbees.plugins.credentials.fingerprints.ItemCredentialsFingerprintFacet>
+    <com.cloudbees.plugins.credentials.fingerprints.ItemCredentialsFingerprintFacet plugin="credentials@2.6.2">
+      <timestamp>1637236567582</timestamp>
+      <itemFullName>challenge-2-test</itemFullName>
+      <timestamp0>1637236567098</timestamp0>
+    </com.cloudbees.plugins.credentials.fingerprints.ItemCredentialsFingerprintFacet>
+    <com.cloudbees.plugins.credentials.fingerprints.ItemCredentialsFingerprintFacet plugin="credentials@2.6.2">
+      <timestamp>1637240881857</timestamp>
+      <itemFullName>challenge-1</itemFullName>
+      <timestamp0>1637240880800</timestamp0>
+    </com.cloudbees.plugins.credentials.fingerprints.ItemCredentialsFingerprintFacet>
+    <com.cloudbees.plugins.credentials.fingerprints.ItemCredentialsFingerprintFacet plugin="credentials@2.6.2">
+      <timestamp>1637241061299</timestamp>
+      <itemFullName>challenge-3</itemFullName>
+      <timestamp0>1637241060563</timestamp0>
+    </com.cloudbees.plugins.credentials.fingerprints.ItemCredentialsFingerprintFacet>
+    <com.cloudbees.plugins.credentials.fingerprints.ItemCredentialsFingerprintFacet plugin="credentials@2.6.2">
+      <timestamp>1637241181509</timestamp>
+      <itemFullName>challenge-2-prod</itemFullName>
+      <timestamp0>1637241180391</timestamp0>
+    </com.cloudbees.plugins.credentials.fingerprints.ItemCredentialsFingerprintFacet>
+    <com.cloudbees.plugins.credentials.fingerprints.ItemCredentialsFingerprintFacet plugin="credentials@2.6.2">
+      <timestamp>1637241270661</timestamp>
+      <itemFullName>challenge-5</itemFullName>
+      <timestamp0>1637241270143</timestamp0>
+    </com.cloudbees.plugins.credentials.fingerprints.ItemCredentialsFingerprintFacet>
+    <com.cloudbees.plugins.credentials.fingerprints.ItemCredentialsFingerprintFacet plugin="credentials@2.6.2">
+      <timestamp>1637770557250</timestamp>
+      <itemFullName>caterpillar-test</itemFullName>
+      <timestamp0>1637770482748</timestamp0>
+    </com.cloudbees.plugins.credentials.fingerprints.ItemCredentialsFingerprintFacet>
+    <com.cloudbees.plugins.credentials.fingerprints.ItemCredentialsFingerprintFacet plugin="credentials@2.6.2">
+      <timestamp>1637770558028</timestamp>
+      <itemFullName>cheshire-cat</itemFullName>
+      <timestamp0>1637770557249</timestamp0>
+    </com.cloudbees.plugins.credentials.fingerprints.ItemCredentialsFingerprintFacet>
+    <com.cloudbees.plugins.credentials.fingerprints.ItemCredentialsFingerprintFacet plugin="credentials@2.6.2">
+      <timestamp>1637770558200</timestamp>
+      <itemFullName>white-rabbit</itemFullName>
+      <timestamp0>1637770557264</timestamp0>
+    </com.cloudbees.plugins.credentials.fingerprints.ItemCredentialsFingerprintFacet>
+    <com.cloudbees.plugins.credentials.fingerprints.ItemCredentialsFingerprintFacet plugin="credentials@2.6.2">
+      <timestamp>1637770558221</timestamp>
+      <itemFullName>mad-hatter</itemFullName>
+      <timestamp0>1637770557275</timestamp0>
+    </com.cloudbees.plugins.credentials.fingerprints.ItemCredentialsFingerprintFacet>
+    <com.cloudbees.plugins.credentials.fingerprints.ItemCredentialsFingerprintFacet plugin="credentials@2.6.2">
+      <timestamp>1637770558240</timestamp>
+      <itemFullName>caterpillar-prod</itemFullName>
+      <timestamp0>1637770557249</timestamp0>
+    </com.cloudbees.plugins.credentials.fingerprints.ItemCredentialsFingerprintFacet>
+  </facets>
+</fingerprint>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<l:dependencies xmlns:l='licenses' groupId='com.coravy.hudson.plugins.github' artifactId='github' version='1.34.1'><l:dependency name='GitHub plugin' groupId='com.coravy.hudson.plugins.github' artifactId='github' version='1.34.1' url='https://github.com/jenkinsci/github-plugin'><l:description>The Jenkins Plugins Parent POM Project</l:description><l:license name='MIT License' url='https://www.opensource.org/licenses/mit-license.php'/></l:dependency><l:dependency name='Apache Commons Lang' groupId='org.apache.commons' artifactId='commons-lang3' version='3.11' url='https://commons.apache.org/proper/commons-lang/'><l:description>Apache Commons Lang, a package of Java utility classes for the
+  classes that are in java.lang's hierarchy, or are considered to be so
+  standard as to justify existence in java.lang.</l:description><l:license name='Apache License, Version 2.0' url='https://www.apache.org/licenses/LICENSE-2.0.txt'/></l:dependency><l:dependency name='Snakeyaml API Plugin' groupId='io.jenkins.plugins' artifactId='snakeyaml-api' version='1.27.0' url='https://github.com/jenkinsci/snakeyaml-api-plugin'><l:description>This plugin packages stock Snakeyaml library</l:description><l:license name='The MIT License (MIT)' url='http://opensource.org/licenses/MIT'/></l:dependency><l:dependency name='SLF4J API Module' groupId='org.slf4j' artifactId='slf4j-api' version='1.7.26' url='http://www.slf4j.org'><l:description>The slf4j API</l:description><l:license name='MIT License' url='http://www.opensource.org/licenses/mit-license.php'/></l:dependency><l:dependency name='Jakarta XML Binding API' groupId='jakarta.xml.bind' artifactId='jakarta.xml.bind-api' version='2.3.3' url='https://github.com/eclipse-ee4j/jaxb-api/jakarta.xml.bind-api'><l:description>Jakarta XML Binding API</l:description><l:license name='Eclipse Distribution License - v 1.0' url='http://www.eclipse.org/org/documents/edl-v10.php'/></l:dependency><l:dependency name='JSON in Java' groupId='org.json' artifactId='json' version='20190722' url='https://github.com/douglascrockford/JSON-java'><l:description>JSON is a light-weight, language independent, data interchange format.
+		See http://www.JSON.org/
+
+		The files in this package implement JSON encoders/decoders in Java.
+		It also includes the capability to convert between JSON and XML, HTTP
+		headers, Cookies, and CDL.
+
+		This is a reference implementation. There is a large number of JSON packages
+		in Java. Perhaps someday the Java community will standardize on one. Until
+		then, choose carefully.
+
+		The license includes this restriction: "The software shall be used for good,
+		not evil." If your conscience cannot live with that, then choose a different
+		package.</l:description><l:license name='The JSON License' url='http://json.org/license.html'/></l:dependency><l:dependency name='EdDSA-Java' groupId='net.i2p.crypto' artifactId='eddsa' version='0.3.0' url='https://github.com/str4d/ed25519-java'><l:description>Implementation of EdDSA in Java</l:description><l:license name='CC0 1.0 Universal' url='https://creativecommons.org/publicdomain/zero/1.0/'/></l:dependency><l:dependency name='SnakeYAML' groupId='org.yaml' artifactId='snakeyaml' version='1.27' url='http://www.snakeyaml.org'><l:description>YAML 1.1 parser and emitter for Java</l:description><l:license name='Apache License, Version 2.0' url='http://www.apache.org/licenses/LICENSE-2.0.txt'/></l:dependency></l:dependencies>

@@ -1,5 +1,25 @@
 <?xml version='1.1' encoding='UTF-8'?>
 <hudson.model.Queue_-State>
-  <counter>2171</counter>
-  <items/>
+  <counter>2177</counter>
+  <items>
+    <hudson.model.Queue_-WaitingItem>
+      <actions>
+        <hudson.model.CauseAction>
+          <causeBag class="linked-hash-map">
+            <entry>
+              <hudson.triggers.TimerTrigger_-TimerTriggerCause/>
+              <int>1</int>
+            </entry>
+          </causeBag>
+        </hudson.model.CauseAction>
+      </actions>
+      <id>2177</id>
+      <task class="org.jenkinsci.plugins.workflow.multibranch.WorkflowMultiBranchProject">caterpillar-prod</task>
+      <inQueueSince>1638107876175</inQueueSince>
+      <timestamp>
+        <time>1638107876175</time>
+        <timezone>Etc/UTC</timezone>
+      </timestamp>
+    </hudson.model.Queue_-WaitingItem>
+  </items>
 </hudson.model.Queue_-State>

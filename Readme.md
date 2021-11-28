@@ -28,7 +28,7 @@ This is the build repository for [https://github.com/cider-rnd/cicd-goat](https:
 7. After tests have passed run: `./build.sh publish` to publish the new version as latest.
 
 ## Todo
-1. Create images for all other services and publish new version.
+1. Create images for all other services, publish new version and remove data folder from main repo.
 2. Fix agent jenkins_home permission issues on linux.
 
 

@@ -26,3 +26,9 @@ This is the build repository for [https://github.com/cider-rnd/cicd-goat](https:
 5. Change the tags in docker-compose.yaml and run `docker-compose up -d` to run test environment.
 6. Test the new environment.
 7. After tests have passed run: `./build.sh publish` to publish the new version as latest.
+
+## Todo
+1. Create images for all other services and publish new version.
+2. Fix agent jenkins_home permission issues on linux.
+
+

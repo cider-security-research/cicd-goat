@@ -1,5 +1,5 @@
 # CI/CD Goat Development
-This is the build repository for [https://github.com/cider-rnd/cicd-goat](https://github.com/cider-rnd/cicd-goat)
+This is the development repository for [https://github.com/cider-rnd/cicd-goat](https://github.com/cider-rnd/cicd-goat)
 
 ![Logo_on dark@3x](https://user-images.githubusercontent.com/88270351/143437403-79b0ae54-a117-420d-b1a2-b285c0d8db59.png)
 

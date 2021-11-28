@@ -35,5 +35,6 @@ This is the build repository for [https://github.com/cider-rnd/cicd-goat](https:
 ## Todo
 1. Create images for all other services, publish new version and remove data folder from main repo.
 2. Fix agent jenkins_home permission issues on linux.
+3. Change image names.
 
 

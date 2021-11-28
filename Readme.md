@@ -22,10 +22,15 @@ This is the build repository for [https://github.com/cider-rnd/cicd-goat](https:
     * username: alice
     * password: alice
   ``` 
-4. Change the TAG in `build.sh` and run `./build.sh build` to build and push images of the new version.
-5. Change the tags in docker-compose.yaml and run `docker-compose up -d` to run test environment.
-6. Test the new environment.
-7. After tests have passed run: `./build.sh publish` to publish the new version as latest.
+4. Run `docker-compose -f docker-compose-dev.yaml down`
+5. Change the TAG in `build.sh` and run `./build.sh build` to build and push images of the new version.
+6. Change the tags in docker-compose.yaml and run `docker-compose up -d` to setup test environment.
+7. Test the new environment.
+8. After tests have passed run the following commands to publish the new version as latest:
+  ```
+  docker-compose down
+  ./build.sh publish
+  ```
 
 ## Todo
 1. Create images for all other services, publish new version and remove data folder from main repo.

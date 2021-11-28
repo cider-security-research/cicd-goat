@@ -11,17 +11,15 @@ This is the build repository for [https://github.com/cider-rnd/cicd-goat](https:
   docker-compose -f docker-compose-dev.yaml up -d
   ```
 2. Make the desired changes on the systems using:
-  ```
-  * CTFd: http://localhost:8000
-    * username: alice
-    * password: alice
-  * Gitea: http://localhost:3000
-    * username: thealice
-    * password: thealice
-  * Jenkins: http://localhost:9090
-    * username: alice
-    * password: alice
-  ``` 
+* CTFd: http://localhost:8000
+  * username: alice
+  * password: alice
+* Gitea: http://localhost:3000
+  * username: thealice
+  * password: thealice
+* Jenkins: http://localhost:9090
+  * username: alice
+  * password: alice
 4. Run `docker-compose -f docker-compose-dev.yaml down`
 5. Change the TAG in `build.sh` and run `./build.sh build` to build and push images of the new version.
 6. Change the tags in docker-compose.yaml and run `docker-compose up -d` to setup test environment.

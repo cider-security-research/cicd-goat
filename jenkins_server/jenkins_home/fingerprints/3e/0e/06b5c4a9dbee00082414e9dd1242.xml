@@ -6,29 +6,29 @@
   <usages/>
   <facets>
     <com.cloudbees.plugins.credentials.fingerprints.ItemCredentialsFingerprintFacet plugin="credentials@2.6.2">
-      <timestamp>1638107217078</timestamp>
+      <timestamp>1638107576573</timestamp>
       <itemFullName>caterpillar-test</itemFullName>
-      <timestamp0>1638107157134</timestamp0>
+      <timestamp0>1638107516741</timestamp0>
     </com.cloudbees.plugins.credentials.fingerprints.ItemCredentialsFingerprintFacet>
     <com.cloudbees.plugins.credentials.fingerprints.ItemCredentialsFingerprintFacet plugin="credentials@2.6.2">
-      <timestamp>1638107218033</timestamp>
-      <itemFullName>caterpillar-prod</itemFullName>
-      <timestamp0>1638107217083</timestamp0>
-    </com.cloudbees.plugins.credentials.fingerprints.ItemCredentialsFingerprintFacet>
-    <com.cloudbees.plugins.credentials.fingerprints.ItemCredentialsFingerprintFacet plugin="credentials@2.6.2">
-      <timestamp>1638107218037</timestamp>
-      <itemFullName>white-rabbit</itemFullName>
-      <timestamp0>1638107217085</timestamp0>
-    </com.cloudbees.plugins.credentials.fingerprints.ItemCredentialsFingerprintFacet>
-    <com.cloudbees.plugins.credentials.fingerprints.ItemCredentialsFingerprintFacet plugin="credentials@2.6.2">
-      <timestamp>1638107218055</timestamp>
+      <timestamp>1638107577332</timestamp>
       <itemFullName>cheshire-cat</itemFullName>
-      <timestamp0>1638107217072</timestamp0>
+      <timestamp0>1638107576574</timestamp0>
     </com.cloudbees.plugins.credentials.fingerprints.ItemCredentialsFingerprintFacet>
     <com.cloudbees.plugins.credentials.fingerprints.ItemCredentialsFingerprintFacet plugin="credentials@2.6.2">
-      <timestamp>1638107218061</timestamp>
+      <timestamp>1638107577415</timestamp>
       <itemFullName>mad-hatter</itemFullName>
-      <timestamp0>1638107217085</timestamp0>
+      <timestamp0>1638107576573</timestamp0>
+    </com.cloudbees.plugins.credentials.fingerprints.ItemCredentialsFingerprintFacet>
+    <com.cloudbees.plugins.credentials.fingerprints.ItemCredentialsFingerprintFacet plugin="credentials@2.6.2">
+      <timestamp>1638107577490</timestamp>
+      <itemFullName>white-rabbit</itemFullName>
+      <timestamp0>1638107576573</timestamp0>
+    </com.cloudbees.plugins.credentials.fingerprints.ItemCredentialsFingerprintFacet>
+    <com.cloudbees.plugins.credentials.fingerprints.ItemCredentialsFingerprintFacet plugin="credentials@2.6.2">
+      <timestamp>1638107577532</timestamp>
+      <itemFullName>caterpillar-prod</itemFullName>
+      <timestamp0>1638107576572</timestamp0>
     </com.cloudbees.plugins.credentials.fingerprints.ItemCredentialsFingerprintFacet>
   </facets>
 </fingerprint>

@@ -3,6 +3,12 @@ This is the development repository for [https://github.com/cider-rnd/cicd-goat](
 
 ![Logo_on dark@3x](https://user-images.githubusercontent.com/88270351/143437403-79b0ae54-a117-420d-b1a2-b285c0d8db59.png)
 
+## Installation
+```
+curl
+docker-compose up -d
+```
+
 ## Development
 1. Install the environment:
   ```

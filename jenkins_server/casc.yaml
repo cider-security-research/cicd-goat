@@ -1,0 +1,150 @@
+credentials:
+  system:
+    domainCredentials:
+    - credentials:
+      - basicSSHUserPrivateKey:
+            id: "agent1"
+            privateKeySource:
+              directEntry:
+                privateKey: "{AGENT_PRIVATE_KEY}"
+            scope: SYSTEM
+            username: "jenkins"
+      - string:
+          id: "flag1"
+          scope: GLOBAL
+          secret: "{FLAG1}"
+      - personalAccessTokenImpl:
+          id: "gitea-access-token"
+          scope: GLOBAL
+          token: "{GITEA_ACCESS_TOKEN}"
+jenkins:
+  agentProtocols:
+  - "JNLP4-connect"
+  - "Ping"
+  authorizationStrategy:
+    roleBased:
+      roles:
+        agents:
+        - assignments:
+          - "jobs"
+          - "alice"
+          name: "jobs"
+          pattern: "agent1"
+          permissions:
+          - "Agent/Build"
+        global:
+        - assignments:
+          - "admin"
+          name: "admin"
+          pattern: ".*"
+          permissions:
+          - "Job/Move"
+          - "Job/Build"
+          - "Lockable Resources/View"
+          - "Credentials/Delete"
+          - "Credentials/ManageDomains"
+          - "Lockable Resources/Unlock"
+          - "View/Create"
+          - "Agent/Configure"
+          - "Job/Read"
+          - "Credentials/Update"
+          - "Agent/Create"
+          - "Job/Delete"
+          - "Agent/Build"
+          - "View/Configure"
+          - "Lockable Resources/Reserve"
+          - "Agent/Provision"
+          - "SCM/Tag"
+          - "Job/Create"
+          - "Job/Discover"
+          - "Credentials/View"
+          - "Agent/Connect"
+          - "Agent/Delete"
+          - "Run/Replay"
+          - "Agent/Disconnect"
+          - "Run/Delete"
+          - "Job/Cancel"
+          - "Overall/Read"
+          - "Run/Update"
+          - "Credentials/Create"
+          - "Overall/Administer"
+          - "View/Delete"
+          - "Job/Configure"
+          - "Job/Workspace"
+          - "View/Read"
+        - assignments:
+          - "jobs"
+          - "alice"
+          name: "users"
+          pattern: ".*"
+          permissions:
+          - "Overall/Read"
+          - "Job/Build"
+          - "Job/Read"
+          - "Job/Workspace"
+  nodes:
+  - permanent:
+      labelString: "myagent"
+      launcher:
+        ssh:
+          credentialsId: "agent1"
+          host: "jenkinsagent"
+          port: 22
+          sshHostKeyVerificationStrategy: "nonVerifyingKeyVerificationStrategy"
+      name: "agent1"
+      nodeProperties:
+      - envVars:
+          env:
+          - key: "GITEA_TOKEN"
+            value: "a644940c92efe2d1876e16a5d29e6c6d7e199b68"
+      remoteFS: "/home/jenkins"
+      retentionStrategy: "always"
+  numExecutors: 2
+  securityRealm:
+    local:
+      allowsSignup: false
+      enableCaptcha: false
+      users:
+      - id: "admin"
+        name: "admin"
+        password: "admin"
+        properties:
+        - "apiToken"
+        - favoriting:
+            autofavoriteEnabled: true
+        - mailer:
+            emailAddress: "admin@admin.admin"
+        - "favorite"
+        - preferredProvider:
+            providerId: "default"
+      - id: "alice"
+        name: "Alice"
+        password: "alice"
+  slaveAgentPort: 50000
+security:
+  apiToken:
+    creationOfLegacyTokenEnabled: false
+    tokenGenerationOnCreationEnabled: false
+    usageStatisticsEnabled: true
+  envInject:
+    enableLoadingFromMaster: false
+    enablePermissions: false
+    hideInjectedVars: false
+  queueItemAuthenticator:
+    authenticators:
+    - global:
+        strategy: "triggeringUsersAuthorizationStrategy"
+jobs:
+  - providedEnv:
+      OWNER: 'Wonderland'
+  - file: /var/jenkins_home/jobdsl/white-rabbit.groovy
+  - file: /var/jenkins_home/jobdsl/caterpillar-prod.groovy
+unclassified:
+  giteaServers:
+    servers:
+    - displayName: "Gitea"
+      manageHooks: false
+      serverUrl: "http://gitea:3000"
+  location:
+    adminAddress: "address not configured yet <nobody@nowhere>"
+    url: "http://localhost:9090/"

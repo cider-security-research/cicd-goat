@@ -6,7 +6,7 @@ credentials:
             id: "agent1"
             privateKeySource:
               directEntry:
-                privateKey: "{AGENT_PRIVATE_KEY}"
+                privateKey: "${AGENT_PRIVATE_KEY}"
             scope: SYSTEM
             username: "jenkins"
       - string:
@@ -88,7 +88,7 @@ jenkins:
       launcher:
         ssh:
           credentialsId: "agent1"
-          host: "jenkinsagent"
+          host: "jenkins-agent"
           port: 22
           sshHostKeyVerificationStrategy: "nonVerifyingKeyVerificationStrategy"
       name: "agent1"

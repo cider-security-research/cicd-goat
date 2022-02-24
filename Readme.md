@@ -14,27 +14,21 @@ docker-compose up -d
   ```
   git clone git@github.com:cider-rnd/cicd-goat-dev.git
   cd cicd-goat-dev
+  cp -R data/ tmp-data/
   docker-compose -f docker-compose-dev.yaml up -d
   ```
-2. Make the desired changes on the systems using:
-* CTFd: http://localhost:8000
-  * username: alice
-  * password: alice
-* Gitea: http://localhost:3000
-  * username: thealice
-  * password: thealice
-* Jenkins: http://localhost:9090
-  * username: alice
-  * password: alice
+2. Make the desired changes:
+* Jenkins is completly configured as code so desired changes should be made to files in "jenkins-server" or "jenkins-agent" folders.
+* To make changes in Gitea and CTFd, use the credentials below to make the changes inside the system:
+  * CTFd: http://localhost:8000
+    * username: admin
+    * password: ciderland
+  * Gitea: http://localhost:3000
+    * username: red_queen
+    * password: ciderland
 4. Run `docker-compose -f docker-compose-dev.yaml down`
-5. Change the TAG in `build.sh` and run `./build.sh build` to build and push images of the new version.
-6. Change the tags in docker-compose.yaml and run `docker-compose up -d` to setup test environment.
-7. Test the new environment.
-8. After tests have passed run the following commands to publish the new version as latest:
-  ```
-  docker-compose down
-  ./build.sh publish
-  ```
+5. Run `./commit.sh`
+6. Run tests: `pytest` 
 
 ## Todo
 1. Create images for all other services, publish new version and remove data folder from main repo.
@@ -44,4 +38,6 @@ docker-compose up -d
 5. Add troubleshooting section.
 
 ## Contribution
+* Add scenario checklist
+* update versions checklist
 

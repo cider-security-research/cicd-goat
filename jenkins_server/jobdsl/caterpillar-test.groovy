@@ -1,4 +1,4 @@
-multibranchPipelineJob('white-rabbit') {
+multibranchPipelineJob('caterpillar-test') { 
   branchSources {
     branchSource {
       source {
@@ -6,7 +6,7 @@ multibranchPipelineJob('white-rabbit') {
           id('1')
           credentialsId('gitea-access-token')
           repoOwner("${OWNER}")
-          repository('white-rabbit')
+          repository('caterpillar')
           serverUrl("http://gitea:3000")
         }
       }
@@ -14,14 +14,12 @@ multibranchPipelineJob('white-rabbit') {
   }
   configure { node ->
     def traits = node / sources / data / 'jenkins.branch.BranchSource' / source / traits
-    traits << 'org.jenkinsci.plugin.gitea.BranchDiscoveryTrait' {
-      strategyId('1')
-    }
-    traits << 'org.jenkinsci.plugin.gitea.OriginPullRequestDiscoveryTrait' {
+    traits << 'org.jenkinsci.plugin.gitea.ForkPullRequestDiscoveryTrait' {
       strategyId('2')
+      trust(class: 'org.jenkinsci.plugin.gitea.ForkPullRequestDiscoveryTrait$TrustEveryone')
     }
     def triggers = node / triggers / 'com.cloudbees.hudson.plugins.folder.computed.PeriodicFolderTrigger'
     triggers.appendNode('spec', '* * * * *')
     triggers.appendNode('interval', '60000')
-  } 
+  }
 }

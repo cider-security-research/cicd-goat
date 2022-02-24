@@ -138,7 +138,10 @@ jobs:
   - providedEnv:
       OWNER: 'Wonderland'
   - file: /var/jenkins_home/jobdsl/white-rabbit.groovy
+  - file: /var/jenkins_home/jobdsl/caterpillar-test.groovy
   - file: /var/jenkins_home/jobdsl/caterpillar-prod.groovy
+  - file: /var/jenkins_home/jobdsl/mad-hatter.groovy
+  - file: /var/jenkins_home/jobdsl/cheshire-cat.groovy
 unclassified:
   giteaServers:
     servers:

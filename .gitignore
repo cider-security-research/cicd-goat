@@ -1,3 +1,2 @@
-.idea
-jenkins_server/jenkins_home/caches
-data/ctfd/data/.data/filesystem_cache/
+data/
+

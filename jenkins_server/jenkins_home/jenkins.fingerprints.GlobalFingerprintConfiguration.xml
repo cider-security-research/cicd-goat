@@ -1,5 +1,0 @@
-<?xml version='1.1' encoding='UTF-8'?>
-<jenkins.fingerprints.GlobalFingerprintConfiguration>
-  <storage class="jenkins.fingerprints.FileFingerprintStorage"/>
-  <fingerprintCleanupDisabled>false</fingerprintCleanupDisabled>
-</jenkins.fingerprints.GlobalFingerprintConfiguration>

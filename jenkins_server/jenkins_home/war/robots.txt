@@ -1,3 +1,0 @@
-# we don't want robots to click "build" links
-User-agent: *
-Disallow: /

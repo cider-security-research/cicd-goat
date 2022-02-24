@@ -42,9 +42,9 @@ services:
     networks:
       - jenkins
     volumes:
-      - ./data/gitea/gitea:/data
-      - ./data/gitea/timezone:/etc/timezone:ro
-      - ./data/gitea/localtime:/etc/localtime:ro
+      - ./data/gitea:/data
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
     ports:
       - "3000:3000"
       - "2222:22"
@@ -55,9 +55,7 @@ services:
       - "8000:8000"
     networks:
       - jenkins
-    volumes:
-      - ./data/ctfd/logs:/var/log/CTFd
-      - ./data/ctfd/uploads:/var/uploads
-      - ./data/ctfd/data:/opt/CTFd
+
+  
   
 

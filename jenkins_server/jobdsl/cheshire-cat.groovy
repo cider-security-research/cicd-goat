@@ -1,4 +1,4 @@
-multibranchPipelineJob('white-rabbit') {
+multibranchPipelineJob('cheshire-cat') {
   branchSources {
     branchSource {
       source {
@@ -6,7 +6,7 @@ multibranchPipelineJob('white-rabbit') {
           id('1')
           credentialsId('gitea-access-token')
           repoOwner("${OWNER}")
-          repository('white-rabbit')
+          repository('cheshire-cat')
           serverUrl("http://gitea:3000")
         }
       }

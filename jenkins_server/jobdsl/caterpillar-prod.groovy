@@ -26,7 +26,7 @@ multibranchPipelineJob('caterpillar-prod') {
         giteaSCMSource {
           id('1')
           credentialsId('gitea-access-token')
-          repoOwner('${OWNER}')
+          repoOwner("${OWNER}")
           repository('caterpillar')
           serverUrl("http://gitea:3000")
         }

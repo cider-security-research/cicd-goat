@@ -40,6 +40,7 @@ def branch_and_replace_file_content(repo, new_branch_name, relative_file_path, r
 
 
 def find_in_console(jenkins_client, job_name, string):
+    sleep(3)
     for tmp_job_name, job_instance in jenkins_client.get_jobs():
         if job_name in tmp_job_name:
             try:

@@ -12,11 +12,11 @@ credentials:
       - string:
           id: "flag1"
           scope: GLOBAL
-          secret: "{FLAG1}"
+          secret: "${FLAG1}"
       - personalAccessTokenImpl:
           id: "gitea-access-token"
           scope: GLOBAL
-          token: "{GITEA_ACCESS_TOKEN}"
+          token: "${GITEA_ACCESS_TOKEN}"
 jenkins:
   agentProtocols:
   - "JNLP4-connect"
@@ -150,4 +150,4 @@ unclassified:
       serverUrl: "http://gitea:3000"
   location:
     adminAddress: "address not configured yet <nobody@nowhere>"
-    url: "http://localhost:9090/"
+    url: "http://localhost:8080/"

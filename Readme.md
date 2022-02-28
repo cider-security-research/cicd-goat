@@ -38,7 +38,8 @@ docker-compose up -d
     * password: ciderland
 4. Run `docker-compose -f docker-compose-dev.yaml down`
 5. Run `./commit.sh`
-6. Run tests: `pytest` 
+6. Install testing dependencies: `pip install -r requirements.txt`
+7. Run tests: `pytest` 
 
 ## Todo
 1. Create images for all other services, publish new version and remove data folder from main repo.
@@ -49,6 +50,7 @@ docker-compose up -d
 
 ## Contribution
 * Add scenario checklist
+  * Tests should be able to run successfully multiple times on the same environment to ease development. 
 * update versions checklist
 
 

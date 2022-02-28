@@ -82,6 +82,7 @@ jenkins:
           - "Job/Build"
           - "Job/Read"
           - "Job/Workspace"
+  mode: EXCLUSIVE
   nodes:
   - permanent:
       labelString: "myagent"

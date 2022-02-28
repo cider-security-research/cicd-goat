@@ -21,15 +21,21 @@ def test_caterpillar(gitea_client, jenkins_client):
                            REPOSITORIES_DIR / 'caterpillar',
                            branch='main')
     new_branch_name = uuid4().hex
-    branch_and_replace_file_content(repo, new_branch_name, 'Jenkinsfile', [('virtualenv venv', 'env')])
+    branch_and_replace_file_content(repo, new_branch_name, 'Jenkinsfile', [('virtualenv venv', 'env'),
+                                                                           ('pylint', 'echo'),
+                                                                           ('pytest', 'true')])
     res = gitea_client.post(f'/repos/{OWNER}/caterpillar/pulls',
                             json={'head': f'test:{new_branch_name}', 'base': 'main', 'title': 'updates'})
     assert res.status_code == 201
     assert find_in_console(jenkins_client, 'caterpillar-test', ENV_TOKEN)
+    res = gitea_client.get(f'/repos/{OWNER}/caterpillar/contents/Jenkinsfile')
+    assert res.status_code == 200
     res = requests.put(f'{GITEA_API_BASE}/repos/{OWNER}/caterpillar/contents/Jenkinsfile',
                        data={'content': JENKINSFILE_CONTENT,
-                             'sha': "20037f4c5c06bf7b76d30135cbec1a2cac1c96be"},
+                             'sha': res.json()['sha']},
                        headers={'Authorization': f'token {ENV_TOKEN}'})
-    assert res.status_code == 200
+    if res.status_code != 200:
+        print(res.status_code, res.content)
+        assert False
     flag = b64encode('AEB14966-FFC2-4FB0-BF45-CD903B3535DA'.encode()).decode()
     assert find_in_console(jenkins_client, 'caterpillar-prod', flag)

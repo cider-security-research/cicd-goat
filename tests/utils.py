@@ -2,6 +2,8 @@ from pathlib import Path
 from jenkinsapi.custom_exceptions import NoBuildData
 from time import sleep
 
+BUILD_TIMEOUT = 300
+
 
 def create_fork(gitea_client, owner, repo):
     res = gitea_client.get('/orgs')
@@ -40,19 +42,23 @@ def branch_and_replace_file_content(repo, new_branch_name, relative_file_path, r
 
 
 def find_in_console(jenkins_client, job_name, string):
+    res = jenkins_client.post(f'/job/{job_name}/build?delay=0', job_name)
+    assert res.status_code == 200
     sleep(3)
     for tmp_job_name, job_instance in jenkins_client.get_jobs():
         if job_name in tmp_job_name:
-            try:
-                last_build = job_instance.get_last_build()
-                while 1:
+            for i in range(BUILD_TIMEOUT):
+                try:
+                    last_build = job_instance.get_last_build()
                     if not last_build.is_running():
                         break
+                    raise NoBuildData
+                except NoBuildData:
                     sleep(1)
-                if string in job_instance.get_last_build().get_console():
-                    return True
-            except NoBuildData:
-                continue
+            else:
+                return False
+            if string in last_build.get_console():
+                return True
     else:
         return False
 

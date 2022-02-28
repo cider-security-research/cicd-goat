@@ -35,6 +35,11 @@ class GiteaApiClient:
                             data=data, headers={'Authorization': f'token {GiteaApiClient.token}'}, **kwargs)
 
 
+class JenkinsClient(Jenkins):
+    def post(self, endpoint, data=None, **kwargs):
+        return self.requester.post_url(f'{self.baseurl}{endpoint}', data=data, **kwargs)
+
+
 @pytest.fixture()
 def gitea_client():
     return GiteaApiClient()
@@ -42,7 +47,7 @@ def gitea_client():
 
 @pytest.fixture()
 def jenkins_client():
-    return Jenkins('http://localhost:8080', username='admin', password='admin')
+    return JenkinsClient('http://localhost:8080', username='admin', password='admin', useCrumb=True)
 
 
 try:

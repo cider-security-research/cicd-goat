@@ -16,13 +16,9 @@ jobs:
         run: docker-compose -f docker-compose-dev.yaml up -d
       - name: Docker compose (Mac)
         if: ${{ startsWith( matrix.os, 'macos' ) }}
+        uses: docker-practice/actions-setup-docker@master
         run: |
-          brew install --cask docker
-          open -g -a Docker
-          brew install docker-compose
-          while ! docker system info &>/dev/null; do
-            sleep 1
-          done
+          set -x
           docker-compose -f docker-compose-dev.yaml up -d
       - name: Docker compose (Windows)
         if: ${{ startsWith( matrix.os, 'windows' ) }}

@@ -63,12 +63,7 @@ class JenkinsClient(Jenkins):
         return self.requester.post_url(f'{self.baseurl}{endpoint}', data=data, timeout=120, **kwargs)
 
     def find_in_console(self, job_name, string):
-        res = None
-        for i in range(30):
-            try:
-                res = self.post(f'/job/{job_name}/build?delay=0', job_name)
-            except ConnectionError:
-                continue
+        res = self.post(f'/job/{job_name}/build?delay=0', job_name)
         assert res.status_code == 200
         sleep(3)
         for tmp_job_name, job_instance in self.get_jobs():
@@ -82,16 +77,10 @@ class JenkinsClient(Jenkins):
                     except NoBuildData:
                         sleep(1)
                 else:
-                    print('build timeout')
-                    for name, instance in self.get_jobs():
-                        print(f'{name}:\n{instance.get_last_build().get_console()}')
-                    return False
+                    raise TimeoutError
                 if string in last_build.get_console():
                     return True
         else:
-            print('string not found')
-            for name, instance in self.get_jobs():
-                print(f'{name}:\n{instance.get_last_build().get_console()}')
             return False
 
 

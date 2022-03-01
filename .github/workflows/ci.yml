@@ -2,23 +2,12 @@ on: [pull_request]
 
 jobs:
   ci:
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [ ubuntu-18.04, macos-10.15 ]
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-18.04
     steps:
       - name: Checkout
         uses: actions/checkout@v2
       - run: cp -R data/ tmp-data/
-      - name: Docker compose (Linux)
-        if: ${{ startsWith( matrix.os, 'ubuntu' ) }}
-        run: docker-compose -f docker-compose-dev.yaml up -d
-      - name: Install Docker (Mac)
-        if: ${{ startsWith( matrix.os, 'macos' ) }}
-        uses: docker-practice/actions-setup-docker@master
-      - name: Docker compose (Mac)
-        if: ${{ startsWith( matrix.os, 'macos' ) }}
+      - name: Docker compose
         run: docker-compose -f docker-compose-dev.yaml up -d
       - name: Set up Python
         uses: actions/setup-python@v2

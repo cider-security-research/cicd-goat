@@ -14,8 +14,15 @@ jobs:
       - name: Install Docker
         if: ${{ matrix.os == 'macos-10.15'}}
         run: |
-          brew install --cask docker
-      - name: Docker compose
+          brew install docker-compose
+      - name: Docker compose (Linux)
+        if: ${{ startsWith( matrix.os, 'ubuntu' ) }}
+        run: docker-compose -f docker-compose-dev.yaml up -d
+      - name: Docker compose (Mac)
+        if: ${{ startsWith( matrix.os, 'macos' ) }}
+        run: docker-compose -f docker-compose-dev.yaml up -d
+      - name: Docker compose (Windows)
+        if: ${{ startsWith( matrix.os, 'windows' ) }}
         run: docker-compose -f docker-compose-dev.yaml up -d
       - name: Set up Python
         uses: actions/setup-python@v2

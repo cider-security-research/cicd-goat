@@ -37,7 +37,7 @@ class GiteaApiClient:
 
 class JenkinsClient(Jenkins):
     def post(self, endpoint, data=None, **kwargs):
-        return self.requester.post_url(f'{self.baseurl}{endpoint}', data=data, **kwargs)
+        return self.requester.post_url(f'{self.baseurl}{endpoint}', data=data, timeout=120, **kwargs)
 
 
 @pytest.fixture()

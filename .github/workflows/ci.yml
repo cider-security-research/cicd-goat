@@ -5,7 +5,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ ubuntu-18.04, windows-2022, macos-10.15 ]
+        os: [ ubuntu-18.04, macos-10.15 ]
     runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout
@@ -20,11 +20,6 @@ jobs:
       - name: Docker compose (Mac)
         if: ${{ startsWith( matrix.os, 'macos' ) }}
         run: docker-compose -f docker-compose-dev.yaml up -d
-      - name: Docker compose (Windows)
-        if: ${{ startsWith( matrix.os, 'windows' ) }}
-        run: |
-          sed -i 's/bridge/nat/' docker-compose-dev.yaml
-          docker-compose -f docker-compose-dev.yaml up -d
       - name: Set up Python
         uses: actions/setup-python@v2
         with:

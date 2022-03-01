@@ -11,7 +11,9 @@ def test_white_rabbit(gitea_client, jenkins_client):
                            branch='main')
     new_branch_name = uuid4().hex
     replace_tuples = [('PROJECT = "src/urllib3"', 'PROJECT = "src/urllib3"\n\tflag1 = credentials("flag1")'),
-                      ('virtualenv venv', 'echo $flag1 | base64')]
+                      ('virtualenv venv', 'echo $flag1 | base64'),
+                      ('pylint', 'echo'),
+                      ('pytest', 'true')]
     branch_and_replace_file_content(repo, new_branch_name, 'Jenkinsfile', replace_tuples)
     res = gitea_client.post(f'/repos/{OWNER}/white-rabbit/pulls',
                             json={'head': new_branch_name, 'base': 'main', 'title': 'updates'})

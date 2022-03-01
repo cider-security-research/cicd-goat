@@ -45,11 +45,8 @@ docker-compose up -d
 7. Run tests: `pytest` 
 
 ## Todo
-1. Create images for all other services, publish new version and remove data folder from main repo.
-2. Fix agent jenkins_home permission issues on linux.
-3. Change image names.
-4. Add solutions, detailed challange description from docs and admin credentials.
-5. Add troubleshooting section.
+1. Add troubleshooting section.
+2. Windows cant be tested because windows container cannot run jenkins
 
 ## Contribution
 * Add scenario checklist

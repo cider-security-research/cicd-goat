@@ -1,8 +1,7 @@
 from git import Repo
-from base64 import b64encode
 from uuid import uuid4
 from conftest import REPOSITORIES_DIR, GITEA_GIT_BASE, OWNER
-from utils import branch_and_replace_file_content, find_in_console
+from utils import branch_and_replace_file_content
 
 
 def test_cheshire_cat(gitea_client, jenkins_client):
@@ -18,4 +17,4 @@ def test_cheshire_cat(gitea_client, jenkins_client):
     res = gitea_client.post(f'/repos/{OWNER}/cheshire-cat/pulls',
                             json={'head': new_branch_name, 'base': 'main', 'title': 'updates'})
     assert res.status_code == 201
-    assert find_in_console(jenkins_client, 'cheshire-cat', '6B31A679-6D70-469D-9F8D-6D6E80B3C29C')
+    assert jenkins_client.find_in_console('cheshire-cat', '6B31A679-6D70-469D-9F8D-6D6E80B3C29C')

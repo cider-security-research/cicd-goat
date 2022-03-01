@@ -1,6 +1,5 @@
 from git import Repo
 from conftest import GITEA_GIT_BASE, OWNER, REPOSITORIES_DIR
-from pathlib import Path
 
 FLAG = 'pypi-AgEIcHlwaS5vcmcCJGNmNTI5MjkyLWYxYWMtNDEwYS04OTBjLWE4YzNjNGY1ZTBiZAACJXsicGVybWlzc2lvbnMiOiAidXNlciI' \
        'sICJ2ZXJzaW9uIjogMX0AAAYg7T5yHIewxGoh-3st7anbMSCoGhb-U3HnzHAFLHBLNBY'

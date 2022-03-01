@@ -2,7 +2,7 @@ from git import Repo
 from base64 import b64encode
 from uuid import uuid4
 from conftest import REPOSITORIES_DIR, GITEA_GIT_BASE, OWNER
-from utils import branch_and_replace_file_content, find_in_console
+from utils import branch_and_replace_file_content
 
 
 def test_white_rabbit(gitea_client, jenkins_client):
@@ -19,8 +19,4 @@ def test_white_rabbit(gitea_client, jenkins_client):
                             json={'head': new_branch_name, 'base': 'main', 'title': 'updates'})
     assert res.status_code == 201
     flag = b64encode('06165DF2-C047-4402-8CAB-1C8EC526C115'.encode()).decode()
-    assert find_in_console(jenkins_client, 'white-rabbit', flag)
-
-
-
-
+    assert jenkins_client.find_in_console('white-rabbit', flag)

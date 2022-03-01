@@ -107,7 +107,7 @@ jenkins:
       enableCaptcha: false
       users:
       - id: "admin"
-        name: "admin"
+        name: "ciderland5#"
         password: "admin"
         properties:
         - "apiToken"

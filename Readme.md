@@ -9,6 +9,7 @@ This is the development repository for [https://github.com/cider-rnd/cicd-goat](
 ```
 no need to clone
 curl
+* For Windows machines run the following command: sed -i 's/bridge/nat/' docker-compose.yaml
 docker-compose up -d
 ```
 
@@ -25,8 +26,10 @@ docker-compose up -d
   git clone git@github.com:cider-rnd/cicd-goat-dev.git
   cd cicd-goat-dev
   cp -R data/ tmp-data/
-  docker-compose -f docker-compose-dev.yaml up -d
   ```
+  * For Windows machines run the following command: `sed -i 's/bridge/nat/' docker-compose-dev.yaml`
+  `docker-compose -f docker-compose-dev.yaml up -d`
+  
 2. Make the desired changes:
 * Jenkins is completly configured as code so desired changes should be made to files in "jenkins-server" or "jenkins-agent" folders.
 * To make changes in Gitea and CTFd, use the credentials below to make the changes inside the system:

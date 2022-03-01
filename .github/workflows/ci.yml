@@ -14,15 +14,17 @@ jobs:
       - name: Docker compose (Linux)
         if: ${{ startsWith( matrix.os, 'ubuntu' ) }}
         run: docker-compose -f docker-compose-dev.yaml up -d
-      - name: Docker compose (Mac)
+      - name: Install Docker (Mac)
         if: ${{ startsWith( matrix.os, 'macos' ) }}
         uses: docker-practice/actions-setup-docker@master
-      - run: |
-          set -x
-          docker-compose -f docker-compose-dev.yaml up -d
+      - name: Docker compose (Mac)
+        if: ${{ startsWith( matrix.os, 'macos' ) }}
+        run: docker-compose -f docker-compose-dev.yaml up -d
       - name: Docker compose (Windows)
         if: ${{ startsWith( matrix.os, 'windows' ) }}
-        run: docker-compose -f docker-compose-dev.yaml up -d
+        run: |
+          sed -i 's/bridge/nat/' docker-compose-dev.yaml
+          docker-compose -f docker-compose-dev.yaml up -d
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
@@ -33,8 +35,8 @@ jobs:
         run: |
           while [ 1 ]
           do
-            jenkins_status_code=$(curl --write-out %{http_code} --silent --output /dev/null localhost:8080/login)
-            gitea_status_code=$(curl --write-out %{http_code} --silent --output /dev/null localhost:3000/)
+            jenkins_status_code=$(curl --write-out %{http_code} --silent --output /dev/null localhost:8080/login) || true
+            gitea_status_code=$(curl --write-out %{http_code} --silent --output /dev/null localhost:3000/) || true
             if [ "$jenkins_status_code" -eq 200 ] && [ "$gitea_status_code" -eq 200 ]; then
               break
             fi

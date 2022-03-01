@@ -11,17 +11,15 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - run: cp -R data/ tmp-data/
-      - name: Install Docker
-        if: ${{ matrix.os == 'macos-10.15'}}
-        run: |
-          brew install docker-compose
-          open -a Docker
       - name: Docker compose (Linux)
         if: ${{ startsWith( matrix.os, 'ubuntu' ) }}
         run: docker-compose -f docker-compose-dev.yaml up -d
       - name: Docker compose (Mac)
         if: ${{ startsWith( matrix.os, 'macos' ) }}
-        run: docker-compose -f docker-compose-dev.yaml up -d
+        run: |
+          brew install --cask docker
+          open -a Docker
+          docker-compose -f docker-compose-dev.yaml up -d
       - name: Docker compose (Windows)
         if: ${{ startsWith( matrix.os, 'windows' ) }}
         run: docker-compose -f docker-compose-dev.yaml up -d
@@ -35,11 +33,12 @@ jobs:
         run: |
           while [ 1 ]
           do
-            jenkins_status_code=$(curl --write-out %{http_code} --silent --output /dev/null localhost:8080)
-            gitea_status_code=$(curl --write-out %{http_code} --silent --output /dev/null localhost:3000)
+            jenkins_status_code=$(curl --write-out %{http_code} --silent --output /dev/null localhost:8080/login)
+            gitea_status_code=$(curl --write-out %{http_code} --silent --output /dev/null localhost:3000/)
             if [ "$jenkins_status_code" -eq 200 ] && [ "$gitea_status_code" -eq 200 ]; then
               break
             fi
+            sleep 1
           done
       - name: Pytest
         run: pytest tests/

@@ -19,6 +19,7 @@ jobs:
         run: |
           brew install --cask docker
           open -a Docker
+          brew install docker-compose
           docker-compose -f docker-compose-dev.yaml up -d
       - name: Docker compose (Windows)
         if: ${{ startsWith( matrix.os, 'windows' ) }}
@@ -28,8 +29,8 @@ jobs:
         with:
           python-version: 3.9
       - name: Install testing dependencies
-        run: pip3 install -i https://pypi.org/pypi -r requirements.txt
-      - name: Wait for services to run
+        run: pip3 install -r requirements.txt
+      - name: Wait for services to start
         run: |
           while [ 1 ]
           do

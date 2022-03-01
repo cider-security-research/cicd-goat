@@ -5,7 +5,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ ubuntu-18.04, windows-latest, macos-10.15 ]
+        os: [ ubuntu-18.04, windows-2022, macos-10.15 ]
     runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout
@@ -30,6 +30,16 @@ jobs:
           python-version: 3.9
       - name: Install testing dependencies
         run: pip3 install -i https://pypi.org/pypi -r requirements.txt
+      - name: Wait for services to run
+        run: |
+          while [ 1 ]
+          do
+            jenkins_status_code=$(curl --write-out %{http_code} --silent --output /dev/null localhost:8080)
+            gitea_status_code=$(curl --write-out %{http_code} --silent --output /dev/null localhost:3000)
+            if [ "$jenkins_status_code" -eq 200 ] && [ "$gitea_status_code" -eq 200 ]; then
+              break
+            fi
+          done
       - name: Pytest
         run: pytest tests/
 

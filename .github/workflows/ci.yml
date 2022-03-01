@@ -13,11 +13,12 @@ jobs:
       - run: cp -R data/ tmp-data/
       - name: Install Docker
         if: ${{ matrix.os == 'macos-10.15'}}
-        run: brew install docker
+        run: |
+          brew cask install docker
       - name: Docker compose
         run: docker-compose -f docker-compose-dev.yaml up -d
       - name: Install testing dependencies
-        run: pip install -i https://pypi.org/pypi -r requirements.txt
+        run: pip3 install -i https://pypi.org/pypi -r requirements.txt
       - name: Pytest
         run: pytest tests/
 

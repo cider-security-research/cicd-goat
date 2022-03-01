@@ -17,7 +17,7 @@ jobs:
       - name: Docker compose (Mac)
         if: ${{ startsWith( matrix.os, 'macos' ) }}
         uses: docker-practice/actions-setup-docker@master
-        run: |
+      - run: |
           set -x
           docker-compose -f docker-compose-dev.yaml up -d
       - name: Docker compose (Windows)

@@ -14,9 +14,13 @@ jobs:
       - name: Install Docker
         if: ${{ matrix.os == 'macos-10.15'}}
         run: |
-          brew cask install docker
+          brew install --cask docker
       - name: Docker compose
         run: docker-compose -f docker-compose-dev.yaml up -d
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
       - name: Install testing dependencies
         run: pip3 install -i https://pypi.org/pypi -r requirements.txt
       - name: Pytest

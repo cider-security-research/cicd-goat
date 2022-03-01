@@ -12,7 +12,7 @@ jobs:
         uses: actions/checkout@v2
       - run: cp -R data/ tmp-data/
       - name: Install Docker
-        if: ${{ mattix.os == 'macos-10.15'}}
+        if: ${{ matrix.os == 'macos-10.15'}}
         run: brew install docker
       - name: Docker compose
         run: docker-compose -f docker-compose-dev.yaml up -d

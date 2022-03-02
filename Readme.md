@@ -8,10 +8,18 @@ This is the development repository for [https://github.com/cider-rnd/cicd-goat](
 * Add testing status image
 
 ## Installation
+Linux & Mac:
 ```
 no need to clone
 curl
-* For Windows machines run the following command: sed -i 's/bridge/nat/' docker-compose.yaml
+docker-compose up -d
+```
+Windows:
+```
+no need to clone
+curl?
+get-content docker-compose.txt | %{$_ -replace "expression","replace"}
+sed -i 's/bridge/nat/' docker-compose.yaml
 docker-compose up -d
 ```
 
@@ -19,21 +27,12 @@ docker-compose up -d
 
 
 ## Development
-### Requirements
-* Python
-* pip install requirements
-### How to develop
-1. Install the environment:
-  ```
-  git clone git@github.com:cider-rnd/cicd-goat-dev.git
-  cd cicd-goat-dev
-  cp -R data/ tmp-data/
-  ```
-  * For Windows machines run the following command: `sed -i 's/bridge/nat/' docker-compose-dev.yaml`
+1. Install the environment accroding to installation above but replace...:
+2. cp -R data/ tmp-data/
   `docker-compose -f docker-compose-dev.yaml up -d`
   
 2. Make the desired changes:
-* Jenkins is completly configured as code so desired changes should be made to files in "jenkins-server" or "jenkins-agent" folders.
+* Jenkins is completely configured as code so desired changes should be made to files in "jenkins-server" or "jenkins-agent" folders.
 * To make changes in Gitea and CTFd, use the credentials below to make the changes inside the system:
   * CTFd: http://localhost:8000
     * username: admin
@@ -48,7 +47,8 @@ docker-compose up -d
 
 ## Todo
 1. Add troubleshooting section.
-2. Windows cant be tested because windows container cannot run jenkins
+2. move docker files to root
+3. Windows can't be tested because windows container cannot run jenkins
 
 ## Contribution
 * Add scenario checklist

@@ -65,21 +65,29 @@ class JenkinsClient(Jenkins):
     def find_in_console(self, job_name, string):
         res = self.post(f'/job/{job_name}/build?delay=0', job_name)
         assert res.status_code == 200
-        sleep(3)
+        jobs_found = []
+        timeout = 0
+        while not jobs_found and timeout < BUILD_TIMEOUT:
+            for tmp_job_name, job_instance in self.get_jobs():
+                if job_name in tmp_job_name:
+                    jobs_found.append((tmp_job_name, job_instance))
+            timeout += 1
+            sleep(1)
+        if not jobs_found:
+            raise TimeoutError("Job hasn't started")
         for tmp_job_name, job_instance in self.get_jobs():
-            if job_name in tmp_job_name:
-                for i in range(BUILD_TIMEOUT):
-                    try:
-                        last_build = job_instance.get_last_build()
-                        if not last_build.is_running():
-                            break
-                        raise NoBuildData
-                    except NoBuildData:
-                        sleep(1)
-                else:
-                    raise TimeoutError
-                if string in last_build.get_console():
-                    return True
+            for i in range(BUILD_TIMEOUT):
+                try:
+                    last_build = job_instance.get_last_build()
+                    if not last_build.is_running():
+                        break
+                    raise NoBuildData
+                except NoBuildData:
+                    sleep(1)
+            else:
+                raise TimeoutError('Job is running for too long')
+            if string in last_build.get_console():
+                return True
         else:
             return False
 
@@ -91,7 +99,7 @@ def gitea_client():
 
 @pytest.fixture()
 def jenkins_client():
-    return JenkinsClient('http://localhost:8080', username='admin', password='admin', useCrumb=True)
+    return JenkinsClient('http://localhost:8080', username='admin', password='ciderland5#', useCrumb=True)
 
 
 try:

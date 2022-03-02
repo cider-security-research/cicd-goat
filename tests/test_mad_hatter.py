@@ -11,8 +11,7 @@ def test_mad_hatter(jenkins_client):
                            branch='main')
     new_branch_name = uuid4().hex
     replace_tuples = [('curl -isSL "http://wonderland:1234/api/user" -H '
-                       '"Authorization: Token ${FLAG}" -H "Content-Type: application/json"',
-                       'echo “${FLAG}” | base64')]
+                       '"Authorization: Token ${FLAG}" -H "Content-Type: application/json"', 'echo ${FLAG} | base64')]
     branch_and_replace_file_content(repo, new_branch_name, 'Makefile', replace_tuples)
     flag = b64encode('ACD6E6B8-3584-4F43-AB9C-ACD080B8EBB2'.encode()).decode()
     assert jenkins_client.find_in_console('mad-hatter', flag)

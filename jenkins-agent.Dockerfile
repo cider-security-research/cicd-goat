@@ -1,4 +1,4 @@
-FROM jenkins/ssh-agent:4.2.1-jdk11
+FROM jenkins/ssh-agent:4.1.0-jdk11
 RUN apt-get update && \
     apt-get -y --no-install-recommends install git \
     build-essential \

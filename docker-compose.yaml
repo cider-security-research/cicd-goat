@@ -1,48 +1,42 @@
 version: "3.8"
 
 networks:
-  jenkins:
+  goat:
     driver: bridge
 
 services:
   jenkins_server:
-    image: cidersecurity/workshop_js:1.4
+    image: cidersecurity/goat-jenkins-server:latest
     networks:
-      - jenkins
-    container_name: JenkinsServer
+      - goat
+    container_name: jenkins-server
     restart: always
-    environment:
-      - DOCKER_HOST=tcp://docker:2376
-      - DOCKER_CERT_PATH=/certs/client
-      - DOCKER_TLS_VERIFY=1
     ports:
-      - "9090:8080"
+      - "8080:8080"
       - "50000:50000"
-    volumes:
-      - ./jenkins_server/jenkins-certs:/certs/client:ro
   jenkins_agent:
-    image: cidersecurity/workshop_ja:1.4
-    container_name: jenkinsagent
+    image: cidersecurity/goat-jenkins-agent:latest
+    container_name: jenkins-agent
     networks:
-      - jenkins
+      - goat
     environment:
       - JENKINS_AGENT_SSH_PUBKEY=ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC33zkdtvwp8giZLp1mVUbqzCKi0KIiWD8/towT0+9k1SCDYjJ/YVPqKidkSefYaKBgJ1yFcWa9qroXAUd5nACXN3Xdes2fe4w+xZ8GQTpqHKyStEHy6R9QXi00r/VxGcmBYZWLifEyzV//PiRC+hUaG27JeeBnkZ1FEOyXUunpaPixNaDkfnLbCimflkd2uYH2arMY+FdOH950ezow/+v4vsNrzoMwVVCCSg/dIJBS2G/JaoAbbQgIGo63Kyz0j++rIInsXMFmxhy9hEpViX/tEorFzGh4gUvJPLy3IDjWjUz/Nfte9By6usQjN/1plJcuP+rUqrjjGeMpfhDP6aq5ZvfuPTmXOVkWJ9vJZaK2BCtSZk1vOJR4luxCyUZQbKgb3jS9YZ4N1ZS26z3EKwJGP/acNtEMx2u2zhY7zXdG7ca1Qo1yeVDMRctlvH++KMEYX/ZR6LqYlJyV6TFICZVUT7dLF65gq68UyIFswMu9pQ8/VvIMkkO6eiU1cqFr8gc=
   gitea:
-    image: gitea/gitea:1.15.6
-    container_name: Gitea
+    image: cidersecurity/goat-gitea:latest
+    container_name: gitea
     environment:
       - USER_UID=1000
       - USER_GID=1000
     restart: always
     networks:
-      - jenkins
+      - goat
     ports:
       - "3000:3000"
       - "2222:22"
   ctfd:
+    image: cidersecurity/goat-ctfd:latest
     container_name: ctfd
-    image: ctfd/ctfd:mark-3.3.1
     ports:
       - "8000:8000"
     networks:
-      - jenkins
+      - goat

@@ -101,23 +101,16 @@ jenkins:
       remoteFS: "/home/jenkins"
       retentionStrategy: "always"
   numExecutors: 2
+  remotingSecurity:
+    enabled: true
   securityRealm:
     local:
       allowsSignup: false
       enableCaptcha: false
       users:
       - id: "admin"
-        name: "ciderland5#"
-        password: "admin"
-        properties:
-        - "apiToken"
-        - favoriting:
-            autofavoriteEnabled: true
-        - mailer:
-            emailAddress: "admin@admin.admin"
-        - "favorite"
-        - preferredProvider:
-            providerId: "default"
+        name: "Admin"
+        password: "ciderland5#"
       - id: "alice"
         name: "Alice"
         password: "alice"

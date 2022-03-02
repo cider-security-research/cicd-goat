@@ -1,4 +1,4 @@
-FROM jenkins/jenkins:2.320
+FROM jenkins/jenkins:2.319.3-jdk11
 ENV JAVA_OPTS "-Djenkins.install.runSetupWizard=false"
 ENV SECRETS_FILE /var/jenkins_home/secrets.properties
 ENV CASC_JENKINS_CONFIG /var/jenkins_home/casc.yaml

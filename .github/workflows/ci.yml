@@ -26,7 +26,9 @@ jobs:
             fi
             sleep 1
           done
-      - name: Pytest
+      - name: Pytest 1
+        run: pytest tests/
+      - name: Pytest 2
         run: pytest tests/
 
 

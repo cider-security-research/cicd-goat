@@ -18,6 +18,7 @@ services:
   jenkins_agent:
     build:
       dockerfile: jenkins-agent.Dockerfile
+      context: .
     container_name: jenkins-agent
     networks:
       - goat
@@ -26,6 +27,7 @@ services:
   gitea:
     build:
       dockerfile: gitea.Dockerfile
+      context: .
     container_name: gitea
     environment:
       - USER_UID=1000
@@ -43,6 +45,7 @@ services:
   ctfd:
     build:
       dockerfile: ctfd.Dockerfile
+      context: .
     container_name: ctfd
     ports:
       - "8000:8000"

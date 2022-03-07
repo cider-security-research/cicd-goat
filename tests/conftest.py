@@ -93,12 +93,11 @@ def gitea_client():
 def jenkins_client():
     client = JenkinsClient('http://localhost:8080', username='admin', password='ciderland5#', useCrumb=True)
     yield client
-    """
     for job_name, job_instance in client.get_jobs():
         print(job_name)
         for number in job_instance.get_build_dict():
             job_instance.delete_build(number)
-    """
+
 
 try:
     shutil.rmtree('tests/repositories')

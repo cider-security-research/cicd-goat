@@ -63,24 +63,28 @@ class JenkinsClient(Jenkins):
         return self.requester.post_url(f'{self.baseurl}{endpoint}', data=data, timeout=120, **kwargs)
 
     def find_in_last_build_console(self, job_name, string):
+        # get latest build according to time
         res = self.post(f'/job/{job_name}/build')
         assert res.status_code == 200
-        sleep(5)
+        sleep(5)  # refactor to wait until node executor is empty
+        consoles = []
         for tmp_job_name, job_instance in self.get_jobs():
             if job_name in tmp_job_name:
-                try:
-                    for i in range(BUILD_TIMEOUT):
+                for i in range(BUILD_TIMEOUT):
+                    try:
                         last_build = job_instance.get_last_build()
                         if not last_build.is_running():
                             break
                         sleep(1)
-                    else:
-                        raise TimeoutError('Job is running for too long')
-                except NoBuildData:
-                    continue
+                    except NoBuildData:
+                        sleep(1)
+                else:
+                    raise TimeoutError('Job is running for too long')
                 if string in last_build.get_console():
                     return True
+                consoles.append(last_build.get_console())
         else:
+            print('----------\n'.join(consoles))
             return False
 
 
@@ -91,15 +95,20 @@ def gitea_client():
 
 @pytest.fixture()
 def jenkins_client():
-    client = JenkinsClient('http://localhost:8080', username='admin', password='ciderland5#', useCrumb=True)
-    yield client
-    for job_name, job_instance in client.get_jobs():
-        print(job_name)
-        for number in job_instance.get_build_dict():
-            job_instance.delete_build(number)
+    return JenkinsClient('http://localhost:8080', username='admin', password='ciderland5#', useCrumb=True)
 
 
 try:
     shutil.rmtree('tests/repositories')
 except FileNotFoundError:
     pass
+client = JenkinsClient('http://localhost:8080', username='admin', password='ciderland5#', useCrumb=True)
+
+# check for 5 seconds that build queue and nodes tasks are empty
+while 1:
+    for name, instance in client.get_jobs():
+        if instance.is_queued_or_running():
+            break
+    else:
+        break
+    sleep(1)

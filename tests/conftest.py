@@ -13,7 +13,7 @@ GITEA_API_BASE = f'{GITEA_BASE}/api/v1'
 OWNER = 'Wonderland'
 REPOSITORIES_DIR = Path(__file__).resolve().parent / 'repositories'
 GITEA_GIT_BASE = 'http://thealice:thealice@localhost:3000'
-BUILD_TIMEOUT = 300
+BUILD_TIMEOUT = 120
 
 
 class GiteaApiClient:
@@ -62,32 +62,24 @@ class JenkinsClient(Jenkins):
     def post(self, endpoint, data=None, **kwargs):
         return self.requester.post_url(f'{self.baseurl}{endpoint}', data=data, timeout=120, **kwargs)
 
-    def find_in_console(self, job_name, string):
-        res = self.post(f'/job/{job_name}/build?delay=0', job_name)
+    def find_in_last_build_console(self, job_name, string):
+        res = self.post(f'/job/{job_name}/build')
         assert res.status_code == 200
-        jobs_found = []
-        timeout = 0
-        while not jobs_found and timeout < BUILD_TIMEOUT:
-            for tmp_job_name, job_instance in self.get_jobs():
-                if job_name in tmp_job_name:
-                    jobs_found.append((tmp_job_name, job_instance))
-            timeout += 1
-            sleep(1)
-        if not jobs_found:
-            raise TimeoutError("Job hasn't started")
+        sleep(5)
         for tmp_job_name, job_instance in self.get_jobs():
-            for i in range(BUILD_TIMEOUT):
+            if job_name in tmp_job_name:
                 try:
-                    last_build = job_instance.get_last_build()
-                    if not last_build.is_running():
-                        break
-                    raise NoBuildData
+                    for i in range(BUILD_TIMEOUT):
+                        last_build = job_instance.get_last_build()
+                        if not last_build.is_running():
+                            break
+                        sleep(1)
+                    else:
+                        raise TimeoutError('Job is running for too long')
                 except NoBuildData:
-                    sleep(1)
-            else:
-                raise TimeoutError('Job is running for too long')
-            if string in last_build.get_console():
-                return True
+                    continue
+                if string in last_build.get_console():
+                    return True
         else:
             return False
 
@@ -99,8 +91,14 @@ def gitea_client():
 
 @pytest.fixture()
 def jenkins_client():
-    return JenkinsClient('http://localhost:8080', username='admin', password='ciderland5#', useCrumb=True)
-
+    client = JenkinsClient('http://localhost:8080', username='admin', password='ciderland5#', useCrumb=True)
+    yield client
+    """
+    for job_name, job_instance in client.get_jobs():
+        print(job_name)
+        for number in job_instance.get_build_dict():
+            job_instance.delete_build(number)
+    """
 
 try:
     shutil.rmtree('tests/repositories')

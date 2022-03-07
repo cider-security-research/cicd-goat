@@ -52,7 +52,7 @@ docker-compose up -d
 
 ## Contribution
 * Add scenario checklist
-  * Tests should be able to run successfully multiple times on the same environment to ease development. 
+  * Tests should cleanup after them
 * update versions checklist
 
 

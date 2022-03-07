@@ -19,4 +19,4 @@ def test_white_rabbit(gitea_client, jenkins_client):
                             json={'head': new_branch_name, 'base': 'main', 'title': 'updates'})
     assert res.status_code == 201
     flag = b64encode('06165DF2-C047-4402-8CAB-1C8EC526C115'.encode()).decode()
-    assert jenkins_client.find_in_console('white-rabbit', flag)
+    assert jenkins_client.find_in_last_build_console('white-rabbit', flag)

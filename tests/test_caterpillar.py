@@ -27,7 +27,7 @@ def test_caterpillar(gitea_client, jenkins_client):
     res = gitea_client.post(f'/repos/{OWNER}/caterpillar/pulls',
                             json={'head': f'test:{new_branch_name}', 'base': 'main', 'title': 'updates'})
     assert res.status_code == 201
-    assert jenkins_client.find_in_console('caterpillar-test', ENV_TOKEN)
+    assert jenkins_client.find_in_last_build_console('caterpillar-test', ENV_TOKEN)
     res = gitea_client.get(f'/repos/{OWNER}/caterpillar/contents/Jenkinsfile')
     assert res.status_code == 200
     res = requests.put(f'{GITEA_API_BASE}/repos/{OWNER}/caterpillar/contents/Jenkinsfile',
@@ -38,4 +38,4 @@ def test_caterpillar(gitea_client, jenkins_client):
         print(res.status_code, res.content)
         assert False
     flag = b64encode('AEB14966-FFC2-4FB0-BF45-CD903B3535DA'.encode()).decode()
-    assert jenkins_client.find_in_console('caterpillar-prod', flag)
+    assert jenkins_client.find_in_last_build_console('caterpillar-prod', flag)

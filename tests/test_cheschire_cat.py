@@ -6,7 +6,7 @@ from utils import branch_and_replace_file_content
 
 def test_cheshire_cat(gitea_client, jenkins_client):
     assert b'Only build jobs with label expressions matching this node' in \
-           jenkins_client.get('/computer/(built-in)/configure')
+           jenkins_client.get('/computer/(built-in)/configure').content
     repo = Repo.clone_from(f'{GITEA_GIT_BASE}/{OWNER}/cheshire-cat.git',
                            REPOSITORIES_DIR / 'cheshire-cat',
                            branch='main')

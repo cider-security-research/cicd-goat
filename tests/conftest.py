@@ -62,24 +62,26 @@ class JenkinsClient(Jenkins):
     def post(self, endpoint, data=None, **kwargs):
         return self.requester.post_url(f'{self.baseurl}{endpoint}', data=data, timeout=120, **kwargs)
 
+    def get(self, endpoint, **kwargs):
+        return self.requester.get_url(f'{self.baseurl}{endpoint}', **kwargs)
+
     def find_in_last_build_console(self, job_name, string):
-        # get latest build according to time
-        res = self.post(f'/job/{job_name}/build')
+        res = self.post(f'/job/{job_name}/build?delay=0')
         assert res.status_code == 200
-        sleep(5)  # refactor to wait until node executor is empty
+        sleep(5)
         consoles = []
         for tmp_job_name, job_instance in self.get_jobs():
             if job_name in tmp_job_name:
                 for i in range(BUILD_TIMEOUT):
                     try:
                         last_build = job_instance.get_last_build()
-                        if not last_build.is_running():
+                        if not job_instance.is_queued_or_running():
                             break
-                        sleep(1)
+                        raise NoBuildData
                     except NoBuildData:
                         sleep(1)
                 else:
-                    raise TimeoutError('Job is running for too long')
+                    raise TimeoutError(f'{job_name} job is running for too long')
                 if string in last_build.get_console():
                     return True
                 consoles.append(last_build.get_console())
@@ -104,11 +106,11 @@ except FileNotFoundError:
     pass
 client = JenkinsClient('http://localhost:8080', username='admin', password='ciderland5#', useCrumb=True)
 
-# check for 5 seconds that build queue and nodes tasks are empty
-while 1:
-    for name, instance in client.get_jobs():
-        if instance.is_queued_or_running():
-            break
-    else:
-        break
+checks = 0
+timeout = 0
+while checks < 10 and timeout < BUILD_TIMEOUT:
+    queue_json = client.get('/queue/api/json').json()
+    if not queue_json['items']:
+        checks += 1
+    timeout += 1
     sleep(1)

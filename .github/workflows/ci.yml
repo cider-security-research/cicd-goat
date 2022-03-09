@@ -14,7 +14,9 @@ jobs:
         with:
           python-version: 3.9
       - name: Install testing dependencies
-        run: pipenv install --deploy
+        run: |
+          pip install pipenv
+          pipenv install --deploy
       - name: Wait for services to start
         run: |
           while [ 1 ]

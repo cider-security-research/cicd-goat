@@ -1,58 +1,89 @@
 # CI/CD Goat Development
 ![](https://github.com/cider-rnd/cicd-goat-dev/actions/workflows/ci.yml/badge.svg)
 
-This is the development repository for [https://github.com/cider-rnd/cicd-goat](https://github.com/cider-rnd/cicd-goat)
 
+ 
+REPLACE WITH LOGO
 ![Logo_on dark@3x](https://user-images.githubusercontent.com/88270351/143437403-79b0ae54-a117-420d-b1a2-b285c0d8db59.png)
 
-* Add testing status image
+Alice in Wonderland themed, deliberately vulnerable CI/CD environment.
+
+## Introduction
+???
 
 ## Installation
 Linux & Mac:
+
+**No need to clone the repository**
 ```
-no need to clone
-curl
-docker-compose up -d
+curl -o cicd-goat/docker-compose.yaml --create-dirs https://raw.githubusercontent.com/cider-rnd/cicd-goat-dev/main/docker-compose.yaml
+cd cicd-goat && docker-compose up -d
 ```
 Windows:
+
+**No need to clone the repository**
 ```
-no need to clone
-curl?
-get-content docker-compose.txt | %{$_ -replace "expression","replace"}
-sed -i 's/bridge/nat/' docker-compose.yaml
-docker-compose up -d
+curl -o cicd-goat/docker-compose.yaml --create-dirs https://raw.githubusercontent.com/cider-rnd/cicd-goat-dev/main/docker-compose.yaml
+get-content docker-compose.yaml | %{$_ -replace "bridge","nat"}
+cd cicd-goat && docker-compose up -d
 ```
 
 ## Usage
+### Instructions
+* **!!!SPOILER ALERT!!!** Don't browse the repositories files before solving the challenges as they contain spoilers.
+* To configure your git client for accessing private repositories we suggest cloning using the http url.
+* In each challenge, find the flag - in the format of flag# (e.g flag2), or another format if mentioned specifically. Could be credential, file, etc.
+* Insert the flag on CTFd and find out if you got it right.
+* If needed, use the hints on CTFd from top to bottom.
+* No need to access or hack the infrastructure or other users.
+* Don’t execute code on the Jenkins Controller unless you’re asked to.
 
+### Take the challenge
+1. Login to CTFd at http://localhost:8000 to view the challenges:
+   * Username: `alice`
+   * Password: `alice`
+
+2. Start hacking!!!
+   * Jenkins http://localhost:8080
+     * Username: `alice`
+     * Password: `alice`
+   * Gitea http://localhost:3000
+     * Username: `thealice`
+     * Password: `thealice`
+
+### Troubleshooting
+* When forking a repository don't change the forked repository name as it won't build on Jenkins.
+* Jobs might take time to start running if the agent is occupied by another job.
+
+### Solutions
+See Spoilers.md
 
 ## Development
-1. Install the environment accroding to installation above but replace...:
-2. cp -R data/ tmp-data/
-  `docker-compose -f docker-compose-dev.yaml up -d`
-  
-2. Make the desired changes:
-* Jenkins is completely configured as code so desired changes should be made to files in "jenkins-server" or "jenkins-agent" folders.
-* To make changes in Gitea and CTFd, use the credentials below to make the changes inside the system:
-  * CTFd: http://localhost:8000
-    * username: admin
-    * password: ciderland
-  * Gitea: http://localhost:3000
-    * username: red_queen
-    * password: ciderland
-4. Run `docker-compose -f docker-compose-dev.yaml down`
-5. Run `./commit.sh`
-6. Install testing dependencies: `pip install -r requirements.txt`
-7. Run tests: `pytest` 
-
-## Todo
-1. Add troubleshooting section.
-2. move docker files to root
-3. Windows can't be tested because windows container cannot run jenkins
+1. Install testing dependencies: 
+    ```
+    pip install pipenv
+    pipenv install --deploy
+    ```
+2. Run the development environment:
+    ```
+    cp -R data/ tmp-data/
+    docker-compose -f docker-compose-dev.yaml up -d
+    ```
+3. Make the desired changes:
+   * Jenkins is completely configured as code so desired changes should be made to the files in "jenkins-server" or "jenkins-agent" folders.
+   * To make changes in Gitea and CTFd, use the admin credentials in Spoilers.md
+4. Shutdown the environment and rebuild it:
+    ```
+    docker-compose -f docker-compose-dev.yaml down
+    docker-compose -f docker-compose-dev.yaml up -d --build
+    ```
+5. Run tests: `pytest` 
+6. Move changes in Gitea and CTFd to data/: `./commit.sh`
+7. Commit and push!
 
 ## Contribution
-* Add scenario checklist
-  * Tests should cleanup after them
-* update versions checklist
+Adding scenario checklist:
+  1. Tests should cleanup after them???
+
 
 

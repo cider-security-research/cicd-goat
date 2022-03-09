@@ -1,0 +1,16 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+pytest = "==7.0.1"
+requests = "==2.27.1"
+jenkinsapi = "==0.3.11"
+urllib3 = "==1.26.8"
+GitPython = "==3.1.27"
+
+[dev-packages]
+
+[requires]
+python_version = "3.9"

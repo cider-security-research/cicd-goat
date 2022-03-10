@@ -1,6 +1,7 @@
 folder('twiddle') {
-    properties {
-      folderCredentialsProperty{
+  properties {
+    folderCredentialsProperty{
+      domainCredentials {
         domainCredentials {
           domain {
             name('')
@@ -18,13 +19,13 @@ folder('twiddle') {
         }
       }
     }
+  }
 }
 job('twiddle/twiddledee') {
   scm {
     git {
       remote {
         url('http://gitea:3000/Wonderland/twiddledum.git')
-
       }
       branch('main')
     }
@@ -35,7 +36,7 @@ job('twiddle/twiddledee') {
     }
   }
   wrappers {
-    credentialBinding {
+    credentialsBinding {
       usernamePassword('USERNAME', 'FLAG6', 'flag6')
     }
   }

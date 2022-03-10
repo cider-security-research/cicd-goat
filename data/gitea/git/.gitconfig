@@ -6,5 +6,6 @@
 	commitGraph = true
 [receive]
 	advertisePushOptions = true
+	procReceiveRefs = refs/for
 [gc]
 	writeCommitGraph = true

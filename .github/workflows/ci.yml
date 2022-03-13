@@ -29,7 +29,9 @@ jobs:
             sleep 1
           done
       - name: Pytest
-        run: python -m pytest tests/
+        run: |
+          pipenv run python -m pytest tests/
+
 
 
 

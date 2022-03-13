@@ -1,28 +1,27 @@
-# CI/CD Goat Development
+# CI/CD Goat
 ![](https://github.com/cider-rnd/cicd-goat-dev/actions/workflows/ci.yml/badge.svg)
 
+![logo](http://url.com)
 
- 
-REPLACE WITH LOGO
-![Logo_on dark@3x](https://user-images.githubusercontent.com/88270351/143437403-79b0ae54-a117-420d-b1a2-b285c0d8db59.png)
-
-Alice in Wonderland themed, deliberately vulnerable CI/CD environment.
+An Alice in Wonderland themed, deliberately vulnerable CI/CD environment.
 
 ## Introduction
-???
+This project aims to raise awareness for CI/CD security and to help people learn in a fun way how to secure CI/CD environments.
 
 ## Installation
-Linux & Mac:
+### Linux & Mac:
 
 **No need to clone the repository**
-```
+```sh
 curl -o cicd-goat/docker-compose.yaml --create-dirs https://raw.githubusercontent.com/cider-rnd/cicd-goat-dev/main/docker-compose.yaml
 cd cicd-goat && docker-compose up -d
 ```
-Windows:
+### Windows:
 
 **No need to clone the repository**
-```
+
+Powershell:
+```PowerShell
 curl -o cicd-goat/docker-compose.yaml --create-dirs https://raw.githubusercontent.com/cider-rnd/cicd-goat-dev/main/docker-compose.yaml
 get-content docker-compose.yaml | %{$_ -replace "bridge","nat"}
 cd cicd-goat && docker-compose up -d
@@ -30,7 +29,7 @@ cd cicd-goat && docker-compose up -d
 
 ## Usage
 ### Instructions
-* **!!!SPOILER ALERT!!!** Don't browse the repositories files before solving the challenges as they contain spoilers.
+* **!!!SPOILER ALERT!!!** Don't browse the repository files before solving the challenges as they contain spoilers.
 * To configure your git client for accessing private repositories we suggest cloning using the http url.
 * In each challenge, find the flag - in the format of flag# (e.g flag2), or another format if mentioned specifically. Could be credential, file, etc.
 * Insert the flag on CTFd and find out if you got it right.
@@ -56,24 +55,24 @@ cd cicd-goat && docker-compose up -d
 * Jobs might take time to start running if the agent is occupied by another job.
 
 ### Solutions
-See Spoilers.md
+See [Spoilers.md](Spoilers.md#Solutions)
 
 ## Development
 1. Install testing dependencies: 
-    ```
+    ```sh
     pip install pipenv
     pipenv install --deploy
     ```
 2. Run the development environment:
-    ```
+    ```sh
     cp -R data/ tmp-data/
     docker-compose -f docker-compose-dev.yaml up -d
     ```
 3. Make the desired changes:
    * Jenkins is completely configured as code so desired changes should be made to the files in "jenkins-server" or "jenkins-agent" folders.
-   * To make changes in Gitea and CTFd, use the admin credentials in Spoilers.md
+   * To make changes in Gitea and CTFd, use the admin credentials in [Spoilers.md](Spoilers.md#Admin Credentials)
 4. Shutdown the environment and rebuild it:
-    ```
+    ```sh
     docker-compose -f docker-compose-dev.yaml down
     docker-compose -f docker-compose-dev.yaml up -d --build
     ```
@@ -81,9 +80,19 @@ See Spoilers.md
 6. Move changes in Gitea and CTFd to data/: `./commit.sh`
 7. Commit and push!
 
-## Contribution
-Adding scenario checklist:
-  1. Tests should cleanup after them???
-
-
-
+## Contributing
+Follow the checklist below to add a challenge:
+  1. CTFd:
+     1. Write challenge description.
+     2. Write hints.
+     3. Insert the flag.
+  2. Gitea:
+     1. Create repository and configure relevant access permissions.
+     2. Use another OS repository that has MIT license as a template.
+  3. Jenkins:
+     1. Configure a job that runs automatically.
+     2. Validate that the new challenge doesn't interfere with other challenges.
+  4. Make sure the flag is not accessible when solving other challenges.
+  5. Write tests.
+  6. Write the solution on Spoilers.md.
+  7. Update Readme.md if needed.

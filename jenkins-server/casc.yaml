@@ -83,6 +83,9 @@ jenkins:
           - "Job/Read"
           - "Job/Workspace"
   mode: EXCLUSIVE
+  crumbIssuer:
+    standard:
+      excludeClientIPFromCrumb: true
   nodes:
   - permanent:
       labelString: "myagent"

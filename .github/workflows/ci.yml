@@ -16,7 +16,7 @@ jobs:
       - name: Install testing dependencies
         run: |
           python -m pip install pipenv
-          python -m pipenv install --deploy
+          pipenv install --deploy
       - name: Wait for services to start
         run: |
           while [ 1 ]
@@ -29,8 +29,7 @@ jobs:
             sleep 1
           done
       - name: Pytest
-        run: |
-          pipenv run python -m pytest tests/
+        run: pipenv run python -m pytest tests/
 
 
 

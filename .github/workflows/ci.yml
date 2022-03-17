@@ -28,6 +28,7 @@ jobs:
             fi
             sleep 1
           done
+          sleep 10
       - name: Pytest
         run: pipenv run python -m pytest tests/
 

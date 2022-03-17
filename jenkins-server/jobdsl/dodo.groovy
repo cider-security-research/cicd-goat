@@ -31,6 +31,7 @@ pipelineJob('dodo') {
         stage ('Deploy') {
             steps {
                 sh """terraform init -no-color
+                terraform import aws_iam_role.tf-iam-role-replication-12345 tf-iam-role-replication-12345
                 terraform plan -no-color
                 terraform apply -no-color -auto-approve
                 """
@@ -39,12 +40,12 @@ pipelineJob('dodo') {
 
         stage ('Validate deployment') {
             steps {
-                sh \'''awslocal s3api get-bucket-acl --bucket dodo | jq '.Grants[] | select(.Grantee.Type == "Group" and .Grantee.URI == "http://acs.amazonaws.com/groups/global/AllUsers" and .Permission == "READ")' &> /dev/null
-                      if [ $? -eq 0 ]
+                sh \'''res=awslocal s3api get-bucket-acl --bucket dodo | jq '.Grants[] | select(.Grantee.Type == "Group" and .Grantee.URI == "http://acs.amazonaws.com/groups/global/AllUsers" and .Permission == "READ")' &> /dev/null
+                      if [ -z "$res" ]
                       then
-                          echo "FLAG7: A62F0E52-7D67-410E-8279-32447ADAD916"
-                      else
                           echo "Valid"
+                      else
+                          echo "FLAG7: A62F0E52-7D67-410E-8279-32447ADAD916"
                       fi
                 \'''
             }

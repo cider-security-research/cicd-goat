@@ -67,7 +67,7 @@ class JenkinsClient(Jenkins):
 
     def find_in_last_build_console(self, job_name, string):
         res = self.post(f'/job/{job_name}/build?delay=0')
-        assert res.status_code == 200
+        assert res.status_code == 200 or res.status_code == 201
         sleep(5)
         consoles = []
         for tmp_job_name, job_instance in self.get_jobs():

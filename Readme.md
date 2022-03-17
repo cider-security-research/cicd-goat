@@ -35,6 +35,7 @@ cd cicd-goat && docker-compose up -d
 * Insert the flag on CTFd and find out if you got it right.
 * If needed, use the hints on CTFd from top to bottom.
 * No need to access or hack the infrastructure or other users.
+* No need to exploit CVEs.
 * Don’t execute code on the Jenkins Controller unless you’re asked to.
 
 ### Take the challenge
@@ -65,19 +66,20 @@ See [Spoilers.md](Spoilers.md#Solutions)
     ```
 2. Run the development environment:
     ```sh
+    rm -rf tmp tmp-data/
     cp -R data/ tmp-data/
     docker-compose -f docker-compose-dev.yaml up -d
     ```
 3. Make the desired changes:
    * Jenkins is completely configured as code so desired changes should be made to the files in "jenkins-server" or "jenkins-agent" folders.
    * To make changes in Gitea and CTFd, use the admin credentials in [Spoilers.md](Spoilers.md#Admin Credentials)
-4. Shutdown the environment and rebuild it:
+4. Shutdown the environment, move changes in Gitea and CTFd to data/ and rebuild it:
     ```sh
     docker-compose -f docker-compose-dev.yaml down
+    ./commit.sh
     docker-compose -f docker-compose-dev.yaml up -d --build
     ```
-5. Run tests: `pytest` 
-6. Move changes in Gitea and CTFd to data/: `./commit.sh`
+5. Run tests: `pytest`
 7. Commit and push!
 
 ## Contributing

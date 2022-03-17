@@ -53,6 +53,18 @@ services:
       - goat
     volumes:
       - ./tmp-data/ctfd:/opt/CTFd
+  localstack:
+    container_name: localstack
+    image: localstack/localstack:0.14.1-amd64
+    networks:
+      - goat
+    ports:
+      - "4510-4559:4510-4559"  # external service port range
+      - "4566:4566"            # LocalStack Edge Proxy
+    environment:
+      - DOCKER_HOST=unix:///var/run/docker.sock
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
 
   
   

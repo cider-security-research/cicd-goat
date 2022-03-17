@@ -117,6 +117,9 @@ jenkins:
       - id: "alice"
         name: "Alice"
         password: "alice"
+      - id: "job_user"
+        name: "job_user"
+        password: "dontlogin"
   slaveAgentPort: 50000
 security:
   apiToken:

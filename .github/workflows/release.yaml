@@ -1,6 +1,11 @@
 on: [release]
 
 jobs:
+  test:
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Checkout
+      uses: actions/checkout@v2
   release:
     runs-on: ubuntu-18.04
     steps:

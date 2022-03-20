@@ -81,7 +81,7 @@ class JenkinsClient(Jenkins):
                     except NoBuildData:
                         sleep(1)
                 else:
-                    raise TimeoutError(f'{job_name} job is running for too long')
+                    continue
                 if string in last_build.get_console():
                     return True
                 consoles.append(last_build.get_console())

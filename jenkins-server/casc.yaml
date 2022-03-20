@@ -101,6 +101,8 @@ jenkins:
           env:
           - key: "GITEA_TOKEN"
             value: "a644940c92efe2d1876e16a5d29e6c6d7e199b68"
+          - key: "PATH"
+            value: "/home/jenkins/.local/bin:$PATH"
       remoteFS: "/home/jenkins"
       retentionStrategy: "always"
   numExecutors: 2

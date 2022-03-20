@@ -3,7 +3,7 @@
 
 ![logo](http://url.com)
 
-An Alice in Wonderland themed, deliberately vulnerable CI/CD environment.
+Deliberately vulnerable CI/CD environment.
 
 ## Introduction
 This project aims to raise awareness for CI/CD security and to help people learn in a fun way how to secure CI/CD environments.

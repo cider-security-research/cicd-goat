@@ -1,6 +1,7 @@
 # Solutions
 Write why the scenario happens in real life and the mitigations
 add links for ppe, build authz, malicious sast, rotem npm blog and top 10 
+no kms support in localstack so encryption was removed
 
 # Admin Credentials
 * CTFd

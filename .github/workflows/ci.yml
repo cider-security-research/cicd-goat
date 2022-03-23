@@ -1,11 +1,4 @@
-on:
-  pull_request:
-  workflow_call:
-    inputs:
-      compose-file:
-        default: 'docker-compose-dev.yaml'
-        required: false
-        type: string
+on: [pull_request, workflow_call]
 
 jobs:
   ci:
@@ -15,7 +8,13 @@ jobs:
         uses: actions/checkout@v2
       - run: cp -R data/ tmp-data/
       - name: Docker compose
-        run: docker-compose -f ${{ inputs.compose-file }} up -d
+        run: |
+          if [${{ github.event_name }} == "pull_request"]; then
+            COMPOSE_FILE="docker-compose-dev.yaml"
+          else
+            COMPOSE_FILE="docker-compose.yaml"
+          fi
+          docker-compose -f $COMPOSE_FILE up -d
       - name: Set up Python
         uses: actions/setup-python@v2
         with:

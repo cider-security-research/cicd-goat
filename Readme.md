@@ -1,5 +1,8 @@
 # CI/CD Goat
-![](https://github.com/cider-rnd/cicd-goat-dev/actions/workflows/ci.yml/badge.svg)
+[![Maintained by Cider Security](https://img.shields.io/badge/maintained%20by-Cider%20Security-brightgreen)](https://cidersecurity.io)
+![Release status](https://github.com/cider-security-research/cicd-goat/actions/workflows/release.yml/badge.svg)
+![Version](https://img.shields.io/docker/v/cidersecurity/goat-jenkins-server?sort=semver&style=plastic)
+![Docker pulls](https://img.shields.io/docker/pulls/cidersecurity/goat-jenkins-server?style=plastic)
 
 ![logo](http://url.com)
 
@@ -7,6 +10,7 @@ Deliberately vulnerable CI/CD environment.
 
 ## Introduction
 This project aims to raise awareness for CI/CD security and to help people learn in a fun way how to secure CI/CD environments.
+Authors
 
 ## Installation
 ### Linux & Mac:
@@ -29,27 +33,26 @@ cd cicd-goat && docker-compose up -d
 
 ## Usage
 ### Instructions
-* **!!!SPOILER ALERT!!!** Don't browse the repository files before solving the challenges as they contain spoilers.
+* **!!!WARNING!!!** Don't browse the repository files before solving the challenges as they contain spoilers.
 * To configure your git client for accessing private repositories we suggest cloning using the http url.
 * In each challenge, find the flag - in the format of flag# (e.g flag2), or another format if mentioned specifically. Could be credential, file, etc.
-* Insert the flag on CTFd and find out if you got it right.
 * If needed, use the hints on CTFd from top to bottom.
-* No need to access or hack the infrastructure or other users.
-* No need to exploit CVEs.
-* Don’t execute code on the Jenkins Controller unless you’re asked to.
+* There is no need to exploit CVEs or access other users.
 
 ### Take the challenge
 1. Login to CTFd at http://localhost:8000 to view the challenges:
    * Username: `alice`
    * Password: `alice`
 
-2. Start hacking!!!
+2. Hack:
    * Jenkins http://localhost:8080
      * Username: `alice`
      * Password: `alice`
    * Gitea http://localhost:3000
      * Username: `thealice`
      * Password: `thealice`
+
+3. Insert the flags on CTFd and find out if you got it right.
 
 ### Troubleshooting
 * When forking a repository don't change the forked repository name as it won't build on Jenkins.
@@ -73,10 +76,10 @@ See [Spoilers.md](Spoilers.md#Solutions)
 3. Make the desired changes:
    * Jenkins is completely configured as code so desired changes should be made to the files in "jenkins-server" or "jenkins-agent" folders.
    * To make changes in Gitea and CTFd, use the admin credentials in [Spoilers.md](Spoilers.md#Admin Credentials)
-4. Shutdown the environment, move changes in Gitea and CTFd to data/ and rebuild it:
+4. Shutdown the environment, move changes made in Gitea and CTFd to data/ and rebuild it:
     ```sh
     docker-compose -f docker-compose-dev.yaml down
-    ./commit.sh
+    ./apply.sh
     docker-compose -f docker-compose-dev.yaml up -d --build
     ```
 5. Run tests: `pytest`
@@ -98,3 +101,6 @@ Follow the checklist below to add a challenge:
   5. Write tests.
   6. Write the solution on Spoilers.md.
   7. Update Readme.md if needed.
+
+???hidden malicious additions to gitea and ctfd???
+???add todo???

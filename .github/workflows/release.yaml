@@ -1,20 +1,38 @@
-on: [release]
+on:
+  release:
+    types: [created]
+env:
+  runner: ubuntu-18.04
 
 jobs:
   test:
-    runs-on: ubuntu-18.04
+    runs-on: ${{ env.runner }}
     steps:
-      - name: Checkout
-      uses: actions/checkout@v2
+      - uses: ./.github/workflows/ci.yml@main
+        with:
+          compose-file: docker-compose.yaml
+
   release:
-    runs-on: ubuntu-18.04
+    runs-on: ${{ env.runner }}
     steps:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Set env
         run: |
           echo "VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
-          echo "ACCOUNT=cidersecurity" >> $GITHUB_ENV
+          echo "ORG=cidersecurity" >> $GITHUB_ENV
+      - name: Set up Docker Buildx
+        id: buildx
+        uses: docker/setup-buildx-action@v1
+        with:
+          install: true
+      - name: Cache Docker layers
+        uses: actions/cache@v2
+        with:
+          path: /tmp/.buildx-cache
+          key: ${{ runner.os }}-multi-buildx-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-multi-buildx
       - name: Login to DockerHub
         uses: docker/login-action@v1
         with:
@@ -23,27 +41,34 @@ jobs:
       - name: Build (version)
         run: |
           cd jenkins-server
-          docker build --build-arg TAG=$VERSION -t $ACCOUNT/goat-jenkins-server:$VERSION .
+          docker build --cache-from type=local,src=/tmp/.buildx-cache --cache-to type=local,mode=max,dest=/tmp/.buildx-cache-new --build-arg TAG=$VERSION -t $ORG/goat-jenkins-server:$VERSION .
           cd ..
-          docker build --build-arg TAG=$VERSION -t $ACCOUNT/goat-jenkins-agent:$VERSION jenkins-agent.Dockerfile
-          docker build --build-arg TAG=$VERSION -t $ACCOUNT/goat-gitea:$VERSION gitea.Dockerfile
-          docker build --build-arg TAG=$VERSION -t $ACCOUNT/goat-ctfd:$VERSION ctfd.Dockerfile
+          docker build --cache-from type=local,src=/tmp/.buildx-cache --cache-to type=local,mode=max,dest=/tmp/.buildx-cache-new --build-arg TAG=$VERSION -t $ORG/goat-jenkins-agent:$VERSION jenkins-agent.Dockerfile
+          docker build --cache-from type=local,src=/tmp/.buildx-cache --cache-to type=local,mode=max,dest=/tmp/.buildx-cache-new --build-arg TAG=$VERSION -t $ORG/goat-gitea:$VERSION gitea.Dockerfile
+          docker build --cache-from type=local,src=/tmp/.buildx-cache --cache-to type=local,mode=max,dest=/tmp/.buildx-cache-new --build-arg TAG=$VERSION -t $ORG/goat-ctfd:$VERSION ctfd.Dockerfile
       - name: Push (version)
         run: |
-          docker push $ACCOUNT/goat-jenkins-server:$VERSION
-          docker push $ACCOUNT/goat-jenkins-agent:$VERSION
-          docker push $ACCOUNT/goat-gitea:$VERSION
-          docker push $ACCOUNT/goat-ctfd:$VERSION
+          docker push $ORG/goat-jenkins-server:$VERSION
+          docker push $ORG/goat-jenkins-agent:$VERSION
+          docker push $ORG/goat-gitea:$VERSION
+          docker push $ORG/goat-ctfd:$VERSION
       - name: Push (latest)
         run: |
-          docker tag $ACCOUNT/goat-jenkins-server:$VERSION $ACCOUNT/goat-jenkins-server:latest
-          docker tag $ACCOUNT/goat-jenkins-agent:$VERSION $ACCOUNT/goat-jenkins-agent:latest
-          docker tag $ACCOUNT/goat-gitea:$VERSION $ACCOUNT/goat-gitea:latest
-          docker tag $ACCOUNT/goat-ctfd:$VERSION $ACCOUNT/goat-ctfd:latest
-          docker push $ACCOUNT/goat-jenkins-server:$VERSION
-          docker push $ACCOUNT/goat-jenkins-agent:$VERSION
-          docker push $ACCOUNT/goat-gitea:$VERSION
-          docker push $ACCOUNT/goat-ctfd:$VERSION
+          docker tag $ORG/goat-jenkins-server:$VERSION $ORG/goat-jenkins-server:latest
+          docker tag $ORG/goat-jenkins-agent:$VERSION $ORG/goat-jenkins-agent:latest
+          docker tag $ORG/goat-gitea:$VERSION $ORG/goat-gitea:latest
+          docker tag $ORG/goat-ctfd:$VERSION $ORG/goat-ctfd:latest
+          docker push $ORG/goat-jenkins-server:$VERSION
+          docker push $ORG/goat-jenkins-agent:$VERSION
+          docker push $ORG/goat-gitea:$VERSION
+          docker push $ORG/goat-ctfd:$VERSION
+      # Temp fix
+      # https://github.com/docker/build-push-action/issues/252
+      # https://github.com/moby/buildkit/issues/1896
+      - name: Move cache
+        run: |
+          rm -rf /tmp/.buildx-cache
+          mv /tmp/.buildx-cache-new /tmp/.buildx-cache
 
 
 

@@ -38,12 +38,12 @@ pipelineJob('dodo') {
             }
         }
 
-        stage ('Validate deployment') {
+        stage ('Validate successful attack') {
             steps {
-                sh \'''res=awslocal s3api get-bucket-acl --bucket dodo | jq '.Grants[] | select(.Grantee.Type == "Group" and .Grantee.URI == "http://acs.amazonaws.com/groups/global/AllUsers" and .Permission == "READ")' &> /dev/null
+                sh \'''res=`awslocal s3api get-bucket-acl --bucket dodo | jq '.Grants[] | select(.Grantee.Type == "Group" and .Grantee.URI == "http://acs.amazonaws.com/groups/global/AllUsers" and .Permission == "READ")' &> /dev/null`
                       if [ -z "$res" ]
                       then
-                          echo "Valid"
+                          echo "Secure"
                       else
                           echo "FLAG7: A62F0E52-7D67-410E-8279-32447ADAD916"
                       fi

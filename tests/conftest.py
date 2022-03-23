@@ -105,12 +105,3 @@ try:
 except FileNotFoundError:
     pass
 client = JenkinsClient('http://localhost:8080', username='admin', password='ciderland5#', useCrumb=True)
-
-checks = 0
-timeout = 0
-while checks < 10 and timeout < BUILD_TIMEOUT:
-    queue_json = client.get('/queue/api/json').json()
-    if not queue_json['items']:
-        checks += 1
-    timeout += 1
-    sleep(1)

@@ -14,6 +14,7 @@ RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2
 RUN python3 -m pip install --user --no-cache-dir -U pylint pytest checkov awscli-local
 
 FROM jenkins/ssh-agent:4.1.0-jdk11
+RUN mkdir /home/jenkins/aws
 COPY --from=base /home/jenkins/aws/ /home/jenkins/aws/
 RUN apt-get update && \
     apt-get -y --no-install-recommends install python3 virtualenv npm git curl jq make && \

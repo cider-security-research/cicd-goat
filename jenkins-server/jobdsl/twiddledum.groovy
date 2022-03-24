@@ -21,7 +21,7 @@ folder('twiddle') {
     }
   }
 }
-job('twiddle/twiddledee') {
+job('twiddle/twiddledum') {
   scm {
     git {
       remote {

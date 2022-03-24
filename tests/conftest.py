@@ -65,8 +65,8 @@ class JenkinsClient(Jenkins):
     def get(self, endpoint, **kwargs):
         return self.requester.get_url(f'{self.baseurl}{endpoint}', **kwargs)
 
-    def find_in_last_build_console(self, job_name, string):
-        res = self.post(f'/job/{job_name}/build?delay=0')
+    def find_in_last_build_console(self, job_name, string, job_path=''):
+        res = self.post(f'/job/{job_path}{job_name}/build?delay=0')
         assert res.status_code == 200 or res.status_code == 201
         sleep(5)
         consoles = []

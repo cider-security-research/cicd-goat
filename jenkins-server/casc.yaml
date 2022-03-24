@@ -144,7 +144,7 @@ jobs:
   - file: /var/jenkins_home/jobdsl/caterpillar-prod.groovy
   - file: /var/jenkins_home/jobdsl/mad-hatter.groovy
   - file: /var/jenkins_home/jobdsl/cheshire-cat.groovy
-  - file: /var/jenkins_home/jobdsl/twiddledee.groovy
+  - file: /var/jenkins_home/jobdsl/twiddledum.groovy
   - file: /var/jenkins_home/jobdsl/dodo.groovy
 unclassified:
   giteaServers:

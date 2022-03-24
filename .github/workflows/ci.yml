@@ -1,6 +1,4 @@
 on: [pull_request, workflow_call]
-env:
-  EVENT_NAME: ${{ github.event_name }}
 
 jobs:
   ci:

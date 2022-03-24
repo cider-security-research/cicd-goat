@@ -3,14 +3,15 @@ on:
     types: [created]
 env:
   runner: ubuntu-18.04
+  cache_from: type=local,src=/tmp/.buildx-cache
+  cache_to: type=local,mode=max,dest=/tmp/.buildx-cache-new
+
 
 jobs:
   test:
     runs-on: ${{ env.runner }}
     steps:
       - uses: ./.github/workflows/ci.yml@main
-        with:
-          compose-file: docker-compose.yaml
 
   release:
     runs-on: ${{ env.runner }}
@@ -40,12 +41,11 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: Build (version)
         run: |
-          cd jenkins-server
-          docker build --cache-from type=local,src=/tmp/.buildx-cache --cache-to type=local,mode=max,dest=/tmp/.buildx-cache-new --build-arg TAG=$VERSION -t $ORG/goat-jenkins-server:$VERSION .
-          cd ..
-          docker build --cache-from type=local,src=/tmp/.buildx-cache --cache-to type=local,mode=max,dest=/tmp/.buildx-cache-new --build-arg TAG=$VERSION -t $ORG/goat-jenkins-agent:$VERSION jenkins-agent.Dockerfile
-          docker build --cache-from type=local,src=/tmp/.buildx-cache --cache-to type=local,mode=max,dest=/tmp/.buildx-cache-new --build-arg TAG=$VERSION -t $ORG/goat-gitea:$VERSION gitea.Dockerfile
-          docker build --cache-from type=local,src=/tmp/.buildx-cache --cache-to type=local,mode=max,dest=/tmp/.buildx-cache-new --build-arg TAG=$VERSION -t $ORG/goat-ctfd:$VERSION ctfd.Dockerfile
+          build_cmd = "docker build --cache-from ${{ env.cache_from }} --cache-to ${{ env.cache_to }} --build-arg TAG=$VERSION -t"
+          cd jenkins-server && $build_cmd $ORG/goat-jenkins-server:$VERSION . && cd ..
+          docker build --cache-from ${{ env.cache_from }} --cache-to ${{ env.cache_to }} --build-arg TAG=$VERSION -t $ORG/goat-jenkins-agent:$VERSION jenkins-agent.Dockerfile
+          docker build --cache-from ${{ env.cache_from }} --cache-to ${{ env.cache_to }} --build-arg TAG=$VERSION -t $ORG/goat-gitea:$VERSION gitea.Dockerfile
+          docker build --cache-from ${{ env.cache_from }} --cache-to ${{ env.cache_to }} --build-arg TAG=$VERSION -t $ORG/goat-ctfd:$VERSION ctfd.Dockerfile
       - name: Push (version)
         run: |
           docker push $ORG/goat-jenkins-server:$VERSION

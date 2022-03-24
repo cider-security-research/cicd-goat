@@ -31,7 +31,6 @@ pipelineJob('dodo') {
         stage ('Deploy') {
             steps {
                 sh """terraform init -no-color
-                terraform import aws_iam_role.tf-iam-role-replication-12345 tf-iam-role-replication-12345
                 terraform plan -no-color
                 terraform apply -no-color -auto-approve
                 """
@@ -40,7 +39,7 @@ pipelineJob('dodo') {
 
         stage ('Validate successful attack') {
             steps {
-                sh \'''res=`awslocal s3api get-bucket-acl --bucket dodo | jq '.Grants[] | select(.Grantee.Type == "Group" and .Grantee.URI == "http://acs.amazonaws.com/groups/global/AllUsers" and .Permission == "READ")' &> /dev/null`
+                sh \'''res=`awslocal --endpoint-url=http://localstack:4566 s3api get-bucket-acl --bucket dodo | jq '.Grants[] | select(.Grantee.Type == "Group" and .Grantee.URI == "http://acs.amazonaws.com/groups/global/AllUsers" and .Permission == "READ")' &> /dev/null`
                       if [ -z "$res" ]
                       then
                           echo "Secure"

@@ -21,8 +21,8 @@ RUN apt-get update && \
     apt-get autoremove -y && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
-    ./aws/install && \
-    rm -rf aws/
+    /home/jenkins/aws/install && \
+    rm -rf /home/jenkins/aws
 COPY --from=base --chown=jenkins:jenkins /root/.local /home/jenkins/.local
 COPY --from=base /usr/bin/terraform /usr/bin/terraform
 LABEL version="${TAG}"

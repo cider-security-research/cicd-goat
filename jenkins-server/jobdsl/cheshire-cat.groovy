@@ -1,3 +1,5 @@
+// Currently there is no option to configure per project authorization using casc
+// https://issues.jenkins.io/browse/JENKINS-56774
 multibranchPipelineJob('cheshire-cat') {
   branchSources {
     branchSource {

@@ -97,11 +97,10 @@ def gitea_client():
 
 @pytest.fixture()
 def jenkins_client():
-    return JenkinsClient('http://localhost:8080', username='admin', password='ciderland5#', useCrumb=True)
+    return JenkinsClient('http://localhost:8080', username='alice', password='alice', useCrumb=True)
 
 
 try:
     shutil.rmtree('tests/repositories')
 except FileNotFoundError:
     pass
-client = JenkinsClient('http://localhost:8080', username='admin', password='ciderland5#', useCrumb=True)

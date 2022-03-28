@@ -17,6 +17,10 @@ credentials:
           id: "gitea-access-token"
           scope: GLOBAL
           token: "${GITEA_ACCESS_TOKEN}"
+      - string:
+          id: "EC2-creds-flag8"
+          scope: GLOBAL
+          secret: "${FLAG8}"
 jenkins:
   agentProtocols:
   - "JNLP4-connect"
@@ -26,9 +30,8 @@ jenkins:
       roles:
         agents:
         - assignments:
-          - "jobs"
           - "alice"
-          name: "jobs"
+          name: "build_agent1"
           pattern: "agent1"
           permissions:
           - "Agent/Build"
@@ -73,8 +76,8 @@ jenkins:
           - "Job/Workspace"
           - "View/Read"
         - assignments:
-          - "jobs"
           - "alice"
+          - "knave"
           name: "users"
           pattern: ".*"
           permissions:
@@ -82,6 +85,14 @@ jenkins:
           - "Job/Build"
           - "Job/Read"
           - "Job/Workspace"
+          - "Job/Cancel"
+        items:
+        - assignments:
+          - "knave"
+          name: "hearts"
+          pattern: "hearts"
+          permissions:
+            - "Job/Configure"
   mode: EXCLUSIVE
   crumbIssuer:
     standard:
@@ -119,9 +130,10 @@ jenkins:
       - id: "alice"
         name: "Alice"
         password: "alice"
-      - id: "job_user"
-        name: "job_user"
-        password: "dontlogin"
+      - description: "Owner of Hearts job"
+        id: "knave"
+        name: "knave"
+        password: "1sonic"
   slaveAgentPort: 50000
 security:
   apiToken:
@@ -132,10 +144,6 @@ security:
     enableLoadingFromMaster: false
     enablePermissions: false
     hideInjectedVars: false
-  queueItemAuthenticator:
-    authenticators:
-    - global:
-        strategy: "triggeringUsersAuthorizationStrategy"
 jobs:
   - providedEnv:
       OWNER: 'Wonderland'
@@ -146,6 +154,7 @@ jobs:
   - file: /var/jenkins_home/jobdsl/cheshire-cat.groovy
   - file: /var/jenkins_home/jobdsl/twiddledum.groovy
   - file: /var/jenkins_home/jobdsl/dodo.groovy
+  - file: /var/jenkins_home/jobdsl/hearts.groovy
 unclassified:
   giteaServers:
     servers:

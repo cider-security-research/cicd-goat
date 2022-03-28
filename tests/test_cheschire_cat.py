@@ -1,12 +1,14 @@
 from git import Repo
 from uuid import uuid4
-from conftest import REPOSITORIES_DIR, GITEA_GIT_BASE, OWNER
+from conftest import REPOSITORIES_DIR, GITEA_GIT_BASE, OWNER, JenkinsClient
 from utils import branch_and_replace_file_content
 
 
 def test_cheshire_cat(gitea_client, jenkins_client):
+    admin_jenkins_client = JenkinsClient('http://localhost:8080', username='admin', password='ciderland5#',
+                                         useCrumb=True)
     assert b'Only build jobs with label expressions matching this node' in \
-           jenkins_client.get('/computer/(built-in)/configure').content
+           admin_jenkins_client.get('/computer/(built-in)/configure').content
     repo = Repo.clone_from(f'{GITEA_GIT_BASE}/{OWNER}/cheshire-cat.git',
                            REPOSITORIES_DIR / 'cheshire-cat',
                            branch='main')

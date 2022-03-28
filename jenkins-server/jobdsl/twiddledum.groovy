@@ -22,6 +22,7 @@ folder('twiddle') {
   }
 }
 job('twiddle/twiddledum') {
+  label('agent1')
   scm {
     git {
       remote {

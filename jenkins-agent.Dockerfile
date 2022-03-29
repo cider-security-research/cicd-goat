@@ -4,7 +4,6 @@ RUN apt-get update && \
     curl \
     gnupg \
     lsb-release \
-    unzip \
     software-properties-common
 RUN curl -fsSL https://apt.releases.hashicorp.com/gpg | apt-key add - && \
     apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main" && \
@@ -13,13 +12,14 @@ RUN python3 -m pip install --user --no-cache-dir -U pylint pytest checkov awscli
 
 FROM jenkins/ssh-agent:4.1.0-jdk11
 RUN apt-get update && \
-    apt-get -y --no-install-recommends install python3 virtualenv npm git curl jq make && \
+    apt-get -y --no-install-recommends install unzip python3 virtualenv npm git curl jq make && \
+    curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" && \
+    unzip awscliv2.zip && \
+    apt-get purge unzip && \
+    /home/jenkins/aws/install && \
     apt-get autoremove -y && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
-    curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" && \
-    unzip awscliv2.zip && \
-    /home/jenkins/aws/install && \
     rm -rf /home/jenkins/aws && \
     rm awscliv2.zip
 COPY --from=base --chown=jenkins:jenkins /root/.local /home/jenkins/.local

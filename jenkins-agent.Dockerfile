@@ -14,7 +14,6 @@ RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2
 RUN python3 -m pip install --user --no-cache-dir -U pylint pytest checkov awscli-local
 
 FROM jenkins/ssh-agent:4.1.0-jdk11
-RUN mkdir /home/jenkins/aws
 COPY --from=base /home/jenkins/aws/ /home/jenkins/aws/
 RUN apt-get update && \
     apt-get -y --no-install-recommends install python3 virtualenv npm git curl jq make && \
@@ -22,7 +21,7 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
     /home/jenkins/aws/install && \
-    rm -rf /home/jenkins/aws
+    rm -rf /home/jenkins/aws \
 COPY --from=base --chown=jenkins:jenkins /root/.local /home/jenkins/.local
 COPY --from=base /usr/bin/terraform /usr/bin/terraform
 LABEL version="${TAG}"

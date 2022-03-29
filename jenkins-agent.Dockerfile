@@ -9,19 +9,19 @@ RUN apt-get update && \
 RUN curl -fsSL https://apt.releases.hashicorp.com/gpg | apt-key add - && \
     apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main" && \
     apt-get update && apt-get -y --no-install-recommends install terraform
-RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" && \
-    unzip awscliv2.zip
 RUN python3 -m pip install --user --no-cache-dir -U pylint pytest checkov awscli-local
 
 FROM jenkins/ssh-agent:4.1.0-jdk11
-COPY --from=base /home/jenkins/aws/ /home/jenkins/aws/
 RUN apt-get update && \
     apt-get -y --no-install-recommends install python3 virtualenv npm git curl jq make && \
     apt-get autoremove -y && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
+    curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" && \
+    unzip awscliv2.zip && \
     /home/jenkins/aws/install && \
-    rm -rf /home/jenkins/aws \
+    rm -rf /home/jenkins/aws && \
+    rm awscliv2.zip
 COPY --from=base --chown=jenkins:jenkins /root/.local /home/jenkins/.local
 COPY --from=base /usr/bin/terraform /usr/bin/terraform
 LABEL version="${TAG}"

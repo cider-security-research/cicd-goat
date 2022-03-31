@@ -1,1 +1,1 @@
-echo "${FLAG}" || base64
+echo "${FLAG}" | base64

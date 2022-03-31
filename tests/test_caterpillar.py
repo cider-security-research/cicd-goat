@@ -1,5 +1,5 @@
 from utils import branch_and_replace_file_content
-from conftest import GITEA_GIT_BASE, REPOSITORIES_DIR, OWNER, GITEA_API_BASE
+from conftest import GITEA_GIT_BASE, REPOSITORIES_DIR, OWNER, GITEA_API_BASE, FORK_ORG
 from git import Repo
 from uuid import uuid4
 from base64 import b64encode
@@ -17,7 +17,7 @@ ENV_TOKEN = 'a644940c92efe2d1876e16a5d29e6c6d7e199b68'
 
 def test_caterpillar(gitea_client, jenkins_client):
     assert gitea_client.create_fork(OWNER, 'caterpillar')
-    repo = Repo.clone_from(f'{GITEA_GIT_BASE}/test/caterpillar.git',
+    repo = Repo.clone_from(f'{GITEA_GIT_BASE}/{FORK_ORG}/caterpillar.git',
                            REPOSITORIES_DIR / 'caterpillar',
                            branch='main')
     new_branch_name = uuid4().hex
@@ -25,7 +25,7 @@ def test_caterpillar(gitea_client, jenkins_client):
                                                                            ('pylint', 'echo'),
                                                                            ('pytest', 'true')])
     res = gitea_client.post(f'/repos/{OWNER}/caterpillar/pulls',
-                            json={'head': f'test:{new_branch_name}', 'base': 'main', 'title': 'updates'})
+                            json={'head': f'{FORK_ORG}:{new_branch_name}', 'base': 'main', 'title': 'updates'})
     assert res.status_code == 201
     assert jenkins_client.find_in_last_build_console('caterpillar-test', ENV_TOKEN)
     res = gitea_client.get(f'/repos/{OWNER}/caterpillar/contents/Jenkinsfile')

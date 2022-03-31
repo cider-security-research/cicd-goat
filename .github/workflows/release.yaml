@@ -46,22 +46,26 @@ jobs:
           docker build --cache-from ${{ env.cache_from }} --cache-to ${{ env.cache_to }} --build-arg TAG=$VERSION -t $ORG/goat-jenkins-agent:$VERSION jenkins-agent.Dockerfile
           docker build --cache-from ${{ env.cache_from }} --cache-to ${{ env.cache_to }} --build-arg TAG=$VERSION -t $ORG/goat-gitea:$VERSION gitea.Dockerfile
           docker build --cache-from ${{ env.cache_from }} --cache-to ${{ env.cache_to }} --build-arg TAG=$VERSION -t $ORG/goat-ctfd:$VERSION ctfd.Dockerfile
+          docker build --cache-from ${{ env.cache_from }} --cache-to ${{ env.cache_to }} --build-arg TAG=$VERSION -t $ORG/goat-ctfd:$VERSION lighttpd
       - name: Push (version)
         run: |
           docker push $ORG/goat-jenkins-server:$VERSION
           docker push $ORG/goat-jenkins-agent:$VERSION
           docker push $ORG/goat-gitea:$VERSION
           docker push $ORG/goat-ctfd:$VERSION
+          docker push $ORG/goat-lighttpd:$VERSION
       - name: Push (latest)
         run: |
           docker tag $ORG/goat-jenkins-server:$VERSION $ORG/goat-jenkins-server:latest
           docker tag $ORG/goat-jenkins-agent:$VERSION $ORG/goat-jenkins-agent:latest
           docker tag $ORG/goat-gitea:$VERSION $ORG/goat-gitea:latest
           docker tag $ORG/goat-ctfd:$VERSION $ORG/goat-ctfd:latest
-          docker push $ORG/goat-jenkins-server:$VERSION
-          docker push $ORG/goat-jenkins-agent:$VERSION
-          docker push $ORG/goat-gitea:$VERSION
-          docker push $ORG/goat-ctfd:$VERSION
+          docker tag $ORG/goat-lighttpd:$VERSION $ORG/goat-lighttpd:latest
+          docker push $ORG/goat-jenkins-server:latest
+          docker push $ORG/goat-jenkins-agent:latest
+          docker push $ORG/goat-gitea:latest
+          docker push $ORG/goat-ctfd:latest
+          docker push $ORG/goat-lighttpd:latest
       # Temp fix
       # https://github.com/docker/build-push-action/issues/252
       # https://github.com/moby/buildkit/issues/1896

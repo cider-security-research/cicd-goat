@@ -89,3 +89,4 @@ envinject: 2.4.0
 git: 4.10.0
 workflow-api: 2.47
 job-dsl: 1.78.3
+generic-webhook-trigger: 1.83

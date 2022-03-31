@@ -32,7 +32,6 @@ services:
       - goat
     ports:
       - "3000:3000"
-      - "2222:22"
   ctfd:
     image: cidersecurity/goat-ctfd:latest
     container_name: ctfd
@@ -49,3 +48,11 @@ services:
       - DOCKER_HOST=unix:///var/run/docker.sock
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+  lighttpd:
+    image: cidersecurity/lighttpd:latest
+    container_name: lighttpd
+    networks:
+      - goat
+    ports:
+      - "8008:80"
+      - "2222:22"

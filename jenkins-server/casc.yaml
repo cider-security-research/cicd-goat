@@ -155,6 +155,8 @@ jobs:
   - file: /var/jenkins_home/jobdsl/twiddledum.groovy
   - file: /var/jenkins_home/jobdsl/dodo.groovy
   - file: /var/jenkins_home/jobdsl/hearts.groovy
+  - file: /var/jenkins_home/jobdsl/march-hare.groovy
+  - file: /var/jenkins_home/jobdsl/dormouse.groovy
 unclassified:
   giteaServers:
     servers:

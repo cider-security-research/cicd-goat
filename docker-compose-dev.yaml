@@ -27,7 +27,6 @@ services:
   gitea:
     build:
       dockerfile: gitea.Dockerfile
-      context: .
     container_name: gitea
     environment:
       - USER_UID=1000
@@ -41,7 +40,6 @@ services:
       - /etc/localtime:/etc/localtime:ro
     ports:
       - "3000:3000"
-      - "2222:22"
   ctfd:
     build:
       dockerfile: ctfd.Dockerfile
@@ -65,6 +63,15 @@ services:
       - DOCKER_HOST=unix:///var/run/docker.sock
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+  lighttpd:
+    build:
+      context: ./lighttpd
+    container_name: lighttpd
+    networks:
+      - goat
+    ports:
+      - "8008:80"
+      - "2222:22"
 
   
   

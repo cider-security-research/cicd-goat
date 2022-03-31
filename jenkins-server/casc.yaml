@@ -115,6 +115,7 @@ jenkins:
           - key: "PATH"
             value: "/home/jenkins/.local/bin:$PATH"
       remoteFS: "/home/jenkins"
+      numExecutors: 2
       retentionStrategy: "always"
   numExecutors: 2
   remotingSecurity:

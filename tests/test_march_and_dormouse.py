@@ -3,12 +3,15 @@ from base64 import b64encode
 from conftest import REPOSITORIES_DIR, GITEA_GIT_BASE, OWNER, FORK_ORG
 from utils import branch_and_replace_file_content
 from subprocess import run
+from pathlib import Path
 
 COV_ORG = 'Cov'
 COV_JOB_NAME = 'march-hare'
 CLIENT_JOB_NAME = 'dormouse'
 PART_PRIVATE_KEY = 'b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAABlwAAAAdzc2gtcn'
-SSH_CMD = 'scp -P 2222 -i data/march_and_dormouse/key data/march_and_dormouse/reportcov.sh ' \
+TESTS_PATH = Path(__file__).parent
+SSH_CMD = f'scp -o StrictHostKeyChecking=no -P 2222 -i {TESTS_PATH}/data/march_and_dormouse/key ' \
+          f'{TESTS_PATH}/data/march_and_dormouse/reportcov.sh ' \
           'root@localhost:/var/www/localhost/htdocs'
 
 

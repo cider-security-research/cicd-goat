@@ -13,6 +13,7 @@ TESTS_PATH = Path(__file__).parent
 SSH_CMD = f'scp -o StrictHostKeyChecking=no -P 2222 -i {TESTS_PATH}/data/march_and_dormouse/key ' \
           f'{TESTS_PATH}/data/march_and_dormouse/reportcov.sh ' \
           'root@localhost:/var/www/localhost/htdocs'
+CHMOD_CMD = f'chmod 400 {TESTS_PATH}/data/march_and_dormouse/key'
 
 
 def test_march_and_dormouse(gitea_client, jenkins_client):
@@ -27,6 +28,8 @@ def test_march_and_dormouse(gitea_client, jenkins_client):
     assert res.status_code == 201
     assert jenkins_client.find_in_last_build_console(COV_JOB_NAME, PART_PRIVATE_KEY, start_job=False)
     assert res.status_code == 201
+    result = run(CHMOD_CMD, capture_output=True, text=True, shell=True)
+    assert not result.stderr
     result = run(SSH_CMD, capture_output=True, text=True, shell=True)
     assert not result.stderr
     flag = b64encode('31350FBC-A959-4B4B-A8BD-DCA7AC9248A6'.encode()).decode()

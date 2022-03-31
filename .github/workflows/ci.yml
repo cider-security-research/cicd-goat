@@ -7,14 +7,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - run: cp -R data/ tmp-data/
-      - name: Install Latest Docker
-        run: |
-          docker --version
-          curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-          sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu  $(lsb_release -cs)  stable"
-          sudo apt-get update
-          sudo apt-get install docker-ce
-          docker --version
       - name: Docker compose
         run: |
           if [ "${{ github.event_name }}" == "pull_request" ]; then
@@ -43,7 +35,7 @@ jobs:
             fi
             sleep 1
           done
-          sleep 10
+          sleep 30
       - name: Pytest
         run: pipenv run python -m pytest tests/
 

@@ -31,11 +31,6 @@ job('twiddle/twiddledum') {
       branch('main')
     }
   }
-  triggers {
-    pollSCM {
-      scmpoll_spec('*/1 * * * *')
-    }
-  }
   wrappers {
     credentialsBinding {
       usernamePassword('USERNAME', 'FLAG6', 'flag6')

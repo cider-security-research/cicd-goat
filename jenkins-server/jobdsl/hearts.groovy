@@ -8,11 +8,6 @@ job('hearts') {
       branch('main')
     }
   }
-  triggers {
-    pollSCM {
-      scmpoll_spec('*/1 * * * *')
-    }
-  }
   steps {
     shell('''node -v
 npm prune

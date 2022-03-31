@@ -59,9 +59,4 @@ pipelineJob('dodo') {
 }'''.stripIndent())
     }
   }
-  triggers {
-    pollSCM {
-      scmpoll_spec('*/1 * * * *')
-    }
-  }
 }

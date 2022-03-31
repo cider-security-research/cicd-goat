@@ -27,6 +27,7 @@ services:
   gitea:
     build:
       dockerfile: gitea.Dockerfile
+      context: .
     container_name: gitea
     environment:
       - USER_UID=1000

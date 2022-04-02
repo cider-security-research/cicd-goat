@@ -1,0 +1,100 @@
+users:
+    jenkins:   
+        email: jenkins@wonderland.com
+        password: jenko123%
+        token: a644940c92efe2d1876e16a5d29e6c6d7e199b68
+    thealice:
+        email: alice@wonderland.com
+        password: thealice
+    jenkins_hatter:
+        email: hatter@wonderland.com
+        password: jenjen123&^*
+orgs:
+    Wonderland:
+        people:
+            - jenkins
+            - thealice
+        teams:
+            Devs:
+                - thealice
+            Maintainers:
+                - jenkins
+        repos:
+            white-rabbit:
+                visibility: private
+                code: repositories/white-rabbit
+                collaborators:
+                    thealice: write
+                    jenkins: read
+                branch_protection:
+                    main:
+                        required_approvals: 2
+            caterpillar:
+                visibility: public
+                code: repositories/caterpillar
+                teams:
+                    Maintainers: write
+            mad-hatter:
+                visibility: private
+                code: repositories/mad-hatter
+                collaborators:
+                    thealice: write
+                    jenkins: read
+            mad-hatter-pipeline:
+                visibility: private
+                code: repositories/mad-hatter-pipeline
+                collaborators:
+                    thealice: read
+                    jenkins: read
+                branch_protection:
+                    main:
+                        required_approvals: 2
+            duchess:
+                visibility: public
+                code: repositories/duchess
+            cheshire-cat:
+                visibility: private
+                code: repositories/cheshire-cat
+                collaborators:
+                    thealice: write
+                    jenkins: read
+                branch_protection:
+                    main:
+                        required_approvals: 2
+            dodo:
+                visibility: public
+                code: repositories/dodo
+                collaborators:
+                    thealice: write
+            twiddledee:
+                visibility: public
+                code: repositories/twiddledee
+                collaborators:
+                    thealice: write
+                releases:
+                    1.0.0:
+                        tag: 1.0.0
+                    1.1.0:
+                        tag: 1.1.0           
+            twiddledum:
+                visibility: public
+                code: repositories/twiddledum
+            hearts:
+                visibility: public
+                code: repositories/hearts
+            dormouse:
+                visibility: public
+                code: repositories/dormouse
+    Cov:
+        repos:
+            march-hare:
+                visibility: public
+                code: repositories/march-hare
+                webhooks:
+                    http://jenkins-server:8080/generic-...:
+                        events:
+                            - push
+                            - pull_request
+                        branch_filter: main
+                    
+            

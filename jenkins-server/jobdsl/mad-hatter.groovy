@@ -19,8 +19,8 @@ multibranchPipelineJob('mad-hatter') {
               scope('GLOBAL')
               id('jenkins3')
               description('')
-              username('jenkins3')
-              password('jenjen123')
+              username('jenkins_hatter')
+              password('jenjen123&^*')
             }
           }
         }

@@ -14,8 +14,9 @@ RUN python3 -m pip install pipenv
 COPY Pipfile* /setup/
 RUN cd /setup && pipenv install --system --deploy
 COPY giteacasc /setup/giteacasc
+RUN chmod u+x /setup/giteacasc/askpass.py
 COPY gitea.yaml /setup/
-COPY gitea.yaml /setup/
+COPY repositories /setup/repositories
 RUN /usr/bin/entrypoint & \
     sleep $SLEEP && \
     cd /setup && \

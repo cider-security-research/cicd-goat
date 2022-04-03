@@ -8,5 +8,5 @@ FLAG = 'pypi-AgEIcHlwaS5vcmcCJGNmNTI5MjkyLWYxYWMtNDEwYS04OTBjLWE4YzNjNGY1ZTBiZAA
 def test_duchess(gitea_client):
     repo = Repo.clone_from(f'{GITEA_GIT_BASE}/{OWNER}/duchess.git',
                            REPOSITORIES_DIR / 'duchess',
-                           branch='master')
+                           branch='main')
     assert FLAG in repo.git.show(f'43f216c2268a94ff03e5400cd4ca7a11243821b0:.pypirc')

@@ -13,7 +13,7 @@ orgs:
     Wonderland:
         teams:
             Maintainers:
-                permissions: write
+                permission: write
                 members:
                     - jenkins
         repos:
@@ -23,7 +23,7 @@ orgs:
                 collaborators:
                     thealice: write
                     jenkins: read
-                branch_protection:
+                branch_protections:
                     main:
                         required_approvals: 2
             caterpillar:
@@ -43,7 +43,7 @@ orgs:
                 collaborators:
                     thealice: read
                     jenkins: read
-                branch_protection:
+                branch_protections:
                     main:
                         required_approvals: 2
             duchess:
@@ -55,7 +55,7 @@ orgs:
                 collaborators:
                     thealice: write
                     jenkins: read
-                branch_protection:
+                branch_protections:
                     main:
                         required_approvals: 2
             dodo:
@@ -88,7 +88,7 @@ orgs:
                 private: false
                 code: repositories/march-hare
                 webhooks:
-                    http://jenkins-server:8080/generic-...:
+                    http://jenkins-server:8080/generic-webhook-trigger/invoke?token=6AE44837-0E0C-4970-9A40-8C780E6FFBA1:
                         events:
                             - push
                             - pull_request

@@ -36,7 +36,7 @@ multibranchPipelineJob('dormouse') {
   configure { node ->
     def traits = node / sources / data / 'jenkins.branch.BranchSource' / source / traits
     traits << 'org.jenkinsci.plugin.gitea.BranchDiscoveryTrait' {
-      strategyId('1')
+      strategyId('3')
     }
   }
 }

@@ -16,7 +16,7 @@ class Gitea(GiteaBase):
     YAML_REPOS = 'repos'
 
     def __init__(self, username, password):
-        GiteaBase.token = requests.post(f'{Gitea.gitea_api_base_url}/users/{username}/tokens',
+        GiteaBase.token = requests.post(f'{self.API_BASE_URL}/users/{username}/tokens',
                                         auth=HTTPBasicAuth(username, password),
                                         json={'name': 'token'}).json()['sha1']
 
@@ -45,10 +45,10 @@ class Gitea(GiteaBase):
         org = Org(org_name)
         if teams:
             for team in teams:
-                org.create_team(team, teams[team])
+                org.create_team(team, **teams[team])
         if repos:
             for name in repos:
-                org.create_repo(**repos[name])
+                org.create_repo(name, **repos[name])
         return org
 
 
@@ -79,11 +79,23 @@ class User(GiteaBase):
 
 
 class Org(GiteaBase):
+    UNITS = ["repo.code",
+             "repo.issues",
+             "repo.ext_issues",
+             "repo.wiki",
+             "repo.pulls",
+             "repo.releases",
+             "repo.projects",
+             "repo.ext_wiki"]
+
     def __init__(self, org_name):
         self.name = org_name
 
-    def create_team(self, name, permissions, members):
-        res = self.post(f'/orgs/{self.name}/teams', json={'name': name, 'permissions': permissions})
+    def create_team(self, name, permission, members):
+        res = self.post(f'/orgs/{self.name}/teams',
+                        json={'name': name,
+                              'permission': permission,
+                              'units': self.UNITS})
         if res.status_code != 201:
             res.raise_for_status()
         for username in members:
@@ -91,7 +103,7 @@ class Org(GiteaBase):
             if res.status_code != 204:
                 res.raise_for_status()
 
-    def create_repo(self, name, private, git_repo_path=None, default_branch='main', collaborators=None,
+    def create_repo(self, name, private, code=None, default_branch='main', collaborators=None,
                     branch_protections=None, teams=None, releases=None, webhooks=None):
         res = self.post(f'/orgs/{self.name}/repos', json={'name': name,
                                                           'default_branch': default_branch,
@@ -99,8 +111,8 @@ class Org(GiteaBase):
         if res.status_code != 201:
             res.raise_for_status()
         repo = Repo(self.name, name, private, default_branch)
-        if git_repo_path:
-            repo.push_code(git_repo_path)
+        if code:
+            repo.push_code(code)
         if collaborators:
             for collaborator in collaborators:
                 repo.add_collaborator(collaborator, collaborators[collaborator])
@@ -109,7 +121,7 @@ class Org(GiteaBase):
                 repo.set_branch_protection(branch, **branch_protections[branch])
         if teams:
             for name in teams:
-                repo.add_teams(name)
+                repo.add_team(name)
         if releases:
             for name in releases:
                 repo.create_release(name, releases[name])
@@ -131,22 +143,33 @@ class Repo(GiteaBase):
         repo.git.push('origin', '--tags', '-u', self.default_branch)
 
     def add_collaborator(self, collaborator, permission):
-        self.put(f'/repos/{self.org}/{self.name}/collaborators/{collaborator}',
-                 json={'permission': permission})
+        res = self.put(f'/repos/{self.org}/{self.name}/collaborators/{collaborator}',
+                       json={'permission': permission})
+        if res.status_code != 204:
+            res.raise_for_status()
 
     def set_branch_protection(self, branch, required_approvals=None):
-        self.post(f'/repos/{self.org}/{self.name}/branch_protections',
-                  json={'branch_name': branch, 'required_approvals': required_approvals})
+        res = self.post(f'/repos/{self.org}/{self.name}/branch_protections',
+                        json={'branch_name': branch, 'required_approvals': required_approvals})
+        if res.status_code != 201:
+            res.raise_for_status()
 
     def add_team(self, name):
-        self.put(f'/repos/{self.org}/{self.name}/teams/{name}')
+        res = self.put(f'/repos/{self.org}/{self.name}/teams/{name}')
+        if res.status_code != 204:
+            res.raise_for_status()
 
     def create_release(self, tag, name):
-        self.post(f'/repos/{self.org}/{self.name}/releases', json={'name': name, 'tag_name': tag})
+        res = self.post(f'/repos/{self.org}/{self.name}/releases', json={'name': name, 'tag_name': tag})
+        if res.status_code != 201:
+            res.raise_for_status()
 
     def create_webhook(self, url, events=None, branch_filter=None):
-        self.post(f'/repos/{self.org}/{self.name}/hooks',
-                  json={'type': 'gitea',
-                        'config': {'url': url, 'content_type': 'application/json'},
-                        'branch_filter': branch_filter,
-                        'events': events})
+        res = self.post(f'/repos/{self.org}/{self.name}/hooks',
+                        json={'active': True,
+                              'type': 'gitea',
+                              'config': {'url': url, 'content_type': 'json'},
+                              'branch_filter': branch_filter,
+                              'events': events})
+        if res.status_code != 201:
+            res.raise_for_status()

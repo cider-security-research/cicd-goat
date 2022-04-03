@@ -6,16 +6,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - run: |
-          docker info
-          curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-          sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu  $(lsb_release -cs)  stable"
-          sudo apt-get update
-          sudo apt-get install docker-ce
-          cp -R data/ tmp-data/
+      - run: cp -R data/ tmp-data/
       - name: Docker compose
         run: |
-          docker info
           if [ "${{ github.event_name }}" == "pull_request" ]; then
             COMPOSE_FILE="docker-compose-dev.yaml"
           else

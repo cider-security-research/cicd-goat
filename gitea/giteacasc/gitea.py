@@ -16,9 +16,13 @@ class Gitea(GiteaBase):
     YAML_REPOS = 'repos'
 
     def __init__(self, username, password):
-        GiteaBase.token = requests.post(f'{self.API_BASE_URL}/users/{username}/tokens',
-                                        auth=HTTPBasicAuth(username, password),
-                                        json={'name': 'token'}).json()['sha1']
+        try:
+            res = requests.post(f'{self.API_BASE_URL}/users/{username}/tokens',
+                                            auth=HTTPBasicAuth(username, password),
+                                            json={'name': 'token'})
+            GiteaBase.token = res.json()['sha1']
+        except KeyError:
+            print(res.status_code, res.json())
 
     def create_user(self, username, email, password, must_change_password=False, token=None):
         res = self.post('/admin/users', json={'username': username,
@@ -162,6 +166,7 @@ class Repo(GiteaBase):
     def create_release(self, tag, name):
         res = self.post(f'/repos/{self.org}/{self.name}/releases', json={'name': name, 'tag_name': tag})
         if res.status_code != 201:
+            print(name, tag)
             res.raise_for_status()
 
     def create_webhook(self, url, events=None, branch_filter=None):

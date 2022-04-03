@@ -23,6 +23,7 @@ class Gitea(GiteaBase):
             GiteaBase.token = res.json()['sha1']
         except KeyError:
             print(res.status_code, res.json())
+            res.raise_for_status()
 
     def create_user(self, username, email, password, must_change_password=False, token=None):
         res = self.post('/admin/users', json={'username': username,

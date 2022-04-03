@@ -1,5 +1,5 @@
 FROM gitea/gitea:1.16.0 as base
-ARG SLEEP=15
+ARG SLEEP=20
 ARG USERNAME=red_queen
 ARG PASSWORD=ciderland5#
 COPY --chown=git:git app.ini /data/gitea/conf/

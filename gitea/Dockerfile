@@ -1,11 +1,7 @@
 FROM gitea/gitea:1.16.0 as base
-ARG SLEEP=20
 ARG USERNAME=red_queen
 ARG PASSWORD=ciderland5#
 COPY --chown=git:git app.ini /data/gitea/conf/
-RUN /usr/bin/entrypoint & \
-    sleep $SLEEP && \
-    su -c "gitea admin user create --username $USERNAME --password $PASSWORD --email queen@localhost --admin" git
 ENV PYTHONUNBUFFERED=1
 RUN apk add --update --no-cache python3 py3-pip && \
     ln -sf python3 /usr/bin/python && \
@@ -18,7 +14,8 @@ RUN chmod u+x /setup/giteacasc/askpass.py
 COPY gitea.yaml /setup/
 COPY repositories /setup/repositories
 RUN /usr/bin/entrypoint & \
-    sleep $SLEEP && \
+    sleep 20 && \
+    su -c "gitea admin user create --username $USERNAME --password $PASSWORD --email queen@localhost --admin" git && \
     cd /setup && \
     python3 -m giteacasc /setup/gitea.yaml -u $USERNAME -p $PASSWORD
 

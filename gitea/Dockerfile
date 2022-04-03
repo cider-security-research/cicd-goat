@@ -3,8 +3,9 @@ ARG SLEEP=15
 ARG USERNAME=red_queen
 ARG PASSWORD=ciderland5#
 COPY --chown=git:git app.ini /data/gitea/conf/
-RUN timeout $SLEEP /usr/bin/entrypoint
-RUN su -c "gitea admin user create --username $USERNAME --password $PASSWORD --email queen@localhost --admin" 1000
+RUN /usr/bin/entrypoint & \
+    sleep $SLEEP && \
+    su -c "gitea admin user create --username $USERNAME --password $PASSWORD --email queen@localhost --admin" git
 ENV PYTHONUNBUFFERED=1
 RUN apk add --update --no-cache python3 py3-pip && \
     ln -sf python3 /usr/bin/python && \

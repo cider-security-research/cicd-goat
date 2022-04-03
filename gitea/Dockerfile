@@ -7,12 +7,9 @@ RUN apk add --update --no-cache python3 py3-pip && \
     ln -sf python3 /usr/bin/python && \
     python3 --version
 RUN python3 -m pip install pipenv
-COPY Pipfile* /setup/
+COPY . /setup/
 RUN cd /setup && pipenv install --system --deploy
-COPY giteacasc /setup/giteacasc
 RUN chmod u+x /setup/giteacasc/askpass.py
-COPY gitea.yaml /setup/
-COPY repositories /setup/repositories
 RUN /usr/bin/entrypoint & \
     sleep 20 && \
     su -c "gitea admin user create --username $USERNAME --password $PASSWORD --email queen@localhost --admin" git && \

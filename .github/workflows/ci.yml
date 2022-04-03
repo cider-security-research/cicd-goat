@@ -2,11 +2,13 @@ on: [pull_request, workflow_call]
 
 jobs:
   ci:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - run: cp -R data/ tmp-data/
+      - run: |
+          docker info
+          cp -R data/ tmp-data/
       - name: Docker compose
         run: |
           if [ "${{ github.event_name }}" == "pull_request" ]; then

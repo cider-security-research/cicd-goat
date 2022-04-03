@@ -4,7 +4,6 @@ ARG USERNAME=red_queen
 ARG PASSWORD=ciderland5#
 COPY --chown=git:git app.ini /data/gitea/conf/
 RUN timeout $SLEEP /usr/bin/entrypoint
-# Create parameter for username and password
 RUN su -c "gitea admin user create --username $USERNAME --password $PASSWORD --email queen@localhost --admin" git
 ENV PYTHONUNBUFFERED=1
 RUN apk add --update --no-cache python3 py3-pip && \
@@ -23,7 +22,6 @@ RUN /usr/bin/entrypoint & \
     python3 -m giteacasc /setup/gitea.yaml -u $USERNAME -p $PASSWORD
 
 FROM gitea/gitea:1.16.0
-COPY --from=base --chown=git:git /data/gitea/gitea.db /data/gitea/gitea.db
-COPY --from=base --chown=git:git /data/gitea/conf /data/gitea/conf/
-COPY --from=base --chown=git:git /data/git /data/git/
-#LABEL version="${TAG}"
+COPY --from=base --chown=git:git /data/gitea/ /data/gitea/
+COPY --from=base --chown=git:git /data/ssh/ /data/ssh/
+COPY --from=base --chown=git:git /data/git/ /data/git/

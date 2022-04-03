@@ -11,17 +11,14 @@ users:
         password: jenjen123&^*
 orgs:
     Wonderland:
-        people:
-            - jenkins
-            - thealice
         teams:
-            Devs:
-                - thealice
             Maintainers:
-                - jenkins
+                permissions: write
+                members:
+                    - jenkins
         repos:
             white-rabbit:
-                visibility: private
+                private: true
                 code: repositories/white-rabbit
                 collaborators:
                     thealice: write
@@ -30,18 +27,18 @@ orgs:
                     main:
                         required_approvals: 2
             caterpillar:
-                visibility: public
+                private: false
                 code: repositories/caterpillar
                 teams:
-                    Maintainers: write
+                    - Maintainers
             mad-hatter:
-                visibility: private
+                private: true
                 code: repositories/mad-hatter
                 collaborators:
                     thealice: write
                     jenkins: read
             mad-hatter-pipeline:
-                visibility: private
+                private: true
                 code: repositories/mad-hatter-pipeline
                 collaborators:
                     thealice: read
@@ -50,10 +47,10 @@ orgs:
                     main:
                         required_approvals: 2
             duchess:
-                visibility: public
+                private: false
                 code: repositories/duchess
             cheshire-cat:
-                visibility: private
+                private: true
                 code: repositories/cheshire-cat
                 collaborators:
                     thealice: write
@@ -62,12 +59,12 @@ orgs:
                     main:
                         required_approvals: 2
             dodo:
-                visibility: public
+                private: false
                 code: repositories/dodo
                 collaborators:
                     thealice: write
             twiddledee:
-                visibility: public
+                private: false
                 code: repositories/twiddledee
                 collaborators:
                     thealice: write
@@ -77,18 +74,18 @@ orgs:
                     1.1.0:
                         tag: 1.1.0           
             twiddledum:
-                visibility: public
+                private: false
                 code: repositories/twiddledum
             hearts:
-                visibility: public
+                private: false
                 code: repositories/hearts
             dormouse:
-                visibility: public
+                private: false
                 code: repositories/dormouse
     Cov:
         repos:
             march-hare:
-                visibility: public
+                private: false
                 code: repositories/march-hare
                 webhooks:
                     http://jenkins-server:8080/generic-...:

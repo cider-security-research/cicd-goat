@@ -149,7 +149,7 @@ class Repo(GiteaBase):
             repo = git.Repo(git_repo_path)
             repo.git.push('origin', '--tags', '-u', self.default_branch)
         except git.exc.InvalidGitRepositoryError as e:
-            print(os.getcwd(), git_repo_path)
+            print(os.getcwd(), git_repo_path, os.listdir(f'{os.getcwd()}/{git_repo_path}'))
             raise e
 
     def add_collaborator(self, collaborator, permission):

@@ -1,3 +1,4 @@
+import os
 import sqlite3
 from binascii import hexlify
 from hashlib import pbkdf2_hmac
@@ -144,8 +145,12 @@ class Repo(GiteaBase):
         self.default_branch = default_branch
 
     def push_code(self, git_repo_path):
-        repo = git.Repo(git_repo_path)
-        repo.git.push('origin', '--tags', '-u', self.default_branch)
+        try:
+            repo = git.Repo(git_repo_path)
+            repo.git.push('origin', '--tags', '-u', self.default_branch)
+        except git.exc.InvalidGitRepositoryError as e:
+            print(os.getcwd(), git_repo_path)
+            raise e
 
     def add_collaborator(self, collaborator, permission):
         res = self.put(f'/repos/{self.org}/{self.name}/collaborators/{collaborator}',

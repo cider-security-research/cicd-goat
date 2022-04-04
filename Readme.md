@@ -64,28 +64,35 @@ cd cicd-goat && docker-compose up -d
 See [Spoilers.md](Spoilers.md#Solutions)
 
 ## Development
-1. Install testing dependencies: 
+1. Clone this repository.
+2. Run the latest Gitea container:
+    `docker-compose up -d gitea`
+3. Download all gitea repositories:
+    `git submodule update --init`
+4. Remove the Gitea container:
+    `docker-compose down`
+5. Install testing dependencies: 
     ```sh
     pip install pipenv
     pipenv install --deploy
     ```
-2. Run the development environment:
+6. Run the development environment:
     ```sh
     rm -rf tmp tmp-data/
     cp -R data/ tmp-data/
     docker-compose -f docker-compose-dev.yaml up -d
     ```
-3. Make the desired changes:
-   * Jenkins and Gitea are completely configured as code so desired changes should be made to the files in "jenkins-server", "jenkins-agent" or "gitea" folders.
+7. Make the desired changes:
+   * All services except CTFd are completely configured as code so desired changes should be made to the files in the appropriate folders.
    * To make changes in CTFd, use the admin credentials in [Spoilers.md](Spoilers.md#Admin Credentials)
-4. Shutdown the environment, move changes made in Gitea and CTFd to data/ and rebuild it:
+8. Shutdown the environment, move changes made in CTFd to data/ and rebuild it:
     ```sh
     docker-compose -f docker-compose-dev.yaml down
     ./apply.sh
     docker-compose -f docker-compose-dev.yaml up -d --build
     ```
-5. Run tests: `pytest`
-7. Commit and push!
+9. Run tests: `pytest`
+10. Commit and push!
 
 ## Contributing
 Follow the checklist below to add a challenge:

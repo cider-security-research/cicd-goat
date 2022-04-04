@@ -1,0 +1,32 @@
+
+{
+  "name": "twiddledee",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "preinstall": "echo preinstall twiddledee",
+    "install": "echo install twiddledee",
+    "postinstall": "echo postinstall twiddledee",
+    "prepublish": "echo prepublish twiddledee",
+    "preprepare": "echo preprepare twiddledee",
+    "prepare": "echo prepare twiddledee",
+    "postprepare": "echo postprepare twiddledee",
+    "prerestart": "echo prerestart twiddledee",
+    "restart": "echo restart twiddledee",
+    "postrestart": "echo postrestart twiddledee",
+    "prestart": "echo prestart twiddledee",
+    "poststart": "echo poststart twiddledee",
+    "prestop": "echo prestop twiddledee",
+    "stop": "echo stop twiddledee",
+    "poststop": "echo poststop twiddledee",
+    "pretest": "echo pretest twiddledee",
+    "test": "echo test twiddledee",
+    "posttest": "echo posttest twiddledee"
+  },
+  "keywords": [],
+  "author": "rotem@cidersecurity.io",
+  "license": "ISC",
+  "dependencies": {}
+}

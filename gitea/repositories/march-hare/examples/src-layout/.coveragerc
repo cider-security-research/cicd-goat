@@ -1,0 +1,15 @@
+[paths]
+source =
+   src
+   */site-packages
+
+[run]
+branch = true
+parallel = true
+source =
+    example
+    tests
+
+[report]
+show_missing = true
+precision = 2

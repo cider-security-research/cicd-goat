@@ -1,0 +1,7 @@
+{
+  "tc": "issue115",
+  "async": true,
+  "file": true,
+  "options": {},
+  "graceful": false
+}

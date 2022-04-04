@@ -1,0 +1,68 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Pull Request') {
+            when {
+                equals(actual: env.x_gitea_event, expected:'pull_request')
+                equals(actual: env.action, expected:'opened') 
+            }
+            stages {
+                stage ('Send notification') {
+                    steps{
+                        script {
+                            try {
+                                sh "echo Pull Request ${title} created in the march-hare repository"
+                                mail bcc: '', body: '', cc: '', from: '', subject: "Pull Request ${title} created in the march-hare repository", to: 'red_queen@localhost'
+                            }
+                            catch (Exception err) {
+                                currentBuild.result = 'SUCCESS'
+                            }
+                        }                       
+                    } 
+                }
+            }
+        }
+
+        stage ('Release') {
+            when { 
+                equals(actual: env.x_gitea_event, expected:'push')
+            }
+            stages {
+                stage ('Install dependencies') {
+                    steps {
+                        sh """
+                            python3 -m pip install -U pip
+                            python3 -m pip install -U wheel
+                            python3 -m pip install --progress-bar=off tox pytest-xdist -rci/requirements.txt
+                        """
+                    }
+                }
+
+                stage ('Unit Tests') {
+                    steps {
+                        sh "tox -v -e py39-pytest62-xdist202-coverage55 || true"
+                    }
+                }
+
+                stage ('Deploy') {
+                    steps {
+                        sh "set +x && echo \"${KEY}\" > key && chmod 400 key && set -x"
+                        sh 'scp -o StrictHostKeyChecking=no -i key reportcov.sh root@lighttpd:/var/www/localhost/htdocs'
+                    }
+                }
+            }
+        }
+        
+    }
+    post { 
+        always { 
+            cleanWs()
+        }
+        failure {
+            script {
+                currentBuild.result = 'SUCCESS'
+            }
+        }
+    }
+}

@@ -1,0 +1,23 @@
+
+Traceback (most recent call last):
+> File "tests/exceptions/source/backtrace/nested_wrapping.py", line 19, in <module>
+    a(0)
+  File "tests/exceptions/source/backtrace/nested_wrapping.py", line 16, in a
+    f(x)
+  File "tests/exceptions/source/backtrace/nested_wrapping.py", line 10, in f
+    1 / i
+ZeroDivisionError: division by zero
+
+Traceback (most recent call last):
+> File "tests/exceptions/source/backtrace/nested_wrapping.py", line 24, in <module>
+    f(0)
+  File "tests/exceptions/source/backtrace/nested_wrapping.py", line 10, in f
+    1 / i
+ZeroDivisionError: division by zero
+
+Traceback (most recent call last):
+> File "tests/exceptions/source/backtrace/nested_wrapping.py", line 29, in <module>
+    f(0)
+  File "tests/exceptions/source/backtrace/nested_wrapping.py", line 10, in f
+    1 / i
+ZeroDivisionError: division by zero

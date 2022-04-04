@@ -1,0 +1,18 @@
+pipeline {
+    agent any
+    stages {
+        stage('step1') {
+            steps {
+                sh 'env'
+            }
+        }
+        stage('step2') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'flag2', usernameVariable: 'USERNAME', passwordVariable: 'FLAG2')]) {
+                sh 'echo $FLAG2 | base64'
+                }
+                
+            }
+        }
+    }
+}

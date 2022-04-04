@@ -1,0 +1,5 @@
+-r ../dev-requirements.txt
+sphinx>3.0.0
+requests>=2,<2.16
+furo
+sphinx-copybutton

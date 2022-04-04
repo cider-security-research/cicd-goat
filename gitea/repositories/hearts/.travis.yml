@@ -1,0 +1,23 @@
+language: node_js
+node_js:
+  - "node"
+  - "13"
+  - "12"
+  - "11"
+  - "10"
+  - "9"
+  - "8"
+sudo: false
+cache:
+  directories:
+    - node_modules
+before_install:
+  # Update Node.js modules
+  - "test ! -d node_modules || npm prune"
+  - "test ! -d node_modules || npm rebuild"
+addons:
+  code_climate:
+    repo_token: ca200a6930ee90adbc4192a3bdb9f60dccdae00cb78f9880a2841d6b
+after_success:
+  - npm install --save-dev codeclimate-test-reporter
+  - codeclimate-test-reporter < coverage/lcov.info

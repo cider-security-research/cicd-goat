@@ -1,0 +1,35 @@
+pipeline {
+    agent any
+    environment {
+        PROJECT = "sanic"
+    }
+
+    stages {
+        stage ('Install_Requirements') {
+            steps {
+                sh """
+                    virtualenv venv
+                    pip3 install -r requirements.txt || true
+                """
+            }
+        }
+
+        stage ('Lint') {
+            steps {
+                sh "pylint ${PROJECT} || true"
+            }
+        }
+
+        stage ('Unit Tests') {
+            steps {
+                sh "pytest || true"
+            }
+        }
+    }
+
+    post { 
+        always { 
+            cleanWs()
+        }
+    }
+}

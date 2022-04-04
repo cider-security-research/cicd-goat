@@ -65,34 +65,32 @@ See [Spoilers.md](Spoilers.md#Solutions)
 
 ## Development
 1. Clone this repository.
-2. Run the latest Gitea container:
-    `docker-compose up -d gitea`
-3. Download all gitea repositories:
-    `git submodule update --init`
-4. Remove the Gitea container:
-    `docker-compose down`
-5. Install testing dependencies: 
+2. Rename .git folders to make them usable:
+    `python prepare.py git`
+3. Install testing dependencies: 
     ```sh
     pip install pipenv
     pipenv install --deploy
     ```
-6. Run the development environment:
+4. Run the development environment:
     ```sh
     rm -rf tmp tmp-data/
     cp -R data/ tmp-data/
     docker-compose -f docker-compose-dev.yaml up -d
     ```
-7. Make the desired changes:
+5. Make the desired changes:
    * All services except CTFd are completely configured as code so desired changes should be made to the files in the appropriate folders.
    * To make changes in CTFd, use the admin credentials in [Spoilers.md](Spoilers.md#Admin Credentials)
-8. Shutdown the environment, move changes made in CTFd to data/ and rebuild it:
+6. Shutdown the environment, move changes made in CTFd to data/ and rebuild it:
     ```sh
     docker-compose -f docker-compose-dev.yaml down
     ./apply.sh
     docker-compose -f docker-compose-dev.yaml up -d --build
     ```
-9. Run tests: `pytest`
-10. Commit and push!
+7. Run tests: `pytest`
+8. Rename .git folders to allow push:
+    `python prepare.py notgit`
+9. Commit and push!
 
 ## Contributing
 Follow the checklist below to add a challenge:

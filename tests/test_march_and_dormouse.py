@@ -1,9 +1,10 @@
 from git import Repo
 from base64 import b64encode
-from conftest import REPOSITORIES_DIR, GITEA_GIT_BASE, OWNER, FORK_ORG
+from conftest import REPOSITORIES_DIR, GITEA_GIT_BASE, FORK_ORG, GITEA_BASE
 from utils import branch_and_replace_file_content
 from subprocess import run
 from pathlib import Path
+import requests
 
 COV_ORG = 'Cov'
 COV_JOB_NAME = 'march-hare'
@@ -23,6 +24,7 @@ def test_march_and_dormouse(gitea_client, jenkins_client):
                            branch='main')
     replace_tuples = [('docs', 'bok')]
     branch_and_replace_file_content(repo, 'main', 'README.rst', replace_tuples)
+    requests.get(f'{GITEA_BASE}/{COV_ORG}/{COV_JOB_NAME}')
     res = gitea_client.post(f'/repos/{COV_ORG}/{COV_JOB_NAME}/pulls',
                             json={'head': f'{FORK_ORG}:main', 'base': 'main', 'title': '`env`'})
     assert res.status_code == 201

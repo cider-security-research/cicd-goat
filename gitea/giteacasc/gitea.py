@@ -19,8 +19,8 @@ class Gitea(GiteaBase):
     def __init__(self, username, password):
         try:
             res = requests.post(f'{self.API_BASE_URL}/users/{username}/tokens',
-                                            auth=HTTPBasicAuth(username, password),
-                                            json={'name': 'token'})
+                                auth=HTTPBasicAuth(username, password),
+                                json={'name': 'token'})
             GiteaBase.token = res.json()['sha1']
         except KeyError:
             print(res.status_code, res.json())
@@ -130,7 +130,7 @@ class Org(GiteaBase):
                 repo.add_team(name)
         if releases:
             for name in releases:
-                repo.create_release(name, releases[name])
+                repo.create_release(name, **releases[name])
         if webhooks:
             for url in webhooks:
                 repo.create_webhook(url, **webhooks[url])
@@ -148,9 +148,10 @@ class Repo(GiteaBase):
         try:
             repo = git.Repo(git_repo_path)
             repo.git.push('origin', '--tags', '-u', self.default_branch)
-        except git.exc.InvalidGitRepositoryError as e:
-            print(os.getcwd(), git_repo_path, os.listdir(f'{os.getcwd()}/{git_repo_path}'))
-            raise e
+        except git.exc.GitCommandError as e:
+            print(e)
+            print('make sure remote origin points to "localhost:3000" and the default branch is "main"')
+            exit()
 
     def add_collaborator(self, collaborator, permission):
         res = self.put(f'/repos/{self.org}/{self.name}/collaborators/{collaborator}',
@@ -158,9 +159,9 @@ class Repo(GiteaBase):
         if res.status_code != 204:
             res.raise_for_status()
 
-    def set_branch_protection(self, branch, required_approvals=None):
+    def set_branch_protection(self, branch, **kwargs):
         res = self.post(f'/repos/{self.org}/{self.name}/branch_protections',
-                        json={'branch_name': branch, 'required_approvals': required_approvals})
+                        json={'branch_name': branch, **kwargs})
         if res.status_code != 201:
             res.raise_for_status()
 
@@ -169,18 +170,17 @@ class Repo(GiteaBase):
         if res.status_code != 204:
             res.raise_for_status()
 
-    def create_release(self, tag, name):
-        res = self.post(f'/repos/{self.org}/{self.name}/releases', json={'name': name, 'tag_name': tag})
+    def create_release(self, name, tag_name, **kwargs):
+        res = self.post(f'/repos/{self.org}/{self.name}/releases', json={'tag_name': tag_name, 'name':name, **kwargs})
         if res.status_code != 201:
-            print(name, tag)
+            print(tag_name, kwargs)
             res.raise_for_status()
 
-    def create_webhook(self, url, events=None, branch_filter=None):
+    def create_webhook(self, url, **kwargs):
         res = self.post(f'/repos/{self.org}/{self.name}/hooks',
                         json={'active': True,
                               'type': 'gitea',
                               'config': {'url': url, 'content_type': 'json'},
-                              'branch_filter': branch_filter,
-                              'events': events})
+                              **kwargs})
         if res.status_code != 201:
             res.raise_for_status()

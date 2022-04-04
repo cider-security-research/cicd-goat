@@ -158,6 +158,7 @@ jobs:
   - file: /var/jenkins_home/jobdsl/hearts.groovy
   - file: /var/jenkins_home/jobdsl/march-hare.groovy
   - file: /var/jenkins_home/jobdsl/dormouse.groovy
+  - file: /var/jenkins_home/jobdsl/mock-turtle.groovy
 unclassified:
   giteaServers:
     servers:

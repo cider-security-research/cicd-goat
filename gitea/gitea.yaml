@@ -9,6 +9,10 @@ users:
     jenkins_hatter:
         email: hatter@wonderland.com
         password: jenjen123&^*
+    mock-turtle-ci:
+        email: turtle@wonderland.com
+        password: tuturjgkjf#$@#%
+        token: 03f186631edec80f38b9cc2f7f45870a30cc33e2
 orgs:
     Wonderland:
         teams:
@@ -41,8 +45,7 @@ orgs:
                 private: true
                 code: repositories/mad-hatter-pipeline
                 collaborators:
-                    thealice: read
-                    jenkins: read
+                    jenkins_hatter: read
                 branch_protections:
                     main:
                         required_approvals: 2
@@ -70,9 +73,9 @@ orgs:
                     thealice: write
                 releases:
                     1.0.0:
-                        tag: 1.0.0
+                        tag_name: 1.0.0
                     1.1.0:
-                        tag: 1.1.0           
+                        tag_name: 1.1.0
             twiddledum:
                 private: false
                 code: repositories/twiddledum
@@ -82,6 +85,17 @@ orgs:
             dormouse:
                 private: false
                 code: repositories/dormouse
+            mock-turtle:
+                code: repositories/mock-turtle
+                private: true
+                collaborators:
+                    mock-turtle-ci: write
+                    jenkins: read
+                    thealice: write
+                branch_protections:
+                    main:
+                        merge_whitelist_usernames:
+                            - mock-turtle-ci
     Cov:
         repos:
             march-hare:

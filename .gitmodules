@@ -27,7 +27,7 @@
 	url = http://localhost:3000/Wonderland/mad-hatter-pipeline
 [submodule "gitea/repositories/march-hare"]
 	path = gitea/repositories/march-hare
-	url = http://localhost:3000/Wonderland/march-hare
+	url = http://localhost:3000/Cov/march-hare
 [submodule "gitea/repositories/mock-turtle"]
 	path = gitea/repositories/mock-turtle
 	url = http://localhost:3000/Wonderland/mock-turtle

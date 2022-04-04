@@ -1,3 +1,0 @@
-[submodule "white-rabbit"]
-    path = gitea/repositories/white-rabbit
-    url = http://localhost:3000/Wonderland/white-rabbit

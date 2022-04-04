@@ -56,6 +56,7 @@ cd cicd-goat && docker-compose up -d
 3. Insert the flags on CTFd and find out if you got it right.
 
 ### Troubleshooting
+* If Gitea shows a blank page just refresh
 * When forking a repository don't change the forked repository name as it won't build on Jenkins.
 * Jobs might take time to start running if the agent is occupied by another job.
 
@@ -75,8 +76,8 @@ See [Spoilers.md](Spoilers.md#Solutions)
     docker-compose -f docker-compose-dev.yaml up -d
     ```
 3. Make the desired changes:
-   * Jenkins is completely configured as code so desired changes should be made to the files in "jenkins-server" or "jenkins-agent" folders.
-   * To make changes in Gitea and CTFd, use the admin credentials in [Spoilers.md](Spoilers.md#Admin Credentials)
+   * Jenkins and Gitea are completely configured as code so desired changes should be made to the files in "jenkins-server", "jenkins-agent" or "gitea" folders.
+   * To make changes in CTFd, use the admin credentials in [Spoilers.md](Spoilers.md#Admin Credentials)
 4. Shutdown the environment, move changes made in Gitea and CTFd to data/ and rebuild it:
     ```sh
     docker-compose -f docker-compose-dev.yaml down

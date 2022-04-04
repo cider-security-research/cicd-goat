@@ -7,8 +7,9 @@ RUN apk add --update --no-cache python3 py3-pip && \
     ln -sf python3 /usr/bin/python && \
     python3 --version
 RUN python3 -m pip install pipenv
-COPY . /setup/
+COPY Pipfile* /setup/
 RUN cd /setup && pipenv install --system --deploy
+COPY . /setup/
 RUN chmod u+x /setup/giteacasc/askpass.py
 RUN /usr/bin/entrypoint & \
     sleep 20 && \

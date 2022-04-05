@@ -57,7 +57,7 @@ jobs:
               fi
               sleep 1
             done
-            sleep 30
+            sleep 60
       - run:
           name: Pytest
           command: |

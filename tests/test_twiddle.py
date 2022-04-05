@@ -20,4 +20,4 @@ def test_twiddledum(gitea_client, jenkins_client):
                             json={'name': '1.2.0', 'tag_name': '1.2.0'})
     assert res.status_code == 201
     flag = b64encode('710866F2-2CED-4E60-A4EB-223FD892D95A'.encode()).decode()
-    assert jenkins_client.find_in_last_build_console(CLIENT_JOB_NAME, flag, job_path='twiddle/job/')
+    assert jenkins_client.find_in_last_build_console(f'twiddle/job/{CLIENT_JOB_NAME}', flag)

@@ -35,4 +35,4 @@ def test_march_and_dormouse(gitea_client, jenkins_client):
     result = run(SSH_CMD, capture_output=True, text=True, shell=True)
     print(result.stderr)
     flag = b64encode('31350FBC-A959-4B4B-A8BD-DCA7AC9248A6'.encode()).decode()
-    assert jenkins_client.find_in_last_build_console('main', flag, job_path=f'{CLIENT_JOB_NAME}/job/')
+    assert jenkins_client.find_in_last_build_console(f'{CLIENT_JOB_NAME}/job/main', flag)

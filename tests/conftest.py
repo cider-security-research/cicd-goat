@@ -68,12 +68,16 @@ class JenkinsClient(Jenkins):
     def get(self, endpoint, **kwargs):
         return self.requester.get_url(f'{self.baseurl}{endpoint}', **kwargs)
 
-    def find_in_last_build_console(self, job_name, string, job_path='', start_job=True):
+    def find_in_last_build_console(self, job_path, string, start_job=True):
         if start_job:
-            res = self.post(f'/job/{job_path}{job_name}/build?delay=0')
+            res = self.post(f'/job/{job_path}/build?delay=0')
             assert res.status_code == 200 or res.status_code == 201
         sleep(5)
         consoles = []
+        if '/job/' in job_path:
+            job_name = f'{job_path.split("/")[0]}/{job_path.split("/")[-1]}'
+        else:
+            job_name = job_path.split('/')[-1]
         for tmp_job_name, job_instance in self.get_jobs():
             if job_name in tmp_job_name:
                 for i in range(BUILD_TIMEOUT):

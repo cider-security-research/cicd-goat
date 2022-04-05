@@ -6,7 +6,13 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - run: cp -R data/ tmp-data/
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+      - run: |
+          python3 prepare.py git
+          cp -R data/ tmp-data/
       - name: Docker compose
         run: |
           if [ "${{ github.event_name }}" == "pull_request" ]; then
@@ -16,10 +22,7 @@ jobs:
           fi
           echo $COMPOSE_FILE
           docker-compose -f $COMPOSE_FILE up -d
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: 3.9
+
       - name: Install testing dependencies
         run: |
           python -m pip install pipenv

@@ -14,7 +14,7 @@ services:
     networks:
       - goat
     volumes:
-      - ./tmp-data/ctfd:/opt/CTFd
+      - ./tmp-ctfd:/opt/CTFd
   gitea:
     build:
       context: ./gitea

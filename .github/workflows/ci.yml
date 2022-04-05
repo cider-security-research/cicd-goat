@@ -12,9 +12,7 @@ jobs:
           python-version: 3.9
       - run: |
           python3 prepare.py git
-          mkdir tmp-data
-          mkdir tmp-data/ctfd
-          cp -R ctfd/data/ tmp-data/ctfd/
+          cp -R ctfd/data/ tmp-ctfd/
       - name: Docker compose
         run: |
           if [ "${{ github.event_name }}" == "pull_request" ]; then

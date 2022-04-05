@@ -3,7 +3,9 @@ import yaml
 from giteacasc.gitea import Gitea
 import os
 import logging
+import http.client
 
+http.client.HTTPConnection.debuglevel = 5
 logging.basicConfig(level=logging.DEBUG)
 
 

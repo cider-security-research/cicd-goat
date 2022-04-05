@@ -7,6 +7,7 @@ from jenkinsapi.jenkins import Jenkins
 from jenkinsapi.custom_exceptions import NoBuildData
 from time import sleep
 import logging
+import http.client
 
 OWNER = 'Wonderland'
 REPOSITORIES_DIR = Path(__file__).resolve().parent / 'repositories'
@@ -17,6 +18,7 @@ GITEA_BASE = 'http://localhost:3000'
 GITEA_API_BASE = f'{GITEA_BASE}/api/v1'
 
 logging.basicConfig(level=logging.DEBUG)
+http.client.HTTPConnection.debuglevel = 5
 
 
 def create_token():

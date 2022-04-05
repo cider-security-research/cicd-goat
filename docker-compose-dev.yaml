@@ -5,18 +5,6 @@ networks:
     driver: bridge
 
 services:
-  ctfd:
-    build:
-      context: ./ctfd
-      cache_from:
-        - cidersecurity/goat-ctfd:latest
-    container_name: ctfd
-    ports:
-      - "8000:8000"
-    networks:
-      - goat
-    volumes:
-      - ./tmp-ctfd:/opt/CTFd
   gitea:
     build:
       context: ./gitea
@@ -31,6 +19,18 @@ services:
       - goat
     ports:
       - "3000:3000"
+  ctfd:
+    build:
+      context: ./ctfd
+      cache_from:
+        - cidersecurity/goat-ctfd:latest
+    container_name: ctfd
+    ports:
+      - "8000:8000"
+    networks:
+      - goat
+    volumes:
+      - ./tmp-ctfd:/opt/CTFd
   jenkins_server:
     build:
       context: ./jenkins-server

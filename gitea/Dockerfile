@@ -1,4 +1,4 @@
-FROM gitea/gitea:1.16.0 AS base
+FROM gitea/gitea:1.16.5 AS base
 
 ARG USERNAME=red_queen
 ARG PASSWORD=ciderland5#
@@ -25,11 +25,8 @@ RUN /usr/bin/entrypoint & \
     cd /setup && \
     python3 -m giteacasc /setup/gitea.yaml -u $USERNAME -p $PASSWORD
 
-FROM gitea/gitea:1.16.0
-RUN echo 1
-COPY --from=base --chown=git:git /data/gitea /data/gitea
-COPY --from=base --chown=git:git /data/ssh /data/ssh
-COPY --from=base --chown=git:git /data/git /data/git
+FROM gitea/gitea:1.16.5
+COPY --from=base --chown=git:git /data/ /data
 LABEL org.opencontainers.image.vendor="Cider Security" \
     org.opencontainers.image.title="CI/CD Goat - Gitea" \
     org.opencontainers.image.description="Deliberately vulnerable CI/CD environment." \

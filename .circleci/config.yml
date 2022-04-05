@@ -11,10 +11,22 @@ jobs:
           name: Setup Python
           command: |
             python3 prepare.py git
+            python --version
             cp -R ctfd/data/ tmp-ctfd/
+            sudo apt-get update
+            sudo apt-get -y install python3 || true
+            python --version
+            sudo apt-get -y install python3.9 || true
+            python --version
       - run:
           name: Docker compose
-          command: docker-compose -f docker-compose-dev.yaml up -d
+          command: |
+            cd ctfd && docker build -t cicd-goat_ctfd && cd ..
+            cd gitea && docker build -t cicd-goat_gitea && cd ..
+            cd jenkins-agent && docker build -t cicd-goat_jenkins_agent && cd ..
+            cd jenkins-server && docker build -t cicd-goat_jenkins_server && cd ..
+            cd lighttpd && docker build -t cicd-goat_lighttpd && cd ..
+            docker-compose -f docker-compose-dev.yaml up -d
       - run:
           name: Install testing dependencies
           command: |

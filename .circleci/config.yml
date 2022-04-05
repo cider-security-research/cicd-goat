@@ -5,6 +5,7 @@ jobs:
     machine:
       image: ubuntu-2004:202010-01
       docker_layer_caching: true
+    resource_class: large
     steps:
       - checkout
       - run:
@@ -15,13 +16,7 @@ jobs:
             cp -R ctfd/data/ tmp-ctfd/
       - run:
           name: Docker compose
-          command: |
-            cd ctfd && docker build -t cicd-goat_ctfd . && cd ..
-            cd gitea && docker build -t cicd-goat_gitea . && cd ..
-            cd jenkins-agent && docker build -t cicd-goat_jenkins_agent . && cd ..
-            cd jenkins-server && docker build -t cicd-goat_jenkins_server . && cd ..
-            cd lighttpd && docker build -t cicd-goat_lighttpd . && cd ..
-            docker-compose -f docker-compose-dev.yaml up -d
+          command: docker-compose -f docker-compose-dev.yaml up -d
       - run:
           name: Install testing dependencies
           command: |
@@ -39,7 +34,7 @@ jobs:
               fi
               sleep 1
             done
-            sleep 60
+            sleep 30
       - run:
           name: Pytest
           command: |

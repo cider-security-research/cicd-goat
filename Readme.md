@@ -75,7 +75,9 @@ See [Spoilers.md](Spoilers.md#Solutions)
 4. Run the development environment:
     ```sh
     rm -rf tmp tmp-data/
-    cp -R data/ tmp-data/
+    mkdir tmp-data
+    mkdir tmp-data/ctfd
+    cp -R ctfd/data/ tmp-data/ctfd/
     docker-compose -f docker-compose-dev.yaml up -d
     ```
 5. Make the desired changes:

@@ -35,3 +35,4 @@ LABEL org.opencontainers.image.vendor="Cider Security" \
     org.opencontainers.image.licenses="GPL-3.0" \
     org.opencontainers.image.version="${VERSION}" \
     org.opencontainers.image.revision="${COMMIT_SHA}"
+ENTRYPOINT su -c "gitea" git

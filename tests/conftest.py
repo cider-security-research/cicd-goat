@@ -4,38 +4,42 @@ import requests
 from requests.auth import HTTPBasicAuth
 import shutil
 from jenkinsapi.jenkins import Jenkins
-from uuid import uuid4
 from jenkinsapi.custom_exceptions import NoBuildData
 from time import sleep
 
-GITEA_BASE = 'http://localhost:3000'
-GITEA_API_BASE = f'{GITEA_BASE}/api/v1'
 OWNER = 'Wonderland'
 REPOSITORIES_DIR = Path(__file__).resolve().parent / 'repositories'
 GITEA_GIT_BASE = 'http://thealice:thealice@localhost:3000'
 BUILD_TIMEOUT = 120
 FORK_ORG = 'test'
+GITEA_BASE = 'http://localhost:3000'
+GITEA_API_BASE = f'{GITEA_BASE}/api/v1'
+
+
+def create_token():
+    res = requests.post(f'{GITEA_API_BASE}/users/thealice/tokens',
+                        auth=HTTPBasicAuth('thealice', 'thealice'),
+                        json={'name': 'token'})
+    if res.status_code != 201:
+        print(res.status_code, res.json())
+        res.raise_for_status()
+    return res.json()['sha1']
 
 
 class GiteaApiClient:
-    token = requests.post(f'{GITEA_API_BASE}/users/thealice/tokens',
-                          auth=HTTPBasicAuth('thealice', 'thealice'),
-                          json={'name': str(uuid4())}).json()['sha1']
+    token = create_token()
 
-    @staticmethod
-    def post(endpoint, data=None, json=None, **kwargs):
+    def post(self, endpoint, data=None, json=None, **kwargs):
         return requests.post(f'{GITEA_API_BASE}{endpoint}',
-                             data=data, json=json, headers={'Authorization': f'token {GiteaApiClient.token}'}, **kwargs)
+                             data=data, json=json, headers={'Authorization': f'token {self.token}'}, **kwargs)
 
-    @staticmethod
-    def get(endpoint, params=None, **kwargs):
+    def get(self, endpoint, params=None, **kwargs):
         return requests.get(f'{GITEA_API_BASE}{endpoint}',
-                            params=params, headers={'Authorization': f'token {GiteaApiClient.token}'}, **kwargs)
+                            params=params, headers={'Authorization': f'token {self.token}'}, **kwargs)
 
-    @staticmethod
-    def put(endpoint, data=None, **kwargs):
+    def put(self, endpoint, data=None, **kwargs):
         return requests.put(f'{GITEA_API_BASE}{endpoint}',
-                            data=data, headers={'Authorization': f'token {GiteaApiClient.token}'}, **kwargs)
+                            data=data, headers={'Authorization': f'token {self.token}'}, **kwargs)
 
     def create_fork(self, owner, repo):
         res = self.get('/orgs')

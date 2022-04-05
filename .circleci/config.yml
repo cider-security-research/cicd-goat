@@ -21,11 +21,11 @@ jobs:
       - run:
           name: Docker compose
           command: |
-            cd ctfd && docker build -t cicd-goat_ctfd && cd ..
-            cd gitea && docker build -t cicd-goat_gitea && cd ..
-            cd jenkins-agent && docker build -t cicd-goat_jenkins_agent && cd ..
-            cd jenkins-server && docker build -t cicd-goat_jenkins_server && cd ..
-            cd lighttpd && docker build -t cicd-goat_lighttpd && cd ..
+            cd ctfd && docker build -t cicd-goat_ctfd . && cd ..
+            cd gitea && docker build -t cicd-goat_gitea . && cd ..
+            cd jenkins-agent && docker build -t cicd-goat_jenkins_agent . && cd ..
+            cd jenkins-server && docker build -t cicd-goat_jenkins_server . && cd ..
+            cd lighttpd && docker build -t cicd-goat_lighttpd . && cd ..
             docker-compose -f docker-compose-dev.yaml up -d
       - run:
           name: Install testing dependencies

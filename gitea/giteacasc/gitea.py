@@ -1,4 +1,3 @@
-import os
 import sqlite3
 from binascii import hexlify
 from hashlib import pbkdf2_hmac

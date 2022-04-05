@@ -2,6 +2,10 @@ import click
 import yaml
 from giteacasc.gitea import Gitea
 import os
+import logging
+
+logging.basicConfig(level=logging.DEBUG)
+
 
 @click.command()
 @click.argument('path', type=str)
@@ -10,8 +14,6 @@ import os
 def giteacasc(path, admin_username, admin_password):
     with open(path, 'r') as y:
         config = yaml.safe_load(y.read())
-    ### add schema validation ###
-    ### add doc strings ###
     project_dir = os.path.dirname(os.path.abspath(__file__))
     os.environ['GIT_ASKPASS'] = os.path.join(project_dir, 'askpass.py')
     os.environ['GIT_USERNAME'] = admin_username

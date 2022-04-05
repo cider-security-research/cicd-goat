@@ -6,6 +6,7 @@ import shutil
 from jenkinsapi.jenkins import Jenkins
 from jenkinsapi.custom_exceptions import NoBuildData
 from time import sleep
+import logging
 
 OWNER = 'Wonderland'
 REPOSITORIES_DIR = Path(__file__).resolve().parent / 'repositories'
@@ -14,6 +15,8 @@ BUILD_TIMEOUT = 120
 FORK_ORG = 'test'
 GITEA_BASE = 'http://localhost:3000'
 GITEA_API_BASE = f'{GITEA_BASE}/api/v1'
+
+logging.basicConfig(level=logging.DEBUG)
 
 
 def create_token():

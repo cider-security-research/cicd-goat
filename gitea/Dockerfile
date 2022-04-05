@@ -27,6 +27,7 @@ RUN /usr/bin/entrypoint & \
 
 FROM gitea/gitea:1.16.5
 COPY --from=base --chown=git:git /data/ /data
+ENTRYPOINT ["su", "-c", "gitea", "git"]
 LABEL org.opencontainers.image.vendor="Cider Security" \
     org.opencontainers.image.title="CI/CD Goat - Gitea" \
     org.opencontainers.image.description="Deliberately vulnerable CI/CD environment." \
@@ -35,4 +36,3 @@ LABEL org.opencontainers.image.vendor="Cider Security" \
     org.opencontainers.image.licenses="GPL-3.0" \
     org.opencontainers.image.version="${VERSION}" \
     org.opencontainers.image.revision="${COMMIT_SHA}"
-ENTRYPOINT su -c "gitea" git

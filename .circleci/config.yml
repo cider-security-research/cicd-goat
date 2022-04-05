@@ -4,7 +4,6 @@ jobs:
   test:
     machine:
       image: ubuntu-2004:202010-01
-      docker_layer_caching: true
     resource_class: large
     steps:
       - checkout
@@ -25,7 +24,7 @@ jobs:
       - run:
           name: Wait for services to start
           command: |
-            while [ 1 ]
+            for i in {1..30}
             do
               jenkins_status_code=$(curl --write-out %{http_code} --silent --output /dev/null localhost:8080/login) || true
               gitea_status_code=$(curl --write-out %{http_code} --silent --output /dev/null localhost:3000/) || true

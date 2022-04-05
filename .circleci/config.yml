@@ -24,7 +24,7 @@ jobs:
       - run:
           name: Save Docker layers cache
           command: |
-            DOCKER_IMAGES=$(docker images --format "{{ .Repository }}" --filter=reference="goat-*")
+            DOCKER_IMAGES=$(docker images --format "{{ .Repository }}" --filter=reference="cidersecurity/goat-*")
             DOCKER_LAYERS=$(for image in $DOCKER_IMAGES; do docker history $image -q | grep -v missing; done)
             docker save -o ~/docker-layers.tar $DOCKER_LAYERS
       - save_cache:
@@ -58,16 +58,55 @@ jobs:
     machine:
       image: ubuntu-2004:202010-01
     resource_class: large
+    environment:
+      ORG: cidersecurity
     steps:
       - checkout
+      - restore_cache:
+          keys:
+            - v1-docker-{{ .Branch }}
       - run:
-          name: Build
+          name: Load Docker layers cache
           command: |
-            pipenv run python -m pytest tests/
+            set +o pipefail
+            docker load -i ~/docker-layers.tar | true
+      - run:
+          name: Docker compose --build
+          command: |
+            docker-compose -f docker-compose-dev.yaml up -d --build
+            docker-compose -f docker-compose-dev.yaml down
+      - run:
+          name: Push latest
+          command: |
+            echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USER" --password-stdin
+            docker push $ORG/goat-jenkins-server:latest
+            docker push $ORG/goat-jenkins-agent:latest
+            docker push $ORG/goat-gitea:latest
+            docker push $ORG/goat-ctfd:latest
+            docker push $ORG/goat-lighttpd:latest
+      - run:
+          name: Push version
+          command: |
+            docker tag $ORG/goat-jenkins-server:latest $ORG/goat-jenkins-server:$VERSION
+            docker tag $ORG/goat-jenkins-agent:latest $ORG/goat-jenkins-agent:$VERSION
+            docker tag $ORG/goat-gitea:latest $ORG/goat-gitea:$VERSION
+            docker tag $ORG/goat-ctfd:latest $ORG/goat-ctfd:$VERSION
+            docker tag $ORG/goat-lighttpd:latest $ORG/goat-lighttpd:$VERSION
 
+            docker push $ORG/goat-jenkins-server:$VERSION
+            docker push $ORG/goat-jenkins-agent:$VERSION
+            docker push $ORG/goat-gitea:$VERSION
+            docker push $ORG/goat-ctfd:$VERSION
+            docker push $ORG/goat-lighttpd:$VERSION
 
 workflows:
   version: 2
   ci:
     jobs:
       - ci
+  #release:
+  #  jobs:
+  #    - ci
+  #    - release:
+  #        context:
+  #          - dockerhub

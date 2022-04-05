@@ -16,7 +16,7 @@ Authors
 ## Installation
 ### Linux & Mac:
 
-**No need to clone the repository**
+emoji **No need to clone the repository**
 ```sh
 curl -o cicd-goat/docker-compose.yaml --create-dirs https://raw.githubusercontent.com/cider-rnd/cicd-goat-dev/main/docker-compose.yaml
 cd cicd-goat && docker-compose up -d

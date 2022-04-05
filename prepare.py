@@ -11,7 +11,7 @@ def mover(src, dst):
         if path.is_dir():
             dot_git = path / src
             try:
-                move(dot_git, dot_git.parent / dst)
+                move(dot_git, str(dot_git.parent / dst))
             except FileNotFoundError:
                 continue
 

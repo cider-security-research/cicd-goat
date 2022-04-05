@@ -20,11 +20,11 @@ jobs:
           command: |
             python3 prepare.py git
             cp -R ctfd/data/ tmp-ctfd/
-            docker-compose -p cicd-goat -f docker-compose-dev.yaml up -d --build
+            docker-compose -f docker-compose-dev.yaml up -d --build
       - run:
           name: Save Docker layers cache
           command: |
-            DOCKER_IMAGES=$(docker images --format "{{ .Repository }}" --filter=reference="cicd-goat_*")
+            DOCKER_IMAGES=$(docker images --format "{{ .Repository }}" --filter=reference="goat-*")
             DOCKER_LAYERS=$(for image in $DOCKER_IMAGES; do docker history $image -q | grep -v missing; done)
             docker save -o ~/docker-layers.tar $DOCKER_LAYERS
       - save_cache:

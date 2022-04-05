@@ -1,0 +1,40 @@
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <td class="text-center"><b>User</b></td>
+                    <td class="text-center"><b>IP Address</b></td>
+                    <td class="text-center"><b>Last Seen</b></td>
+                    <td class="text-center"><b>Country</b></td>
+                </tr>
+            </thead>
+            <tbody>
+            {% for addr in addrs %}
+                <tr>
+                    <td class="text-center">
+                        <a href="{{ url_for("admin.users_detail", user_id=addr.user_id) }}">
+                            {{ addr.user.name }}
+                        </a>
+                    </td>
+                    <td class="text-center">{{ addr.ip }}</td>
+                    <td class="text-center solve-time">
+                        <span data-time="{{ addr.date | isoformat }}"></span>
+                    </td>
+                    {% set country = lookup_ip_address(addr.ip) %}
+                    {% if country %}
+                    <td class="text-center">
+                        <i class="flag-{{ country.lower() }}"></i>
+                        &nbsp;
+                        {{ lookup_country_code(country) }}
+                    </td>
+                    {% else %}
+                    <td class="text-center">
+                    </td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>

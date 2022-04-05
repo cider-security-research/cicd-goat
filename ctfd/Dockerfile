@@ -1,6 +1,6 @@
 FROM ctfd/ctfd:3.4.1
-COPY --chown=ctfd:ctfd data/ctfd/CTFd/ctfd.db /opt/CTFd/CTFd/ctfd.db
-COPY --chown=ctfd:ctfd data/ctfd/CTFd/uploads/ /opt/CTFd/CTFd/uploads/
+COPY --chown=ctfd:ctfd data/CTFd/ctfd.db /opt/CTFd/CTFd/ctfd.db
+COPY --chown=ctfd:ctfd data/CTFd/uploads/ /opt/CTFd/CTFd/uploads/
 LABEL org.opencontainers.image.vendor="Cider Security" \
     org.opencontainers.image.title="CI/CD Goat - CTFd" \
     org.opencontainers.image.description="Deliberately vulnerable CI/CD environment." \

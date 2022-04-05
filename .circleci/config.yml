@@ -1,5 +1,13 @@
 version: 2.1
 
+parameters:
+  GHA_Event:
+    type: string
+    default: ""
+  GHA_Meta:
+    type: string
+    default: ""
+
 jobs:
   ci:
     machine:
@@ -60,6 +68,7 @@ jobs:
     resource_class: large
     environment:
       ORG: cidersecurity
+      VERSION: pipeline.parameters.GHA_Meta
     steps:
       - checkout
       - restore_cache:
@@ -104,9 +113,11 @@ workflows:
   ci:
     jobs:
       - ci
-  #release:
-  #  jobs:
-  #    - ci
-  #    - release:
-  #        context:
-  #          - dockerhub
+  release:
+    when:
+      equal: [ "release", << pipeline.parameters.GHA_Event >> ]
+    jobs:
+      - ci
+      - release:
+          context:
+            - dockerhub

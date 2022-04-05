@@ -1,58 +1,14 @@
 on:
   release:
     types: [created]
-env:
-  runner: ubuntu-18.04
-
 
 jobs:
-  release:
-    runs-on: ${{ env.runner }}
+  trigger-circleci-release:
+    runs-on: ubuntu-latest
     steps:
-      - uses: ./.github/workflows/ci.yml@main
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Set env
-        run: |
-          echo "VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
-          echo "ORG=cidersecurity" >> $GITHUB_ENV
-      - name: Login to DockerHub
-        uses: docker/login-action@v1
+      - name: Trigger CircleCI release
+        uses: CircleCI-Public/trigger-circleci-pipeline-action@v1.0
         with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-      - name: Build (version)
-        run: |
-          build_cmd = "docker build --cache-from ${{ env.cache_from }} --cache-to ${{ env.cache_to }} --build-arg VERSION=$VERSION COMMIT_SHA=${{ github.sha }} -t"
-          cd jenkins-server && $build_cmd $ORG/goat-jenkins-server:$VERSION . && cd ..
-          cd jenkins-agent && $build_cmd $ORG/goat-jenkins-agent:$VERSION . && cd ..
-          cd gitea && $build_cmd $ORG/goat-gitea:$VERSION . && cd ..
-          cd ctfd && $build_cmd $ORG/goat-ctfd:$VERSION . && cd ..
-          cd lighttpd && $build_cmd $ORG/goat-lighttpd:$VERSION . && cd ..
-      - name: Push (version)
-        run: |
-          docker push $ORG/goat-jenkins-server:$VERSION
-          docker push $ORG/goat-jenkins-agent:$VERSION
-          docker push $ORG/goat-gitea:$VERSION
-          docker push $ORG/goat-ctfd:$VERSION
-          docker push $ORG/goat-lighttpd:$VERSION
-      - name: Push (latest)
-        run: |
-          docker tag $ORG/goat-jenkins-server:$VERSION $ORG/goat-jenkins-server:latest
-          docker tag $ORG/goat-jenkins-agent:$VERSION $ORG/goat-jenkins-agent:latest
-          docker tag $ORG/goat-gitea:$VERSION $ORG/goat-gitea:latest
-          docker tag $ORG/goat-ctfd:$VERSION $ORG/goat-ctfd:latest
-          docker tag $ORG/goat-lighttpd:$VERSION $ORG/goat-lighttpd:latest
-          docker push $ORG/goat-jenkins-server:latest
-          docker push $ORG/goat-jenkins-agent:latest
-          docker push $ORG/goat-gitea:latest
-          docker push $ORG/goat-ctfd:latest
-          docker push $ORG/goat-lighttpd:latest
-
-
-
-
-
-
-
-
+          GHA_Meta: ${{ github.event.release.name }}
+        env:
+          CCI_TOKEN: ${{ secrets.CCI_TOKEN }}

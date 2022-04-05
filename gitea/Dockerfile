@@ -17,17 +17,10 @@ RUN cd /setup && pipenv install --system --deploy
 
 COPY . /setup/
 
-RUN chmod u+x /setup/giteacasc/askpass.py
+RUN chmod 755 /setup/giteacasc/askpass.py /setup/run
 
-RUN /usr/bin/entrypoint & \
-    sleep 20 && \
-    su -c "gitea admin user create --username $USERNAME --password $PASSWORD --email queen@localhost --admin" git && \
-    cd /setup && \
-    python3 -m giteacasc /setup/gitea.yaml -u $USERNAME -p $PASSWORD
+ENTRYPOINT ["/setup/run"]
 
-FROM gitea/gitea:1.16.5
-COPY --from=base --chown=git:git /data/ /data
-ENTRYPOINT ["su", "-c", "gitea", "git"]
 LABEL org.opencontainers.image.vendor="Cider Security" \
     org.opencontainers.image.title="CI/CD Goat - Gitea" \
     org.opencontainers.image.description="Deliberately vulnerable CI/CD environment." \

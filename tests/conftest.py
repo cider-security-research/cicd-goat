@@ -82,7 +82,6 @@ class JenkinsClient(Jenkins):
             if job_name in tmp_job_name:
                 for i in range(BUILD_TIMEOUT):
                     try:
-                        last_build = job_instance.get_last_build()
                         if not job_instance.is_queued_or_running():
                             break
                         raise NoBuildData
@@ -90,11 +89,13 @@ class JenkinsClient(Jenkins):
                         sleep(1)
                 else:
                     continue
-                if string in last_build.get_console():
-                    return True
-                consoles.append(last_build.get_console())
+                for number in job_instance.get_build_ids():
+                    build = job_instance.get_build(number)
+                    if string in build.get_console():
+                        return True
+                    consoles.append(build.get_console())
         else:
-            print('----------\n'.join(consoles))
+            print('---------------------------\n'.join(consoles))
             return False
 
 

@@ -30,4 +30,4 @@ def test_mock_turtle(gitea_client, jenkins_client):
     jenkins_client.build_job('mock-turtle/main')
     sleep(5)
     flag = b64encode('D54734AB-7B83-4931-A9BB-171476101FDF'.encode()).decode()
-    assert jenkins_client.find_in_last_build_console(f'{JOB_NAME}/job/main', flag)
+    assert jenkins_client.find_in_last_build_console(JOB_NAME, flag)

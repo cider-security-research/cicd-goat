@@ -5,6 +5,7 @@ from utils import branch_and_replace_file_content
 from subprocess import run
 from pathlib import Path
 import requests
+from time import sleep
 
 COV_ORG = 'Cov'
 COV_JOB_NAME = 'march-hare'
@@ -28,7 +29,10 @@ def test_march_and_dormouse(gitea_client, jenkins_client):
     res = gitea_client.post(f'/repos/{COV_ORG}/{COV_JOB_NAME}/pulls',
                             json={'head': f'{FORK_ORG}:main', 'base': 'main', 'title': '`env`'})
     assert res.status_code == 201
-    assert jenkins_client.find_in_last_build_console(COV_JOB_NAME, PART_PRIVATE_KEY, start_job=False)
+    jenkins_client.build_job('mock-turtle')
+    sleep(5)
+    jenkins_client.build_job('mock-turtle')
+    assert jenkins_client.find_in_last_build_console(f'{COV_JOB_NAME}/job/main', PART_PRIVATE_KEY, start_job=False)
     assert res.status_code == 201
     result = run(CHMOD_CMD, capture_output=True, text=True, shell=True)
     assert not result.stderr

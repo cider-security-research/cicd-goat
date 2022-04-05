@@ -22,18 +22,9 @@ logging.basicConfig(level=logging.DEBUG)
 http.client.HTTPConnection.debuglevel = 5
 
 
-def create_token():
-    res = requests.post(f'{GITEA_API_BASE}/users/thealice/tokens',
-                        auth=HTTPBasicAuth('thealice', 'thealice'),
-                        json={'name': 'token'})
-    if res.status_code != 201:
-        print(res.status_code, res.json())
-        res.raise_for_status()
-    return res.json()['sha1']
-
-
 class GiteaApiClient:
-    token = create_token()
+    # thealice
+    token = '9e49a7087d456836af489fb856053486625b9bff'
 
     def post(self, endpoint, data=None, json=None, **kwargs):
         return requests.post(f'{GITEA_API_BASE}{endpoint}',

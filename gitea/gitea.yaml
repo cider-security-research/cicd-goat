@@ -6,6 +6,7 @@ users:
     thealice:
         email: alice@wonderland.com
         password: thealice
+        token: 9e49a7087d456836af489fb856053486625b9bff
     jenkins_hatter:
         email: hatter@wonderland.com
         password: jenjen123&^*

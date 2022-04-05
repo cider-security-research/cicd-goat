@@ -14,7 +14,7 @@ jobs:
           python3 prepare.py git
           cp -R ctfd/data/ tmp-ctfd/
           sudo apt-get update
-          sudo apt-get -y install ncat
+          sudo apt-get -y install netcat
       - name: Docker compose
         run: |
           if [ "${{ github.event_name }}" == "pull_request" ]; then

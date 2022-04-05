@@ -52,10 +52,11 @@ CONFIG = """<project>
         </org.jenkinsci.plugins.credentialsbinding.impl.SecretBuildWrapper>
     </buildWrappers>
 </project>"""
+JOB_NAME = 'hearts'
 
 
 def test_hearts():
     jenkins_client = JenkinsClient('http://localhost:8080', username='knave', password='1sonic', useCrumb=True)
     jenkins_client.post('/job/hearts/config.xml', data=CONFIG)
     flag = b64encode('B1A648E1-FD8B-4D66-8CAF-78114F55D396'.encode()).decode()
-    assert jenkins_client.find_in_last_build_console('hearts', flag)
+    assert jenkins_client.find_in_last_build_console(JOB_NAME, flag)

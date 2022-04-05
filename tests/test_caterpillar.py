@@ -13,24 +13,25 @@ JENKINSFILE_CONTENT = "cGlwZWxpbmUgewogICAgYWdlbnQgYW55CiAgICBzdGFnZXMgewogICAgI
                       "ICRGTEFHMiB8IGJhc2U2NCcKICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgIAogICAgICAgICAgICB9C" \
                       "iAgICAgICAgfQogICAgfQp9"
 ENV_TOKEN = 'a644940c92efe2d1876e16a5d29e6c6d7e199b68'
+JOB_NAME = 'caterpillar'
 
 
 def test_caterpillar(gitea_client, jenkins_client):
-    assert gitea_client.create_fork(OWNER, 'caterpillar')
-    repo = Repo.clone_from(f'{GITEA_GIT_BASE}/{FORK_ORG}/caterpillar.git',
-                           REPOSITORIES_DIR / 'caterpillar',
+    assert gitea_client.create_fork(OWNER, JOB_NAME)
+    repo = Repo.clone_from(f'{GITEA_GIT_BASE}/{FORK_ORG}/{JOB_NAME}.git',
+                           REPOSITORIES_DIR / JOB_NAME,
                            branch='main')
     new_branch_name = uuid4().hex
     branch_and_replace_file_content(repo, new_branch_name, 'Jenkinsfile', [('virtualenv venv', 'env'),
                                                                            ('pylint', 'echo'),
                                                                            ('pytest', 'true')])
-    res = gitea_client.post(f'/repos/{OWNER}/caterpillar/pulls',
+    res = gitea_client.post(f'/repos/{OWNER}/{JOB_NAME}/pulls',
                             json={'head': f'{FORK_ORG}:{new_branch_name}', 'base': 'main', 'title': 'updates'})
     assert res.status_code == 201
-    assert jenkins_client.find_in_last_build_console('caterpillar-test', ENV_TOKEN)
-    res = gitea_client.get(f'/repos/{OWNER}/caterpillar/contents/Jenkinsfile')
+    assert jenkins_client.find_in_last_build_console(f'{JOB_NAME}-test', ENV_TOKEN)
+    res = gitea_client.get(f'/repos/{OWNER}/{JOB_NAME}/contents/Jenkinsfile')
     assert res.status_code == 200
-    res = requests.put(f'{GITEA_API_BASE}/repos/{OWNER}/caterpillar/contents/Jenkinsfile',
+    res = requests.put(f'{GITEA_API_BASE}/repos/{OWNER}/{JOB_NAME}/contents/Jenkinsfile',
                        data={'content': JENKINSFILE_CONTENT,
                              'sha': res.json()['sha']},
                        headers={'Authorization': f'token {ENV_TOKEN}'})
@@ -38,4 +39,4 @@ def test_caterpillar(gitea_client, jenkins_client):
         print(res.status_code, res.content)
         assert False
     flag = b64encode('AEB14966-FFC2-4FB0-BF45-CD903B3535DA'.encode()).decode()
-    assert jenkins_client.find_in_last_build_console('main', flag, job_path='caterpillar-prod/job/')
+    assert jenkins_client.find_in_last_build_console('main', flag, job_path=f'{JOB_NAME}-prod/job/')

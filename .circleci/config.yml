@@ -1,24 +1,40 @@
 version: 2.1
 
 jobs:
-  test:
+  ci:
     machine:
       image: ubuntu-2004:202010-01
     resource_class: large
     steps:
       - checkout
+      - restore_cache:
+          keys:
+            - v1-docker-{{ .Branch }}
       - run:
-          name: Setup Python
+          name: Load Docker layers cache
           command: |
-            python3 --version
-            python3 prepare.py git
-            cp -R ctfd/data/ tmp-ctfd/
+            set +o pipefail
+            docker load -i ~/docker-layers.tar | true
       - run:
           name: Docker compose
-          command: docker-compose -f docker-compose-dev.yaml up -d
+          command: |
+            python3 prepare.py git
+            cp -R ctfd/data/ tmp-ctfd/
+            docker-compose -p cicd-goat -f docker-compose-dev.yaml up -d
+      - run:
+          name: Save Docker layers cache
+          command: |
+            DOCKER_IMAGES=$(docker images --format "{{ .Repository }}" --filter=reference="cicd-goat_*")
+            DOCKER_LAYERS=$(for image in $DOCKER_IMAGES; do docker history $image -q | grep -v missing; done)
+            docker save -o ~/docker-layers.tar $DOCKER_LAYERS
+      - save_cache:
+          key: v1-docker-{{ .Branch }}-{{ epoch }}
+          paths:
+            - ~/docker-layers.tar
       - run:
           name: Install testing dependencies
           command: |
+            python3 --version
             python3 -m pip install pipenv
             python3 -m pipenv install --deploy
       - run:
@@ -39,14 +55,15 @@ jobs:
           command: |
             pipenv run python -m pytest tests/
   release:
-    docker:
-      - image: cimg/<language>:<version TAG>
-        auth:
-          username: mydockerhub-user
-          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
+    machine:
+      image: ubuntu-2004:202010-01
+    resource_class: large
     steps:
       - checkout
-      - run: echo "this is the test job"
+      - run:
+          name: Build
+          command: |
+            pipenv run python -m pytest tests/
 
 
 workflows:

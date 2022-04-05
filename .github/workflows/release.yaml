@@ -8,14 +8,10 @@ env:
 
 
 jobs:
-  test:
-    runs-on: ${{ env.runner }}
-    steps:
-      - uses: ./.github/workflows/ci.yml@main
-
   release:
     runs-on: ${{ env.runner }}
     steps:
+      - uses: ./.github/workflows/ci.yml@main
       - name: Checkout
         uses: actions/checkout@v2
       - name: Set env
@@ -41,12 +37,12 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: Build (version)
         run: |
-          build_cmd = "docker build --cache-from ${{ env.cache_from }} --cache-to ${{ env.cache_to }} --build-arg TAG=$VERSION -t"
+          build_cmd = "docker build --cache-from ${{ env.cache_from }} --cache-to ${{ env.cache_to }} --build-arg VERSION=$VERSION COMMIT_SHA=${{ github.sha }} -t"
           cd jenkins-server && $build_cmd $ORG/goat-jenkins-server:$VERSION . && cd ..
-          docker build --cache-from ${{ env.cache_from }} --cache-to ${{ env.cache_to }} --build-arg TAG=$VERSION -t $ORG/goat-jenkins-agent:$VERSION jenkins-agent.Dockerfile
-          docker build --cache-from ${{ env.cache_from }} --cache-to ${{ env.cache_to }} --build-arg TAG=$VERSION -t $ORG/goat-gitea:$VERSION gitea.Dockerfile
-          docker build --cache-from ${{ env.cache_from }} --cache-to ${{ env.cache_to }} --build-arg TAG=$VERSION -t $ORG/goat-ctfd:$VERSION ctfd.Dockerfile
-          docker build --cache-from ${{ env.cache_from }} --cache-to ${{ env.cache_to }} --build-arg TAG=$VERSION -t $ORG/goat-ctfd:$VERSION lighttpd
+          cd jenkins-agent && $build_cmd $ORG/goat-jenkins-agent:$VERSION . && cd ..
+          cd gitea && $build_cmd $ORG/goat-gitea:$VERSION . && cd ..
+          cd ctfd && $build_cmd $ORG/goat-ctfd:$VERSION . && cd ..
+          cd lighttpd && $build_cmd $ORG/goat-lighttpd:$VERSION . && cd ..
       - name: Push (version)
         run: |
           docker push $ORG/goat-jenkins-server:$VERSION

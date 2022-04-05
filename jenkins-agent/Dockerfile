@@ -24,4 +24,11 @@ RUN apt-get update && \
     rm awscliv2.zip
 COPY --from=base --chown=jenkins:jenkins /root/.local /home/jenkins/.local
 COPY --from=base /usr/bin/terraform /usr/bin/terraform
-LABEL version="${TAG}"
+LABEL org.opencontainers.image.vendor="Cider Security" \
+    org.opencontainers.image.title="CI/CD Goat - Jenkins agent" \
+    org.opencontainers.image.description="Deliberately vulnerable CI/CD environment." \
+    org.opencontainers.image.url="https://hub.docker.com/r/cidersecurity/goat-jenkins-agent" \
+    org.opencontainers.image.source="https://github.com/cider-security-research/cicd-goat" \
+    org.opencontainers.image.licenses="GPL-3.0" \
+    org.opencontainers.image.version="${VERSION}" \
+    org.opencontainers.image.revision="${COMMIT_SHA}"

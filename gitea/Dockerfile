@@ -26,6 +26,7 @@ RUN /usr/bin/entrypoint & \
     python3 -m giteacasc /setup/gitea.yaml -u $USERNAME -p $PASSWORD
 
 FROM gitea/gitea:1.16.0
+RUN echo 1
 COPY --from=base --chown=git:git /data/gitea /data/gitea
 COPY --from=base --chown=git:git /data/ssh /data/ssh
 COPY --from=base --chown=git:git /data/git /data/git

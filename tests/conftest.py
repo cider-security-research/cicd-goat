@@ -1,4 +1,3 @@
-import os
 from pathlib import Path
 import pytest
 import requests
@@ -7,8 +6,8 @@ import shutil
 from jenkinsapi.jenkins import Jenkins
 from jenkinsapi.custom_exceptions import NoBuildData
 from time import sleep
-import logging
-import http.client
+# import logging
+# import http.client
 
 OWNER = 'Wonderland'
 REPOSITORIES_DIR = Path(__file__).resolve().parent / 'repositories'
@@ -18,13 +17,14 @@ FORK_ORG = 'test'
 GITEA_BASE = 'http://localhost:3000'
 GITEA_API_BASE = f'{GITEA_BASE}/api/v1'
 
-logging.basicConfig(level=logging.DEBUG)
-http.client.HTTPConnection.debuglevel = 5
+# logging.basicConfig(level=logging.DEBUG)
+# http.client.HTTPConnection.debuglevel = 5
 
 
 class GiteaApiClient:
-    # thealice
-    token = '9e49a7087d456836af489fb856053486625b9bff'
+    token = requests.post(f'{GITEA_API_BASE}/users/thealice/tokens',
+                          auth=HTTPBasicAuth('thealice', 'thealice'),
+                          json={'name': 'token'}).json()['sha1']
 
     def post(self, endpoint, data=None, json=None, **kwargs):
         return requests.post(f'{GITEA_API_BASE}{endpoint}',

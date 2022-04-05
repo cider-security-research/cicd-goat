@@ -6,10 +6,9 @@ networks:
 
 services:
   gitea:
+    image: cidersecurity/goat-gitea:latest
     build:
       context: ./gitea
-      cache_from:
-        - cidersecurity/goat-gitea:latest
     container_name: gitea
     environment:
       - USER_UID=1000
@@ -20,10 +19,9 @@ services:
     ports:
       - "3000:3000"
   ctfd:
+    image: cidersecurity/goat-ctfd:latest
     build:
       context: ./ctfd
-      cache_from:
-        - cidersecurity/goat-ctfd:latest
     container_name: ctfd
     ports:
       - "8000:8000"
@@ -32,10 +30,9 @@ services:
     volumes:
       - ./tmp-ctfd:/opt/CTFd
   jenkins_server:
+    image: cidersecurity/goat-jenkins-server:latest
     build:
       context: ./jenkins-server
-      cache_from:
-        - cidersecurity/goat-jenkins-server:latest
     networks:
       - goat
     container_name: jenkins-server
@@ -44,10 +41,9 @@ services:
       - "8080:8080"
       - "50000:50000"
   jenkins_agent:
+    image: cidersecurity/goat-jenkins-agent:latest
     build:
       context: ./jenkins-agent
-      cache_from:
-        - cidersecurity/goat-jenkins-agent:latest
     container_name: jenkins-agent
     networks:
       - goat
@@ -66,10 +62,9 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
   lighttpd:
+    image: cidersecurity/goat-lighttpd:latest
     build:
       context: ./lighttpd
-      cache_from:
-        - cidersecurity/goat-lighttpd:latest
     container_name: lighttpd
     networks:
       - goat

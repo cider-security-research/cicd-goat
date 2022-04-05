@@ -20,7 +20,7 @@ jobs:
           command: |
             python3 prepare.py git
             cp -R ctfd/data/ tmp-ctfd/
-            docker-compose -p cicd-goat -f docker-compose-dev.yaml up -d
+            docker-compose -p cicd-goat -f docker-compose-dev.yaml up -d --build
       - run:
           name: Save Docker layers cache
           command: |

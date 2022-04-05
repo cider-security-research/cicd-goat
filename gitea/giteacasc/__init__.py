@@ -2,11 +2,11 @@ import click
 import yaml
 from giteacasc.gitea import Gitea
 import os
-import logging
-import http.client
+# import logging
+# import http.client
 
-http.client.HTTPConnection.debuglevel = 5
-logging.basicConfig(level=logging.DEBUG)
+# http.client.HTTPConnection.debuglevel = 5
+# logging.basicConfig(level=logging.DEBUG)
 
 
 @click.command()

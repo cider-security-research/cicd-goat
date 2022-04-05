@@ -19,7 +19,7 @@ jobs:
           name: Install testing dependencies
           command: |
             python3 -m pip install pipenv
-            pipenv install --deploy
+            python3 -m pipenv install --deploy
       - run:
           name: Wait for services to start
           command: |

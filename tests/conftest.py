@@ -24,7 +24,7 @@ http.client.HTTPConnection.debuglevel = 5
 
 def create_token():
     res = requests.post(f'{GITEA_API_BASE}/users/thealice/tokens',
-                        auth=HTTPBasicAuth('red_queen', 'ciderland5#'),
+                        auth=HTTPBasicAuth('thealice', 'thealice'),
                         json={'name': 'token'})
     if res.status_code != 201:
         print(res.status_code, res.json())

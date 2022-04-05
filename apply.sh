@@ -1,4 +1,4 @@
 # CTFd
-rm -rf data/ctfd/CTFd/uploads/
-cp -R tmp-data/ctfd/CTFd/uploads/ data/ctfd/CTFd/uploads/
-cp tmp-data/ctfd/CTFd/ctfd.db data/ctfd/CTFd/ctfd.db
+rm -rf ctfd/data/CTFd/uploads/
+cp -R tmp-ctfd/CTFd/uploads/ ctfd/data/CTFd/uploads/
+cp tmp-ctfd/CTFd/ctfd.db ctfd/data/CTFd/ctfd.db

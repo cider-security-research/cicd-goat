@@ -24,7 +24,7 @@ pipelineJob('dodo') {
 
         stage ('Security Scan') {
             steps {
-                sh "checkov -d ."
+                sh "checkov -d . --check CKV2_AWS_39,CKV2_AWS_38,CKV_AWS_20,CKV_AWS_57"
             }
         }
 

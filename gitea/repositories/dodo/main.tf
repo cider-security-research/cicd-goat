@@ -82,12 +82,6 @@ resource "aws_iam_role_policy_attachment" "replication" {
 }
 
 resource "aws_s3_bucket" "backup" {
-  #checkov:skip=CKV_AWS_145:Ensure that S3 buckets are encrypted with KMS by default
-  #checkov:skip=CKV2_AWS_40:Ensure all data stored in the S3 bucket is securely encrypted at rest
-  #checkov:skip=CKV_AWS_19:Ensure all data stored in the S3 bucket is securely encrypted at rest
-  #checkov:skip=CKV_AWS_18:Ensure the S3 bucket has access logging enabled
-  #checkov:skip=CKV_AWS_144:Ensure that S3 bucket has cross-region replication enabled
-  #checkov:skip=CKV2_AWS_41:Ensure all data stored in the S3 bucket have logging
   bucket = "backup"
 
   versioning {
@@ -116,16 +110,8 @@ POLICY
 }
 
 resource "aws_s3_bucket" "dodo" {
-  #checkov:skip=CKV2_AWS_40:Ensure all data stored in the S3 bucket is securely encrypted at rest
-  #checkov:skip=CKV_AWS_145:Ensure that S3 buckets are encrypted with KMS by default
-  #checkov:skip=CKV_AWS_19:Ensure all data stored in the S3 bucket is securely encrypted at rest
-  #checkov:skip=CKV_AWS_18:Ensure the S3 bucket has access logging enabled
-  #checkov:skip=CKV2_AWS_41:Ensure all data stored in the S3 bucket have logging
-  #checkov:skip=CKV2_AWS_38:S3 Bucket has an ACL defined which allows public READ access.
-  #checkov:skip=CKV2_AWS_6:Ensure that S3 bucket has a Public Access block
-  #checkov:skip=CKV_AWS_20:S3 Bucket has an ACL defined which allows public READ access.
   bucket        = var.bucket_name
-  acl           = "public-read"
+  acl           = "private"
 
   versioning {
     enabled = true

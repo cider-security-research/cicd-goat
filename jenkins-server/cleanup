@@ -1,7 +1,3 @@
 #!/bin/sh
-set -m
-/sbin/tini -- /usr/local/bin/jenkins.sh &
-sleep 120
-rm -rf /var/jenkins_home/jobdsl
-rm /var/jenkins_home/secrets.properties
-fg #/sbin/tini
+sh -c "sleep 120 && rm -rf /var/jenkins_home/jobdsl && rm /var/jenkins_home/secrets.properties" &
+/sbin/tini -- /usr/local/bin/jenkins.sh

@@ -20,6 +20,7 @@ CI/CD Goat was created by [Cider Security](https://www.cidersecurity.io/).
 curl -o cicd-goat/docker-compose.yaml --create-dirs https://raw.githubusercontent.com/cider-security-research/cicd-goat/main/docker-compose.yaml
 cd cicd-goat && docker-compose up -d
 ```
+
 ### Windows (Powershell):
 ```PowerShell
 curl -o cicd-goat/docker-compose.yaml --create-dirs https://raw.githubusercontent.com/cider-security-research/cicd-goat/main/docker-compose.yaml

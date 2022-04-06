@@ -7,7 +7,7 @@ pipelineJob('cov-reportcov') {
       scm {
         git {
           remote {
-            url('http://gitea:3000/Cov/march-hare.git')
+            url('http://gitea:3000/Cov/reportcov.git')
           }
           branch('main')
         }

@@ -14,10 +14,10 @@ CLIENT_REPO_NAME = 'dormouse'
 CLIENT_JOB_NAME = f'{OWNER.lower()}-{CLIENT_REPO_NAME}'
 PART_PRIVATE_KEY = 'b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAABlwAAAAdzc2gtcn'
 TESTS_PATH = Path(__file__).parent
-SSH_CMD = f'scp -o StrictHostKeyChecking=no -P 2222 -i {TESTS_PATH}/data/march_and_dormouse/key ' \
-          f'{TESTS_PATH}/data/march_and_dormouse/reportcov.sh ' \
+SSH_CMD = f'scp -o StrictHostKeyChecking=no -P 2222 -i {TESTS_PATH}/data/reportcov_and_dormouse/key ' \
+          f'{TESTS_PATH}/data/reportcov_and_dormouse/reportcov.sh ' \
           'root@localhost:/var/www/localhost/htdocs'
-CHMOD_CMD = f'chmod 400 {TESTS_PATH}/data/march_and_dormouse/key'
+CHMOD_CMD = f'chmod 400 {TESTS_PATH}/data/reportcov_and_dormouse/key'
 
 
 def test_reportcov_and_dormouse(gitea_client, jenkins_client):

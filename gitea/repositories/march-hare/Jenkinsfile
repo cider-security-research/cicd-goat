@@ -5,7 +5,7 @@ pipeline {
         stage('Pull Request') {
             when {
                 equals(actual: env.x_gitea_event, expected:'pull_request')
-                equals(actual: env.action, expected:'opened') 
+                equals(actual: env.action, expected:'opened')
             }
             stages {
                 stage ('Send notification') {
@@ -18,14 +18,14 @@ pipeline {
                             catch (Exception err) {
                                 currentBuild.result = 'SUCCESS'
                             }
-                        }                       
-                    } 
+                        }
+                    }
                 }
             }
         }
 
         stage ('Release') {
-            when { 
+            when {
                 equals(actual: env.x_gitea_event, expected:'push')
             }
             stages {
@@ -39,9 +39,9 @@ pipeline {
                     }
                 }
 
-                stage ('Unit Tests') {
+                stage ('install') {
                     steps {
-                        sh "tox -v -e py39-pytest62-xdist202-coverage55 || true"
+                        sh "python3 -m pip install . || true"
                     }
                 }
 
@@ -53,10 +53,10 @@ pipeline {
                 }
             }
         }
-        
+
     }
-    post { 
-        always { 
+    post {
+        always {
             cleanWs()
         }
         failure {

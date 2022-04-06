@@ -27,7 +27,11 @@ def test_mock_turtle(gitea_client, jenkins_client):
     res = gitea_client.post(f'/repos/{OWNER}/{JOB_NAME}/pulls',
                             json={'head': new_branch_name, 'base': 'main', 'title': 'updates'})
     assert res.status_code == 201
-    jenkins_client.build_job('mock-turtle/main')
+    res = jenkins_client.post(f'/job/{JOB_NAME}/build?delay=0')
+    assert res.status_code == 200 or res.status_code == 201
+    sleep(5)
+    res = jenkins_client.post(f'/job/{JOB_NAME}/build?delay=0')
+    assert res.status_code == 200 or res.status_code == 201
     sleep(5)
     flag = b64encode('D54734AB-7B83-4931-A9BB-171476101FDF'.encode()).decode()
     assert jenkins_client.find_in_last_build_console(JOB_NAME, flag)

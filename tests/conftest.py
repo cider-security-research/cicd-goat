@@ -77,11 +77,12 @@ class JenkinsClient(Jenkins):
         if '/job/' in job_path:
             job_name = f'{job_path.split("/")[0]}/{job_path.split("/")[-1]}'
         else:
-            job_name = job_path.split('/')[-1]
+            job_name = job_path
         for tmp_job_name, job_instance in self.get_jobs():
             if job_name in tmp_job_name:
                 for i in range(BUILD_TIMEOUT):
                     try:
+                        last_build = job_instance.get_last_build()
                         if not job_instance.is_queued_or_running():
                             break
                         raise NoBuildData
@@ -89,13 +90,11 @@ class JenkinsClient(Jenkins):
                         sleep(1)
                 else:
                     continue
-                for number in job_instance.get_build_ids():
-                    build = job_instance.get_build(number)
-                    if string in build.get_console():
-                        return True
-                    consoles.append(build.get_console())
+                if string in last_build.get_console():
+                    return True
+                consoles.append(last_build.get_console())
         else:
-            print('---------------------------\n'.join(consoles))
+            print('--------------------------\n'.join(consoles))
             return False
 
 

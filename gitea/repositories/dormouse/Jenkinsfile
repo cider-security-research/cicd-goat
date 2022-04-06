@@ -9,7 +9,7 @@ pipeline {
             steps {
                 sh """
                     virtualenv venv
-                    pip3 install -r tests/requirements.txt
+                    pip3 install -r tests/requirements.txt  || true
                 """
             }
         }

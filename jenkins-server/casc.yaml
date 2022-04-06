@@ -30,69 +30,78 @@ jenkins:
       roles:
         agents:
         - assignments:
-          - "alice"
+            - "alice"
           name: "build_agent1"
           pattern: "agent1"
           permissions:
-          - "Agent/Build"
+            - "Agent/Build"
         global:
-        - assignments:
-          - "admin"
-          name: "admin"
-          pattern: ".*"
-          permissions:
-          - "Job/Move"
-          - "Job/Build"
-          - "Lockable Resources/View"
-          - "Credentials/Delete"
-          - "Credentials/ManageDomains"
-          - "Lockable Resources/Unlock"
-          - "View/Create"
-          - "Agent/Configure"
-          - "Job/Read"
-          - "Credentials/Update"
-          - "Agent/Create"
-          - "Job/Delete"
-          - "Agent/Build"
-          - "View/Configure"
-          - "Lockable Resources/Reserve"
-          - "Agent/Provision"
-          - "SCM/Tag"
-          - "Job/Create"
-          - "Job/Discover"
-          - "Credentials/View"
-          - "Agent/Connect"
-          - "Agent/Delete"
-          - "Run/Replay"
-          - "Agent/Disconnect"
-          - "Run/Delete"
-          - "Job/Cancel"
-          - "Overall/Read"
-          - "Run/Update"
-          - "Credentials/Create"
-          - "Overall/Administer"
-          - "View/Delete"
-          - "Job/Configure"
-          - "Job/Workspace"
-          - "View/Read"
-        - assignments:
-          - "alice"
-          - "knave"
-          name: "users"
-          pattern: ".*"
-          permissions:
-          - "Overall/Read"
-          - "Job/Build"
-          - "Job/Read"
-          - "Job/Workspace"
-          - "Job/Cancel"
+          - assignments:
+              - "admin"
+            name: "admin"
+            pattern: ".*"
+            permissions:
+              - "Job/Move"
+              - "Job/Build"
+              - "Lockable Resources/View"
+              - "Credentials/Delete"
+              - "Credentials/ManageDomains"
+              - "Lockable Resources/Unlock"
+              - "View/Create"
+              - "Agent/Configure"
+              - "Job/Read"
+              - "Credentials/Update"
+              - "Agent/Create"
+              - "Job/Delete"
+              - "Agent/Build"
+              - "View/Configure"
+              - "Lockable Resources/Reserve"
+              - "Agent/Provision"
+              - "SCM/Tag"
+              - "Job/Create"
+              - "Job/Discover"
+              - "Credentials/View"
+              - "Agent/Connect"
+              - "Agent/Delete"
+              - "Run/Replay"
+              - "Agent/Disconnect"
+              - "Run/Delete"
+              - "Job/Cancel"
+              - "Overall/Read"
+              - "Run/Update"
+              - "Credentials/Create"
+              - "Overall/Administer"
+              - "View/Delete"
+              - "Job/Configure"
+              - "Job/Workspace"
+              - "View/Read"
+          - assignments:
+              - "alice"
+              - "knave"
+            name: "users"
+            pattern: ".*"
+            permissions:
+              - "Overall/Read"
         items:
-        - assignments:
-          - "knave"
-          name: "hearts"
-          pattern: "hearts"
-          permissions:
-            - "Job/Configure"
+          - assignments:
+              - "knave"
+            name: "hearts"
+            pattern: "wonderland-hearts"
+            permissions:
+              - "Job/Cancel"
+              - "Job/Build"
+              - "Job/Read"
+              - "Job/Configure"
+              - "Job/Workspace"
+          - assignments:
+              - "alice"
+            name: "users"
+            pattern: "wonderland-.*"
+            permissions:
+              - "Job/Cancel"
+              - "Job/Build"
+              - "Job/Read"
+              - "Job/Workspace"
   mode: EXCLUSIVE
   crumbIssuer:
     standard:
@@ -156,7 +165,7 @@ jobs:
   - file: /var/jenkins_home/jobdsl/twiddledum.groovy
   - file: /var/jenkins_home/jobdsl/dodo.groovy
   - file: /var/jenkins_home/jobdsl/hearts.groovy
-  - file: /var/jenkins_home/jobdsl/march-hare.groovy
+  - file: /var/jenkins_home/jobdsl/reportcov.groovy
   - file: /var/jenkins_home/jobdsl/dormouse.groovy
   - file: /var/jenkins_home/jobdsl/mock-turtle.groovy
 unclassified:

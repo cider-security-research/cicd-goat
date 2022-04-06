@@ -1,4 +1,4 @@
-multibranchPipelineJob('mock-turtle') {
+multibranchPipelineJob('wonderland-mock-turtle') {
   properties {
     folderCredentialsProperty {
       domainCredentials {

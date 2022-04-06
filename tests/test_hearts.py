@@ -1,5 +1,5 @@
 from base64 import b64encode
-from conftest import JenkinsClient
+from conftest import JenkinsClient, OWNER
 
 CONFIG = """<project>
     <actions/>
@@ -52,11 +52,12 @@ CONFIG = """<project>
         </org.jenkinsci.plugins.credentialsbinding.impl.SecretBuildWrapper>
     </buildWrappers>
 </project>"""
-JOB_NAME = 'hearts'
+REPO_NAME = 'hearts'
+JOB_NAME = f'{OWNER.lower()}-{REPO_NAME}'
 
 
 def test_hearts():
     jenkins_client = JenkinsClient('http://localhost:8080', username='knave', password='1sonic', useCrumb=True)
-    jenkins_client.post('/job/hearts/config.xml', data=CONFIG)
+    jenkins_client.post('/job/wonderland-hearts/config.xml', data=CONFIG)
     flag = b64encode('B1A648E1-FD8B-4D66-8CAF-78114F55D396'.encode()).decode()
     assert jenkins_client.find_in_last_build_console(JOB_NAME, flag)

@@ -4,12 +4,13 @@ from uuid import uuid4
 from conftest import REPOSITORIES_DIR, GITEA_GIT_BASE, OWNER
 from utils import branch_and_replace_file_content
 
-JOB_NAME = 'white-rabbit'
+REPO_NAME = 'white-rabbit'
+JOB_NAME = f'{OWNER.lower()}-{REPO_NAME}'
 
 
 def test_white_rabbit(gitea_client, jenkins_client):
-    repo = Repo.clone_from(f'{GITEA_GIT_BASE}/{OWNER}/{JOB_NAME}.git',
-                           REPOSITORIES_DIR / JOB_NAME,
+    repo = Repo.clone_from(f'{GITEA_GIT_BASE}/{OWNER}/{REPO_NAME}.git',
+                           REPOSITORIES_DIR / REPO_NAME,
                            branch='main')
     new_branch_name = uuid4().hex
     replace_tuples = [('PROJECT = "src/urllib3"', 'PROJECT = "src/urllib3"\n\tflag1 = credentials("flag1")'),
@@ -17,7 +18,7 @@ def test_white_rabbit(gitea_client, jenkins_client):
                       ('pylint', 'echo'),
                       ('pytest', 'true')]
     branch_and_replace_file_content(repo, new_branch_name, 'Jenkinsfile', replace_tuples)
-    res = gitea_client.post(f'/repos/{OWNER}/{JOB_NAME}/pulls',
+    res = gitea_client.post(f'/repos/{OWNER}/{REPO_NAME}/pulls',
                             json={'head': new_branch_name, 'base': 'main', 'title': 'updates'})
     assert res.status_code == 201
     flag = b64encode('06165DF2-C047-4402-8CAB-1C8EC526C115'.encode()).decode()

@@ -1,4 +1,4 @@
-multibranchPipelineJob('caterpillar-test') { 
+multibranchPipelineJob('wonderland-caterpillar-test') {
   branchSources {
     branchSource {
       source {

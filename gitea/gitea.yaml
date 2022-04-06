@@ -98,9 +98,9 @@ orgs:
                             - mock-turtle-ci
     Cov:
         repos:
-            march-hare:
+            reportcov:
                 private: false
-                code: repositories/march-hare
+                code: repositories/reportcov
                 webhooks:
                     http://jenkins-server:8080/generic-webhook-trigger/invoke?token=6AE44837-0E0C-4970-9A40-8C780E6FFBA1:
                         events:

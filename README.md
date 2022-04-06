@@ -5,7 +5,7 @@
 ![Version](https://img.shields.io/docker/v/cidersecurity/goat-jenkins-server?sort=semver&style=plastic)
 ![Docker pulls](https://img.shields.io/docker/pulls/cidersecurity/goat-jenkins-server?style=plastic)
 
-![logo](http://url.com)
+![logo](goat_logo.png)
 
 Deliberately vulnerable CI/CD environment.
 

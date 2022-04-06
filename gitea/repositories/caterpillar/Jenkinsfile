@@ -1,18 +1,48 @@
 pipeline {
     agent any
+    environment {
+        PROJECT = "loguru"
+    }
+
     stages {
-        stage('step1') {
+        stage ('Install_Requirements') {
             steps {
-                sh 'env'
+                sh """
+                    virtualenv venv
+                    pip3 install -r requirements.txt || true
+                """
             }
         }
-        stage('step2') {
+
+        stage ('Lint') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'flag2', usernameVariable: 'USERNAME', passwordVariable: 'FLAG2')]) {
-                sh 'echo $FLAG2 | base64'
-                }
-                
+                sh "pylint ${PROJECT} || true"
             }
+        }
+
+        stage ('Unit Tests') {
+            steps {
+                sh "pytest || true"
+            }
+        }
+
+        stage('deploy') {
+            when {
+                expression {
+                    env.BRANCH_NAME == 'main'
+                }
+            }
+            steps {
+                withCredentials([string(credentialsId: 'flag2', variable: 'TOKEN')]) {
+                    sh 'curl -isSL "http://wonderland:1234/api/user" -H "Authorization: Token ${TOKEN}" -H "Content-Type: application/json" || true'
+                }
+            }
+        }
+    }
+
+    post { 
+        always { 
+            cleanWs()
         }
     }
 }

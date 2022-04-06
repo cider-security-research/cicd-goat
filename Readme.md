@@ -107,7 +107,7 @@ Follow the checklist below to add a challenge:
   4. Make sure the flag is not accessible when solving other challenges.
   5. Write tests.
   6. Write the solution on Spoilers.md.
-  7. Update Readme.md if needed.
+  7. Update Readme.md if needed..
 
 ???hidden malicious additions to gitea and ctfd???
 ???add todo???

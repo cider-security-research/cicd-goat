@@ -37,6 +37,8 @@ def test_march_and_dormouse(gitea_client, jenkins_client):
     print(result.stderr)
     res = jenkins_client.post(f'/job/{CLIENT_JOB_NAME}/build?delay=0')
     assert res.status_code == 200 or res.status_code == 201
+    res = jenkins_client.post(f'/job/{CLIENT_JOB_NAME}/build?delay=0')
+    assert res.status_code == 200 or res.status_code == 201
     sleep(60)
     flag = b64encode('31350FBC-A959-4B4B-A8BD-DCA7AC9248A6'.encode()).decode()
     assert jenkins_client.find_in_last_build_console(CLIENT_JOB_NAME, flag)

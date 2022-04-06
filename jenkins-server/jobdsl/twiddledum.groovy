@@ -1,4 +1,4 @@
-folder('twiddle') {
+folder('wonderland-twiddle') {
   properties {
     folderCredentialsProperty{
       domainCredentials {
@@ -21,7 +21,7 @@ folder('twiddle') {
     }
   }
 }
-job('twiddle/twiddledum') {
+job('wonderland-twiddle/wonderland-twiddledum') {
   label('agent1')
   scm {
     git {

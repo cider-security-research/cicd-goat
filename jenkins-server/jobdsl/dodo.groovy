@@ -1,4 +1,4 @@
-pipelineJob('dodo') {
+pipelineJob('wonderland-dodo') {
   definition {
     cpsScm {
       scm {

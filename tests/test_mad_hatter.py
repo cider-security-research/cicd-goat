@@ -4,12 +4,13 @@ from uuid import uuid4
 from utils import branch_and_replace_file_content
 from base64 import b64encode
 
-JOB_NAME = 'mad-hatter'
+REPO_NAME = 'mad-hatter'
+JOB_NAME = f'{OWNER.lower()}-{REPO_NAME}'
 
 
 def test_mad_hatter(jenkins_client):
-    repo = Repo.clone_from(f'{GITEA_GIT_BASE}/{OWNER}/{JOB_NAME}.git',
-                           REPOSITORIES_DIR / JOB_NAME,
+    repo = Repo.clone_from(f'{GITEA_GIT_BASE}/{OWNER}/{REPO_NAME}.git',
+                           REPOSITORIES_DIR / REPO_NAME,
                            branch='main')
     new_branch_name = uuid4().hex
     replace_tuples = [('curl -isSL "http://wonderland:1234/api/user" -H '

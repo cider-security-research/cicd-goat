@@ -1,4 +1,4 @@
-multibranchPipelineJob('white-rabbit') {
+multibranchPipelineJob('wonderland-white-rabbit') {
   branchSources {
     branchSource {
       source {

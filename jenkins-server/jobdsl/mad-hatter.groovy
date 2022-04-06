@@ -1,4 +1,4 @@
-multibranchPipelineJob('mad-hatter') { 
+multibranchPipelineJob('wonderland-mad-hatter') {
   properties {
     folderCredentialsProperty {
       domainCredentials {

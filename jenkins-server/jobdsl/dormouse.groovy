@@ -1,4 +1,4 @@
-multibranchPipelineJob('dormouse') {
+multibranchPipelineJob('wonderland-dormouse') {
   properties {
     folderCredentialsProperty {
       domainCredentials {

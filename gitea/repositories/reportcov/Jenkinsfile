@@ -12,8 +12,8 @@ pipeline {
                     steps{
                         script {
                             try {
-                                sh "echo Pull Request ${title} created in the march-hare repository"
-                                mail bcc: '', body: '', cc: '', from: '', subject: "Pull Request ${title} created in the march-hare repository", to: 'red_queen@localhost'
+                                sh "echo Pull Request ${title} created in the reportcov repository"
+                                mail bcc: '', body: '', cc: '', from: '', subject: "Pull Request ${title} created in the reportcov repository", to: 'red_queen@localhost'
                             }
                             catch (Exception err) {
                                 currentBuild.result = 'SUCCESS'

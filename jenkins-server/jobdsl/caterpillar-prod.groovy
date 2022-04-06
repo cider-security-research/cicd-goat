@@ -1,4 +1,4 @@
-multibranchPipelineJob('caterpillar-prod') {
+multibranchPipelineJob('wonderland-caterpillar-prod') {
   properties {
     folderCredentialsProperty {
       domainCredentials {

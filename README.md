@@ -20,6 +20,7 @@ CI/CD Goat was created by [Cider Security](https://www.cidersecurity.io/).
 curl -o cicd-goat/docker-compose.yaml --create-dirs https://raw.githubusercontent.com/cider-security-research/cicd-goat/main/docker-compose.yaml
 cd cicd-goat && docker-compose up -d
 ```
+
 ### Windows (Powershell):
 ```PowerShell
 curl -o cicd-goat/docker-compose.yaml --create-dirs https://raw.githubusercontent.com/cider-security-research/cicd-goat/main/docker-compose.yaml
@@ -34,7 +35,7 @@ cd cicd-goat && docker-compose up -d
 * In each challenge, find the flag - in the format of _flag#_ (e.g _flag2_), or another format if mentioned specifically.
 * If needed, use the hints on CTFd.
 * There is no need to exploit CVEs.
-* No need to hijack admin accounts of Gitea or Jenkins.
+* No need to hijack admin accounts of Gitea or Jenkins (named "admin" or "red-queen").
 
 ### Take the challenge
 1. Login to CTFd at http://localhost:8000 to view the challenges:

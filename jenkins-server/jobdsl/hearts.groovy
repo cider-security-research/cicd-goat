@@ -1,4 +1,4 @@
-job('hearts') {
+job('wonderland-hearts') {
   label('agent1')
   scm {
     git {

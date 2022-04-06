@@ -1,9 +1,5 @@
-# Solutions
-Write why the scenario happens in real life and the mitigations
-add links for ppe, build authz, malicious sast and top 10 
-no kms support in localstack so encryption was removed
-
 # Admin Credentials
+**Note:** These credentials are for contribution purposes only, and are not needed to solve the CTF challenges.
 * CTFd
   * Username: `admin`
   * Password: `ciderland5#`

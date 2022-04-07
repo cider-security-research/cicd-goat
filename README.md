@@ -13,7 +13,7 @@ The CI/CD goat project allows engineers and security practitioners to learn and 
 
 The challenges cover the [Top 10 CI/CD Security Risks](https://www.cidersecurity.io/top-10-cicd-security-risks/?utm_source=github&utm_medium=github_page&utm_campaign=ci%2fcd%20goat_060422), including Insufficient Flow Control Mechanisms, PPE (Poisoned Pipeline Execution), Dependency Chain Abuse, PBAC (Pipeline-Based Access Controls), and more.
 
-CI/CD Goat was created by [Cider Security](https://www.cidersecurity.io/).
+CI/CD Goat was created by [Cider Security](https://www.cidersecurity.io/?utm_source=github&utm_medium=github_page&utm_campaign=ci%2fcd%20goat%20_060422).
 
 ## Download & Run
 **There's no need to clone the repository.**
@@ -69,7 +69,7 @@ See [Solutions](solutions).
 1. Clone the repository.
 2. Rename .git folders to make them usable:<br/>
     ```sh
-    python prepare.py git
+    python3 prepare.py git
     ```
 3. Install testing dependencies: 
     ```sh
@@ -88,12 +88,17 @@ See [Solutions](solutions).
 6. Shutdown the environment, move changes made in CTFd to data/ and rebuild it:
     ```sh
     docker-compose -f docker-compose-dev.yaml down
-    ./apply.sh
+    ./apply.sh # save CTFd changes
     docker-compose -f docker-compose-dev.yaml up -d --build
     ```
-7. Run tests: `pytest`
+7. Run tests:
+   ```shell
+   pytest
+   ```
 8. Rename .git folders to allow push:
-    `python prepare.py notgit`
+    ```shell
+    python3 prepare.py notgit
+    ```
 9. Commit and push!
 
 ### Contributing

@@ -4,10 +4,9 @@ parameters:
   GHA_Event:
     type: string
     default: ""
-  GHA_Meta:
+  GHA_Action:
     type: string
     default: ""
-
 jobs:
   ci:
     machine:
@@ -68,7 +67,7 @@ jobs:
     resource_class: large
     environment:
       ORG: cidersecurity
-      VERSION: pipeline.parameters.GHA_Meta
+      VERSION: pipeline.parameters.GHA_Action
     steps:
       - checkout
       - restore_cache:

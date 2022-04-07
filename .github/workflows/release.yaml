@@ -7,8 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Trigger CircleCI release
+        id: 1.0.0
         uses: CircleCI-Public/trigger-circleci-pipeline-action@v1.0
-        with:
-          GHA_Meta: "1.0.0"
         env:
           CCI_TOKEN: ${{ secrets.CCI_TOKEN }}

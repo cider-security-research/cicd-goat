@@ -1,0 +1,39 @@
+[submodule "gitea/repositories/white-rabbit"]
+	path = gitea/repositories/white-rabbit
+	url = http://localhost:3000/Wonderland/white-rabbit
+[submodule "gitea/repositories/caterpillar"]
+	path = gitea/repositories/caterpillar
+	url = http://localhost:3000/Wonderland/caterpillar
+[submodule "gitea/repositories/cheshire-cat"]
+	path = gitea/repositories/cheshire-cat
+	url = http://localhost:3000/Wonderland/cheshire-cat
+[submodule "gitea/repositories/dodo"]
+	path = gitea/repositories/dodo
+	url = http://localhost:3000/Wonderland/dodo
+[submodule "gitea/repositories/dormouse"]
+	path = gitea/repositories/dormouse
+	url = http://localhost:3000/Wonderland/dormouse
+[submodule "gitea/repositories/duchess"]
+	path = gitea/repositories/duchess
+	url = http://localhost:3000/Wonderland/duchess
+[submodule "gitea/repositories/hearts"]
+	path = gitea/repositories/hearts
+	url = http://localhost:3000/Wonderland/hearts
+[submodule "gitea/repositories/mad-hatter"]
+	path = gitea/repositories/mad-hatter
+	url = http://localhost:3000/Wonderland/mad-hatter
+[submodule "gitea/repositories/mad-hatter-pipeline"]
+	path = gitea/repositories/mad-hatter-pipeline
+	url = http://localhost:3000/Wonderland/mad-hatter-pipeline
+[submodule "gitea/repositories/march-hare"]
+	path = gitea/repositories/march-hare
+	url = http://localhost:3000/Cov/march-hare
+[submodule "gitea/repositories/mock-turtle"]
+	path = gitea/repositories/mock-turtle
+	url = http://localhost:3000/Wonderland/mock-turtle
+[submodule "gitea/repositories/twiddledum"]
+	path = gitea/repositories/twiddledum
+	url = http://localhost:3000/Wonderland/twiddledum
+[submodule "gitea/repositories/twiddledee"]
+	path = gitea/repositories/twiddledee
+	url = http://localhost:3000/Wonderland/twiddledee

@@ -1,0 +1,179 @@
+credentials:
+  system:
+    domainCredentials:
+    - credentials:
+      - basicSSHUserPrivateKey:
+            id: "agent1"
+            privateKeySource:
+              directEntry:
+                privateKey: "${AGENT_PRIVATE_KEY}"
+            scope: SYSTEM
+            username: "jenkins"
+      - string:
+          id: "flag1"
+          scope: GLOBAL
+          secret: "${FLAG1}"
+      - personalAccessTokenImpl:
+          id: "gitea-access-token"
+          scope: GLOBAL
+          token: "${GITEA_ACCESS_TOKEN}"
+      - string:
+          id: "EC2-creds-flag8"
+          scope: GLOBAL
+          secret: "${FLAG8}"
+jenkins:
+  agentProtocols:
+  - "JNLP4-connect"
+  - "Ping"
+  authorizationStrategy:
+    roleBased:
+      roles:
+        agents:
+        - assignments:
+            - "alice"
+          name: "build_agent1"
+          pattern: "agent1"
+          permissions:
+            - "Agent/Build"
+        global:
+          - assignments:
+              - "admin"
+            name: "admin"
+            pattern: ".*"
+            permissions:
+              - "Job/Move"
+              - "Job/Build"
+              - "Lockable Resources/View"
+              - "Credentials/Delete"
+              - "Credentials/ManageDomains"
+              - "Lockable Resources/Unlock"
+              - "View/Create"
+              - "Agent/Configure"
+              - "Job/Read"
+              - "Credentials/Update"
+              - "Agent/Create"
+              - "Job/Delete"
+              - "Agent/Build"
+              - "View/Configure"
+              - "Lockable Resources/Reserve"
+              - "Agent/Provision"
+              - "SCM/Tag"
+              - "Job/Create"
+              - "Job/Discover"
+              - "Credentials/View"
+              - "Agent/Connect"
+              - "Agent/Delete"
+              - "Run/Replay"
+              - "Agent/Disconnect"
+              - "Run/Delete"
+              - "Job/Cancel"
+              - "Overall/Read"
+              - "Run/Update"
+              - "Credentials/Create"
+              - "Overall/Administer"
+              - "View/Delete"
+              - "Job/Configure"
+              - "Job/Workspace"
+              - "View/Read"
+          - assignments:
+              - "alice"
+              - "knave"
+            name: "users"
+            pattern: ".*"
+            permissions:
+              - "Overall/Read"
+        items:
+          - assignments:
+              - "knave"
+            name: "hearts"
+            pattern: "wonderland-hearts"
+            permissions:
+              - "Job/Cancel"
+              - "Job/Build"
+              - "Job/Read"
+              - "Job/Configure"
+              - "Job/Workspace"
+          - assignments:
+              - "alice"
+            name: "users"
+            pattern: "wonderland-.*"
+            permissions:
+              - "Job/Cancel"
+              - "Job/Build"
+              - "Job/Read"
+              - "Job/Workspace"
+  mode: EXCLUSIVE
+  crumbIssuer:
+    standard:
+      excludeClientIPFromCrumb: true
+  nodes:
+  - permanent:
+      labelString: "myagent"
+      launcher:
+        ssh:
+          credentialsId: "agent1"
+          host: "jenkins-agent"
+          port: 22
+          sshHostKeyVerificationStrategy: "nonVerifyingKeyVerificationStrategy"
+      name: "agent1"
+      nodeProperties:
+      - envVars:
+          env:
+          - key: "GITEA_TOKEN"
+            value: "a644940c92efe2d1876e16a5d29e6c6d7e199b68"
+          - key: "PATH"
+            value: "/home/jenkins/.local/bin:$PATH"
+      remoteFS: "/home/jenkins"
+      numExecutors: 2
+      retentionStrategy: "always"
+  numExecutors: 2
+  remotingSecurity:
+    enabled: true
+  securityRealm:
+    local:
+      allowsSignup: false
+      enableCaptcha: false
+      users:
+      - id: "admin"
+        name: "Admin"
+        password: "ciderland5#"
+      - id: "alice"
+        name: "Alice"
+        password: "alice"
+      - description: "Owner of Hearts job"
+        id: "knave"
+        name: "knave"
+        password: "rockme"
+  slaveAgentPort: 50000
+security:
+  apiToken:
+    creationOfLegacyTokenEnabled: false
+    tokenGenerationOnCreationEnabled: false
+    usageStatisticsEnabled: true
+  envInject:
+    enableLoadingFromMaster: false
+    enablePermissions: false
+    hideInjectedVars: false
+jobs:
+  - providedEnv:
+      OWNER: 'Wonderland'
+  - file: /var/jenkins_home/jobdsl/white-rabbit.groovy
+  - file: /var/jenkins_home/jobdsl/caterpillar-test.groovy
+  - file: /var/jenkins_home/jobdsl/caterpillar-prod.groovy
+  - file: /var/jenkins_home/jobdsl/mad-hatter.groovy
+  - file: /var/jenkins_home/jobdsl/cheshire-cat.groovy
+  - file: /var/jenkins_home/jobdsl/twiddledum.groovy
+  - file: /var/jenkins_home/jobdsl/dodo.groovy
+  - file: /var/jenkins_home/jobdsl/hearts.groovy
+  - file: /var/jenkins_home/jobdsl/reportcov.groovy
+  - file: /var/jenkins_home/jobdsl/dormouse.groovy
+  - file: /var/jenkins_home/jobdsl/mock-turtle.groovy
+unclassified:
+  giteaServers:
+    servers:
+    - displayName: "Gitea"
+      manageHooks: false
+      serverUrl: "http://gitea:3000"
+  location:
+    adminAddress: "address not configured yet <nobody@nowhere>"
+    url: "http://localhost:8080/"

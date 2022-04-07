@@ -1,0 +1,14 @@
+on:
+  release:
+    types: [created]
+
+jobs:
+  trigger-circleci-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger CircleCI release
+        uses: CircleCI-Public/trigger-circleci-pipeline-action@v1.0
+        with:
+          GHA_Meta: ${{ github.event.release.name }}
+        env:
+          CCI_TOKEN: ${{ secrets.CCI_TOKEN }}

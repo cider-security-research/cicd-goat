@@ -1,63 +1,77 @@
 version: "3.8"
 
 networks:
-  jenkins:
+  goat:
     driver: bridge
 
 services:
-  jenkins_server:
-    build:
-      context: ./jenkins_server
-    networks:
-      - jenkins
-    container_name: JenkinsServer
-    restart: always
-    environment:
-      - DOCKER_HOST=tcp://docker:2376
-      - DOCKER_CERT_PATH=/certs/client
-      - DOCKER_TLS_VERIFY=1
-    ports:
-      - "9090:8080"
-      - "50000:50000"
-    volumes:
-      - ./jenkins_server/jenkins-certs:/certs/client:ro
-      - ./jenkins_server/jenkins_home:/var/jenkins_home
-  jenkins_agent:
-    build:
-      context: ./jenkins_agent
-    container_name: jenkinsagent
-    networks:
-      - jenkins
-    volumes:
-      - ./jenkins_agent/.ssh:/var/jenkins_home/.ssh
-    environment:
-      - JENKINS_AGENT_SSH_PUBKEY=ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC33zkdtvwp8giZLp1mVUbqzCKi0KIiWD8/towT0+9k1SCDYjJ/YVPqKidkSefYaKBgJ1yFcWa9qroXAUd5nACXN3Xdes2fe4w+xZ8GQTpqHKyStEHy6R9QXi00r/VxGcmBYZWLifEyzV//PiRC+hUaG27JeeBnkZ1FEOyXUunpaPixNaDkfnLbCimflkd2uYH2arMY+FdOH950ezow/+v4vsNrzoMwVVCCSg/dIJBS2G/JaoAbbQgIGo63Kyz0j++rIInsXMFmxhy9hEpViX/tEorFzGh4gUvJPLy3IDjWjUz/Nfte9By6usQjN/1plJcuP+rUqrjjGeMpfhDP6aq5ZvfuPTmXOVkWJ9vJZaK2BCtSZk1vOJR4luxCyUZQbKgb3jS9YZ4N1ZS26z3EKwJGP/acNtEMx2u2zhY7zXdG7ca1Qo1yeVDMRctlvH++KMEYX/ZR6LqYlJyV6TFICZVUT7dLF65gq68UyIFswMu9pQ8/VvIMkkO6eiU1cqFr8gc=
   gitea:
-    image: gitea/gitea:1.15.6
-    container_name: Gitea
+    image: cidersecurity/goat-gitea:latest
+    build:
+      context: ./gitea
+    container_name: gitea
     environment:
       - USER_UID=1000
       - USER_GID=1000
-    restart: always
+#    restart: always
     networks:
-      - jenkins
-    volumes:
-      - ./data/gitea/gitea:/data
-      - ./data/gitea/timezone:/etc/timezone:ro
-      - ./data/gitea/localtime:/etc/localtime:ro
+      - goat
     ports:
       - "3000:3000"
-      - "2222:22"
   ctfd:
+    image: cidersecurity/goat-ctfd:latest
+    build:
+      context: ./ctfd
     container_name: ctfd
-    image: ctfd/ctfd:mark-3.3.1
     ports:
       - "8000:8000"
     networks:
-      - jenkins
+      - goat
     volumes:
-      - ./data/ctfd/logs:/var/log/CTFd
-      - ./data/ctfd/uploads:/var/uploads
-      - ./data/ctfd/data:/opt/CTFd
+      - ./tmp-ctfd:/opt/CTFd
+  jenkins_server:
+    image: cidersecurity/goat-jenkins-server:latest
+    build:
+      context: ./jenkins-server
+    networks:
+      - goat
+    container_name: jenkins-server
+    restart: always
+    ports:
+      - "8080:8080"
+      - "50000:50000"
+  jenkins_agent:
+    image: cidersecurity/goat-jenkins-agent:latest
+    build:
+      context: ./jenkins-agent
+    container_name: jenkins-agent
+    networks:
+      - goat
+    environment:
+      - JENKINS_AGENT_SSH_PUBKEY=ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC33zkdtvwp8giZLp1mVUbqzCKi0KIiWD8/towT0+9k1SCDYjJ/YVPqKidkSefYaKBgJ1yFcWa9qroXAUd5nACXN3Xdes2fe4w+xZ8GQTpqHKyStEHy6R9QXi00r/VxGcmBYZWLifEyzV//PiRC+hUaG27JeeBnkZ1FEOyXUunpaPixNaDkfnLbCimflkd2uYH2arMY+FdOH950ezow/+v4vsNrzoMwVVCCSg/dIJBS2G/JaoAbbQgIGo63Kyz0j++rIInsXMFmxhy9hEpViX/tEorFzGh4gUvJPLy3IDjWjUz/Nfte9By6usQjN/1plJcuP+rUqrjjGeMpfhDP6aq5ZvfuPTmXOVkWJ9vJZaK2BCtSZk1vOJR4luxCyUZQbKgb3jS9YZ4N1ZS26z3EKwJGP/acNtEMx2u2zhY7zXdG7ca1Qo1yeVDMRctlvH++KMEYX/ZR6LqYlJyV6TFICZVUT7dLF65gq68UyIFswMu9pQ8/VvIMkkO6eiU1cqFr8gc=
+  localstack:
+    container_name: localstack
+    image: localstack/localstack:0.14.1-amd64
+    networks:
+      - goat
+    ports:
+      - "4510-4559:4510-4559"  # external service port range
+      - "4566:4566"            # LocalStack Edge Proxy
+    environment:
+      - DOCKER_HOST=unix:///var/run/docker.sock
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+  lighttpd:
+    image: cidersecurity/goat-lighttpd:latest
+    build:
+      context: ./lighttpd
+    container_name: lighttpd
+    networks:
+      - goat
+    ports:
+      - "8008:80"
+      - "2222:22"
+
+  
   
 

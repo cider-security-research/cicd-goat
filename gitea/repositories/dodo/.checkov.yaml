@@ -1,0 +1,3 @@
+soft-fail: true
+check:
+  - MY_CHECK

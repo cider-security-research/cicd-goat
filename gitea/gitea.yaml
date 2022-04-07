@@ -1,0 +1,111 @@
+users:
+    jenkins:   
+        email: jenkins@wonderland.com
+        password: jenko123%
+        token: a644940c92efe2d1876e16a5d29e6c6d7e199b68
+    thealice:
+        email: alice@wonderland.com
+        password: thealice
+    jenkins_hatter:
+        email: hatter@wonderland.com
+        password: jenjen123&^*
+    mock-turtle-ci:
+        email: turtle@wonderland.com
+        password: tuturjgkjf#$@#%
+        token: 03f186631edec80f38b9cc2f7f45870a30cc33e2
+orgs:
+    Wonderland:
+        teams:
+            Maintainers:
+                permission: write
+                members:
+                    - jenkins
+        repos:
+            white-rabbit:
+                private: true
+                code: repositories/white-rabbit
+                collaborators:
+                    thealice: write
+                    jenkins: read
+                branch_protections:
+                    main:
+                        required_approvals: 2
+            caterpillar:
+                private: false
+                code: repositories/caterpillar
+                teams:
+                    - Maintainers
+            mad-hatter:
+                private: true
+                code: repositories/mad-hatter
+                collaborators:
+                    thealice: write
+                    jenkins: read
+            mad-hatter-pipeline:
+                private: true
+                code: repositories/mad-hatter-pipeline
+                collaborators:
+                    jenkins_hatter: read
+                branch_protections:
+                    main:
+                        required_approvals: 2
+            duchess:
+                private: false
+                code: repositories/duchess
+            cheshire-cat:
+                private: true
+                code: repositories/cheshire-cat
+                collaborators:
+                    thealice: write
+                    jenkins: read
+                branch_protections:
+                    main:
+                        required_approvals: 2
+            dodo:
+                private: false
+                code: repositories/dodo
+                collaborators:
+                    thealice: write
+            twiddledee:
+                private: false
+                code: repositories/twiddledee
+                collaborators:
+                    thealice: write
+                releases:
+                    1.0.0:
+                        tag_name: 1.0.0
+                    1.1.0:
+                        tag_name: 1.1.0
+            twiddledum:
+                private: false
+                code: repositories/twiddledum
+            hearts:
+                private: false
+                code: repositories/hearts
+            dormouse:
+                private: false
+                code: repositories/dormouse
+            mock-turtle:
+                code: repositories/mock-turtle
+                private: true
+                collaborators:
+                    mock-turtle-ci: write
+                    jenkins: read
+                    thealice: write
+                branch_protections:
+                    main:
+                        merge_whitelist_usernames:
+                            - mock-turtle-ci
+    Cov:
+        repos:
+            reportcov:
+                private: false
+                code: repositories/reportcov
+                webhooks:
+                    http://jenkins-server:8080/generic-webhook-trigger/invoke?token=6AE44837-0E0C-4970-9A40-8C780E6FFBA1:
+                        events:
+                            - push
+                            - pull_request
+                        branch_filter: main
+                    
+            

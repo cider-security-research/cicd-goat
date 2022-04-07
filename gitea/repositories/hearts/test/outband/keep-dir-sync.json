@@ -1,0 +1,7 @@
+{
+  "tc": "keep",
+  "async": false,
+  "file": false,
+  "options": { "keep":true },
+  "graceful": false 
+}

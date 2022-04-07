@@ -1,0 +1,74 @@
+*.py[cod]
+__pycache__
+
+# C extensions
+*.so
+
+# Packages
+*.egg
+*.egg-info
+dist
+build
+eggs
+.eggs
+parts
+bin
+var
+sdist
+wheelhouse
+develop-eggs
+.installed.cfg
+lib
+lib64
+venv*/
+pyvenv*/
+pip-wheel-metadata/
+
+# Installer logs
+pip-log.txt
+
+# Unit test / coverage reports
+.coverage
+.tox
+.coverage.*
+.pytest_cache/
+nosetests.xml
+coverage.xml
+htmlcov
+
+# Translations
+*.mo
+
+# Buildout
+.mr.developer.cfg
+
+# IDE project files
+.project
+.pydevproject
+.idea
+.vscode
+*.iml
+*.komodoproject
+
+# Complexity
+output/*.html
+output/*/index.html
+
+# Sphinx
+docs/_build
+
+.DS_Store
+*~
+.*.sw[po]
+.build
+.ve
+.env
+.cache
+.pytest
+.benchmarks
+.bootstrap
+.appveyor.token
+*.bak
+
+# Mypy Cache
+.mypy_cache/

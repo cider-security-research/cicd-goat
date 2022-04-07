@@ -1,0 +1,23 @@
+# https://www.appveyor.com/docs/lang/nodejs-iojs/
+
+environment:
+  matrix:
+    - nodejs_version: "8"
+    - nodejs_version: "9"
+    - nodejs_version: "10"
+    - nodejs_version: "11"
+    - nodejs_version: "12"
+    - nodejs_version: "13"
+
+install:
+  - ps: Install-Product node $env:nodejs_version
+  - npm install
+
+test_script:
+  - node --version
+  - npm --version
+  - npm test
+
+build: off
+
+skip_branch_with_pr: true

@@ -1,0 +1,30 @@
+<div>
+    <h1>Test Databinding</h1>
+    <input id="input" meld:model="first_name">
+    <textarea id="text-area" meld:model="description"></textarea>
+    </br>
+    <span id="bound-data-input"> {{ first_name }} </span>
+    <span id="bound-data-textarea"> {{ description }} </span>
+
+    <div>
+        <input id="foo-id" type="checkbox" meld:model="foo" >
+        <span id="bound-foo">{{ foo }}</span>
+
+        <input id="bar-a" type="checkbox" meld:model="bar" value="q">
+        <input id="bar-b" type="checkbox" meld:model="bar" value="v">
+        <input id="bar-c" type="checkbox" meld:model="bar" value="c">
+
+        <span id="bound-bar">{{ bar }}</span>
+
+        <input id="baz-id" type="checkbox" meld:model="baz" value="2">
+        <span id="bound-baz">{{ baz }}</span>
+    </div>
+    <div>
+        <h3>Radio buttons</h3>
+        <input meld:model="radio" type="radio" id="html" name="language" value="HTML">
+        <input meld:model="radio" type="radio" id="css" name="language" value="CSS">
+        <input meld:model="radio" type="radio" id="python" name="language" value="Python">
+
+        <span id="bound-radio">{{ radio }}</span>
+    </div>
+</div>

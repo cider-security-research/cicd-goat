@@ -1,0 +1,123 @@
+version: 2.1
+
+parameters:
+  GHA_Event:
+    type: string
+    default: ""
+  GHA_Meta:
+    type: string
+    default: ""
+
+jobs:
+  ci:
+    machine:
+      image: ubuntu-2004:202010-01
+    resource_class: large
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-docker-{{ .Branch }}
+      - run:
+          name: Load Docker layers cache
+          command: |
+            set +o pipefail
+            docker load -i ~/docker-layers.tar | true
+      - run:
+          name: Docker compose
+          command: |
+            python3 prepare.py git
+            cp -R ctfd/data/ tmp-ctfd/
+            docker-compose -f docker-compose-dev.yaml up -d --build
+      - run:
+          name: Save Docker layers cache
+          command: |
+            DOCKER_IMAGES=$(docker images --format "{{ .Repository }}" --filter=reference="cidersecurity/goat-*")
+            DOCKER_LAYERS=$(for image in $DOCKER_IMAGES; do docker history $image -q | grep -v missing; done)
+            docker save -o ~/docker-layers.tar $DOCKER_LAYERS
+      - save_cache:
+          key: v1-docker-{{ .Branch }}-{{ epoch }}
+          paths:
+            - ~/docker-layers.tar
+      - run:
+          name: Install testing dependencies
+          command: |
+            python3 --version
+            python3 -m pip install pipenv
+            python3 -m pipenv install --deploy
+      - run:
+          name: Wait for services to start
+          command: |
+            for i in {1..30}
+            do
+              jenkins_status_code=$(curl --write-out %{http_code} --silent --output /dev/null localhost:8080/login) || true
+              gitea_status_code=$(curl --write-out %{http_code} --silent --output /dev/null localhost:3000/) || true
+              if [ "$jenkins_status_code" -eq 200 ] && [ "$gitea_status_code" -eq 200 ]; then
+                break
+              fi
+              sleep 1
+            done
+            sleep 60
+      - run:
+          name: Pytest
+          command: |
+            pipenv run python -m pytest tests/
+  release:
+    machine:
+      image: ubuntu-2004:202010-01
+    resource_class: large
+    environment:
+      ORG: cidersecurity
+      VERSION: pipeline.parameters.GHA_Meta
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-docker-{{ .Branch }}
+      - run:
+          name: Load Docker layers cache
+          command: |
+            set +o pipefail
+            docker load -i ~/docker-layers.tar | true
+      - run:
+          name: Docker compose --build
+          command: |
+            docker-compose -f docker-compose-dev.yaml up -d --build
+            docker-compose -f docker-compose-dev.yaml down
+      - run:
+          name: Push latest
+          command: |
+            echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USER" --password-stdin
+            docker push $ORG/goat-jenkins-server:latest
+            docker push $ORG/goat-jenkins-agent:latest
+            docker push $ORG/goat-gitea:latest
+            docker push $ORG/goat-ctfd:latest
+            docker push $ORG/goat-lighttpd:latest
+      - run:
+          name: Push version
+          command: |
+            docker tag $ORG/goat-jenkins-server:latest $ORG/goat-jenkins-server:$VERSION
+            docker tag $ORG/goat-jenkins-agent:latest $ORG/goat-jenkins-agent:$VERSION
+            docker tag $ORG/goat-gitea:latest $ORG/goat-gitea:$VERSION
+            docker tag $ORG/goat-ctfd:latest $ORG/goat-ctfd:$VERSION
+            docker tag $ORG/goat-lighttpd:latest $ORG/goat-lighttpd:$VERSION
+
+            docker push $ORG/goat-jenkins-server:$VERSION
+            docker push $ORG/goat-jenkins-agent:$VERSION
+            docker push $ORG/goat-gitea:$VERSION
+            docker push $ORG/goat-ctfd:$VERSION
+            docker push $ORG/goat-lighttpd:$VERSION
+
+workflows:
+  version: 2
+  ci:
+    jobs:
+      - ci
+  release:
+    when:
+      equal: [ "release", << pipeline.parameters.GHA_Event >> ]
+    jobs:
+      - ci
+      - release:
+          context:
+            - dockerhub

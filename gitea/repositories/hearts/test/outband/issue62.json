@@ -1,0 +1,7 @@
+{
+  "tc": "issue62",
+  "async": true,
+  "file": false,
+  "options": { "unsafeCleanup":true },
+  "graceful": true 
+}

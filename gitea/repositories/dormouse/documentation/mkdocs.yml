@@ -1,0 +1,15 @@
+site_name: Flask-Meld Documentation
+
+theme: readthedocs
+
+nav:
+  - Introduction: index.md
+  - Getting Started: getting-started.md
+  - Components: components.md
+  - Templates: templates.md
+  - Commands: cli.md
+  - Features: features.md
+
+markdown_extensions:
+  - toc:
+      permalink: #

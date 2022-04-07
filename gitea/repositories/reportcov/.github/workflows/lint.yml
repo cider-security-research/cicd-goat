@@ -1,0 +1,41 @@
+name: Lint
+
+on: [push, pull_request, workflow_dispatch]
+
+env:
+  FORCE_COLOR: 1
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        toxenv: ["check", "docs"]
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+
+      - name: Cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.cache/pip
+          key:
+            lint-v1-${{ hashFiles('**/tox.ini') }}
+          restore-keys: |
+            lint-v1-
+
+      - name: Install dependencies
+        run: |
+          python -m pip install -U pip
+          python -m pip install -U wheel
+          python -m pip install --progress-bar=off tox -rci/requirements.txt
+
+      - name: Lint ${{ matrix.toxenv }}
+        run: |
+          tox -v -e ${{ matrix.toxenv }}

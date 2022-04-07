@@ -1,0 +1,23 @@
+0000000000000000000000000000000000000000 4913040da846a2756a4e5573a0a880fa712aa08a Asaf <asaf@cidersecurity.io> 1648991906 +0300	clone: from http://localhost:3000/Wonderland/dodo.git
+4913040da846a2756a4e5573a0a880fa712aa08a c76cf7b97100b2ac9ef46712a2f0ab6489c96c1c Asaf <asaf@cidersecurity.io> 1649237431 +0300	commit: TF
+c76cf7b97100b2ac9ef46712a2f0ab6489c96c1c ba647795dfba6a6840b9f485dd14d64a524df3bd Asaf <asaf@cidersecurity.io> 1649239362 +0300	commit: lo meshane
+ba647795dfba6a6840b9f485dd14d64a524df3bd ba647795dfba6a6840b9f485dd14d64a524df3bd Asaf <asaf@cidersecurity.io> 1649239386 +0300	rebase (start): checkout refs/remotes/origin/main
+ba647795dfba6a6840b9f485dd14d64a524df3bd ba647795dfba6a6840b9f485dd14d64a524df3bd Asaf <asaf@cidersecurity.io> 1649239386 +0300	rebase (finish): returning to refs/heads/main
+ba647795dfba6a6840b9f485dd14d64a524df3bd 7ad98b5855073314978111cb28d2ea48f46ad14a Asaf <asaf@cidersecurity.io> 1649239453 +0300	rebase (start): checkout 7ad98b5855073314978111cb28d2ea48f46ad14a
+7ad98b5855073314978111cb28d2ea48f46ad14a ba647795dfba6a6840b9f485dd14d64a524df3bd Asaf <asaf@cidersecurity.io> 1649239465 +0300	rebase (abort): updating HEAD
+ba647795dfba6a6840b9f485dd14d64a524df3bd d8a490536661a14f0c4df83b294824711f61d68f Asaf <asaf@cidersecurity.io> 1649239478 +0300	rebase (start): checkout 7ad98b5855073314978111cb28d2ea48f46ad14a
+d8a490536661a14f0c4df83b294824711f61d68f 5b910b9ef1dc3bd76d83f513a0a2d844ba7b482a Asaf <asaf@cidersecurity.io> 1649239478 +0300	rebase (squash): # This is a combination of 2 commits.
+5b910b9ef1dc3bd76d83f513a0a2d844ba7b482a 114601645c48a43ac2261424ee9eaa6eb170ec34 Asaf <asaf@cidersecurity.io> 1649239478 +0300	rebase (squash): # This is a combination of 3 commits.
+114601645c48a43ac2261424ee9eaa6eb170ec34 582753225d1f6b0eea20e97f8ae79aa19718e231 Asaf <asaf@cidersecurity.io> 1649239478 +0300	rebase (squash): # This is a combination of 4 commits.
+582753225d1f6b0eea20e97f8ae79aa19718e231 97b4af904f762ae443b35ed2e0ae8c4d8e4dbb86 Asaf <asaf@cidersecurity.io> 1649239478 +0300	rebase (squash): Added terraform
+97b4af904f762ae443b35ed2e0ae8c4d8e4dbb86 97b4af904f762ae443b35ed2e0ae8c4d8e4dbb86 Asaf <asaf@cidersecurity.io> 1649239478 +0300	rebase (finish): returning to refs/heads/main
+97b4af904f762ae443b35ed2e0ae8c4d8e4dbb86 97b4af904f762ae443b35ed2e0ae8c4d8e4dbb86 Asaf <asaf@cidersecurity.io> 1649239518 +0300	rebase (start): checkout fab2a765de051380e94db4dd5748c6ec96759853
+97b4af904f762ae443b35ed2e0ae8c4d8e4dbb86 97b4af904f762ae443b35ed2e0ae8c4d8e4dbb86 Asaf <asaf@cidersecurity.io> 1649239518 +0300	rebase (finish): returning to refs/heads/main
+97b4af904f762ae443b35ed2e0ae8c4d8e4dbb86 97b4af904f762ae443b35ed2e0ae8c4d8e4dbb86 Asaf <asaf@cidersecurity.io> 1649239547 +0300	rebase (start): checkout 9aa698aa67b2507e289db30652e52f6ba163911c
+97b4af904f762ae443b35ed2e0ae8c4d8e4dbb86 97b4af904f762ae443b35ed2e0ae8c4d8e4dbb86 Asaf <asaf@cidersecurity.io> 1649239547 +0300	rebase (finish): returning to refs/heads/main
+97b4af904f762ae443b35ed2e0ae8c4d8e4dbb86 97b4af904f762ae443b35ed2e0ae8c4d8e4dbb86 Asaf <asaf@cidersecurity.io> 1649239573 +0300	rebase (start): checkout 7ad98b5855073314978111cb28d2ea48f46ad14a
+97b4af904f762ae443b35ed2e0ae8c4d8e4dbb86 97b4af904f762ae443b35ed2e0ae8c4d8e4dbb86 Asaf <asaf@cidersecurity.io> 1649239573 +0300	rebase (finish): returning to refs/heads/main
+97b4af904f762ae443b35ed2e0ae8c4d8e4dbb86 7ad98b5855073314978111cb28d2ea48f46ad14a Asaf <asaf@cidersecurity.io> 1649239593 +0300	rebase (start): checkout fab2a765de051380e94db4dd5748c6ec96759853
+7ad98b5855073314978111cb28d2ea48f46ad14a 140bc324a968e6c9ffed4629a2130f96d7dccafa Asaf <asaf@cidersecurity.io> 1649239593 +0300	rebase (squash): Added TF
+140bc324a968e6c9ffed4629a2130f96d7dccafa 140bc324a968e6c9ffed4629a2130f96d7dccafa Asaf <asaf@cidersecurity.io> 1649239595 +0300	rebase (finish): returning to refs/heads/main
+140bc324a968e6c9ffed4629a2130f96d7dccafa 5bcdce9e1bb32e05ed74fcc01129bb546e8a5118 Asaf <asaf@cidersecurity.io> 1649239634 +0300	commit (amend): terraform

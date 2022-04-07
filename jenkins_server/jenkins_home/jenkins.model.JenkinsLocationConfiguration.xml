@@ -1,5 +1,0 @@
-<?xml version='1.1' encoding='UTF-8'?>
-<jenkins.model.JenkinsLocationConfiguration>
-  <adminAddress>address not configured yet &lt;nobody@nowhere&gt;</adminAddress>
-  <jenkinsUrl>http://localhost:9090/</jenkinsUrl>
-</jenkins.model.JenkinsLocationConfiguration>

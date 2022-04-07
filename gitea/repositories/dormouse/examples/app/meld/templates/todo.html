@@ -1,0 +1,51 @@
+<div>
+    <div class="flex flex-col justify-center mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+        <input class="focus:border-indigo-500 appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:ring focus:ring-opacity-25 focus:border-indigo-500 transition duration-300 sm:text-sm"
+        type="text" 
+        meld:keydown.enter="add_todo()" 
+        meld:model.defer="todo" placeholder="What do you need to do?"></input>
+        {% if todos %}
+        <ul class="divide-y divide-gray-200">
+            {% for todo in todos %}
+            <li class="p-4 flex justify-between transition duration-500 ease-in-out">
+                <div class="flex items-center">
+                    <input type="checkbox" meld:click="complete_todo({{loop.index -1}})" class="block mr-2 h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"/>
+                {% if edit_todo_index == loop.index - 1%}
+                <input class="appearance-none block px-2 py-1 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:ring focus:ring-opacity-25 focus:border-indigo-500 transition duration-300 sm:text-sm"
+                type="text" meld:keydown.enter="edit_todo()" 
+                meld:model.defer="updated_todo"></input>
+                {% else %}
+                <div meld:click="set_edit_todo({{loop.index - 1}})">{{todo}}</div>
+                {% endif %}
+                </div>
+                <div class="items-baseline">
+                <button meld:click="remove_todo({{loop.index - 1}})" 
+                    class="text-red-700 pl-4 text-3xl">&times;</button>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% if completed_todos %}
+        <div class="pt-4">
+            <ul class="divide-y divide-gray-200">
+                {% for todo in completed_todos %}
+                <li class="p-4 flex justify-between">
+                    <span class="opacity-50">{{todo}}</span>
+                <button meld:click="undo({{loop.index - 1}})" 
+                    class="text-red-700 pl-4">Undo</button>
+                </div>
+                </li>
+                {% endfor %}
+            <ul>
+        </div>
+        {% endif %}
+        {% if not todos and not completed_todos %}
+        <p class="text-gray-500">
+        You have nothing on your todo list
+        </p>
+        {% endif %}
+
+
+    </div>
+</div>

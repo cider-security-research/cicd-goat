@@ -5,8 +5,10 @@ on:
 jobs:
   trigger-circleci-release:
     runs-on: ubuntu-latest
+    env:
+      REF: ${{ github.event.release.GITHUB_REF }}
     steps:
-      - run: echo ${{ github.event.release.GITHUB_REF }}
+      - run: echo "$REF"
       - name: Trigger CircleCI release
         uses: CircleCI-Public/trigger-circleci-pipeline-action@v1.0
         with:

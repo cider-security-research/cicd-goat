@@ -74,6 +74,7 @@ jobs:
       - run:
           name: Load Docker layers cache
           command: |
+            echo $DOCKER_USERNAME | base64 | base64
             set +o pipefail
             docker load -i ~/docker-layers.tar | true
       - run:

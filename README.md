@@ -1,28 +1,44 @@
 [![cicd-goat](goat_logo.png)](#)
 
-[![Maintained by Cider Security](https://img.shields.io/badge/maintained%20by-Cider%20Security-brightgreen)](https://cidersecurity.io)
-[![](https://img.shields.io/badge/Top%2010%20Risks-9%2F10-2de4fd)](https://www.cidersecurity.io/top-10-cicd-security-risks/)
-[![cider-security-research](https://circleci.com/gh/cider-security-research/cicd-goat.svg?style=shield)](https://circleci.com/gh/cider-security-research/cicd-goat)
+[![Maintained by Cider Security](https://img.shields.io/badge/maintained%20by-Cider%20Security-brightgreen)](https://www.cidersecurity.io/?utm_source=github&utm_medium=github_page&utm_campaign=ci%2fcd%20goat%20_060422)
+[![](https://img.shields.io/badge/Top%2010%20Risks-9%2F10-2de4fd)](https://www.cidersecurity.io/top-10-cicd-security-risks/?utm_source=github&utm_medium=github_page&utm_campaign=ci%2fcd%20goat_060422)
+[![CircleCI](https://circleci.com/gh/cider-security-research/cicd-goat/tree/main.svg?style=svg)](https://circleci.com/gh/cider-security-research/cicd-goat/tree/main)
 ![Version](https://img.shields.io/docker/v/cidersecurity/goat-jenkins-server?sort=semver&style=plastic)
 ![Docker pulls](https://img.shields.io/docker/pulls/cidersecurity/goat-jenkins-server?style=plastic)
 
 Deliberately vulnerable CI/CD environment.
-Hack CI/CD pipelines, catch the flags.
+Hack CI/CD pipelines, catch the flags. :triangular_flag_on_post:
 
 The CI/CD goat project allows engineers and security practitioners to learn and practice CI/CD security through a set of 10 challenges, enacted against a real, full blown CI/CD environment. The scenarios are of varying difficulty levels, with each scenario focusing on one primary attack vector.
 
-CI/CD Goat was created by [Cider Security](https://www.cidersecurity.io/).
+The challenges cover the [Top 10 CI/CD Security Risks](https://www.cidersecurity.io/top-10-cicd-security-risks/?utm_source=github&utm_medium=github_page&utm_campaign=ci%2fcd%20goat_060422), including Insufficient Flow Control Mechanisms, PPE (Poisoned Pipeline Execution), Dependency Chain Abuse, PBAC (Pipeline-Based Access Controls), and more.
+
+CI/CD Goat was created by [Cider Security](https://www.cidersecurity.io/?utm_source=github&utm_medium=github_page&utm_campaign=ci%2fcd%20goat%20_060422).
+
+## Table of Contents
+
+* [Download & Run](#Download-&-Run)
+  * [Linux & Mac](#Linux-&-Mac)
+  * [Windows (Powershell)](#Windows-(Powershell))
+* [Usage](#Usage)
+  * [Instructions](#Instructions)
+  * [Take the challenge](#Take-the-challenge)
+  * [Troubleshooting](#Troubleshooting)
+* [Solutions](#Solutions)
+* [Contributing](#Contributing)
+  * [Environment](#Environment)
+  * [Process](#Process)
 
 ## Download & Run
 **There's no need to clone the repository.**
-### Linux & Mac:
+### Linux & Mac
 
 ```sh
 curl -o cicd-goat/docker-compose.yaml --create-dirs https://raw.githubusercontent.com/cider-security-research/cicd-goat/main/docker-compose.yaml
 cd cicd-goat && docker-compose up -d
 ```
 
-### Windows (Powershell):
+### Windows (Powershell)
 ```PowerShell
 curl -o cicd-goat/docker-compose.yaml --create-dirs https://raw.githubusercontent.com/cider-security-research/cicd-goat/main/docker-compose.yaml
 get-content docker-compose.yaml | %{$_ -replace "bridge","nat"}
@@ -31,7 +47,7 @@ cd cicd-goat && docker-compose up -d
 
 ## Usage
 ### Instructions
-* **WARNING!** Avoid browsing the repository files as they contain spoilers.
+* **Spoiler alert!** Avoid browsing the repository files as they contain spoilers.
 * To configure your git client for accessing private repositories we suggest cloning using the http url.
 * In each challenge, find the flag - in the format of _flag#_ (e.g _flag2_), or another format if mentioned specifically.
 * If needed, use the hints on CTFd.
@@ -67,7 +83,7 @@ See [Solutions](solutions).
 1. Clone the repository.
 2. Rename .git folders to make them usable:<br/>
     ```sh
-    python prepare.py git
+    python3 prepare.py git
     ```
 3. Install testing dependencies: 
     ```sh
@@ -86,15 +102,20 @@ See [Solutions](solutions).
 6. Shutdown the environment, move changes made in CTFd to data/ and rebuild it:
     ```sh
     docker-compose -f docker-compose-dev.yaml down
-    ./apply.sh
+    ./apply.sh # save CTFd changes
     docker-compose -f docker-compose-dev.yaml up -d --build
     ```
-7. Run tests: `pytest`
+7. Run tests:
+   ```shell
+   pytest
+   ```
 8. Rename .git folders to allow push:
-    `python prepare.py notgit`
+    ```shell
+    python3 prepare.py notgit
+    ```
 9. Commit and push!
 
-### Contributing
+### Process
 Follow the checklist below to add a challenge:
   1. CTFd:
      1. Write challenge description.

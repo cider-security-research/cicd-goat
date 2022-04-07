@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Trigger CircleCI release
-        id: ${{ github.event.release.tag_name }}
+        id: "${{ github.event.release.tag_name }}"
         uses: CircleCI-Public/trigger-circleci-pipeline-action@v1.0
         env:
           CCI_TOKEN: ${{ secrets.CCI_TOKEN }}

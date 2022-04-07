@@ -86,7 +86,7 @@ jobs:
       - run:
           name: Push latest
           command: |
-            echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USER" --password-stdin
+            echo "$DOCKERHUB_PASS" | docker login -u $DOCKERHUB_USER --password-stdin
             docker push $ORG/goat-jenkins-server:latest
             docker push $ORG/goat-jenkins-agent:latest
             docker push $ORG/goat-gitea:latest

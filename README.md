@@ -89,10 +89,10 @@ See [Solutions](solutions).
     ```
 3. Install testing dependencies: 
     ```sh
-    pip install pipenv
+    pip3 install pipenv
     pipenv install --deploy
     ```
-4. Run the development environment:
+4. Run the development environment to experiment with new changes:
     ```sh
     rm -rf tmp tmp-ctfd/
     cp -R ctfd/data/ tmp-ctfd/
@@ -109,7 +109,7 @@ See [Solutions](solutions).
     ```
 7. Run tests:
    ```shell
-   pytest
+   pytest tests/
    ```
 8. Rename .git folders to allow push:
     ```shell

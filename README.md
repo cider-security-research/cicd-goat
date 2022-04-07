@@ -1,15 +1,17 @@
 [![cicd-goat](goat_logo.png)](#)
 
-[![Maintained by Cider Security](https://img.shields.io/badge/maintained%20by-Cider%20Security-brightgreen)](https://cidersecurity.io)
-[![](https://img.shields.io/badge/Top%2010%20Risks-9%2F10-2de4fd)](https://www.cidersecurity.io/top-10-cicd-security-risks/)
+[![Maintained by Cider Security](https://img.shields.io/badge/maintained%20by-Cider%20Security-brightgreen)](https://www.cidersecurity.io/?utm_source=github&utm_medium=github_page&utm_campaign=ci%2fcd%20goat%20_060422)
+[![](https://img.shields.io/badge/Top%2010%20Risks-9%2F10-2de4fd)](https://www.cidersecurity.io/top-10-cicd-security-risks/?utm_source=github&utm_medium=github_page&utm_campaign=ci%2fcd%20goat_060422)
 [![cider-security-research](https://circleci.com/gh/cider-security-research/cicd-goat.svg?style=shield)](https://circleci.com/gh/cider-security-research/cicd-goat)
 ![Version](https://img.shields.io/docker/v/cidersecurity/goat-jenkins-server?sort=semver&style=plastic)
 ![Docker pulls](https://img.shields.io/docker/pulls/cidersecurity/goat-jenkins-server?style=plastic)
 
 Deliberately vulnerable CI/CD environment.
-Hack CI/CD pipelines, catch the flags.
+Hack CI/CD pipelines, catch the flags. :triangular_flag_on_post:
 
 The CI/CD goat project allows engineers and security practitioners to learn and practice CI/CD security through a set of 10 challenges, enacted against a real, full blown CI/CD environment. The scenarios are of varying difficulty levels, with each scenario focusing on one primary attack vector.
+
+The challenges cover the [Top 10 CI/CD Security Risks](https://www.cidersecurity.io/top-10-cicd-security-risks/?utm_source=github&utm_medium=github_page&utm_campaign=ci%2fcd%20goat_060422), including Insufficient Flow Control Mechanisms, PPE (Poisoned Pipeline Execution), Dependency Chain Abuse, PBAC (Pipeline-Based Access Controls), and more.
 
 CI/CD Goat was created by [Cider Security](https://www.cidersecurity.io/).
 
@@ -31,7 +33,7 @@ cd cicd-goat && docker-compose up -d
 
 ## Usage
 ### Instructions
-* **WARNING!** Avoid browsing the repository files as they contain spoilers.
+* **Spoiler alert!** Avoid browsing the repository files as they contain spoilers.
 * To configure your git client for accessing private repositories we suggest cloning using the http url.
 * In each challenge, find the flag - in the format of _flag#_ (e.g _flag2_), or another format if mentioned specifically.
 * If needed, use the hints on CTFd.

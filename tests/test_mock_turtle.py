@@ -30,9 +30,6 @@ def test_mock_turtle(gitea_client, jenkins_client):
     assert res.status_code == 201
     res = jenkins_client.post(f'/job/{JOB_NAME}/build?delay=0')
     assert res.status_code == 200 or res.status_code == 201
-    sleep(5)
-    res = jenkins_client.post(f'/job/{JOB_NAME}/build?delay=0')
-    assert res.status_code == 200 or res.status_code == 201
-    sleep(5)
+    sleep(10)
     flag = b64encode('D54734AB-7B83-4931-A9BB-171476101FDF'.encode()).decode()
     assert jenkins_client.find_in_last_build_console(JOB_NAME, flag)

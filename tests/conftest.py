@@ -5,17 +5,21 @@ from requests.auth import HTTPBasicAuth
 import shutil
 from jenkinsapi.jenkins import Jenkins
 from jenkinsapi.custom_exceptions import NoBuildData
-from time import sleep
+from time import sleep, time
+from uuid import uuid4
+
 # import logging
 # import http.client
 
 OWNER = 'Wonderland'
 REPOSITORIES_DIR = Path(__file__).resolve().parent / 'repositories'
 GITEA_GIT_BASE = 'http://thealice:thealice@localhost:3000'
-BUILD_TIMEOUT = 120
+RUNNING_BUILD_TIMEOUT = 120
+START_BUILD_TIMEOUT = 30
 FORK_ORG = 'test'
 GITEA_BASE = 'http://localhost:3000'
 GITEA_API_BASE = f'{GITEA_BASE}/api/v1'
+
 
 # logging.basicConfig(level=logging.DEBUG)
 # http.client.HTTPConnection.debuglevel = 5
@@ -24,7 +28,7 @@ GITEA_API_BASE = f'{GITEA_BASE}/api/v1'
 class GiteaApiClient:
     token = requests.post(f'{GITEA_API_BASE}/users/thealice/tokens',
                           auth=HTTPBasicAuth('thealice', 'thealice'),
-                          json={'name': 'token'}).json()['sha1']
+                          json={'name': str(uuid4())}).json()['sha1']
 
     def post(self, endpoint, data=None, json=None, **kwargs):
         return requests.post(f'{GITEA_API_BASE}{endpoint}',
@@ -72,30 +76,44 @@ class JenkinsClient(Jenkins):
         if start_job:
             res = self.post(f'/job/{job_path}/build?delay=0')
             assert res.status_code == 200 or res.status_code == 201
-        sleep(5)
-        consoles = []
+
         if '/job/' in job_path:
             job_name = f'{job_path.split("/")[0]}/{job_path.split("/")[-1]}'
         else:
             job_name = job_path
-        for tmp_job_name, job_instance in self.get_jobs():
-            if job_name in tmp_job_name:
-                for i in range(BUILD_TIMEOUT):
+
+        def search_last_build(job):
+            start = time()
+            last_build = ''
+            while 1:
+                if not job.is_queued_or_running():
                     try:
-                        last_build = job_instance.get_last_build()
-                        if not job_instance.is_queued_or_running():
-                            break
-                        raise NoBuildData
+                        last_build = job.get_last_build()
                     except NoBuildData:
-                        sleep(1)
-                else:
-                    continue
-                if string in last_build.get_console():
-                    return True
-                consoles.append(last_build.get_console())
-        else:
-            print('--------------------------\n'.join(consoles))
-            return False
+                        pass
+                    break
+                if time() - start > RUNNING_BUILD_TIMEOUT:
+                    break
+                sleep(1)
+            if not last_build:
+                try:
+                    last_build = job.get_last_build()
+                except NoBuildData:
+                    return False, ''
+            if string in last_build.get_console():
+                return True, ''
+            return False, last_build.get_console()
+
+        start_time = time()
+        while 1:
+            results = [search_last_build(job) for name, job in self.get_jobs()
+                       if job_name in name]
+            if [result for result, console in results if results]:
+                return True
+            if time() - start_time > START_BUILD_TIMEOUT:
+                break
+        print('--------------------------\n'.join([console for result, console in results if console]))
+        return False
 
 
 @pytest.fixture()

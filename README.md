@@ -1,7 +1,8 @@
 [![cicd-goat](goat_logo.png)](#)
+
 [![Maintained by Cider Security](https://img.shields.io/badge/maintained%20by-Cider%20Security-brightgreen)](https://cidersecurity.io)
 [![](https://img.shields.io/badge/Top%2010%20Risks-9%2F10-2de4fd)](https://www.cidersecurity.io/top-10-cicd-security-risks/)
-[![cider-security-research](https://circleci.com/gh/cider-security-research/cicd-goat.svg?style=svg)](https://circleci.com/gh/cider-security-research/cicd-goat)
+[![cider-security-research](https://circleci.com/gh/cider-security-research/cicd-goat.svg?style=shield)](https://circleci.com/gh/cider-security-research/cicd-goat)
 ![Version](https://img.shields.io/docker/v/cidersecurity/goat-jenkins-server?sort=semver&style=plastic)
 ![Docker pulls](https://img.shields.io/docker/pulls/cidersecurity/goat-jenkins-server?style=plastic)
 
@@ -57,7 +58,8 @@ cd cicd-goat && docker-compose up -d
 * When forking a repository, don't change the name of the forked repository.
 
 ## Solutions
-:see_no_evil: Warning: Spoilers!
+**Warning:** Spoilers! :see_no_evil:
+
 See [Solutions](solutions).
 
 ## Contributing
@@ -108,6 +110,4 @@ Follow the checklist below to add a challenge:
   5. Write tests.
   6. Write the solution on Spoilers.md.
   7. Update Readme.md if needed.
-
-???hidden malicious additions to gitea and ctfd???
-???add todo???
+  

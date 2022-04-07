@@ -79,6 +79,8 @@ jobs:
       - run:
           name: Docker compose --build
           command: |
+            python3 prepare.py git
+            cp -R ctfd/data/ tmp-ctfd/
             docker-compose -f docker-compose-dev.yaml up -d --build
             docker-compose -f docker-compose-dev.yaml down
       - run:

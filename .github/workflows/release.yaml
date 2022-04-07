@@ -9,6 +9,6 @@ jobs:
       - name: Trigger CircleCI release
         uses: CircleCI-Public/trigger-circleci-pipeline-action@v1.0
         with:
-          GHA_Meta: ${{ github.event.release.GITHUB_REF }}
+          GHA_Meta: ${{ github.event.release.tag_name }}
         env:
           CCI_TOKEN: ${{ secrets.CCI_TOKEN }}

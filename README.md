@@ -40,7 +40,7 @@ cd cicd-goat && docker-compose up -d
 
 ### Windows (Powershell)
 ```PowerShell
-mkdir cicd-goat && cd cicd-goat
+mkdir cicd-goat; cd cicd-goat
 curl -o docker-compose.yaml https://raw.githubusercontent.com/cider-security-research/cicd-goat/main/docker-compose.yaml
 get-content docker-compose.yaml | %{$_ -replace "bridge","nat"}
 docker-compose up -d

@@ -86,7 +86,7 @@ jobs:
       - run:
           name: Push latest
           command: |
-            echo "$DOCKER_PASSWORD" | docker login -u $DOCKER_USERNAME --password-stdin
+            docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
             docker push $ORG/goat-jenkins-server:latest
             docker push $ORG/goat-jenkins-agent:latest
             docker push $ORG/goat-gitea:latest

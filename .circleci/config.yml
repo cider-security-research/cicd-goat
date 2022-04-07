@@ -4,9 +4,10 @@ parameters:
   GHA_Event:
     type: string
     default: ""
-  GHA_Action:
+  GHA_Meta:
     type: string
     default: ""
+
 jobs:
   ci:
     machine:
@@ -114,7 +115,7 @@ workflows:
       - ci
   release:
     when:
-      equal: [ "release", << pipeline.parameters.GHA_Event >> ]
+      equal: [ "release", << pipeline.parameters.GHA_Meta >> ]
     jobs:
       - ci
       - release:

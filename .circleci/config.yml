@@ -120,6 +120,4 @@ workflows:
         equal: [ "", << pipeline.parameters.VERSION >> ]
     jobs:
       - ci
-      - release:
-          context:
-            - dockerhub
+      - release

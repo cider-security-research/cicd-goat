@@ -112,6 +112,8 @@ jobs:
 workflows:
   version: 2
   ci:
+    when:
+      equal: [ "", << pipeline.parameters.VERSION >> ]
     jobs:
       - ci
   release:
@@ -120,4 +122,6 @@ workflows:
         equal: [ "", << pipeline.parameters.VERSION >> ]
     jobs:
       - ci
-      - release
+      - release:
+          requires:
+            - ci

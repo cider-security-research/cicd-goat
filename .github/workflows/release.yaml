@@ -7,4 +7,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Trigger CircleCI release
-        run: curl -u "${{ secrets.CCI_TOKEN }}:" -d 'build_parameters[VERSION]=${{ github.event.release.tag_name }}' https://circleci.com/api/v1.1/project/github/cider-security-research/cicd-goat/tree/main
+        run: |
+          curl -X POST --header "Content-Type: application/json" -u "${{ secrets.CCI_TOKEN }}:" -d '{ "build_parameters": { "CIRCLE_JOB": "release", "VERSION": "${{ github.event.release.tag_name }}" } }' https://circleci.com/api/v1.1/project/github/cider-security-research/cicd-goat/tree/main

@@ -7,4 +7,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Trigger CircleCI release
-        run: curl -u "${{ secrets.CCI_TOKEN }}:" -d 'build_parameters[CIRCLE_JOB]=cicd-goat' --data version=${{ github.event.release.tag_name }} https://circleci.com/api/v1.1/project/github/cider-security-research/cicd-goat/tree/main
+        run: curl -u "${{ secrets.CCI_TOKEN }}:" -d 'build_parameters[CIRCLE_JOB]=release' --data VERSION=${{ github.event.release.tag_name }} https://circleci.com/api/v1.1/project/github/cider-security-research/cicd-goat/tree/main

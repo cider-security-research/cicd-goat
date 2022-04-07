@@ -1,3 +1,5 @@
+[![CICD-SEC-4 Poisoned Pipeline Execution (PPE)](https://img.shields.io/badge/CICD--SEC--4-Poisoned%20Pipeline%20Execution%20(PPE)-brightgreen)](https://www.cidersecurity.io/top-10-cicd-security-risks/poisoned-pipeline-execution-ppe/)
+
 Create a pull request and execute a [Direct-PPE](https://www.cidersecurity.io/blog/research/ppe-poisoned-pipeline-execution/?utm_source=github&utm_medium=github_page&utm_campaign=ci%2fcd%20goat_060422) attack against the _Wonderland/white-rabbit_ repository to steal the _flag1_ secret, which is stored in the Jenkins credential store with the Global scope - meaning it’s accessible to any pipeline on the Jenkins instance.
 
 1. Clone the _Wonderland/white-rabbit_ repository.

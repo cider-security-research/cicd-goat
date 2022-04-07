@@ -1,3 +1,5 @@
+[![CICD-SEC-3 Dependency Chain Abuse](https://img.shields.io/badge/CICD--SEC--3-Dependency%20Chain%20Abuse-brightgreen)](https://www.cidersecurity.io/top-10-cicd-security-risks/dependency-chain-abuse/)
+
 The _Wonderland/Twiddledum_ repository is a JS app that uses _Wonderland/Twiddledee_ as a dependency (view its _package.json_ file).
 
 You have write access to the _Wonderland/Twiddledee_ repository. Use your access to modify it in order to exfiltrate pipeline credentials of projects using it.

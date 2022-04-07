@@ -4,11 +4,13 @@ on:
 
 jobs:
   trigger-circleci-release:
+    env:
+      VERSION: ${{ github.event.release.GITHUB_REF }}
     runs-on: ubuntu-latest
     steps:
       - name: Trigger CircleCI release
         uses: CircleCI-Public/trigger-circleci-pipeline-action@v1.0
         with:
-          GHA_Meta: ${{ github.event.release.GITHUB_REF }}
+          GHA_Meta: ${{ env.ARCHIVE_NAME }}
         env:
           CCI_TOKEN: ${{ secrets.CCI_TOKEN }}

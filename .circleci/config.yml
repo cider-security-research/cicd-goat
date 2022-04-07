@@ -65,7 +65,7 @@ jobs:
     resource_class: large
     environment:
       ORG: cidersecurity
-      VERSION: pipeline.parameters.VERSION
+      VERSION: << pipeline.parameters.VERSION >>
     steps:
       - checkout
       - restore_cache:

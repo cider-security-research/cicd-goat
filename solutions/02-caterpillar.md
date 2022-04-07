@@ -1,4 +1,4 @@
-Create a pull request originated from a fork and execute a [Direct-PPE](https://www.cidersecurity.io/blog/research/ppe-poisoned-pipeline-execution/) attack against the _Wonderland/Caterpillar_ repository to elevate your privileges and steal the _flag2_ secret.
+Create a pull request originated from a fork and execute a [Direct-PPE](https://www.cidersecurity.io/blog/research/ppe-poisoned-pipeline-execution/?utm_source=github&utm_medium=github_page&utm_campaign=ci%2fcd%20goat_060422) attack against the _Wonderland/Caterpillar_ repository to elevate your privileges and steal the _flag2_ secret.
 
 1. Fork the _Wonderland/Caterpillar_ repository.
 2. Modify the Jenkinsfile in the fork to print the environment variables into the console output, or send it to a server you control.

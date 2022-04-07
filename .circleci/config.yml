@@ -96,6 +96,7 @@ jobs:
       - run:
           name: Push version
           command: |
+            echo "version: $VERSION"
             docker tag $ORG/goat-jenkins-server:latest $ORG/goat-jenkins-server:$VERSION
             docker tag $ORG/goat-jenkins-agent:latest $ORG/goat-jenkins-agent:$VERSION
             docker tag $ORG/goat-gitea:latest $ORG/goat-gitea:$VERSION

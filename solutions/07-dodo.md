@@ -1,3 +1,5 @@
+[![CICD-SEC-1 Insufficient Flow Control Mechanisms](https://img.shields.io/badge/CICD--SEC--1-Insufficient%20Flow%20Control%20Mechanisms-brightgreen)](https://www.cidersecurity.io/top-10-cicd-security-risks/insufficient-flow-control-mechanisms/)
+
 Running security scans in CI pipelines is a common practice. [Checkov](https://github.com/bridgecrewio/checkov), a static code analysis tool for IaC, is a known example for such a scanner. \
 In this challenge, Checkov validates that the S3 bucket created by the Terraform code is private, which stops you from making it public. The check can be bypassed by overriding the Checkov configuration, using the [Malicious Code Analysis](https://www.cidersecurity.io/blog/research/malicious-code-analysis-abusing-sast-misconfigurations-to-hack-ci-systems/?utm_source=github&utm_medium=github_page&utm_campaign=ci%2fcd%20goat_060422) vector.
 

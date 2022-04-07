@@ -1,3 +1,5 @@
+[![CICD-SEC-6 Insufficient Credential Hygiene](https://img.shields.io/badge/CICD--SEC--6-Insufficient%20Credential%20Hygiene-brightgreen)](https://www.cidersecurity.io/top-10-cicd-security-risks/insufficient-credential-hygiene/)
+
 Secrets are often pushed to the SCM unintentionally. This makes them accessible to any user with Read permission on the repository.
 
 A common mistake when trying to mitigate the issue is to remove the secret from the branch where the secret was committed to, while the secret is left exposed in past commits - which are still accessible to anyone with access to the repository.

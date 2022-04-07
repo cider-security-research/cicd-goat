@@ -1,3 +1,7 @@
+[![CICD-SEC-4 Poisoned Pipeline Execution (PPE)](https://img.shields.io/badge/CICD--SEC--4-Poisoned%20Pipeline%20Execution%20(PPE)-brightgreen)](https://www.cidersecurity.io/top-10-cicd-security-risks/poisoned-pipeline-execution-ppe/)
+
+[![CICD-SEC-5 Insufficient PBAC (Pipeline-Based Access Controls)](https://img.shields.io/badge/CICD--SEC--5-Insufficient%20PBAC%20(Pipeline%20Based%20Access%20Controls)-brightgreen)](https://www.cidersecurity.io/top-10-cicd-security-risks/insufficient-pbac-pipeline-based-access-controls/)
+
 Execute the _cheshire-cat_ pipeline on the Jenkins Controller by executing a [Direct-PPE](https://www.cidersecurity.io/blog/research/ppe-poisoned-pipeline-execution/?utm_source=github&utm_medium=github_page&utm_campaign=ci%2fcd%20goat_060422) attack, and get the secret which is stored in the Controller’s file system.
 
 

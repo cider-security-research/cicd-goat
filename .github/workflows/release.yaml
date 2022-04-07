@@ -8,4 +8,8 @@ jobs:
     steps:
       - name: Trigger CircleCI release
         run: |
-          curl -X POST --header "Content-Type: application/json" -u "${{ secrets.CCI_TOKEN }}:" -d '{ "build_parameters": { "CIRCLE_JOB": "release", "VERSION": "${{ github.event.release.tag_name }}" } }' https://circleci.com/api/v1.1/project/github/cider-security-research/cicd-goat/tree/main
+          curl --request POST \
+            --url https://circleci.com/api/v2/project/gh/cider-security-research/cicd-goat/pipeline \
+            -u "${{ secrets.CCI_TOKEN }}:"
+            --header 'content-type: application/json' \
+            --data '{"parameters":{"VERSION":"${{ github.event.release.tag_name }}"}}'

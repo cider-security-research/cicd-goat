@@ -49,7 +49,7 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
   lighttpd:
-    image: cidersecurity/lighttpd:latest
+    image: cidersecurity/goat-lighttpd:latest
     container_name: lighttpd
     networks:
       - goat

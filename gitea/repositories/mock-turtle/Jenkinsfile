@@ -13,7 +13,7 @@ pipeline {
                             if [ $(($gitp - $gitm)) -eq 0 ] ; then check1=true; else check1=false; fi
                             if [ $(wc -l <version) -eq 0 -a $(grep -Po "^\\d{1,2}\\.\\d{1,2}\\.\\d{1,2}$" version) ] ; then check2=true; else check2=false; fi
                             if [ $(git diff --name-only origin/${CHANGE_TARGET} | grep version) ] ; then check3=true; else check3=false; fi
-                            if $check1 -a $check2 -a $check3;
+                            if $check1 && $check2 && $check3;
                             then
                                 curl -X 'POST' \
                                 'http://gitea:3000/api/v1/repos/Wonderland/mock-turtle/pulls/'"$PR_ID"'/merge' \

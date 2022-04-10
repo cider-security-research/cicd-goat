@@ -25,7 +25,7 @@ jobs:
           command: |
             python3 rename.py git
             cp -R ctfd/data/ tmp-ctfd/
-            docker-compose up -d --build
+            docker-compose -f docker-compose-dev.yaml up -d --build
       - run:
           name: Save Docker layers cache
           command: |
@@ -82,7 +82,7 @@ jobs:
           command: |
             python3 rename.py git
             cp -R ctfd/data/ tmp-ctfd/
-            docker-compose up -d --build
+            docker-compose -f docker-compose-dev.yaml up -d --build
       - run:
           name: Install testing dependencies
           command: |
@@ -106,12 +106,12 @@ jobs:
           name: Pytest
           command: |
             pipenv run python -m pytest tests/
-            docker-compose down
+            docker-compose -f docker-compose-dev.yaml down
       - run:
           name: Push latest
           command: |
             docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-            docker-compose push
+            docker-compose -f docker-compose-dev.yaml push
       - run:
           name: Push version
           command: |

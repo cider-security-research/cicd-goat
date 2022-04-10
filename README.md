@@ -85,27 +85,27 @@ See [Solutions](solutions).
 1. Clone the repository.
 2. Rename .git folders to make them usable:<br/>
     ```sh
-    python3 prepare.py git
+    python3 rename.py git
     ```
 3. Install testing dependencies: 
     ```sh
     pip3 install pipenv
     pipenv install --deploy
     ```
-4. Run the development environment to experiment with new changes:
+4. Run the environment to experiment with new changes:
     ```sh
     rm -rf tmp tmp-ctfd/
     cp -R ctfd/data/ tmp-ctfd/
-    docker-compose -f docker-compose-dev.yaml up -d
+    docker-compose up -d
     ```
 5. Make the desired changes:
    * All services except CTFd are completely configured as code so desired changes should be made to the files in the appropriate folders.
    * To make changes in CTFd, use the [admin credentials](break-glass.md).
 6. Shutdown the environment, move changes made in CTFd to data/ and rebuild it:
     ```sh
-    docker-compose -f docker-compose-dev.yaml down
+    docker-compose down
     ./apply.sh # save CTFd changes
-    docker-compose -f docker-compose-dev.yaml up -d --build
+    docker-compose up -d --build
     ```
 7. Run tests:
    ```shell
@@ -113,7 +113,7 @@ See [Solutions](solutions).
    ```
 8. Rename .git folders to allow push:
     ```shell
-    python3 prepare.py notgit
+    python3 rename.py notgit
     ```
 9. Commit and push!
 

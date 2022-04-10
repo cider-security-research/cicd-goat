@@ -18,7 +18,7 @@ RUN curl -OL https://golang.org/dl/go1.16.7.linux-amd64.tar.gz && \
     export PATH=$PATH:/usr/local/go/bin && \
     git clone https://github.com/hashicorp/terraform.git && \
     cd terraform && \
-    go install
+    go install || true
 # Install Python packages
 RUN python3 -m pip install --user --no-cache-dir -U pylint pytest checkov awscli-local
 

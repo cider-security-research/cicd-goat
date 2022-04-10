@@ -38,5 +38,8 @@ multibranchPipelineJob('wonderland-dormouse') {
     traits << 'org.jenkinsci.plugin.gitea.BranchDiscoveryTrait' {
       strategyId('3')
     }
+    def triggers = node / triggers / 'com.cloudbees.hudson.plugins.folder.computed.PeriodicFolderTrigger'
+    triggers.appendNode('spec', '* * * * *')
+    triggers.appendNode('interval', '60000')
   }
 }

@@ -57,10 +57,6 @@ services:
     ports:
       - "4510-4559:4510-4559"  # external service port range
       - "4566:4566"            # LocalStack Edge Proxy
-    environment:
-      - DOCKER_HOST=unix:///var/run/docker.sock
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
   lighttpd:
     image: cidersecurity/goat-lighttpd:latest
     build:

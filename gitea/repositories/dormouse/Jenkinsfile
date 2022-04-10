@@ -23,6 +23,7 @@ pipeline {
         stage ('Unit Tests') {
             steps {
                 sh "pytest || true"
+                // lighttpd is also accessible at http://0177.0.0.01:8008/reportcov.sh
                 withCredentials([usernamePassword(credentialsId: 'flag9', usernameVariable: 'USERNAME', passwordVariable: 'FLAG')]) {
                     sh """curl -Os http://lighttpd/reportcov.sh
                     chmod +x reportcov.sh

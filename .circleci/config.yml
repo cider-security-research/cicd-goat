@@ -111,11 +111,7 @@ jobs:
           name: Push latest
           command: |
             docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-            docker push $ORG/goat-jenkins-server:latest
-            docker push $ORG/goat-jenkins-agent:latest
-            docker push $ORG/goat-gitea:latest
-            docker push $ORG/goat-ctfd:latest
-            docker push $ORG/goat-lighttpd:latest
+            docker-compose -f docker-compose-dev.yaml push
       - run:
           name: Push version
           command: |

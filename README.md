@@ -1,7 +1,7 @@
 [![cicd-goat](goat_logo.png)](#)
 
 [![Maintained by Cider Security](https://img.shields.io/badge/maintained%20by-Cider%20Security-brightgreen)](https://www.cidersecurity.io/?utm_source=github&utm_medium=github_page&utm_campaign=ci%2fcd%20goat%20_060422)
-[![](https://img.shields.io/badge/Top%2010%20Risks-9%2F10-2de4fd)](https://www.cidersecurity.io/top-10-cicd-security-risks/?utm_source=github&utm_medium=github_page&utm_campaign=ci%2fcd%20goat_060422)
+[![](https://img.shields.io/badge/Top%2010%20Risks-8%2F10-2de4fd)](https://www.cidersecurity.io/top-10-cicd-security-risks/?utm_source=github&utm_medium=github_page&utm_campaign=ci%2fcd%20goat_060422)
 [![.github/workflows/release.yaml](https://github.com/cider-security-research/cicd-goat/actions/workflows/release.yaml/badge.svg)](https://github.com/cider-security-research/cicd-goat/actions/workflows/release.yaml)
 [![CircleCI](https://circleci.com/gh/cider-security-research/cicd-goat/tree/main.svg?style=svg)](https://circleci.com/gh/cider-security-research/cicd-goat/tree/main)
 ![Version](https://img.shields.io/docker/v/cidersecurity/goat-jenkins-server?sort=semver&style=plastic)
@@ -18,9 +18,9 @@ CI/CD Goat was created by [Cider Security](https://www.cidersecurity.io/?utm_sou
 
 ## Table of Contents
 
-* [Download & Run](#Download-&-Run)
-  * [Linux & Mac](#Linux-&-Mac)
-  * [Windows (Powershell)](#Windows-(Powershell))
+* [Download & Run](#Download--Run)
+  * [Linux & Mac](#Linux--Mac)
+  * [Windows (Powershell)](#Windows-Powershell)
 * [Usage](#Usage)
   * [Instructions](#Instructions)
   * [Take the challenge](#Take-the-challenge)

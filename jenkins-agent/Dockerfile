@@ -13,8 +13,8 @@ RUN apt-get update && \
     curl \
     git
 # Install Terraform
-RUN curl -OL https://golang.org/dl/go1.16.7.linux-amd64.tar.gz && \
-    tar -C /usr/local -xvf go1.16.7.linux-amd64.tar.gz && \
+RUN curl -OL https://go.dev/dl/go1.18.linux-amd64.tar.gz && \
+    tar -C /usr/local -xvf go1.18.linux-amd64.tar.gz && \
     export PATH=$PATH:/usr/local/go/bin && \
     git clone https://github.com/hashicorp/terraform.git && \
     cd terraform && \
@@ -35,4 +35,4 @@ RUN apt-get update && \
     rm -rf /home/jenkins/aws && \
     rm awscliv2.zip
 COPY --from=base --chown=jenkins:jenkins /root/.local /home/jenkins/.local
-COPY --from=base /usr/bin/terraform /usr/bin/terraform
+COPY --from=base /root/go/bin/terraform /usr/bin/terraform

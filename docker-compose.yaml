@@ -44,10 +44,6 @@ services:
     image: localstack/localstack:0.14.1-amd64
     networks:
       - goat
-    environment:
-      - DOCKER_HOST=unix:///var/run/docker.sock
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
   lighttpd:
     image: cidersecurity/goat-lighttpd:latest
     container_name: lighttpd

@@ -8,6 +8,12 @@ multibranchPipelineJob('wonderland-white-rabbit') {
           repoOwner("${OWNER}")
           repository('white-rabbit')
           serverUrl("http://gitea:3000")
+          traits {
+            headWildcardFilter {
+              includes('main PR-*')
+              excludes('')
+            }
+          }
         }
       }
     }
@@ -15,7 +21,7 @@ multibranchPipelineJob('wonderland-white-rabbit') {
   configure { node ->
     def traits = node / sources / data / 'jenkins.branch.BranchSource' / source / traits
     traits << 'org.jenkinsci.plugin.gitea.BranchDiscoveryTrait' {
-      strategyId('1')
+      strategyId('3')
     }
     traits << 'org.jenkinsci.plugin.gitea.OriginPullRequestDiscoveryTrait' {
       strategyId('2')

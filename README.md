@@ -81,7 +81,7 @@ docker-compose up -d
 See [Solutions](solutions).
 
 ## Contributing
-### Environment
+### Development
 1. Clone the repository.
 2. Rename .git folders to make them usable:<br/>
     ```sh
@@ -117,20 +117,23 @@ See [Solutions](solutions).
     ```
 9. Commit and push!
 
-### Process
+### Checklist
 Follow the checklist below to add a challenge:
   1. CTFd:
      1. Write challenge description.
-     2. Write hints.
-     3. Insert the flag.
+     2. Choose category according to difficulty level.
+     3. Make sure the challenge is visible and has value according to difficulty.
+     4. Write hints in order of usage.
+     5. Add a flag. Make sure to select if it's case-insensitive.
   2. Gitea:
-     1. Create repository and configure relevant access permissions.
-     2. Use another OS repository that has MIT license as a template.
+     1. Configure a new repository in gitea.yaml
+     2. Create the repository under gitea/repositories and use another OS repository that has MIT license as a template.
   3. Jenkins:
-     1. Configure a job that runs automatically.
-     2. Validate that the new challenge doesn't interfere with other challenges.
+     1. Configure Jenkins and add new jobdsl files in the casc.yaml file.
+     2. Make sure jobs don't run periodically but only run according to triggers.
+     3. Validate that the new challenge doesn't interfere with other challenges.
   4. Make sure the flag is not accessible when solving other challenges.
   5. Write tests.
-  6. Write the solution on Spoilers.md.
+  6. Write the solution.
   7. Update Readme.md if needed.
   

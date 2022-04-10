@@ -85,7 +85,7 @@ See [Solutions](solutions).
 1. Clone the repository.
 2. Rename .git folders to make them usable:<br/>
     ```sh
-    python3 prepare.py git
+    python3 rename.py git
     ```
 3. Install testing dependencies: 
     ```sh
@@ -113,7 +113,7 @@ See [Solutions](solutions).
    ```
 8. Rename .git folders to allow push:
     ```shell
-    python3 prepare.py notgit
+    python3 rename.py notgit
     ```
 9. Commit and push!
 

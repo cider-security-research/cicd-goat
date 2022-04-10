@@ -1,4 +1,4 @@
-FROM ctfd/ctfd:3.4.1
+FROM ctfd/ctfd:3.3.1
 LABEL org.opencontainers.image.vendor="Cider Security" \
     org.opencontainers.image.title="CI/CD Goat - CTFd" \
     org.opencontainers.image.description="Deliberately vulnerable CI/CD environment." \

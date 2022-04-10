@@ -92,20 +92,20 @@ See [Solutions](solutions).
     pip3 install pipenv
     pipenv install --deploy
     ```
-4. Run the development environment to experiment with new changes:
+4. Run the environment to experiment with new changes:
     ```sh
     rm -rf tmp tmp-ctfd/
     cp -R ctfd/data/ tmp-ctfd/
-    docker-compose -f docker-compose-dev.yaml up -d
+    docker-compose up -d
     ```
 5. Make the desired changes:
    * All services except CTFd are completely configured as code so desired changes should be made to the files in the appropriate folders.
    * To make changes in CTFd, use the [admin credentials](break-glass.md).
 6. Shutdown the environment, move changes made in CTFd to data/ and rebuild it:
     ```sh
-    docker-compose -f docker-compose-dev.yaml down
+    docker-compose down
     ./apply.sh # save CTFd changes
-    docker-compose -f docker-compose-dev.yaml up -d --build
+    docker-compose up -d --build
     ```
 7. Run tests:
    ```shell

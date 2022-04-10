@@ -23,7 +23,7 @@ jobs:
       - run:
           name: Docker compose
           command: |
-            python3 prepare.py git
+            python3 rename.py git
             cp -R ctfd/data/ tmp-ctfd/
             docker-compose -f docker-compose-dev.yaml up -d --build
       - run:
@@ -80,7 +80,7 @@ jobs:
       - run:
           name: Docker compose
           command: |
-            python3 prepare.py git
+            python3 rename.py git
             cp -R ctfd/data/ tmp-ctfd/
             docker-compose -f docker-compose-dev.yaml up -d --build
       - run:

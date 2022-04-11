@@ -1,0 +1,53 @@
+version: '{branch}-{build}'
+build: off
+image:
+  - Visual Studio 2015
+  - Visual Studio 2019
+environment:
+  matrix:
+    - TOXENV: check
+    - TOXENV: '{{ py27_environments|join(",") }}'
+    - TOXENV: '{{ py35_environments|join(",") }}'
+    - TOXENV: '{{ py36_environments|join(",") }}'
+    - TOXENV: '{{ py37_environments|join(",") }}'
+    - TOXENV: '{{ py38_environments|join(",") }}'
+    - TOXENV: '{{ py39_environments|join(",") }}'
+    - TOXENV: '{{ pypy_environments|join(",") }}'
+    - TOXENV: '{{ pypy3_environments|join(",") }}'
+matrix:
+  exclude:
+    - image: Visual Studio 2019
+      TOXENV: '{{ py27_environments|join(",") }}'
+    - image: Visual Studio 2015
+      TOXENV: '{{ py36_environments|join(",") }}'
+    - image: Visual Studio 2015
+      TOXENV: '{{ py37_environments|join(",") }}'
+    - image: Visual Studio 2015
+      TOXENV: '{{ py38_environments|join(",") }}'
+    - image: Visual Studio 2015
+      TOXENV: '{{ py39_environments|join(",") }}'
+    - image: Visual Studio 2015
+      TOXENV: '{{ pypy_environments|join(",") }}'
+    - image: Visual Studio 2015
+      TOXENV: '{{ pypy3_environments|join(",") }}'
+init:
+  - ps: echo $env:TOXENV
+  - ps: ls C:\Python*
+install:
+  - IF "%TOXENV:~0,5%" == "pypy-" choco install --no-progress python.pypy
+  - IF "%TOXENV:~0,6%" == "pypy3-" choco install --no-progress pypy3
+  - SET PATH=C:\tools\pypy\pypy;%PATH%
+  - C:\Python37\python -m pip install --progress-bar=off tox -rci/requirements.txt
+
+test_script:
+  - cmd /E:ON /V:ON /C .\ci\appveyor-with-compiler.cmd C:\Python37\python -m tox
+
+on_failure:
+  - ps: dir "env:"
+  - ps: get-content .tox\*\log\*
+artifacts:
+  - path: dist\*
+
+### To enable remote debugging uncomment this (also, see: http://www.appveyor.com/docs/how-to/rdp-to-build-worker):
+# on_finish:
+#   - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))

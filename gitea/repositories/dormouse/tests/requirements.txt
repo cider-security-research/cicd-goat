@@ -1,0 +1,6 @@
+email_validator
+Flask-WTF
+playwright==1.17.0
+pytest==6.2.5
+pytest-playwright==0.2.2
+pytest-flask==1.2.0

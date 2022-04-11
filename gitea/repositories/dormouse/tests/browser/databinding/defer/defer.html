@@ -1,0 +1,22 @@
+<div>
+    <h1>Test databinding defer</h1>
+    <input id="input" meld:model.defer="first_name"\>
+    </br>
+    <div id="bound-data-defer">
+        {{ first_name }}
+    </div>
+    <button id="button" meld:click="update">Button</button>
+    <div>
+        <input id="foo-id" type="checkbox" meld:model.defer="foo" >
+        <span id="bound-foo">{{ foo }}</span>
+
+        <input id="bar-a" type="checkbox" meld:model.defer="bar" value="q">
+        <input id="bar-b" type="checkbox" meld:model.defer="bar" value="v">
+        <input id="bar-c" type="checkbox" meld:model.defer="bar" value="c">
+
+        <span id="bound-bar">{{ bar }}</span>
+
+        <input id="baz-id" type="checkbox" meld:model:defer="baz" value="2">
+        <span id="bound-baz">{{ baz }}</span>
+    </div>
+</div>

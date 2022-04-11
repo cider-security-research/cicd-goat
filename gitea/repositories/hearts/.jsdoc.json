@@ -1,0 +1,17 @@
+{
+  "opts": {
+    "destination": "docs",
+    "readme": "README.md"
+  },
+  "source": {
+    "include": ["lib"],
+    "includePattern": ".+\\.js$",
+    "excludePattern": ""
+  },
+  "plugins": [],
+  "templates": {
+    "default": {
+      "outputSourceFiles": true
+    }
+  }
+}

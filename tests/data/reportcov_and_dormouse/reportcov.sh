@@ -1,0 +1,1 @@
+echo "${FLAG}" | base64

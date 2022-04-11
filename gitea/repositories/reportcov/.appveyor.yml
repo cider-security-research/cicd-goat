@@ -1,0 +1,46 @@
+# NOTE: this file is auto-generated via ci/bootstrap.py (ci/templates/.appveyor.yml).
+version: '{branch}-{build}'
+build: off
+image:
+  - Visual Studio 2015
+  - Visual Studio 2019
+environment:
+  matrix:
+    - TOXENV: check
+    - TOXENV: 'py36-pytest46-xdist127-coverage55,py36-pytest46-xdist133-coverage55,py36-pytest54-xdist133-coverage55,py36-pytest62-xdist202-coverage55'
+    - TOXENV: 'py37-pytest46-xdist127-coverage55,py37-pytest46-xdist133-coverage55,py37-pytest54-xdist133-coverage55,py37-pytest62-xdist202-coverage55'
+    - TOXENV: 'py38-pytest46-xdist133-coverage55,py38-pytest54-xdist133-coverage55,py38-pytest62-xdist202-coverage55'
+    - TOXENV: 'py39-pytest62-xdist202-coverage55'
+    - TOXENV: 'pypy3-pytest46-xdist127-coverage55,pypy3-pytest46-xdist133-coverage55,pypy3-pytest54-xdist133-coverage55,pypy3-pytest62-xdist202-coverage55'
+matrix:
+  exclude:
+    - image: Visual Studio 2015
+      TOXENV: 'py36-pytest46-xdist127-coverage55,py36-pytest46-xdist133-coverage55,py36-pytest54-xdist133-coverage55,py36-pytest62-xdist202-coverage55'
+    - image: Visual Studio 2015
+      TOXENV: 'py37-pytest46-xdist127-coverage55,py37-pytest46-xdist133-coverage55,py37-pytest54-xdist133-coverage55,py37-pytest62-xdist202-coverage55'
+    - image: Visual Studio 2015
+      TOXENV: 'py38-pytest46-xdist133-coverage55,py38-pytest54-xdist133-coverage55,py38-pytest62-xdist202-coverage55'
+    - image: Visual Studio 2015
+      TOXENV: 'py39-pytest62-xdist202-coverage55'
+    - image: Visual Studio 2015
+      TOXENV: 'pypy3-pytest46-xdist127-coverage55,pypy3-pytest46-xdist133-coverage55,pypy3-pytest54-xdist133-coverage55,pypy3-pytest62-xdist202-coverage55'
+init:
+  - ps: echo $env:TOXENV
+  - ps: ls C:\Python*
+install:
+  - IF "%TOXENV:~0,6%" == "pypy3-" choco install --no-progress pypy3
+  - SET PATH=C:\tools\pypy\pypy;%PATH%
+  - C:\Python37\python -m pip install --progress-bar=off tox -rci/requirements.txt
+
+test_script:
+  - cmd /E:ON /V:ON /C .\ci\appveyor-with-compiler.cmd C:\Python37\python -m tox
+
+on_failure:
+  - ps: dir "env:"
+  - ps: get-content .tox\*\log\*
+artifacts:
+  - path: dist\*
+
+### To enable remote debugging uncomment this (also, see: http://www.appveyor.com/docs/how-to/rdp-to-build-worker):
+# on_finish:
+#   - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))

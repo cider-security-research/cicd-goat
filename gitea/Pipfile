@@ -1,0 +1,15 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+requests = "*"
+click = "*"
+pyyaml = "*"
+gitpython = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.8"

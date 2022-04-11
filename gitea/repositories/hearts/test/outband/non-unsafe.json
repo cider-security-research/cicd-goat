@@ -1,0 +1,7 @@
+{
+  "tc": "unsafe",
+  "async": true,
+  "file": false,
+  "options": { "unsafeCleanup":false },
+  "graceful": false 
+}

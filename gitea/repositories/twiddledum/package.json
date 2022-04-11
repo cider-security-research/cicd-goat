@@ -1,0 +1,30 @@
+{
+  "name": "dedupe",
+  "description": "easy deduplication of array values",
+  "version": "3.0.2",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/seriousManual/dedupe.git"
+  },
+  "author": "Manuel Ernst <seriousstuff@gmx.de>",
+  "license": "MIT",
+  "dependencies": {
+    "twiddledee": "git+http://gitea:3000/Wonderland/twiddledee#semver:^1.1.0"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^5.2.0"
+  },
+  "files": [
+    "index.js"
+  ],
+  "main": "index.js",
+  "keywords": [
+    "duplicates",
+    "array",
+    "remove duplicates",
+    "distinct",
+    "deduplicate",
+    "deduplication"
+  ]
+}

@@ -1,0 +1,21 @@
+
+<html>
+    <head>
+        <title>Welcome to Flask-Meld</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+        {% block head_scripts %}
+        {% endblock %}
+    </head>
+    <body>
+        {% meld_scripts %}
+
+        {% block content %}
+
+        {% endblock %}
+
+        {% block page_scripts %}
+        {% endblock %}
+    </body>
+</html>

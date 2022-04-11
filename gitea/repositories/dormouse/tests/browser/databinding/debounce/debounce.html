@@ -1,0 +1,21 @@
+<div>
+    <h1>Test databinding debounce</h1>
+    <input id="input" meld:model.debounce-300="first_name">
+        </br>
+        <div id="bound-data">
+            {{ first_name }}
+        </div>
+    <div>
+        <input id="foo-id" type="checkbox" meld:model.debounce-300="foo" >
+        <span id="bound-foo">{{ foo }}</span>
+
+        <input id="bar-a" type="checkbox" meld:model.debounce-300="bar" value="q">
+        <input id="bar-b" type="checkbox" meld:model.debounce-300="bar" value="v">
+        <input id="bar-c" type="checkbox" meld:model.debounce-300="bar" value="c">
+
+        <span id="bound-bar">{{ bar }}</span>
+
+        <input id="baz-id" type="checkbox" meld:model:debounce-300="baz" value="2">
+        <span id="bound-baz">{{ baz }}</span>
+    </div>
+</div>

@@ -176,4 +176,4 @@ unclassified:
       serverUrl: "http://gitea:3000"
   location:
     adminAddress: "address not configured yet <nobody@nowhere>"
-    url: "http://localhost:8080/"
+    url: "http://localhost:9090/"

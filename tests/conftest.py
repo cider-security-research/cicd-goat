@@ -123,7 +123,7 @@ def gitea_client():
 
 @pytest.fixture()
 def jenkins_client():
-    return JenkinsClient('http://localhost:9090', username='alice', password='alice', useCrumb=True)
+    return JenkinsClient('http://localhost:8080', username='alice', password='alice', useCrumb=True)
 
 
 try:

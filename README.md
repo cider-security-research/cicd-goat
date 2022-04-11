@@ -62,7 +62,7 @@ docker-compose up -d
    * Password: `alice`
 
 2. Hack:
-   * Jenkins http://localhost:9090
+   * Jenkins http://localhost:8080
      * Username: `alice`
      * Password: `alice`
    * Gitea http://localhost:3000

@@ -38,7 +38,7 @@ services:
     container_name: jenkins-server
     restart: always
     ports:
-      - "9090:8080"
+      - "8080:8080"
       - "50000:50000"
   jenkins_agent:
     image: cidersecurity/goat-jenkins-agent:latest

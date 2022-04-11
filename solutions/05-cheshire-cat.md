@@ -1,28 +1,23 @@
-[![CICD-SEC-4 Poisoned Pipeline Execution (PPE)](https://img.shields.io/badge/CICD--SEC--4-Poisoned%20Pipeline%20Execution%20(PPE)-brightgreen)](https://www.cidersecurity.io/top-10-cicd-security-risks/poisoned-pipeline-execution-ppe/)
+[![CICD-SEC-4 Poisoned Pipeline Execution (PPE)](https://img.shields.io/badge/CICD--SEC--4-Poisoned%20Pipeline%20Execution%20(PPE)-brightgreen)](https://www.cidersecurity.io/top-10-cicd-security-risks/poisoned-pipeline-execution-ppe/?utm_source=github&utm_medium=github_page&utm_campaign=ci%2fcd%20goat_100422)
 
-[![CICD-SEC-5 Insufficient PBAC (Pipeline-Based Access Controls)](https://img.shields.io/badge/CICD--SEC--5-Insufficient%20PBAC%20(Pipeline%20Based%20Access%20Controls)-brightgreen)](https://www.cidersecurity.io/top-10-cicd-security-risks/insufficient-pbac-pipeline-based-access-controls/)
+[![CICD-SEC-5 Insufficient PBAC (Pipeline-Based Access Controls)](https://img.shields.io/badge/CICD--SEC--5-Insufficient%20PBAC%20(Pipeline%20Based%20Access%20Controls)-brightgreen)](https://www.cidersecurity.io/top-10-cicd-security-risks/insufficient-pbac-pipeline-based-access-controls/?utm_source=github&utm_medium=github_page&utm_campaign=ci%2fcd%20goat_100422)
 
 Execute the _cheshire-cat_ pipeline on the Jenkins Controller by executing a [Direct-PPE](https://www.cidersecurity.io/blog/research/ppe-poisoned-pipeline-execution/?utm_source=github&utm_medium=github_page&utm_campaign=ci%2fcd%20goat_060422) attack, and get the secret which is stored in the Controller’s file system.
 
 
-
-1. On Jenkins, access the Built-In Node (which represents the Controller) in the nodes configuration page, and get its label (“builtin”).
-
-    [http://localhost:8080/computer/(built-in)/](http://localhost:8080/computer/(built-in)/)
-
-2. Clone the _Wonderland/cheshire-cat_ repository.
-3. Checkout to a new branch.
+1. Clone the _Wonderland/cheshire-cat_ repository.
+2. Checkout to a new branch.
 
     ```shell
     git checkout -b challenge5
     ```
 
 
-4. In the Jenkinsfile, instruct the pipeline to run on the Controller by specifying its label, and print _flag5_ to the console output (or send it to a remote server).
+3. In the Jenkinsfile, instruct the pipeline to run on the Controller by specifying its default label - `built-in`, and print _flag5_ to the console output (or send it to a remote server).
 
     ```groovy
     pipeline {
-        agent {label 'builtin'}
+        agent {label 'built-in'}
         environment {
             PROJECT = "sanic"
         }
@@ -34,7 +29,6 @@ Execute the _cheshire-cat_ pipeline on the Jenkins Controller by executing a [Di
                 }
             }
         }
-    }
 
         post { 
             always { 
@@ -45,5 +39,6 @@ Execute the _cheshire-cat_ pipeline on the Jenkins Controller by executing a [Di
     ```
 
 
-5. Push the changes to the remote branch, and create a pull request. A pipeline will be triggered automatically.
-6. Access the console output of the executed job to get the secret.
+4. Push the changes to the remote branch, and create a pull request. A pipeline will be triggered automatically.
+5. Access the console output of the executed job to get the secret.
+![cheshire_cat](../images/cheshire_cat.png "cheshire_cat")

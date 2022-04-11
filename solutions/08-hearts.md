@@ -1,4 +1,4 @@
-[![CICD-SEC-2 Inadequate Identity and Access Management](https://img.shields.io/badge/CICD--SEC--2-Inadequate%20Identity%20and%20Access%20Management-brightgreen)](https://www.cidersecurity.io/top-10-cicd-security-risks/inadequate-identity-and-access-management/)
+[![CICD-SEC-2 Inadequate Identity and Access Management](https://img.shields.io/badge/CICD--SEC--2-Inadequate%20Identity%20and%20Access%20Management-brightgreen)](https://www.cidersecurity.io/top-10-cicd-security-risks/inadequate-identity-and-access-management/?utm_source=github&utm_medium=github_page&utm_campaign=ci%2fcd%20goat_100422)
 
 Identify the user that has privileged access to the Hearts Jenkins pipeline. Looking at the list of Jenkins users shows a short list of users, one of them is Knave - whose description reveals that it’s the job owner. Sounds like a place to start from.
 

@@ -1,4 +1,4 @@
-[![CICD-SEC-6 Insufficient Credential Hygiene](https://img.shields.io/badge/CICD--SEC--6-Insufficient%20Credential%20Hygiene-brightgreen)](https://www.cidersecurity.io/top-10-cicd-security-risks/insufficient-credential-hygiene/)
+[![CICD-SEC-6 Insufficient Credential Hygiene](https://img.shields.io/badge/CICD--SEC--6-Insufficient%20Credential%20Hygiene-brightgreen)](https://www.cidersecurity.io/top-10-cicd-security-risks/insufficient-credential-hygiene/?utm_source=github&utm_medium=github_page&utm_campaign=ci%2fcd%20goat_100422)
 
 Secrets are often pushed to the SCM unintentionally. This makes them accessible to any user with Read permission on the repository.
 

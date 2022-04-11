@@ -120,7 +120,7 @@ jenkins:
       - envVars:
           env:
           - key: "GITEA_TOKEN"
-            value: "a644940c92efe2d1876e16a5d29e6c6d7e199b68"
+            value: "5d3ed5564341d5060c8524c41fe03507e296ca46"
           - key: "PATH"
             value: "/home/jenkins/.local/bin:$PATH"
       remoteFS: "/home/jenkins"

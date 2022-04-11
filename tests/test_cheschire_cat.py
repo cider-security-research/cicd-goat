@@ -16,7 +16,7 @@ def test_cheshire_cat(gitea_client, jenkins_client):
                            REPOSITORIES_DIR / REPO_NAME,
                            branch='main')
     new_branch_name_one = uuid4().hex
-    replace_tuples = [('virtualenv venv', 'cat ~/flag5.txt'),
+    replace_tuples = [('virtualenv venv', 'cat ~/flag5'),
                       ('pylint', 'echo'),
                       ('pytest', 'true'),
                       ('agent any', "agent {label 'built-in'}")]

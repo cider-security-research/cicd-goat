@@ -13,13 +13,17 @@ users:
         email: turtle@wonderland.com
         password: tuturjgkjf#$@#%
         token: 03f186631edec80f38b9cc2f7f45870a30cc33e2
+    jenkins_caterpillar:
+        email: caterpillar@wonderland.com
+        password: 1leg2leg3leg
+        token: 5d3ed5564341d5060c8524c41fe03507e296ca46
 orgs:
     Wonderland:
         teams:
             Maintainers:
                 permission: write
                 members:
-                    - jenkins
+                    - jenkins_caterpillar
         repos:
             white-rabbit:
                 private: true
@@ -46,6 +50,7 @@ orgs:
                 code: repositories/mad-hatter-pipeline
                 collaborators:
                     jenkins_hatter: read
+                    thealice: read
                 branch_protections:
                     main:
                         required_approvals: 2

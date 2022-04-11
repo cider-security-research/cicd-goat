@@ -25,7 +25,7 @@ In the challenge, Reportcov is a public repository of a 3rd party used by other 
     ```shell
     echo "${FLAG}" | base64 > reportcov.sh
     chmod 400 key
-    scp -P 2222 -i key reportcov.sh  root@localhost:/var/www/localhost/htdocs
+    scp -P 2222 -i key reportcov.sh root@localhost:/var/www/localhost/htdocs
     ```
 
 

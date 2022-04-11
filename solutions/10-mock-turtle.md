@@ -25,12 +25,17 @@ To access the flag, the attacker can do as follows:
 
 ```groovy
 withCredentials([usernamePassword(credentialsId: 'flag10', usernameVariable: 'USERNAME', passwordVariable: 'TOKEN')]) {
-sh 'echo $TOKEN | base64'
+    sh 'echo $TOKEN | base64'
 }
 ```
 
 
 
-4. In addition, remove an identical number of words from anywhere in the repository as in the code appended to the Jenkinsfile, so bypass condition #1.
-5. Create a pull request from the new branch to main. The pipeline is triggered, merging the pull request automatically.
-6. The pipeline is triggered again, this time on the main branch, exposing the code in the job’s console output.
+4. In addition, remove an identical number of words from anywhere in the repository as in the code appended to the Jenkinsfile, to bypass condition #1.
+5. Create a pull request from the new branch to main.
+![mock_turtle_1](../images/mock_turtle_1.png "mock_turtle_1")
+6. The pipeline is triggered, merging the pull request automatically.
+![mock_turtle_2](../images/mock_turtle_2.png "mock_turtle_2")
+![mock_turtle_3](../images/mock_turtle_3.png "mock_turtle_3")
+7. The pipeline is triggered again, this time on the main branch, exposing the code in the job’s console output.
+![mock_turtle_4](../images/mock_turtle_4.png "mock_turtle_4")

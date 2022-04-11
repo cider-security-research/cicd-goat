@@ -3,7 +3,7 @@ from binascii import hexlify
 from hashlib import pbkdf2_hmac
 from random import choice
 from string import ascii_letters, digits
-from time import time
+from time import time,sleep
 import requests
 from giteacasc.base import GiteaBase
 from requests.auth import HTTPBasicAuth
@@ -169,10 +169,11 @@ class Repo(GiteaBase):
         if res.status_code != 204:
             res.raise_for_status()
 
-    def create_release(self, name, tag_name, **kwargs):
-        res = self.post(f'/repos/{self.org}/{self.name}/releases', json={'tag_name': tag_name, 'name':name, **kwargs})
+    def create_release(self, name, **kwargs):
+        sleep(0.5)
+        res = self.post(f'/repos/{self.org}/{self.name}/releases', json={'name': str(name), **kwargs})
         if res.status_code != 201:
-            print(tag_name, kwargs)
+            print('error:', name, kwargs, res.text)
             res.raise_for_status()
 
     def create_webhook(self, url, **kwargs):

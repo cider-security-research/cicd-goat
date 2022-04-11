@@ -13,7 +13,7 @@ services:
     environment:
       - USER_UID=1000
       - USER_GID=1000
-#    restart: always
+    restart: always
     networks:
       - goat
     ports:
@@ -28,7 +28,7 @@ services:
     networks:
       - goat
     volumes:
-      - ./tmp-ctfd:/opt/CTFd
+      - ./tmp-ctfd/CTFd:/opt/CTFd
   jenkins_server:
     image: cidersecurity/goat-jenkins-server:latest
     build:

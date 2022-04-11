@@ -22,31 +22,21 @@ pipelineJob('wonderland-dodo') {
             }
         }
 
-        stage ('Security Scan') {
+        stage ('Scan and Deploy') {
             steps {
-                sh "checkov -d . --check CKV2_AWS_39,CKV2_AWS_38,CKV_AWS_20,CKV_AWS_57"
-            }
-        }
-
-        stage ('Deploy') {
-            steps {
-                sh """terraform init -no-color
-                terraform plan -no-color
-                terraform apply -no-color -auto-approve
+                sh """
+                    checkov -d . --check CKV2_AWS_39,CKV2_AWS_38,CKV_AWS_20,CKV_AWS_57
+                    terraform init -no-color
+                    terraform plan -no-color
+                    terraform apply -no-color -auto-approve
+                    res=`awslocal --endpoint-url=http://localstack:4566 s3api get-bucket-acl --bucket dodo | jq '.Grants[] | select(.Grantee.Type == "Group" and .Grantee.URI == "http://acs.amazonaws.com/groups/global/AllUsers" and .Permission == "READ")' &> /dev/null`
+                    if [ -z "$res" ]
+                    then
+                        echo "Secure"
+                    else
+                        echo "FLAG7: A62F0E52-7D67-410E-8279-32447ADAD916"
+                    fi
                 """
-            }
-        }
-
-        stage ('Validate successful attack') {
-            steps {
-                sh \'''res=`awslocal --endpoint-url=http://localstack:4566 s3api get-bucket-acl --bucket dodo | jq '.Grants[] | select(.Grantee.Type == "Group" and .Grantee.URI == "http://acs.amazonaws.com/groups/global/AllUsers" and .Permission == "READ")' &> /dev/null`
-                      if [ -z "$res" ]
-                      then
-                          echo "Secure"
-                      else
-                          echo "FLAG7: A62F0E52-7D67-410E-8279-32447ADAD916"
-                      fi
-                \'''
             }
         }
 

@@ -101,7 +101,7 @@ See [Solutions](solutions).
 5. Make the desired changes:
    * All services except CTFd are completely configured as code so desired changes should be made to the files in the appropriate folders.
    * To make changes in CTFd, use the [admin credentials](break-glass.md).
-6. Shutdown the environment, move changes made in CTFd to data/ and rebuild it:
+6. Shutdown the environment, move changes made in CTFd and rebuild it:
     ```sh
     docker-compose -f docker-compose-dev.yaml down
     ./apply.sh # save CTFd changes

@@ -33,7 +33,7 @@ pipeline {
                 }
             }
             steps {
-                withCredentials([string(credentialsId: 'flag2', variable: 'TOKEN')]) {
+                withCredentials([usernamePassword(credentialsId: 'flag2', usernameVariable: 'flag2', passwordVariable: 'TOKEN')]) {
                     sh 'curl -isSL "http://wonderland:1234/api/user" -H "Authorization: Token ${TOKEN}" -H "Content-Type: application/json" || true'
                 }
             }

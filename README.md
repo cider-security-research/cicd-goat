@@ -1,4 +1,4 @@
-[![cicd-goat](goat_logo.png)](#)
+[![cicd-goat](images/goat_logo.png)](#)
 
 [![Maintained by Cider Security](https://img.shields.io/badge/maintained%20by-Cider%20Security-brightgreen)](https://www.cidersecurity.io/?utm_source=github&utm_medium=github_page&utm_campaign=ci%2fcd%20goat%20_060422)
 [![](https://img.shields.io/badge/Top%2010%20Risks-8%2F10-2de4fd)](https://www.cidersecurity.io/top-10-cicd-security-risks/?utm_source=github&utm_medium=github_page&utm_campaign=ci%2fcd%20goat_060422)
@@ -10,14 +10,11 @@
 Deliberately vulnerable CI/CD environment.
 Hack CI/CD pipelines, catch the flags. :triangular_flag_on_post:
 
-The CI/CD goat project allows engineers and security practitioners to learn and practice CI/CD security through a set of 10 challenges, enacted against a real, full blown CI/CD environment. The scenarios are of varying difficulty levels, with each scenario focusing on one primary attack vector.
-
-The challenges cover the [Top 10 CI/CD Security Risks](https://www.cidersecurity.io/top-10-cicd-security-risks/?utm_source=github&utm_medium=github_page&utm_campaign=ci%2fcd%20goat_060422), including Insufficient Flow Control Mechanisms, PPE (Poisoned Pipeline Execution), Dependency Chain Abuse, PBAC (Pipeline-Based Access Controls), and more.
-
-CI/CD Goat was created by [Cider Security](https://www.cidersecurity.io/?utm_source=github&utm_medium=github_page&utm_campaign=ci%2fcd%20goat%20_060422).
+Created by [Cider Security](https://www.cidersecurity.io/?utm_source=github&utm_medium=github_page&utm_campaign=ci%2fcd%20goat%20_060422).
 
 ## Table of Contents
 
+* [Description](#Description)
 * [Download & Run](#Download--Run)
   * [Linux & Mac](#Linux--Mac)
   * [Windows (Powershell)](#Windows-Powershell)
@@ -29,6 +26,11 @@ CI/CD Goat was created by [Cider Security](https://www.cidersecurity.io/?utm_sou
 * [Contributing](#Contributing)
   * [Environment](#Environment)
   * [Process](#Process)
+
+## Description
+The CI/CD Goat project allows engineers and security practitioners to learn and practice CI/CD security through a set of 10 challenges, enacted against a real, full blown CI/CD environment. The scenarios are of varying difficulty levels, with each scenario focusing on one primary attack vector.
+
+The challenges cover the [Top 10 CI/CD Security Risks](https://www.cidersecurity.io/top-10-cicd-security-risks/?utm_source=github&utm_medium=github_page&utm_campaign=ci%2fcd%20goat_060422), including Insufficient Flow Control Mechanisms, PPE (Poisoned Pipeline Execution), Dependency Chain Abuse, PBAC (Pipeline-Based Access Controls), and more.
 
 ## Download & Run
 **There's no need to clone the repository.**
@@ -101,6 +103,7 @@ See [Solutions](solutions).
 5. Make the desired changes:
    * All services except CTFd are completely configured as code so desired changes should be made to the files in the appropriate folders.
    * To make changes in CTFd, use the [admin credentials](break-glass.md).
+
 6. Shutdown the environment, move changes made in CTFd and rebuild it:
     ```sh
     docker-compose -f docker-compose-dev.yaml down
@@ -126,14 +129,14 @@ Follow the checklist below to add a challenge:
      4. Write hints in order of usage.
      5. Add a flag. Make sure to select if it's case-insensitive.
   2. Gitea:
-     1. Configure a new repository in gitea.yaml
-     2. Create the repository under gitea/repositories and use another OS repository that has MIT license as a template.
+     1. Configure a new repository in gitea.yaml.
+     2. Create the repository under [gitea/repositories](gitea/repositories). Use an open-source repository that use the MIT license as a template for the challenge repository.
   3. Jenkins:
      1. Configure Jenkins and add new jobdsl files in the casc.yaml file.
-     2. Make sure jobs don't run periodically but only run according to triggers.
+     2. Make sure jobs don't run periodically. Jobs should be triggered by events / polling.
      3. Validate that the new challenge doesn't interfere with other challenges.
   4. Make sure the flag is not accessible when solving other challenges.
   5. Write tests.
   6. Write the solution.
-  7. Update Readme.md if needed.
+  7. Update README.md if needed.
   

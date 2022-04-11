@@ -17,5 +17,10 @@ Trying to add pre or post-install scripts with malicious code should fail, as th
 
 
 3. Commit the changes to the main branch.
-4. Manually trigger the _twiddledum_ pipeline.
-5. Access the console output of the executed job to get the secret.
+4. Create a new tag `1.2.0` for the last commit and push it:
+```bash
+git tag 1.2.0 HEAD
+git push origin 1.2.0
+```
+5. Manually trigger the _twiddledum_ pipeline.
+6. Access the console output of the executed job to get the secret.

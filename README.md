@@ -24,8 +24,8 @@ Created by [Cider Security](https://www.cidersecurity.io/?utm_source=github&utm_
   * [Troubleshooting](#Troubleshooting)
 * [Solutions](#Solutions)
 * [Contributing](#Contributing)
-  * [Environment](#Environment)
-  * [Process](#Process)
+  * [Development](#Development)
+  * [Checklist](#Checklist)
 
 ## Description
 The CI/CD Goat project allows engineers and security practitioners to learn and practice CI/CD security through a set of 10 challenges, enacted against a real, full blown CI/CD environment. The scenarios are of varying difficulty levels, with each scenario focusing on one primary attack vector.

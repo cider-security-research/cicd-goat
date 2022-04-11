@@ -17,6 +17,8 @@ def test_twiddledum(gitea_client, jenkins_client):
                            REPOSITORIES_DIR / LIB_REPO_NAME,
                            branch='main')
     branch_and_write_file(repo, 'main', 'index.js', CONTENT)
+    repo.git.tag('1.2.0', 'HEAD')
+    repo.git.push('origin', '1.2.0')
     res = gitea_client.post(f'/repos/{OWNER}/{LIB_REPO_NAME}/releases',
                             json={'name': '1.2.0', 'tag_name': '1.2.0'})
     assert res.status_code == 201

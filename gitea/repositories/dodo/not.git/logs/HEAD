@@ -21,3 +21,5 @@ d8a490536661a14f0c4df83b294824711f61d68f 5b910b9ef1dc3bd76d83f513a0a2d844ba7b482
 7ad98b5855073314978111cb28d2ea48f46ad14a 140bc324a968e6c9ffed4629a2130f96d7dccafa Asaf <asaf@cidersecurity.io> 1649239593 +0300	rebase (squash): Added TF
 140bc324a968e6c9ffed4629a2130f96d7dccafa 140bc324a968e6c9ffed4629a2130f96d7dccafa Asaf <asaf@cidersecurity.io> 1649239595 +0300	rebase (finish): returning to refs/heads/main
 140bc324a968e6c9ffed4629a2130f96d7dccafa 5bcdce9e1bb32e05ed74fcc01129bb546e8a5118 Asaf <asaf@cidersecurity.io> 1649239634 +0300	commit (amend): terraform
+5bcdce9e1bb32e05ed74fcc01129bb546e8a5118 fab2a765de051380e94db4dd5748c6ec96759853 Asaf <asaf@cidersecurity.io> 1649661522 +0300	reset: moving to HEAD~1
+fab2a765de051380e94db4dd5748c6ec96759853 cc5667e87175e18bf7a23cd738df7cc028a57cc8 Asaf <asaf@cidersecurity.io> 1649661630 +0300	commit: Terraform

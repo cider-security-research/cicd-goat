@@ -47,7 +47,7 @@ The images are configured to interconnect in a way that creates fully functional
 
 ## Download & Run
 **There's no need to clone the repository.**
-### Linux & Mac
+### Linux & Mac (Intel chip)
 
 ```sh
 curl -o cicd-goat/docker-compose.yaml --create-dirs https://raw.githubusercontent.com/cider-security-research/cicd-goat/main/docker-compose.yaml

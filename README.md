@@ -54,6 +54,12 @@ curl -o cicd-goat/docker-compose.yaml --create-dirs https://raw.githubuserconten
 cd cicd-goat && docker-compose up -d
 ```
 
+### Mac (Apple chip)
+1. ```curl -o cicd-goat/docker-compose.yaml --create-dirs https://raw.githubusercontent.com/cider-security-research/cicd-goat/main/docker-compose.yaml
+cd cicd-goat && docker-compose up -d jenkins_server```
+2. Wait for Jenkins to fully boot.
+3. `docker-compose up -d`
+
 ### Windows (Powershell)
 ```PowerShell
 mkdir cicd-goat; cd cicd-goat

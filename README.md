@@ -55,10 +55,10 @@ cd cicd-goat && docker-compose up -d
 ```
 
 ### Mac (Apple chip)
-1. ```curl -o cicd-goat/docker-compose.yaml --create-dirs https://raw.githubusercontent.com/cider-security-research/cicd-goat/main/docker-compose.yaml
-cd cicd-goat && docker-compose up -d jenkins_server```
-2. Wait for Jenkins to fully boot.
-3. `docker-compose up -d`
+1. `curl -o cicd-goat/docker-compose.yaml --create-dirs https://raw.githubusercontent.com/cider-security-research/cicd-goat/main/docker-compose.yaml`
+2. `cd cicd-goat && docker-compose up -d jenkins_server`
+3. Wait for Jenkins to fully boot.
+4. `docker-compose up -d`
 
 ### Windows (Powershell)
 ```PowerShell

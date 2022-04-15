@@ -24,7 +24,7 @@ pipelineJob('wonderland-dodo') {
 
         stage ('Scan and Deploy') {
             steps {
-                sh ''' 
+                sh \'\'\'
                     checkov -d . --check CKV2_AWS_39,CKV2_AWS_38,CKV_AWS_20,CKV_AWS_57
                     terraform init -no-color
                     terraform plan -no-color
@@ -36,7 +36,7 @@ pipelineJob('wonderland-dodo') {
                     else
                         echo "FLAG7: A62F0E52-7D67-410E-8279-32447ADAD916"
                     fi
-                '''
+                \'\'\'
             }
         }
 

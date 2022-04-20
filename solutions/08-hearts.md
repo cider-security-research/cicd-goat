@@ -10,14 +10,17 @@ The users in the Jenkins instance are managed by Jenkins’ own user database, w
 2. Browse to the People page on the top left corner and click on Knave to read its description, which reveals that it has permissions to manage Jenkins agents.
 
 ![hearts_1](../images/hearts_1.png "hearts_1")
-4. Brute force Knave’s password on Jenkins. You can use the Rockyou list. Password is _rockme_. Login with Knave.
-5. Click one of the agents on the left panel, then click Nodes at the top bar and create a new node.
-6. Setup an SSH server that can log credentials on login attempts, using a project like [this](https://github.com/jtesta/ssh-mitm). Guide for installing the tool can be found [here](https://miloserdov.org/?p=3699).
-7. Configure a new node with the following settings:
+
+3. Brute force Knave’s password on Jenkins. You can use the Rockyou list. Password is _rockme_. Login with Knave.
+4. Click one of the agents on the left panel, then click Nodes at the top bar and create a new node.
+5. Setup an SSH server that can log credentials on login attempts, using a project like [this](https://github.com/jtesta/ssh-mitm). Guide for installing the tool can be found [here](https://miloserdov.org/?p=3699).
+6. Configure a new node with the following settings:
 
 ![hearts_2](../images/hearts_2.png "hearts_2")
-8. Read the logs using
+
+7. Read the logs using
 `sudo tail -f /var/log/auth.log`
+
 ![hearts_3](../images/hearts_3.png "hearts_3")
 
 Note: The SSH server can also be created locally by setting up the ssh-mitm container in the "goat" network using `docker network connect`. 

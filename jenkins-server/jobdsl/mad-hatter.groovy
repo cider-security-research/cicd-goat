@@ -36,6 +36,12 @@ multibranchPipelineJob('wonderland-mad-hatter') {
           repoOwner("${OWNER}")
           repository('mad-hatter')
           serverUrl("http://gitea:3000")
+          traits {
+            headWildcardFilter {
+              includes('')
+              excludes('main')
+            }
+          }
         }
       }
     }

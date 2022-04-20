@@ -14,8 +14,8 @@ from uuid import uuid4
 OWNER = 'Wonderland'
 REPOSITORIES_DIR = Path(__file__).resolve().parent / 'repositories'
 GITEA_GIT_BASE = 'http://thealice:thealice@localhost:3000'
-RUNNING_BUILD_TIMEOUT = 120
-START_BUILD_TIMEOUT = 30
+RUNNING_BUILD_TIMEOUT = 210
+START_BUILD_TIMEOUT = 60
 FORK_ORG = 'test'
 GITEA_BASE = 'http://localhost:3000'
 GITEA_API_BASE = f'{GITEA_BASE}/api/v1'
@@ -90,8 +90,12 @@ class JenkinsClient(Jenkins):
                     try:
                         last_build = job.get_last_build()
                     except NoBuildData:
-                        pass
-                    break
+                        if time() - start > RUNNING_BUILD_TIMEOUT:
+                            break
+                        sleep(1)
+                        continue
+                    else:
+                        break
                 if time() - start > RUNNING_BUILD_TIMEOUT:
                     break
                 sleep(1)
@@ -108,7 +112,7 @@ class JenkinsClient(Jenkins):
         while 1:
             results = [search_last_build(job) for name, job in self.get_jobs()
                        if job_name in name]
-            if [result for result, console in results if results]:
+            if [result for result, console in results if result]:
                 return True
             if time() - start_time > START_BUILD_TIMEOUT:
                 break

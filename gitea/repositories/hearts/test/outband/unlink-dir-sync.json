@@ -1,7 +1,0 @@
-{
-  "tc": "unlink",
-  "async": false,
-  "file": false,
-  "options": { "keep":false },
-  "graceful": false 
-}

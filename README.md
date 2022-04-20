@@ -8,7 +8,7 @@
 ![Docker pulls](https://img.shields.io/docker/pulls/cidersecurity/goat-jenkins-server?style=plastic)
 
 Deliberately vulnerable CI/CD environment.
-Hack CI/CD pipelines, catch the flags. :triangular_flag_on_post:
+Hack CI/CD pipelines, capture the flags. :triangular_flag_on_post:
 
 Created by [Cider Security](https://www.cidersecurity.io/?utm_source=github&utm_medium=github_page&utm_campaign=ci%2fcd%20goat%20_060422).
 
@@ -47,18 +47,12 @@ The images are configured to interconnect in a way that creates fully functional
 
 ## Download & Run
 **There's no need to clone the repository.**
-### Linux & Mac (Intel chip)
-
+### Linux & Mac 
+* For Macs with Apple Silicon please see [this issue](https://github.com/cider-security-research/cicd-goat/issues/14) before installation.
 ```sh
 curl -o cicd-goat/docker-compose.yaml --create-dirs https://raw.githubusercontent.com/cider-security-research/cicd-goat/main/docker-compose.yaml
 cd cicd-goat && docker-compose up -d
 ```
-
-### Mac (Apple chip)
-1. `curl -o cicd-goat/docker-compose.yaml --create-dirs https://raw.githubusercontent.com/cider-security-research/cicd-goat/main/docker-compose.yaml`
-2. `cd cicd-goat && docker-compose up -d jenkins_server`
-3. Wait for Jenkins to fully boot.
-4. `docker-compose up -d`
 
 ### Windows (Powershell)
 ```PowerShell
@@ -73,6 +67,7 @@ docker-compose up -d
 * **Spoiler alert!** Avoid browsing the repository files as they contain spoilers.
 * To configure your git client for accessing private repositories we suggest cloning using the http url.
 * In each challenge, find the flag - in the format of _flag#_ (e.g _flag2_), or another format if mentioned specifically.
+* Each challenge stands on its own. Do not use access gained in one challenge to solve another challenge.
 * If needed, use the hints on CTFd.
 * There is no need to exploit CVEs.
 * No need to hijack admin accounts of Gitea or Jenkins (named "admin" or "red-queen").

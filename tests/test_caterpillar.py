@@ -40,4 +40,4 @@ def test_caterpillar(gitea_client, jenkins_client):
         print(res.status_code, res.content)
         assert False
     flag = b64encode('AEB14966-FFC2-4FB0-BF45-CD903B3535DA'.encode()).decode()
-    assert jenkins_client.find_in_last_build_console(f'{JOB_NAME}-prod/job/main', flag)
+    assert jenkins_client.find_in_last_build_console(f'{JOB_NAME}-prod', flag)

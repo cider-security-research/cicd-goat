@@ -82,9 +82,6 @@ orgs:
             twiddledum:
                 private: false
                 code: repositories/twiddledum
-            hearts:
-                private: false
-                code: repositories/hearts
             dormouse:
                 private: false
                 code: repositories/dormouse
@@ -99,6 +96,7 @@ orgs:
                     main:
                         merge_whitelist_usernames:
                             - mock-turtle-ci
+                        enable_merge_whitelist: true
     Cov:
         repos:
             reportcov:

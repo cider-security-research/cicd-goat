@@ -4,7 +4,7 @@ LABEL org.opencontainers.image.vendor="Cider Security" \
     org.opencontainers.image.description="Deliberately vulnerable CI/CD environment." \
     org.opencontainers.image.url="https://hub.docker.com/r/cidersecurity/goat-lighttpd" \
     org.opencontainers.image.source="https://github.com/cider-security-research/cicd-goat" \
-    org.opencontainers.image.licenses="GPL-3.0" \
+    org.opencontainers.image.licenses="Apache-2.0" \
     org.opencontainers.image.version="${VERSION}" \
     org.opencontainers.image.revision="${COMMIT_SHA}"
 
@@ -23,6 +23,10 @@ RUN chmod 600 /root/.ssh/authorized_keys && \
     && rm -rf /var/cache/apk/* \
     && passwd -u root
 COPY reportcov.sh /var/www/localhost/htdocs
+
+# Only for testing of hearts challenge
+RUN adduser agent -D && \
+    echo "agent:B1A648E1-FD8B-4D66-8CAF-78114F55D396" | chpasswd --md5 agent
 
 EXPOSE 22
 EXPOSE 80

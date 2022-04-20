@@ -10,7 +10,7 @@ multibranchPipelineJob('wonderland-white-rabbit') {
           serverUrl("http://gitea:3000")
           traits {
             headWildcardFilter {
-              includes('main PR-*')
+              includes('PR-*')
               excludes('')
             }
           }

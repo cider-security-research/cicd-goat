@@ -17,10 +17,11 @@ credentials:
           id: "gitea-access-token"
           scope: GLOBAL
           token: "${GITEA_ACCESS_TOKEN}"
-      - string:
-          id: "EC2-creds-flag8"
-          scope: GLOBAL
-          secret: "${FLAG8}"
+      - usernamePassword:
+          id: "ssh-creds-flag8"
+          username: "agent"
+          scope: SYSTEM
+          password: "${FLAG8}"
 jenkins:
   agentProtocols:
   - "JNLP4-connect"
@@ -76,23 +77,24 @@ jenkins:
               - "Job/Workspace"
               - "View/Read"
           - assignments:
-              - "alice"
-              - "knave"
+            - "knave"
+            name: "hearts"
+            pattern: ".*"
+            permissions:
+              - "Agent/Provision"
+              - "Agent/Create"
+              - "Agent/Configure"
+              - "Agent/Connect"
+              - "Agent/Delete"
+              - "Agent/Disconnect"
+          - assignments:
+            - "alice"
+            - "knave"
             name: "users"
             pattern: ".*"
             permissions:
               - "Overall/Read"
         items:
-          - assignments:
-              - "knave"
-            name: "hearts"
-            pattern: "wonderland-hearts"
-            permissions:
-              - "Job/Cancel"
-              - "Job/Build"
-              - "Job/Read"
-              - "Job/Configure"
-              - "Job/Workspace"
           - assignments:
               - "alice"
             name: "users"
@@ -127,8 +129,6 @@ jenkins:
       numExecutors: 2
       retentionStrategy: "always"
   numExecutors: 2
-  remotingSecurity:
-    enabled: true
   securityRealm:
     local:
       allowsSignup: false
@@ -140,7 +140,7 @@ jenkins:
       - id: "alice"
         name: "Alice"
         password: "alice"
-      - description: "Owner of Hearts job"
+      - description: "Agents admin"
         id: "knave"
         name: "knave"
         password: "rockme"
@@ -164,7 +164,6 @@ jobs:
   - file: /var/jenkins_home/jobdsl/cheshire-cat.groovy
   - file: /var/jenkins_home/jobdsl/twiddledum.groovy
   - file: /var/jenkins_home/jobdsl/dodo.groovy
-  - file: /var/jenkins_home/jobdsl/hearts.groovy
   - file: /var/jenkins_home/jobdsl/reportcov.groovy
   - file: /var/jenkins_home/jobdsl/dormouse.groovy
   - file: /var/jenkins_home/jobdsl/mock-turtle.groovy

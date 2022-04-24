@@ -6,6 +6,7 @@ networks:
 
 services:
   jenkins_server:
+    platform: "linux/amd64"
     image: cidersecurity/goat-jenkins-server:latest
     networks:
       - goat

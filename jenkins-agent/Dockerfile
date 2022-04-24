@@ -1,12 +1,15 @@
 FROM jenkins/ssh-agent:4.1.0-jdk11 AS base
+ARG VERSION
+ARG COMMIT_SHA
+
 LABEL org.opencontainers.image.vendor="Cider Security" \
     org.opencontainers.image.title="CI/CD Goat - Jenkins agent" \
     org.opencontainers.image.description="Deliberately vulnerable CI/CD environment." \
     org.opencontainers.image.url="https://hub.docker.com/r/cidersecurity/goat-jenkins-agent" \
     org.opencontainers.image.source="https://github.com/cider-security-research/cicd-goat" \
     org.opencontainers.image.licenses="Apache-2.0" \
-    org.opencontainers.image.version="${VERSION}" \
-    org.opencontainers.image.revision="${COMMIT_SHA}"
+    org.opencontainers.image.version=$VERSION \
+    org.opencontainers.image.revision=$COMMIT_SHA
 
 RUN apt-get update && \
     apt-get -y --no-install-recommends install python3 python3-pip \

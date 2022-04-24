@@ -82,7 +82,8 @@ jobs:
           command: |
             python3 rename.py git
             cp -R ctfd/data/ tmp-ctfd/
-            docker-compose -f docker-compose-dev.yaml up -d --build
+            docker-compose -f docker-compose-dev.yaml build --build-arg VERSION=$VERSION --build-arg COMMIT_SHA=$CIRCLE_SHA1
+            docker-compose -f docker-compose-dev.yaml up -d
       - run:
           name: Install testing dependencies
           command: |

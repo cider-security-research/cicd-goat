@@ -95,7 +95,8 @@ class JenkinsClient(Jenkins):
                         sleep(1)
                         continue
                     else:
-                        break
+                        if string in last_build.get_console():
+                            return True, ''
                 if time() - start > RUNNING_BUILD_TIMEOUT:
                     break
                 sleep(1)

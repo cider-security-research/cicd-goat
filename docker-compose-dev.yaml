@@ -30,6 +30,7 @@ services:
     volumes:
       - ./tmp-ctfd/CTFd:/opt/CTFd
   jenkins_server:
+    platform: "linux/amd64"
     image: cidersecurity/goat-jenkins-server:latest
     build:
       context: ./jenkins-server

@@ -23,6 +23,9 @@ pipelineJob('wonderland-dodo') {
         }
 
         stage ('Scan and Deploy') {
+            environment {
+                FLAG7 = credentials('flag7')
+            }
             steps {
                 sh \'\'\'
                     checkov -d . --check CKV2_AWS_39,CKV2_AWS_38,CKV_AWS_20,CKV_AWS_57
@@ -34,7 +37,8 @@ pipelineJob('wonderland-dodo') {
                     then
                         echo "Secure"
                     else
-                        echo "FLAG7: A62F0E52-7D67-410E-8279-32447ADAD916"
+                        decoded=`echo $FLAG7 | base64 -d`
+                        echo "FLAG7: $decoded"
                     fi
                 \'\'\'
             }

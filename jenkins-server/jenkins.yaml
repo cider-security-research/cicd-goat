@@ -17,6 +17,10 @@ credentials:
           id: "gitea-access-token"
           scope: GLOBAL
           token: "${GITEA_ACCESS_TOKEN}"
+      - string:
+          id: "flag7"
+          scope: GLOBAL
+          secret: "${FLAG7}"
       - usernamePassword:
           id: "ssh-creds-flag8"
           username: "agent"

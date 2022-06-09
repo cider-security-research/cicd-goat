@@ -33,11 +33,6 @@ pipelineJob('wonderland-dodo/wonderland-dodo') {
         }
       }
     }
-    wrappers {
-    credentialsBinding {
-      usernamePassword('USERNAME', 'FLAG7', 'flag7')
-    }
-  }
     cpsFlowDefinition {
       sandbox(true)
       script('''pipeline {
@@ -52,20 +47,22 @@ pipelineJob('wonderland-dodo/wonderland-dodo') {
 
         stage ('Scan and Deploy') {
             steps {
-                sh \'\'\'
-                    checkov -d . --check CKV2_AWS_39,CKV2_AWS_38,CKV_AWS_20,CKV_AWS_57
-                    terraform init -no-color
-                    terraform plan -no-color
-                    terraform apply -no-color -auto-approve
-                    res=`awslocal --endpoint-url=http://localstack:4566 s3api get-bucket-acl --bucket dodo | jq '.Grants[] | select(.Grantee.Type == "Group" and .Grantee.URI == "http://acs.amazonaws.com/groups/global/AllUsers" and .Permission == "READ")' &> /dev/null`
-                    if [ -z "$res" ]
-                    then
-                        echo "Secure"
-                    else
-                        decoded=`echo $FLAG7 | base64 -d`
-                        echo "FLAG7: $decoded"
-                    fi
-                \'\'\'
+                withCredentials([usernamePassword(credentialsId: 'flag7', usernameVariable: 'USERNAME', passwordVariable: 'flag7')]) {
+                  sh \'\'\'
+                      checkov -d . --check CKV2_AWS_39,CKV2_AWS_38,CKV_AWS_20,CKV_AWS_57
+                      terraform init -no-color
+                      terraform plan -no-color
+                      terraform apply -no-color -auto-approve
+                      res=`awslocal --endpoint-url=http://localstack:4566 s3api get-bucket-acl --bucket dodo | jq '.Grants[] | select(.Grantee.Type == "Group" and .Grantee.URI == "http://acs.amazonaws.com/groups/global/AllUsers" and .Permission == "READ")' &> /dev/null`
+                      if [ -z "$res" ]
+                      then
+                          echo "Secure"
+                      else
+                          decoded=`echo $FLAG7 | base64 -d`
+                          echo "FLAG7: $decoded"
+                      fi
+                  \'\'\'
+                }
             }
         }
 

@@ -1,4 +1,30 @@
-pipelineJob('wonderland-dodo') {
+folder('wonderland-dodo') {
+  properties {
+    folderCredentialsProperty{
+      domainCredentials {
+        domainCredentials {
+          domain {
+            name('')
+            description('')
+          }
+                - string:
+          id: "flag7"
+          scope: GLOBAL
+          secret: "${FLAG7}"
+          credentials {
+            string {
+              scope('GLOBAL')
+              id('flag7')
+              description('')
+              secret('QTYyRjBFNTItN0Q2Ny00MTBFLTgyNzktMzI0NDdBREFEOTE2Cg==')
+            }
+          }
+        }
+      }
+    }
+  }
+}
+pipelineJob('wonderland-dodo/wonderland-dodo') {
   definition {
     cpsScm {
       scm {

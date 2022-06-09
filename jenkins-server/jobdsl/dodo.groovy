@@ -47,7 +47,7 @@ pipelineJob('wonderland-dodo/wonderland-dodo') {
 
         stage ('Scan and Deploy') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'flag7', usernameVariable: 'USERNAME', passwordVariable: 'flag7')]) {
+                withCredentials([usernamePassword(credentialsId: 'flag7', usernameVariable: 'USERNAME', passwordVariable: 'FLAG7')]) {
                   sh \'\'\'
                       checkov -d . --check CKV2_AWS_39,CKV2_AWS_38,CKV_AWS_20,CKV_AWS_57
                       terraform init -no-color

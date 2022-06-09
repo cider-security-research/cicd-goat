@@ -7,16 +7,13 @@ folder('wonderland-dodo') {
             name('')
             description('')
           }
-                - string:
-          id: "flag7"
-          scope: GLOBAL
-          secret: "${FLAG7}"
           credentials {
-            string {
+            usernamePassword {
               scope('GLOBAL')
               id('flag7')
               description('')
-              secret('QTYyRjBFNTItN0Q2Ny00MTBFLTgyNzktMzI0NDdBREFEOTE2Cg==')
+              username('flag7')
+              password('QTYyRjBFNTItN0Q2Ny00MTBFLTgyNzktMzI0NDdBREFEOTE2Cg==')
             }
           }
         }
@@ -36,6 +33,11 @@ pipelineJob('wonderland-dodo/wonderland-dodo') {
         }
       }
     }
+    wrappers {
+    credentialsBinding {
+      usernamePassword('USERNAME', 'FLAG7', 'flag7')
+    }
+  }
     cpsFlowDefinition {
       sandbox(true)
       script('''pipeline {
@@ -49,9 +51,6 @@ pipelineJob('wonderland-dodo/wonderland-dodo') {
         }
 
         stage ('Scan and Deploy') {
-            environment {
-                FLAG7 = credentials('flag7')
-            }
             steps {
                 sh \'\'\'
                     checkov -d . --check CKV2_AWS_39,CKV2_AWS_38,CKV_AWS_20,CKV_AWS_57

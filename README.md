@@ -153,5 +153,5 @@ Follow the checklist below to add a challenge:
   5. Write tests.
   6. Write the solution.
   7. Update README.md if needed.
-  8. Make sure you have a CircleCI account and that you're following your fork of the project in CircleCI.
+  8. In order to run the CI, make sure you have a CircleCI account and that you’ve clicked “Set Up Project” on your fork of the project in CircleCI.
   

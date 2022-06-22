@@ -73,11 +73,12 @@ docker-compose up -d
 * No need to hijack admin accounts of Gitea or Jenkins (named "admin" or "red-queen").
 
 ### Take the challenge
-1. Login to CTFd at http://localhost:8000 to view the challenges:
+1. After starting the containers, it might take up to 5 minutes until the containers configuration process is complete.
+2. Login to CTFd at http://localhost:8000 to view the challenges:
    * Username: `alice`
    * Password: `alice`
 
-2. Hack:
+3. Hack:
    * Jenkins http://localhost:8080
      * Username: `alice`
      * Password: `alice`
@@ -85,7 +86,7 @@ docker-compose up -d
      * Username: `thealice`
      * Password: `thealice`
 
-3. Insert the flags on CTFd and find out if you got it right.
+4. Insert the flags on CTFd and find out if you got it right.
 
 ### Troubleshooting
 * If Gitea shows a blank page, refresh the page.

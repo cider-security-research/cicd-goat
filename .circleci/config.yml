@@ -54,7 +54,7 @@ jobs:
               fi
               sleep 1
             done
-            sleep 60
+            sleep 80
       - run:
           name: Pytest
           command: |
@@ -102,7 +102,7 @@ jobs:
               fi
               sleep 1
             done
-            sleep 60
+            sleep 80
       - run:
           name: Pytest
           command: |

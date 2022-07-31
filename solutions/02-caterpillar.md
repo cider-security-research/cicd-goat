@@ -20,7 +20,7 @@ Create a pull request originated from a fork and execute a [Public-PPE (3PE)](ht
 5. Clone the repository using the token.
 
     ```shell
-    git clone http://a644940c92efe2d1876e16a5d29e6c6d7e199b68@localhost:3000/Wonderland/caterpillar.git
+    git clone http://5d3ed5564341d5060c8524c41fe03507e296ca46@localhost:3000/Wonderland/caterpillar.git
     ```
 
 6. Modify the Jenkinsfile to load the _flag2_ secret as an environment variable and print it to the console output (or to send it to a remote host).

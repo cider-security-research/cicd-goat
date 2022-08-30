@@ -8,7 +8,7 @@ parameters:
 jobs:
   ci:
     machine:
-      image: ubuntu-2004:202010-01
+      image: ubuntu-2204:2022.07.1
     resource_class: large
     steps:
       - checkout
@@ -25,7 +25,7 @@ jobs:
           command: |
             python3 rename.py git
             cp -R ctfd/data/ tmp-ctfd/
-            docker-compose -f docker-compose-dev.yaml up -d --build
+            docker compose -f docker-compose-dev.yaml up -d --build
       - run:
           name: Save Docker layers cache
           command: |
@@ -61,7 +61,7 @@ jobs:
             pipenv run python -m pytest tests/
   release:
     machine:
-      image: ubuntu-2004:202010-01
+      image: ubuntu-2204:2022.07.1
     resource_class: large
     environment:
       ORG: cidersecurity
@@ -82,8 +82,8 @@ jobs:
           command: |
             python3 rename.py git
             cp -R ctfd/data/ tmp-ctfd/
-            docker-compose -f docker-compose-dev.yaml build --build-arg VERSION=$VERSION --build-arg COMMIT_SHA=$CIRCLE_SHA1
-            docker-compose -f docker-compose-dev.yaml up -d
+            docker compose -f docker-compose-dev.yaml build --build-arg VERSION=$VERSION --build-arg COMMIT_SHA=$CIRCLE_SHA1
+            docker compose -f docker-compose-dev.yaml up -d
       - run:
           name: Install testing dependencies
           command: |
@@ -107,12 +107,12 @@ jobs:
           name: Pytest
           command: |
             pipenv run python -m pytest tests/
-            docker-compose -f docker-compose-dev.yaml down
+            docker compose -f docker-compose-dev.yaml down
       - run:
           name: Push latest
           command: |
             docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-            docker-compose -f docker-compose-dev.yaml push
+            docker compose -f docker-compose-dev.yaml push
       - run:
           name: Push version
           command: |

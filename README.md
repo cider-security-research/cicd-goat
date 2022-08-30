@@ -48,10 +48,21 @@ The images are configured to interconnect in a way that creates fully functional
 
 ## Download & Run
 **There's no need to clone the repository.**
+
+### Prerequisites
+
+Users of Docker Desktop already have the Docker Engine and Docker Compose installed, and can move on to installing cicd-goat.
+
+- [Docker Engine](https://docs.docker.com/engine/install/) `19.03.0+`
+- [Docker Compose](https://docs.docker.com/compose/install/)
+
+Newer versions of Docker require users to install Docker Compose as a separate plugin: https://docs.docker.com/compose/cli-command-compatibility/
+
 ### Linux & Mac
 ```sh
-curl -o cicd-goat/docker-compose.yaml --create-dirs https://raw.githubusercontent.com/cider-security-research/cicd-goat/main/docker-compose.yaml
-cd cicd-goat && docker-compose up -d
+mkdir -p $HOME/cicd-goat
+curl -o /home/ubuntu/cicd-goat/docker-compose.yaml  https://raw.githubusercontent.com/cider-security-research/cicd-goat/main/docker-compose.yaml
+cd cicd-goat && docker compose up -d
 ```
 
 ### Windows (Powershell)

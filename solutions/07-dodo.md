@@ -16,7 +16,7 @@ In this challenge, Checkov validates that the S3 bucket created by the Terraform
 
     ```yaml
     soft-fail: true
-    Check:
+    check:
       - MY_CHECK
     ```
 

@@ -106,7 +106,7 @@ See [Solutions](solutions).
     ```
 3. Install testing dependencies: 
     ```sh
-    pip3 install pipenv
+    pip3 install pipenv==2022.8.30
     pipenv install --deploy
     ```
 4. Run the development environment to experiment with new changes:

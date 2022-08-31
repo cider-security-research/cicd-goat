@@ -16,7 +16,7 @@ ENV PYTHONUNBUFFERED=1
 RUN apk add --update --no-cache python3 py3-pip && \
     ln -sf python3 /usr/bin/python && \
     python3 --version
-RUN python3 -m pip install --no-cache-dir pipenv
+RUN python3 -m pip install --ignore-installed distlib --no-cache-dir pipenv==2022.8.30
 
 COPY Pipfile* /setup/
 RUN cd /setup && pipenv install --system --deploy

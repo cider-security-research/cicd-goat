@@ -1,7 +1,7 @@
 from conftest import JenkinsClient
 from subprocess import run
 
-CMD = 'docker logs lighttpd'
+CMD = 'docker logs prod'
 
 
 def test_hearts():
@@ -23,7 +23,7 @@ def test_hearts():
             "launcher": {
                 "stapler-class": "hudson.plugins.sshslaves.SSHLauncher",
                 "$class": "hudson.plugins.sshslaves.SSHLauncher",
-                "host": 'lighttpd',
+                "host": 'prod',
                 'port': 22,
                 'user': 'agent',
                 'credentialsId': 'ssh-creds-flag8',

@@ -1,5 +1,9 @@
 tmp-ctfd/
 
+# macos 
+**/.DS_Store
+.DS_Store
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -12,7 +16,6 @@ __pycache__/
 .Python
 build/
 develop-eggs/
-dist/
 downloads/
 eggs/
 .eggs/
@@ -20,13 +23,14 @@ lib/
 lib64/
 parts/
 sdist/
+dist/
 var/
 wheels/
 pip-wheel-metadata/
 share/python-wheels/
-*.egg-info/
 .installed.cfg
 *.egg
+*.egg-info/
 MANIFEST
 
 # PyInstaller
@@ -132,3 +136,6 @@ dmypy.json
 
 .idea/
 tests/repositories/
+gitlab/terraform.tfstate
+
+!/gitlab/repositories/pygryphon/dist

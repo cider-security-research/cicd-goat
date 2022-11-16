@@ -1,0 +1,25 @@
+image: "python:3.9.15-alpine3.16"
+
+variables:
+  DOCKER_HOST: tcp://docker:2375
+
+stages:
+  - test
+  - release
+
+test-job:
+  stage: test
+  script:
+    - python3 -m venv --clear tmp
+    - source tmp/bin/activate
+    - pip3 install -r requirements.txt
+    - pytest -rA test_hello.py
+    - deactivate
+
+release-job:
+  stage: release
+  script:
+    - apk add docker-cli
+    - docker build -t $CI_REGISTRY/wonderland/awesome-app/awesome-app:latest --network=host .
+    - docker login -u gryphon -p $TOKEN $CI_REGISTRY
+    - docker push $CI_REGISTRY/wonderland/awesome-app/awesome-app:latest

@@ -8,6 +8,9 @@ pytest = "*"
 requests = "*"
 jenkinsapi = "*"
 gitpython = "*"
+build = "*"
+twine = "*"
+python-gitlab = "*"
 
 [dev-packages]
 

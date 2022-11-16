@@ -1,0 +1,6 @@
+0000000000000000000000000000000000000000 508f60ab58eba51eef863f0e7aaeade6bc960041 Asaf Greenholts <asaf@cidersecurity.io> 1668504000 +0200	clone: from github.com:sameerkumar18/pyaztro.git
+508f60ab58eba51eef863f0e7aaeade6bc960041 9a42d202c26f497c18230eea60e9d8286ea1de9c alice <alice@wonderland.com> 1668504180 +0200	commit: Update CI
+9a42d202c26f497c18230eea60e9d8286ea1de9c 9a42d202c26f497c18230eea60e9d8286ea1de9c alice <alice@wonderland.com> 1668504211 +0200	Branch: renamed refs/heads/master to refs/heads/main
+9a42d202c26f497c18230eea60e9d8286ea1de9c 508f60ab58eba51eef863f0e7aaeade6bc960041 alice <alice@wonderland.com> 1668505245 +0200	reset: moving to HEAD~
+508f60ab58eba51eef863f0e7aaeade6bc960041 8f6556b91dc32c42ce98ff01528f81fed8145dd5 alice <alice@wonderland.com> 1668505341 +0200	commit: CI updates
+8f6556b91dc32c42ce98ff01528f81fed8145dd5 561a90af66014fe06eeec31d094bb6fcc6210d63 alice <alice@wonderland.com> 1668505547 +0200	commit: added dist

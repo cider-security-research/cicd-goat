@@ -1,4 +1,4 @@
-[![cicd-goat](images/banner.png)](#)
+[![cicd-goat](images/challenge_banner.png)](https://www.cidersecurity.io/goat-challenge)
 
 [![Maintained by Cider Security](https://img.shields.io/badge/maintained%20by-Cider%20Security-brightgreen)](https://www.cidersecurity.io/?utm_source=github&utm_medium=github_page&utm_campaign=ci%2fcd%20goat%20_060422)
 [![](https://img.shields.io/badge/Top%2010%20Risks-8%2F10-2de4fd)](https://www.cidersecurity.io/top-10-cicd-security-risks/?utm_source=github&utm_medium=github_page&utm_campaign=ci%2fcd%20goat_060422)
@@ -34,13 +34,16 @@ The CI/CD Goat project allows engineers and security practitioners to learn and 
 The challenges cover the [Top 10 CI/CD Security Risks](https://www.cidersecurity.io/top-10-cicd-security-risks/?utm_source=github&utm_medium=github_page&utm_campaign=ci%2fcd%20goat_060422), including Insufficient Flow Control Mechanisms, PPE (Poisoned Pipeline Execution), Dependency Chain Abuse, PBAC (Pipeline-Based Access Controls), and more.\
 The different challenges are inspired by Alice in Wonderland, each one is themed as a different character.
 
-The project’s environment is based on Docker images and can be run locally. These images are: 
+The project’s environment is based on Docker containers and can be run locally. These containers are: 
 1. Gitea (minimal git server)
 2. Jenkins
 3. Jenkins agent
 4. LocalStack (cloud service emulator that runs in a single container)
-5. Lighttpd 
-6. CTFd (Capture The Flag framework). 
+5. Prod - contains Docker in Docker and Lighttpd service 
+6. CTFd (Capture The Flag framework)
+7. GitLab
+8. GitLab runner
+9. Docker in Docker
 
 The images are configured to interconnect in a way that creates fully functional pipelines.
 
@@ -85,12 +88,16 @@ docker-compose up -d
    * Gitea http://localhost:3000
      * Username: `thealice`
      * Password: `thealice`
+   * GitLab http://localhost:4000
+     * Username: `alice`
+     * Password: `alice1234`
 
 4. Insert the flags on CTFd and find out if you got it right.
 
 ### Troubleshooting
 * If Gitea shows a blank page, refresh the page.
 * When forking a repository, don't change the name of the forked repository.
+* If any of the services doesn't start or is not configured correctly try adding more cpu and memory to the docker engine.
 
 ## Solutions
 **Warning:** Spoilers! :see_no_evil:
@@ -102,7 +109,7 @@ See [Solutions](solutions).
 1. Clone the repository.
 2. Rename .git folders to make them usable:<br/>
     ```sh
-    python3 rename.py git
+    ./rename.py git
     ```
 3. Install testing dependencies: 
     ```sh
@@ -131,7 +138,7 @@ See [Solutions](solutions).
    ```
 8. Rename .git folders to allow push:
     ```shell
-    python3 rename.py notgit
+    ./rename.py notgit
     ```
 9. Commit and push!
 
@@ -150,9 +157,13 @@ Follow the checklist below to add a challenge:
      1. Configure Jenkins and add new jobdsl files in the casc.yaml file.
      2. Make sure jobs don't run periodically. Jobs should be triggered by events / polling.
      3. Validate that the new challenge doesn't interfere with other challenges.
-  4. Make sure the flag is not accessible when solving other challenges.
-  5. Write tests.
-  6. Write the solution.
-  7. Update README.md if needed.
-  8. In order to run the CI, make sure you have a CircleCI account and that you’ve clicked “Set Up Project” on your fork of the project.
+  4. GitLab:
+     1. Configure Gitlab by changing the gitlab.tf file and run `terraform init` to update lock file.
+     2. To upload new repositories add the releqvant line in repositories.sh.
+     3. If any additional files are needed place them inside the resources' folder.
+  5. Make sure the flag is not accessible when solving other challenges.
+  6. Write tests.
+  7. Write the solution.
+  8. Update README.md if needed.
+  9. In order to run the CI, make sure you have a CircleCI account and that you’ve clicked “Set Up Project” on your fork of the project.
   

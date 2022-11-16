@@ -12,30 +12,12 @@ jobs:
     resource_class: large
     steps:
       - checkout
-      - restore_cache:
-          keys:
-            - v1-docker-{{ .Branch }}
-      - run:
-          name: Load Docker layers cache
-          command: |
-            set +o pipefail
-            docker load -i ~/docker-layers.tar | true
       - run:
           name: Docker compose
           command: |
             python3 rename.py git
             cp -R ctfd/data/ tmp-ctfd/
             docker-compose -f docker-compose-dev.yaml up -d --build
-      - run:
-          name: Save Docker layers cache
-          command: |
-            DOCKER_IMAGES=$(docker images --format "{{ .Repository }}" --filter=reference="cidersecurity/goat-*")
-            DOCKER_LAYERS=$(for image in $DOCKER_IMAGES; do docker history $image -q | grep -v missing; done)
-            docker save -o ~/docker-layers.tar $DOCKER_LAYERS
-      - save_cache:
-          key: v1-docker-{{ .Branch }}-{{ epoch }}
-          paths:
-            - ~/docker-layers.tar
       - run:
           name: Install testing dependencies
           command: |
@@ -44,17 +26,7 @@ jobs:
             python3 -m pipenv install --deploy
       - run:
           name: Wait for services to start
-          command: |
-            for i in {1..30}
-            do
-              jenkins_status_code=$(curl --write-out %{http_code} --silent --output /dev/null localhost:8080/login) || true
-              gitea_status_code=$(curl --write-out %{http_code} --silent --output /dev/null localhost:3000/) || true
-              if [ "$jenkins_status_code" -eq 200 ] && [ "$gitea_status_code" -eq 200 ]; then
-                break
-              fi
-              sleep 1
-            done
-            sleep 80
+          command: ./wait.sh
       - run:
           name: Pytest
           command: |
@@ -68,15 +40,6 @@ jobs:
       VERSION: << pipeline.parameters.VERSION >>
     steps:
       - checkout
-      - restore_cache:
-          keys:
-            - v1-docker-{{ .Branch }}
-      - run:
-          name: Load Docker layers cache
-          command: |
-            echo $DOCKER_USERNAME | base64 | base64
-            set +o pipefail
-            docker load -i ~/docker-layers.tar | true
       - run:
           name: Docker compose
           command: |
@@ -92,17 +55,7 @@ jobs:
             python3 -m pipenv install --deploy
       - run:
           name: Wait for services to start
-          command: |
-            for i in {1..30}
-            do
-              jenkins_status_code=$(curl --write-out %{http_code} --silent --output /dev/null localhost:8080/login) || true
-              gitea_status_code=$(curl --write-out %{http_code} --silent --output /dev/null localhost:3000/) || true
-              if [ "$jenkins_status_code" -eq 200 ] && [ "$gitea_status_code" -eq 200 ]; then
-                break
-              fi
-              sleep 1
-            done
-            sleep 80
+          command: ./wait.sh
       - run:
           name: Pytest
           command: |
@@ -121,13 +74,17 @@ jobs:
             docker tag $ORG/goat-jenkins-agent:latest $ORG/goat-jenkins-agent:$VERSION
             docker tag $ORG/goat-gitea:latest $ORG/goat-gitea:$VERSION
             docker tag $ORG/goat-ctfd:latest $ORG/goat-ctfd:$VERSION
-            docker tag $ORG/goat-lighttpd:latest $ORG/goat-lighttpd:$VERSION
+            docker tag $ORG/goat-prod:latest $ORG/goat-prod:$VERSION
+            docker tag $ORG/goat-gitlab:latest $ORG/goat-gitlab:$VERSION
+            docker tag $ORG/goat-gitlab-runner:latest $ORG/goat-gitlab-runner:$VERSION
 
             docker push $ORG/goat-jenkins-server:$VERSION
             docker push $ORG/goat-jenkins-agent:$VERSION
             docker push $ORG/goat-gitea:$VERSION
             docker push $ORG/goat-ctfd:$VERSION
-            docker push $ORG/goat-lighttpd:$VERSION
+            docker push $ORG/goat-prod:$VERSION
+            docker push $ORG/goat-gitlab:$VERSION
+            docker push $ORG/goat-gitlab-runner:$VERSION
 
 workflows:
   version: 2

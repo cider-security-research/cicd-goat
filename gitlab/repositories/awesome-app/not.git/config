@@ -1,0 +1,15 @@
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = false
+	logallrefupdates = true
+	ignorecase = true
+	precomposeunicode = true
+[user]
+	email = gryphon@wonderland.com
+	name = gryphon
+[remote "origin"]
+	url = http://gitlab/wonderland/awesome-app.git
+	fetch = +refs/heads/*:refs/remotes/origin/*
+[commit]
+	gpgsign = false

@@ -1,0 +1,6 @@
+--extra-index-url http://token:cd79dd622c6d463a574635e874765c0b@gitlab/api/v4/projects/pygryphon%2Fpygryphon/packages/pypi/simple --trusted-host gitlab
+
+pytest==7.2.0
+flask==2.0.3
+Werkzeug==2.0.3
+pygryphon==1.0.13

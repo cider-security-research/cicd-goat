@@ -9,3 +9,6 @@
 * Gitea
   * Username: `red_queen`
   * Password: `ciderland5#`
+* GitLab
+  * Username: `root`
+  * Password: `ciderland5#`

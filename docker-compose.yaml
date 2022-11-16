@@ -86,8 +86,6 @@ services:
   gitlab-runner:
     image: cidersecurity/goat-gitlab-runner:latest
     privileged: true
-    build:
-      context: ./gitlab-runner
     container_name: gitlab-runner
     restart: always
     networks:

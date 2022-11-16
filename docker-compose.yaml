@@ -18,6 +18,7 @@ services:
   jenkins-agent:
     image: cidersecurity/goat-jenkins-agent:latest
     container_name: jenkins-agent
+    restart: always
     networks:
       - goat
     environment:
@@ -25,6 +26,7 @@ services:
   gitea:
     image: cidersecurity/goat-gitea:latest
     container_name: gitea
+    restart: always
     environment:
       - USER_UID=1000
       - USER_GID=1000
@@ -36,19 +38,22 @@ services:
   ctfd:
     image: cidersecurity/goat-ctfd:latest
     container_name: ctfd
+    restart: always
     ports:
       - "8000:8000"
     networks:
       - goat
   localstack:
-    container_name: localstack
     image: localstack/localstack:0.14.1-amd64
+    container_name: localstack
+    restart: always
     networks:
       - goat
   prod:
     image: cidersecurity/goat-prod:latest
     container_name: prod
     privileged: true
+    restart: always
     networks:
       - goat
     ports:

@@ -1,0 +1,12 @@
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = false
+	logallrefupdates = true
+	ignorecase = true
+	precomposeunicode = true
+[commit]
+	gpgsign = false
+[remote "origin"]
+	url = http://gitlab/wonderland/nest-of-gold.git
+	fetch = +refs/heads/*:refs/remotes/origin/*

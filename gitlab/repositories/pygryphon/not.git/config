@@ -1,0 +1,15 @@
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = false
+	logallrefupdates = true
+	ignorecase = true
+	precomposeunicode = true
+[user]
+	name = alice
+	email = alice@wonderland.com
+[commit]
+	gpgsign = false
+[remote "origin"]
+	url = http://gitlab/pygryphon/pygryphon.git
+	fetch = +refs/heads/*:refs/remotes/origin/*

@@ -23,9 +23,13 @@ GITEA_API_BASE = f'{GITEA_BASE}/api/v1'
 
 
 class GiteaApiClient:
-    token = requests.post(f'{GITEA_API_BASE}/users/thealice/tokens',
-                          auth=HTTPBasicAuth('thealice', 'thealice'),
-                          json={'name': str(uuid4())}).json()['sha1']
+    token = None
+
+    def __init__(self):
+        GiteaApiClient.token = requests.post(f'{GITEA_API_BASE}/users/thealice/tokens',
+
+                                             auth=HTTPBasicAuth('thealice', 'thealice'),
+                                             json={'name': str(uuid4())}).json()['sha1']
 
     def post(self, endpoint, data=None, json=None, **kwargs):
         return requests.post(f'{GITEA_API_BASE}{endpoint}',

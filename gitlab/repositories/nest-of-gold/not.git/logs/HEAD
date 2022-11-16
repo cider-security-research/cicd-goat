@@ -1,0 +1,6 @@
+0000000000000000000000000000000000000000 8c0c3768067db217fb598f50598aef01ad93832e Asaf Greenholts <asaf@cidersecurity.io> 1668503268 +0200	clone: from github.com:maxcountryman/flask-login.git
+8c0c3768067db217fb598f50598aef01ad93832e 6935a904487227247698d76de2f5fa668dde5ffb Asaf Greenholts <asaf@cidersecurity.io> 1668503564 +0200	commit: Update CI
+6935a904487227247698d76de2f5fa668dde5ffb 8c0c3768067db217fb598f50598aef01ad93832e Asaf Greenholts <asaf@cidersecurity.io> 1668510967 +0200	reset: moving to HEAD~
+8c0c3768067db217fb598f50598aef01ad93832e e102e5a8a467942f72a98ab24a7c832386fa195e Asaf Greenholts <asaf@cidersecurity.io> 1668511023 +0200	commit: CI updates
+e102e5a8a467942f72a98ab24a7c832386fa195e 8c0c3768067db217fb598f50598aef01ad93832e Asaf Greenholts <asaf@cidersecurity.io> 1668519076 +0200	reset: moving to HEAD~
+8c0c3768067db217fb598f50598aef01ad93832e 11fd3c837c41f7ae57c40ed8ad11bd66bd8f9e60 Asaf Greenholts <asaf@cidersecurity.io> 1668519099 +0200	commit: CI updates

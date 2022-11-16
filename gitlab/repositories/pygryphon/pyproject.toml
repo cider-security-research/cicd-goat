@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pygryphon"
+version = "1.0.13"
+authors = [
+    { name="alice", email="alice@wonderland.com" },
+]
+description = "A small package for wonderful servers"
+requires-python = ">=3.7"
+classifiers = [
+   "Programming Language :: Python :: 3",
+   "Operating System :: OS Independent",
+]

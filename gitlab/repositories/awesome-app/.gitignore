@@ -1,0 +1,50 @@
+# Default
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+
+# Distribution / packaging
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Project folders
+.idea
+.vscode
+
+# Mac junk file
+.DS_Store
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Project notebook support
+/.ipynb_checkpoints
+
+# Project-specific
+*.csv
+*.geojson
+missingno.ipynb
+*.ipynb
+!QuickStart.ipynb
+_map.html
+
+# Test cache
+.cache
+.pytest_cache
+tests/baseline/

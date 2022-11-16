@@ -30,7 +30,6 @@ services:
     environment:
       - USER_UID=1000
       - USER_GID=1000
-    restart: always
     networks:
       - goat
     ports:
@@ -94,13 +93,13 @@ services:
     networks:
       - goat
     shm_size: '256m'
- docker:
-  image: docker:20.10.21-dind
-  privileged: true
-  container_name: docker
-  restart: always
-  environment:
-    DOCKER_TLS_CERTDIR: ""
-  command: --insecure-registry=gitlab:5050
-  networks:
-    - goat
+  docker:
+    image: docker:20.10.21-dind
+    privileged: true
+    container_name: docker
+    restart: always
+    environment:
+      DOCKER_TLS_CERTDIR: ""
+    command: --insecure-registry=gitlab:5050
+    networks:
+      - goat

@@ -97,7 +97,7 @@ docker-compose up -d
 ### Troubleshooting
 * If Gitea shows a blank page, refresh the page.
 * When forking a repository, don't change the name of the forked repository.
-* If any of the services doesn't start or is not configured correctly try adding more cpu and memory to the docker engine.
+* If any of the services doesn't start or is not configured correctly try adding more cpu and memory to the docker engine and update it to the lateset version.
 
 ## Solutions
 **Warning:** Spoilers! :see_no_evil:

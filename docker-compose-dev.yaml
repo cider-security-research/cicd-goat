@@ -6,102 +6,99 @@ networks:
 
 services: 
  gitea:
-    image: cidersecurity/goat-gitea:latest
-    build:
-      context: ./gitea
-    container_name: gitea
-    environment:
-      - USER_UID=1000
-      - USER_GID=1000
-    restart: always
-    networks:
-      - goat
-    ports:
-      - "3000:3000"
+  image: cidersecurity/goat-gitea:latest
+  build:
+    context: ./gitea
+  container_name: gitea
+  environment:
+    - USER_UID=1000
+    - USER_GID=1000
+  restart: always
+  networks:
+    - goat
+  ports:
+    - "3000:3000"
  ctfd:
-    image: cidersecurity/goat-ctfd:latest
-    build:
-      context: ./ctfd
-    container_name: ctfd
-    ports:
-      - "8000:8000"
-    networks:
-      - goat
-    volumes:
-      - ./tmp-ctfd/CTFd:/opt/CTFd
+  image: cidersecurity/goat-ctfd:latest
+  build:
+    context: ./ctfd
+  container_name: ctfd
+  ports:
+    - "8000:8000"
+  networks:
+    - goat
+  volumes:
+    - ./tmp-ctfd/CTFd:/opt/CTFd
  jenkins-server:
-    platform: "linux/amd64"
-    image: cidersecurity/goat-jenkins-server:latest
-    build:
-      context: ./jenkins-server
-    networks:
-      - goat
-    container_name: jenkins-server
-    restart: always
-    ports:
-      - "8080:8080"
-      - "50000:50000"
+  platform: "linux/amd64"
+  image: cidersecurity/goat-jenkins-server:latest
+  build:
+    context: ./jenkins-server
+  networks:
+    - goat
+  container_name: jenkins-server
+  restart: always
+  ports:
+    - "8080:8080"
+    - "50000:50000"
  jenkins-agent:
-    image: cidersecurity/goat-jenkins-agent:latest
-    build:
-      context: ./jenkins-agent
-    container_name: jenkins-agent
-    networks:
-      - goat
-    environment:
-      - JENKINS_AGENT_SSH_PUBKEY=ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC33zkdtvwp8giZLp1mVUbqzCKi0KIiWD8/towT0+9k1SCDYjJ/YVPqKidkSefYaKBgJ1yFcWa9qroXAUd5nACXN3Xdes2fe4w+xZ8GQTpqHKyStEHy6R9QXi00r/VxGcmBYZWLifEyzV//PiRC+hUaG27JeeBnkZ1FEOyXUunpaPixNaDkfnLbCimflkd2uYH2arMY+FdOH950ezow/+v4vsNrzoMwVVCCSg/dIJBS2G/JaoAbbQgIGo63Kyz0j++rIInsXMFmxhy9hEpViX/tEorFzGh4gUvJPLy3IDjWjUz/Nfte9By6usQjN/1plJcuP+rUqrjjGeMpfhDP6aq5ZvfuPTmXOVkWJ9vJZaK2BCtSZk1vOJR4luxCyUZQbKgb3jS9YZ4N1ZS26z3EKwJGP/acNtEMx2u2zhY7zXdG7ca1Qo1yeVDMRctlvH++KMEYX/ZR6LqYlJyV6TFICZVUT7dLF65gq68UyIFswMu9pQ8/VvIMkkO6eiU1cqFr8gc=
+  image: cidersecurity/goat-jenkins-agent:latest
+  build:
+    context: ./jenkins-agent
+  container_name: jenkins-agent
+  networks:
+    - goat
+  environment:
+    - JENKINS_AGENT_SSH_PUBKEY=ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC33zkdtvwp8giZLp1mVUbqzCKi0KIiWD8/towT0+9k1SCDYjJ/YVPqKidkSefYaKBgJ1yFcWa9qroXAUd5nACXN3Xdes2fe4w+xZ8GQTpqHKyStEHy6R9QXi00r/VxGcmBYZWLifEyzV//PiRC+hUaG27JeeBnkZ1FEOyXUunpaPixNaDkfnLbCimflkd2uYH2arMY+FdOH950ezow/+v4vsNrzoMwVVCCSg/dIJBS2G/JaoAbbQgIGo63Kyz0j++rIInsXMFmxhy9hEpViX/tEorFzGh4gUvJPLy3IDjWjUz/Nfte9By6usQjN/1plJcuP+rUqrjjGeMpfhDP6aq5ZvfuPTmXOVkWJ9vJZaK2BCtSZk1vOJR4luxCyUZQbKgb3jS9YZ4N1ZS26z3EKwJGP/acNtEMx2u2zhY7zXdG7ca1Qo1yeVDMRctlvH++KMEYX/ZR6LqYlJyV6TFICZVUT7dLF65gq68UyIFswMu9pQ8/VvIMkkO6eiU1cqFr8gc=
  localstack:
-    container_name: localstack
-    image: localstack/localstack:0.14.1-amd64
-    networks:
-      - goat
-    ports:
-      - "4510-4559:4510-4559"  # external service port range
-      - "4566:4566"            # LocalStack Edge Proxy
+  container_name: localstack
+  image: localstack/localstack:0.14.1-amd64
+  networks:
+    - goat
+  ports:
+    - "4510-4559:4510-4559"  # external service port range
+    - "4566:4566"            # LocalStack Edge Proxy
  prod:
-    image: cidersecurity/goat-prod:latest
-    platform: "linux/amd64"
-    build:
-      context: ./prod
-    privileged: true
-    container_name: prod
-    networks:
-      - goat
-    ports:
-      - "8008:80"
-      - "2222:22"
+  image: cidersecurity/goat-prod:latest
+  build:
+    context: ./prod
+  privileged: true
+  container_name: prod
+  networks:
+    - goat
+  ports:
+    - "8008:80"
+    - "2222:22"
  gitlab:
-    image: cidersecurity/goat-gitlab:latest
-    platform: "linux/amd64"
-    build:
-      context: ./gitlab
-    container_name: gitlab
-    restart: always
-    hostname: 'gitlab'
-    environment:
-      GITLAB_OMNIBUS_CONFIG: |
-        external_url 'http://gitlab'
-        registry_external_url 'https://gitlab:5050'        
-        letsencrypt['enable'] = false        
-        gitlab_rails['initial_shared_runners_registration_token'] = "GR1348hansd87fyzDiqyZeuHuxe"
-        gitlab_rails['smtp_enable'] = false
-        gitlab_kas['enable'] = false
-        sentinel['enable'] = false
-        logrotate['enable'] = false
-        pages_nginx['enable'] = false
-        grafana['enable'] = false
-        prometheus_monitoring['enable'] = false
-        alertmanager['enable'] = false
-    networks:
-      - goat
-    ports:
-      - '4000:80'
-      - '4022:22'
-      - '5050:5050'
-    shm_size: '256m'
+  image: cidersecurity/goat-gitlab:latest
+  build:
+    context: ./gitlab
+  container_name: gitlab
+  restart: always
+  hostname: 'gitlab'
+  environment:
+    GITLAB_OMNIBUS_CONFIG: |
+      external_url 'http://gitlab'
+      registry_external_url 'https://gitlab:5050'        
+      letsencrypt['enable'] = false        
+      gitlab_rails['initial_shared_runners_registration_token'] = "GR1348hansd87fyzDiqyZeuHuxe"
+      gitlab_rails['smtp_enable'] = false
+      gitlab_kas['enable'] = false
+      sentinel['enable'] = false
+      logrotate['enable'] = false
+      pages_nginx['enable'] = false
+      grafana['enable'] = false
+      prometheus_monitoring['enable'] = false
+      alertmanager['enable'] = false
+  networks:
+    - goat
+  ports:
+    - '4000:80'
+    - '4022:22'
+    - '5050:5050'
+  shm_size: '256m'
  gitlab-runner:
   image: cidersecurity/goat-gitlab-runner:latest
-  platform: "linux/amd64"
   build:
     context: ./gitlab-runner
   privileged: true

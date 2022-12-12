@@ -29,7 +29,7 @@ Created by [Cider Security](https://www.cidersecurity.io/?utm_source=github&utm_
   * [Checklist](#Checklist)
 
 ## Description
-The CI/CD Goat project allows engineers and security practitioners to learn and practice CI/CD security through a set of 10 challenges, enacted against a real, full blown CI/CD environment. The scenarios are of varying difficulty levels, with each scenario focusing on one primary attack vector.
+The CI/CD Goat project allows engineers and security practitioners to learn and practice CI/CD security through a set of 11 challenges, enacted against a real, full blown CI/CD environment. The scenarios are of varying difficulty levels, with each scenario focusing on one primary attack vector.
 
 The challenges cover the [Top 10 CI/CD Security Risks](https://www.cidersecurity.io/top-10-cicd-security-risks/?utm_source=github&utm_medium=github_page&utm_campaign=ci%2fcd%20goat_060422), including Insufficient Flow Control Mechanisms, PPE (Poisoned Pipeline Execution), Dependency Chain Abuse, PBAC (Pipeline-Based Access Controls), and more.\
 The different challenges are inspired by Alice in Wonderland, each one is themed as a different character.

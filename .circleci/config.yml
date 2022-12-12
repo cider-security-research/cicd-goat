@@ -8,7 +8,7 @@ parameters:
 jobs:
   ci:
     machine:
-      image: ubuntu-2004:202010-01
+      image: ubuntu-2204:2022.07.1
     resource_class: large
     steps:
       - checkout
@@ -17,8 +17,8 @@ jobs:
           command: |
             python3 rename.py git
             cp -R ctfd/data/ tmp-ctfd/
-            curl https://github.com/docker/buildx/releases/download/v0.9.1/buildx-v0.9.1.linux-amd64 --output docker-buildx
-            mkdir -p ~/.docker/cli-plugins cp docker-buildx ~/.docker/cli-plugins/docker-buildx
+      #      curl https://github.com/docker/buildx/releases/download/v0.9.1/buildx-v0.9.1.linux-amd64 --output docker-buildx
+      #      mkdir -p ~/.docker/cli-plugins && cp docker-buildx ~/.docker/cli-plugins/docker-buildx
             docker buildx ls
             docker buildx create --use desktop-linux
             cd gitlab && docker buildx build --platform linux/amd64,linux/arm64/v8 --tag cidersecurity/goat-gitlab:latest . && cd ..
@@ -40,7 +40,7 @@ jobs:
             pipenv run python -m pytest tests/
   release:
     machine:
-      image: ubuntu-2004:202010-01
+      image: ubuntu-2204:2022.07.1
     resource_class: large
     environment:
       ORG: cidersecurity
@@ -52,8 +52,8 @@ jobs:
           command: |
             python3 rename.py git
             cp -R ctfd/data/ tmp-ctfd/
-            curl https://github.com/docker/buildx/releases/download/v0.9.1/buildx-v0.9.1.linux-amd64 --output docker-buildx
-            mkdir -p ~/.docker/cli-plugins cp docker-buildx ~/.docker/cli-plugins/docker-buildx
+     #       curl https://github.com/docker/buildx/releases/download/v0.9.1/buildx-v0.9.1.linux-amd64 --output docker-buildx
+     #       mkdir -p ~/.docker/cli-plugins && cp docker-buildx ~/.docker/cli-plugins/docker-buildx
             docker buildx create --use desktop-linux
             cd gitlab && docker buildx build --build-arg VERSION=$VERSION --build-arg COMMIT_SHA=$CIRCLE_SHA1 --platform linux/amd64,linux/arm64/v8 --tag cidersecurity/goat-gitlab:latest . && cd ..
             cd gitlab-runner && docker buildx build --build-arg VERSION=$VERSION --build-arg COMMIT_SHA=$CIRCLE_SHA1 --platform linux/amd64,linux/arm64/v8 --tag cidersecurity/goat-gitlab-runner:latest . && cd ..

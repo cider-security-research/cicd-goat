@@ -29,7 +29,7 @@ Created by [Cider Security](https://www.cidersecurity.io/?utm_source=github&utm_
   * [Checklist](#Checklist)
 
 ## Description
-The CI/CD Goat project allows engineers and security practitioners to learn and practice CI/CD security through a set of 10 challenges, enacted against a real, full blown CI/CD environment. The scenarios are of varying difficulty levels, with each scenario focusing on one primary attack vector.
+The CI/CD Goat project allows engineers and security practitioners to learn and practice CI/CD security through a set of 11 challenges, enacted against a real, full blown CI/CD environment. The scenarios are of varying difficulty levels, with each scenario focusing on one primary attack vector.
 
 The challenges cover the [Top 10 CI/CD Security Risks](https://www.cidersecurity.io/top-10-cicd-security-risks/?utm_source=github&utm_medium=github_page&utm_campaign=ci%2fcd%20goat_060422), including Insufficient Flow Control Mechanisms, PPE (Poisoned Pipeline Execution), Dependency Chain Abuse, PBAC (Pipeline-Based Access Controls), and more.\
 The different challenges are inspired by Alice in Wonderland, each one is themed as a different character.
@@ -52,7 +52,6 @@ The images are configured to interconnect in a way that creates fully functional
 ## Download & Run
 **There's no need to clone the repository.**
 ### Linux & Mac
-!Note: GitLab is currently not working on Macs with Apple silicon.
 ```sh
 curl -o cicd-goat/docker-compose.yaml --create-dirs https://raw.githubusercontent.com/cider-security-research/cicd-goat/main/docker-compose.yaml
 cd cicd-goat && docker-compose up -d
@@ -98,7 +97,7 @@ docker-compose up -d
 ### Troubleshooting
 * If Gitea shows a blank page, refresh the page.
 * When forking a repository, don't change the name of the forked repository.
-* If any of the services doesn't start or is not configured correctly try adding more cpu and memory to the docker engine.
+* If any of the services doesn't start or is not configured correctly try adding more cpu and memory to the docker engine and update it to the lateset version.
 
 ## Solutions
 **Warning:** Spoilers! :see_no_evil:

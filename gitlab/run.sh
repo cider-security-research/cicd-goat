@@ -1,4 +1,8 @@
 #!/bin/bash
+if test -f "/setup/ready"; then
+    echo "GitLab is running"
+    /assets/wrapper > /dev/null 2>&1
+fi
 echo "GitLab is starting..."
 set -m
 /assets/wrapper > /dev/null 2>&1 &
@@ -34,7 +38,6 @@ token.save!;
 puts 'alice token created';
 "
 cd /
-echo -e '#!/bin/bash\n/assets/wrapper > /dev/null 2>&1' > /setup/run.sh
-chmod +x /setup/run.sh
+echo "GitLab is ready!" > /setup/ready
 echo "GitLab is ready!"
 fg # /assets/wrapper

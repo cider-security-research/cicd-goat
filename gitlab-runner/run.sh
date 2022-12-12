@@ -1,6 +1,6 @@
 #!/bin/bash
 echo "Waiting for GitLab to setup..."
-for i in {1..300}
+while true
 do
   gitlab_status_code=$(curl --write-out %{http_code} --silent --output /dev/null gitlab/users/sign_in )
   if [ "$gitlab_status_code" -eq 200 ]; then

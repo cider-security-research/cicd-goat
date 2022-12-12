@@ -2,13 +2,13 @@
 echo "GitLab is starting..."
 set -m
 /assets/wrapper > /dev/null 2>&1 &
-for i in {1..300}
+while true
 do
   gitlab_status_code=$(curl --write-out %{http_code} --silent --output /dev/null localhost/users/sign_in )
   if [ "$gitlab_status_code" -eq 200 ]; then
     break
   fi
-  sleep 1
+  sleep 5
 done
 echo "started setup"
 gitlab-rails runner "
@@ -33,9 +33,7 @@ token.set_token('998b5802ec365e17665d832f3384e975');
 token.save!;
 puts 'alice token created';
 "
-rm -rf /setup
 cd /
-mkdir /setup
 echo -e '#!/bin/bash\n/assets/wrapper > /dev/null 2>&1' > /setup/run.sh
 chmod +x /setup/run.sh
 echo "GitLab is ready!"

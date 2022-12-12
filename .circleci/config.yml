@@ -20,9 +20,9 @@ jobs:
             sudo apt-get update
             sudo apt-get install -y qemu qemu-user-static
             docker buildx create --name mybuilder --use --bootstrap
-            cd gitlab && docker buildx build --platform linux/amd64,linux/arm64/v8 --tag cidersecurity/goat-gitlab:latest . && cd ..
-            cd gitlab-runner && docker buildx build --platform linux/amd64,linux/arm64/v8 --tag cidersecurity/goat-gitlab-runner:latest . && cd ..
-            cd prod && docker buildx build --platform linux/amd64,linux/arm64/v8 --tag cidersecurity/goat-prod:latest . && cd ..
+            cd gitlab && docker buildx build --load --tag cidersecurity/goat-gitlab:latest . && cd ..
+            cd gitlab-runner && docker buildx build --load --tag cidersecurity/goat-gitlab-runner:latest . && cd ..
+            cd prod && docker buildx build --load --tag cidersecurity/goat-prod:latest . && cd ..
             docker-compose -f docker-compose-dev.yaml up -d gitlab gitlab-runner prod
             docker-compose -f docker-compose-dev.yaml up -d --build gitea ctfd jenkins-server jenkins-agent localstack docker
       - run:
@@ -48,41 +48,19 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Docker compose
+          name: Build and push latest
           command: |
             python3 rename.py git
             cp -R ctfd/data/ tmp-ctfd/
             sudo apt-get update
             sudo apt-get install -y qemu qemu-user-static
-            docker buildx create --name mybuilder --use --bootstrap
-            cd gitlab && docker buildx build --build-arg VERSION=$VERSION --build-arg COMMIT_SHA=$CIRCLE_SHA1 --platform linux/amd64,linux/arm64/v8 --tag cidersecurity/goat-gitlab:latest . && cd ..
-            cd gitlab-runner && docker buildx build --build-arg VERSION=$VERSION --build-arg COMMIT_SHA=$CIRCLE_SHA1 --platform linux/amd64,linux/arm64/v8 --tag cidersecurity/goat-gitlab-runner:latest . && cd ..
-            cd prod && docker buildx build --build-arg VERSION=$VERSION --build-arg COMMIT_SHA=$CIRCLE_SHA1 --platform linux/amd64,linux/arm64/v8 --tag cidersecurity/goat-prod:latest . && cd ..
-            docker-compose -f docker-compose-dev.yaml up -d gitlab gitlab-runner prod
-            docker-compose -f docker-compose-dev.yaml build --build-arg VERSION=$VERSION --build-arg COMMIT_SHA=$CIRCLE_SHA1 gitea ctfd jenkins-server jenkins-agent localstack docker
-            docker-compose -f docker-compose-dev.yaml up -d
-      - run:
-          name: Install testing dependencies
-          command: |
-            python3 --version
-            python3 -m pip install pipenv==2022.8.30 
-            python3 -m pipenv install --deploy
-      - run:
-          name: Wait for services to start
-          command: ./wait.sh
-      - run:
-          name: Pytest
-          command: |
-            python3 -m pipenv run python -m pytest tests/
-            docker-compose -f docker-compose-dev.yaml down
-      - run:
-          name: Push latest
-          command: |
             docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+            docker buildx create --name mybuilder --use --bootstrap
             cd gitlab && docker buildx build --push --build-arg VERSION=$VERSION --build-arg COMMIT_SHA=$CIRCLE_SHA1 --platform linux/amd64,linux/arm64/v8 --tag cidersecurity/goat-gitlab:latest . && cd ..
             cd gitlab-runner && docker buildx build --push --build-arg VERSION=$VERSION --build-arg COMMIT_SHA=$CIRCLE_SHA1 --platform linux/amd64,linux/arm64/v8 --tag cidersecurity/goat-gitlab-runner:latest . && cd ..
             cd prod && docker buildx build --push --build-arg VERSION=$VERSION --build-arg COMMIT_SHA=$CIRCLE_SHA1 --platform linux/amd64,linux/arm64/v8 --tag cidersecurity/goat-prod:latest . && cd ..
-            docker-compose -f docker-compose-dev.yaml push gitea ctfd jenkins-server jenkins-agent localstack docker
+            docker-compose -f docker-compose-dev.yaml build --build-arg VERSION=$VERSION --build-arg COMMIT_SHA=$CIRCLE_SHA1 gitea ctfd jenkins-server jenkins-agent
+            docker-compose -f docker-compose-dev.yaml push gitea ctfd jenkins-server jenkins-agent
       - run:
           name: Push version
           command: |

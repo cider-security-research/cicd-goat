@@ -60,6 +60,7 @@ services:
       - "4566:4566"            # LocalStack Edge Proxy
  prod:
     image: cidersecurity/goat-prod:latest
+    platform: "linux/amd64"
     build:
       context: ./prod
     privileged: true
@@ -71,6 +72,7 @@ services:
       - "2222:22"
  gitlab:
     image: cidersecurity/goat-gitlab:latest
+    platform: "linux/amd64"
     build:
       context: ./gitlab
     container_name: gitlab
@@ -99,6 +101,7 @@ services:
     shm_size: '256m'
  gitlab-runner:
   image: cidersecurity/goat-gitlab-runner:latest
+  platform: "linux/amd64"
   build:
     context: ./gitlab-runner
   privileged: true

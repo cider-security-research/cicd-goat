@@ -17,7 +17,7 @@ jobs:
           command: |
             python3 rename.py git
             cp -R ctfd/data/ tmp-ctfd/
-            apt-get update
+            sudo apt-get update
             sudo apt-get install -y qemu qemu-user-static
             docker buildx create --name mybuilder --use --bootstrap
             cd gitlab && docker buildx build --platform linux/amd64,linux/arm64/v8 --tag cidersecurity/goat-gitlab:latest . && cd ..
@@ -51,7 +51,7 @@ jobs:
           command: |
             python3 rename.py git
             cp -R ctfd/data/ tmp-ctfd/
-            apt-get update
+            sudo apt-get update
             sudo apt-get install -y qemu qemu-user-static
             docker buildx create --name mybuilder --use --bootstrap
             cd gitlab && docker buildx build --build-arg VERSION=$VERSION --build-arg COMMIT_SHA=$CIRCLE_SHA1 --platform linux/amd64,linux/arm64/v8 --tag cidersecurity/goat-gitlab:latest . && cd ..

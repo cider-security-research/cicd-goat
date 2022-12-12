@@ -37,7 +37,7 @@ jobs:
       - run:
           name: Pytest
           command: |
-            pipenv run python -m pytest tests/
+            python3 -m pipenv run python -m pytest tests/
   release:
     machine:
       image: ubuntu-2204:2022.07.1
@@ -73,7 +73,7 @@ jobs:
       - run:
           name: Pytest
           command: |
-            pipenv run python -m pytest tests/
+            python3 -m pipenv run python -m pytest tests/
             docker-compose -f docker-compose-dev.yaml down
       - run:
           name: Push latest

@@ -16,11 +16,11 @@ ENV JAVA_OPTS "-Djenkins.install.runSetupWizard=false"
 ENV SECRETS_FILE /var/jenkins_home/secrets.properties
 
 COPY --chown=jenkins:jenkins flag5.txt /var/jenkins_home/flag5.txt
-COPY --chown=jenkins:jenkins cleanup /var/jenkins_home/cleanup
+COPY --chown=jenkins:jenkins run.sh /var/jenkins_home/run.sh
 COPY --chown=jenkins:jenkins plugins.txt /usr/share/jenkins/ref/plugins.txt
 RUN jenkins-plugin-cli --clean-download-directory -f /usr/share/jenkins/ref/plugins.txt && \
-    chmod 755 /var/jenkins_home/cleanup
+    chmod 755 /var/jenkins_home/run.sh
 COPY --chown=jenkins:jenkins secrets.properties /var/jenkins_home/secrets.properties
 COPY --chown=jenkins:jenkins jenkins.yaml /var/jenkins_home/jenkins.yaml
 COPY --chown=jenkins:jenkins jobdsl/ /var/jenkins_home/jobdsl/
-ENTRYPOINT ["/var/jenkins_home/cleanup"]
+ENTRYPOINT ["/var/jenkins_home/run.sh"]

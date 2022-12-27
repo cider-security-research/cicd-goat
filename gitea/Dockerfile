@@ -22,9 +22,9 @@ COPY Pipfile* /setup/
 RUN cd /setup && pipenv install --system --deploy
 
 COPY . /setup/
-RUN /setup/check_git.py && chmod 755 /setup/giteacasc/askpass.py /setup/run
+RUN /setup/check_git.py && chmod 755 /setup/giteacasc/askpass.py /setup/run.sh
 COPY --chown=git:git app.ini /data/gitea/conf/
 
-ENTRYPOINT ["/setup/run"]
+ENTRYPOINT ["/setup/run.sh"]
 
 

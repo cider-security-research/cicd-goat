@@ -33,15 +33,10 @@ pygryphon==1.0.13
 This means we can influence *awesome-app* pipeline by uploading a new malicious python package of *pygrphon*.
 Our end goal is within *nest-of-gold* project, how can we influence it's pipeline?
   
-GitLab has a special setting whether or not a pipeline "CI_JOB_TOKEN" is limited to the specific project or have access to other projects under the same user.
-This mean if this setting is disabled, we will be able to interact with *nest-of-gold* project.
-<BR><BR><BR>
+In the pipeline of *awesome-app* we can see a PAT behing used named *TOKEN*
+<BR>
+`docker login -u gryphon -p $TOKEN $CI_REGISTRY`
 
-
-![grpyhon2](../images/gryphon-2.png "grpyhon2")  
-<BR><BR><BR>
-
-  
 Because our end goal is to reach the "production" docker produced by *nest-of-gold* pipeline, let's have a look at the Dockerfile inside *nest-of-gold* we can see it is dependent on python:3.8 docker image from nest-of-gold container registry and not the offical registrar.
   
    <pre><code>

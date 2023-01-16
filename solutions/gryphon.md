@@ -1,3 +1,6 @@
+[![CICD-SEC-3 Dependency Chain Abuse](https://img.shields.io/badge/CICD--SEC--3-Dependency%20Chain%20Abuse-brightgreen)](https://www.cidersecurity.io/top-10-cicd-security-risks/dependency-chain-abuse/?utm_source=github&utm_medium=github_page&utm_campaign=ci%2fcd%20goat_100422)
+
+
 Let's explore what we have when signing in to the compromised GitLab:
 You are the maintainer of *pygryphon* package, there are also public projects *nest-of-gold* and *awesome-app* which we have a read-only access.
 <BR><BR>

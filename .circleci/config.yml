@@ -25,9 +25,10 @@ jobs:
             cd gitlab-runner && docker buildx build --load --tag cidersecurity/goat-gitlab-runner:latest . && cd ..
             cd prod && docker buildx build --load --tag cidersecurity/goat-prod:latest . && cd ..
             cd jenkins-server && docker buildx build --load --tag cidersecurity/goat-jenkins-server:latest . && cd ..
+            cd jenkins-agent && docker buildx build --load --tag cidersecurity/goat-jenkins-agent:latest . && cd ..
             
-            docker-compose -f docker-compose-dev.yaml up -d gitlab gitlab-runner prod jenkins-server
-            docker-compose -f docker-compose-dev.yaml up -d --build gitea ctfd jenkins-agent localstack docker
+            docker-compose -f docker-compose-dev.yaml up -d gitlab gitlab-runner prod jenkins-server jenkins-agent
+            docker-compose -f docker-compose-dev.yaml up -d --build gitea ctfd localstack docker
       - run:
           name: Install testing dependencies
           command: |
@@ -64,17 +65,16 @@ jobs:
             cd gitlab-runner && docker buildx build --push --build-arg VERSION=$VERSION --build-arg COMMIT_SHA=$CIRCLE_SHA1 --platform linux/amd64,linux/arm64/v8 --tag cidersecurity/goat-gitlab-runner:latest . && cd ..
             cd prod && docker buildx build --push --build-arg VERSION=$VERSION --build-arg COMMIT_SHA=$CIRCLE_SHA1 --platform linux/amd64,linux/arm64/v8 --tag cidersecurity/goat-prod:latest . && cd ..
             cd jenkins-server && docker buildx build --push --build-arg VERSION=$VERSION --build-arg COMMIT_SHA=$CIRCLE_SHA1 --platform linux/amd64,linux/arm64/v8 --tag cidersecurity/goat-jenkins-server:latest . && cd ..
+            cd jenkins-agent && docker buildx build --push --build-arg VERSION=$VERSION --build-arg COMMIT_SHA=$CIRCLE_SHA1 --platform linux/amd64,linux/arm64/v8 --tag cidersecurity/goat-jenkins-agent:latest . && cd ..
             
-            docker-compose -f docker-compose-dev.yaml build --build-arg VERSION=$VERSION --build-arg COMMIT_SHA=$CIRCLE_SHA1 gitea ctfd jenkins-agent
-            docker-compose -f docker-compose-dev.yaml push gitea ctfd jenkins-agent
+            docker-compose -f docker-compose-dev.yaml build --build-arg VERSION=$VERSION --build-arg COMMIT_SHA=$CIRCLE_SHA1 gitea ctfd
+            docker-compose -f docker-compose-dev.yaml push gitea ctfd
       - run:
           name: Push version
           command: |
-            docker tag $ORG/goat-jenkins-agent:latest $ORG/goat-jenkins-agent:$VERSION
             docker tag $ORG/goat-gitea:latest $ORG/goat-gitea:$VERSION
             docker tag $ORG/goat-ctfd:latest $ORG/goat-ctfd:$VERSION
-
-            docker push $ORG/goat-jenkins-agent:$VERSION
+            
             docker push $ORG/goat-gitea:$VERSION
             docker push $ORG/goat-ctfd:$VERSION
             
@@ -82,6 +82,7 @@ jobs:
             cd gitlab-runner && docker buildx build --push --build-arg VERSION=$VERSION --build-arg COMMIT_SHA=$CIRCLE_SHA1 --platform linux/amd64,linux/arm64/v8 --tag cidersecurity/goat-gitlab-runner:$VERSION . && cd ..
             cd prod && docker buildx build --push --build-arg VERSION=$VERSION --build-arg COMMIT_SHA=$CIRCLE_SHA1 --platform linux/amd64,linux/arm64/v8 --tag cidersecurity/goat-prod:$VERSION . && cd ..
             cd jenkins-server && docker buildx build --push --build-arg VERSION=$VERSION --build-arg COMMIT_SHA=$CIRCLE_SHA1 --platform linux/amd64,linux/arm64/v8 --tag cidersecurity/goat-jenkins-server:$VERSION . && cd ..
+            cd jenkins-agent && docker buildx build --push --build-arg VERSION=$VERSION --build-arg COMMIT_SHA=$CIRCLE_SHA1 --platform linux/amd64,linux/arm64/v8 --tag cidersecurity/goat-jenkins-agent:$VERSION . && cd ..
 
 workflows:
   version: 2

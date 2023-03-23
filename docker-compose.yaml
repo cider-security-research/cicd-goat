@@ -65,8 +65,8 @@ services:
     environment:
       GITLAB_OMNIBUS_CONFIG: |
         external_url 'http://gitlab'
-        registry_external_url 'https://gitlab:5050'        
-        letsencrypt['enable'] = false        
+        registry_external_url 'https://gitlab:5050'
+        letsencrypt['enable'] = false
         gitlab_rails['initial_shared_runners_registration_token'] = "GR1348hansd87fyzDiqyZeuHuxe"
         gitlab_rails['smtp_enable'] = false
         gitlab_kas['enable'] = false

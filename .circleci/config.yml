@@ -96,4 +96,6 @@ workflows:
       not:
         equal: [ "", << pipeline.parameters.VERSION >> ]
     jobs:
-      - release
+      - release:
+          context:
+            - dockerhub

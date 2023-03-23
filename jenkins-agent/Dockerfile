@@ -14,14 +14,14 @@ LABEL org.opencontainers.image.vendor="Cider Security" \
 RUN apt-get update && \
     apt-get -y --no-install-recommends install python3 python3-pip \
     curl \
-    git
+    git \
+    unzip
+
 # Install Terraform
-RUN curl -OL https://go.dev/dl/go1.18.linux-amd64.tar.gz && \
-    tar -C /usr/local -xvf go1.18.linux-amd64.tar.gz && \
-    export PATH=$PATH:/usr/local/go/bin && \
-    git clone https://github.com/hashicorp/terraform.git && \
-    cd terraform && \
-    go install || true
+RUN curl -o terraform.zip https://releases.hashicorp.com/terraform/1.4.2/terraform_1.4.2_linux_amd64.zip && \
+    unzip -d /usr/bin/ terraform.zip && \
+    chmod +x /usr/bin/terraform
+
 # Install Python packages
 RUN python3 -m pip install --user --no-cache-dir -U pylint pytest checkov awscli-local virtualenv
 
@@ -38,4 +38,4 @@ RUN apt-get update && \
     rm -rf /home/jenkins/aws && \
     rm awscliv2.zip
 COPY --from=base --chown=jenkins:jenkins /root/.local /home/jenkins/.local
-COPY --from=base /root/go/bin/terraform /usr/bin/terraform
+COPY --from=base /usr/bin/terraform /usr/bin/terraform

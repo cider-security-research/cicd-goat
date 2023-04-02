@@ -28,7 +28,7 @@ RUN python3 -m pip install --user --no-cache-dir -U pylint pytest checkov awscli
 FROM jenkins/ssh-agent:4.1.0-jdk11
 RUN apt-get update && \
     apt-get -y --no-install-recommends install unzip python3 npm git curl jq make && \
-    curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" && \
+    curl "https://awscli.amazonaws.com/awscli-exe-linux-$(uname -m).zip" -o "awscliv2.zip" && \
     unzip awscliv2.zip && \
     apt-get -y purge unzip && \
     /home/jenkins/aws/install && \

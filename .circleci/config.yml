@@ -28,8 +28,8 @@ jobs:
             cd jenkins-agent && docker buildx build --load --tag cidersecurity/goat-jenkins-agent:latest . && cd ..
             cd gitea && docker buildx build --load --tag cidersecurity/goat-gitea:latest . && cd ..
             
-            docker-compose -f docker-compose-dev.yaml up -d gitlab gitlab-runner prod jenkins-server jenkins-agent gitea
-            docker-compose -f docker-compose-dev.yaml up -d --build ctfd localstack docker
+            docker compose -f docker-compose-dev.yaml up -d gitlab gitlab-runner prod jenkins-server jenkins-agent gitea
+            docker compose -f docker-compose-dev.yaml up -d --build ctfd localstack docker
       - run:
           name: Install testing dependencies
           command: |
@@ -69,8 +69,8 @@ jobs:
             cd jenkins-agent && docker buildx build --push --build-arg VERSION=$VERSION --build-arg COMMIT_SHA=$CIRCLE_SHA1 --platform linux/amd64,linux/arm64/v8 --tag cidersecurity/goat-jenkins-agent:latest . && cd ..
             cd gitea && docker buildx build --push --build-arg VERSION=$VERSION --build-arg COMMIT_SHA=$CIRCLE_SHA1 --platform linux/amd64,linux/arm64/v8 --tag cidersecurity/goat-gitea:latest . && cd ..
             
-            docker-compose -f docker-compose-dev.yaml build --build-arg VERSION=$VERSION --build-arg COMMIT_SHA=$CIRCLE_SHA1 ctfd
-            docker-compose -f docker-compose-dev.yaml push ctfd
+            docker compose -f docker-compose-dev.yaml build --build-arg VERSION=$VERSION --build-arg COMMIT_SHA=$CIRCLE_SHA1 ctfd
+            docker compose -f docker-compose-dev.yaml push ctfd
       - run:
           name: Push version
           command: |

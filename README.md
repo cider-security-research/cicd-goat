@@ -49,10 +49,11 @@ The images are configured to interconnect in a way that creates fully functional
 
 ## Download & Run
 **There's no need to clone the repository.**
+
 ### Linux & Mac
 ```sh
 curl -o cicd-goat/docker-compose.yaml --create-dirs https://raw.githubusercontent.com/cider-security-research/cicd-goat/main/docker-compose.yaml
-cd cicd-goat && docker-compose up -d
+cd cicd-goat && docker compose up -d
 ```
 
 ### Windows (Powershell)
@@ -60,7 +61,7 @@ cd cicd-goat && docker-compose up -d
 mkdir cicd-goat; cd cicd-goat
 curl -o docker-compose.yaml https://raw.githubusercontent.com/cider-security-research/cicd-goat/main/docker-compose.yaml
 get-content docker-compose.yaml | %{$_ -replace "bridge","nat"}
-docker-compose up -d
+docker compose up -d
 ```
 
 ## Usage

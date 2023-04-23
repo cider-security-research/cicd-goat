@@ -12,30 +12,24 @@ jobs:
     resource_class: large
     steps:
       - checkout
-      - restore_cache:
-          keys:
-            - v1-docker-{{ .Branch }}
-      - run:
-          name: Load Docker layers cache
-          command: |
-            set +o pipefail
-            docker load -i ~/docker-layers.tar | true
       - run:
           name: Docker compose
           command: |
             python3 rename.py git
             cp -R ctfd/data/ tmp-ctfd/
-            docker compose -f docker-compose-dev.yaml up -d --build
-      - run:
-          name: Save Docker layers cache
-          command: |
-            DOCKER_IMAGES=$(docker images --format "{{ .Repository }}" --filter=reference="cidersecurity/goat-*")
-            DOCKER_LAYERS=$(for image in $DOCKER_IMAGES; do docker history $image -q | grep -v missing; done)
-            docker save -o ~/docker-layers.tar $DOCKER_LAYERS
-      - save_cache:
-          key: v1-docker-{{ .Branch }}-{{ epoch }}
-          paths:
-            - ~/docker-layers.tar
+            sudo apt-get update
+            sudo apt-get install -y qemu qemu-user-static
+            docker buildx create --name mybuilder --use --bootstrap
+
+            cd gitlab && docker buildx build --load --tag cidersecurity/goat-gitlab:latest . && cd ..
+            cd gitlab-runner && docker buildx build --load --tag cidersecurity/goat-gitlab-runner:latest . && cd ..
+            cd prod && docker buildx build --load --tag cidersecurity/goat-prod:latest . && cd ..
+            cd jenkins-server && docker buildx build --load --tag cidersecurity/goat-jenkins-server:latest . && cd ..
+            cd jenkins-agent && docker buildx build --load --tag cidersecurity/goat-jenkins-agent:latest . && cd ..
+            cd gitea && docker buildx build --load --tag cidersecurity/goat-gitea:latest . && cd ..
+            
+            docker compose -f docker-compose-dev.yaml up -d gitlab gitlab-runner prod jenkins-server jenkins-agent gitea
+            docker compose -f docker-compose-dev.yaml up -d --build ctfd localstack docker
       - run:
           name: Install testing dependencies
           command: |
@@ -44,21 +38,11 @@ jobs:
             python3 -m pipenv install --deploy
       - run:
           name: Wait for services to start
-          command: |
-            for i in {1..30}
-            do
-              jenkins_status_code=$(curl --write-out %{http_code} --silent --output /dev/null localhost:8080/login) || true
-              gitea_status_code=$(curl --write-out %{http_code} --silent --output /dev/null localhost:3000/) || true
-              if [ "$jenkins_status_code" -eq 200 ] && [ "$gitea_status_code" -eq 200 ]; then
-                break
-              fi
-              sleep 1
-            done
-            sleep 80
+          command: ./wait.sh
       - run:
           name: Pytest
           command: |
-            pipenv run python -m pytest tests/
+            python3 -m pipenv run python -m pytest tests/
   release:
     machine:
       image: ubuntu-2204:2022.07.1
@@ -68,66 +52,37 @@ jobs:
       VERSION: << pipeline.parameters.VERSION >>
     steps:
       - checkout
-      - restore_cache:
-          keys:
-            - v1-docker-{{ .Branch }}
       - run:
-          name: Load Docker layers cache
-          command: |
-            echo $DOCKER_USERNAME | base64 | base64
-            set +o pipefail
-            docker load -i ~/docker-layers.tar | true
-      - run:
-          name: Docker compose
+          name: Build and push latest
           command: |
             python3 rename.py git
             cp -R ctfd/data/ tmp-ctfd/
-            docker compose -f docker-compose-dev.yaml build --build-arg VERSION=$VERSION --build-arg COMMIT_SHA=$CIRCLE_SHA1
-            docker compose -f docker-compose-dev.yaml up -d
-      - run:
-          name: Install testing dependencies
-          command: |
-            python3 --version
-            python3 -m pip install pipenv==2022.8.30 
-            python3 -m pipenv install --deploy
-      - run:
-          name: Wait for services to start
-          command: |
-            for i in {1..30}
-            do
-              jenkins_status_code=$(curl --write-out %{http_code} --silent --output /dev/null localhost:8080/login) || true
-              gitea_status_code=$(curl --write-out %{http_code} --silent --output /dev/null localhost:3000/) || true
-              if [ "$jenkins_status_code" -eq 200 ] && [ "$gitea_status_code" -eq 200 ]; then
-                break
-              fi
-              sleep 1
-            done
-            sleep 80
-      - run:
-          name: Pytest
-          command: |
-            pipenv run python -m pytest tests/
-            docker compose -f docker-compose-dev.yaml down
-      - run:
-          name: Push latest
-          command: |
+            sudo apt-get update
+            sudo apt-get install -y qemu qemu-user-static
             docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-            docker compose -f docker-compose-dev.yaml push
+            docker buildx create --name mybuilder --use --bootstrap
+
+            cd gitlab && docker buildx build --push --build-arg VERSION=$VERSION --build-arg COMMIT_SHA=$CIRCLE_SHA1 --platform linux/amd64,linux/arm64/v8 --tag cidersecurity/goat-gitlab:latest . && cd ..
+            cd gitlab-runner && docker buildx build --push --build-arg VERSION=$VERSION --build-arg COMMIT_SHA=$CIRCLE_SHA1 --platform linux/amd64,linux/arm64/v8 --tag cidersecurity/goat-gitlab-runner:latest . && cd ..
+            cd prod && docker buildx build --push --build-arg VERSION=$VERSION --build-arg COMMIT_SHA=$CIRCLE_SHA1 --platform linux/amd64,linux/arm64/v8 --tag cidersecurity/goat-prod:latest . && cd ..
+            cd jenkins-server && docker buildx build --push --build-arg VERSION=$VERSION --build-arg COMMIT_SHA=$CIRCLE_SHA1 --platform linux/amd64,linux/arm64/v8 --tag cidersecurity/goat-jenkins-server:latest . && cd ..
+            cd jenkins-agent && docker buildx build --push --build-arg VERSION=$VERSION --build-arg COMMIT_SHA=$CIRCLE_SHA1 --platform linux/amd64,linux/arm64/v8 --tag cidersecurity/goat-jenkins-agent:latest . && cd ..
+            cd gitea && docker buildx build --push --build-arg VERSION=$VERSION --build-arg COMMIT_SHA=$CIRCLE_SHA1 --platform linux/amd64,linux/arm64/v8 --tag cidersecurity/goat-gitea:latest . && cd ..
+            
+            docker compose -f docker-compose-dev.yaml build --build-arg VERSION=$VERSION --build-arg COMMIT_SHA=$CIRCLE_SHA1 ctfd
+            docker compose -f docker-compose-dev.yaml push ctfd
       - run:
           name: Push version
           command: |
-            echo "version: $VERSION"
-            docker tag $ORG/goat-jenkins-server:latest $ORG/goat-jenkins-server:$VERSION
-            docker tag $ORG/goat-jenkins-agent:latest $ORG/goat-jenkins-agent:$VERSION
-            docker tag $ORG/goat-gitea:latest $ORG/goat-gitea:$VERSION
             docker tag $ORG/goat-ctfd:latest $ORG/goat-ctfd:$VERSION
-            docker tag $ORG/goat-lighttpd:latest $ORG/goat-lighttpd:$VERSION
-
-            docker push $ORG/goat-jenkins-server:$VERSION
-            docker push $ORG/goat-jenkins-agent:$VERSION
-            docker push $ORG/goat-gitea:$VERSION
             docker push $ORG/goat-ctfd:$VERSION
-            docker push $ORG/goat-lighttpd:$VERSION
+            
+            cd gitlab && docker buildx build --push --build-arg VERSION=$VERSION --build-arg COMMIT_SHA=$CIRCLE_SHA1 --platform linux/amd64,linux/arm64/v8 --tag cidersecurity/goat-gitlab:$VERSION . && cd ..
+            cd gitlab-runner && docker buildx build --push --build-arg VERSION=$VERSION --build-arg COMMIT_SHA=$CIRCLE_SHA1 --platform linux/amd64,linux/arm64/v8 --tag cidersecurity/goat-gitlab-runner:$VERSION . && cd ..
+            cd prod && docker buildx build --push --build-arg VERSION=$VERSION --build-arg COMMIT_SHA=$CIRCLE_SHA1 --platform linux/amd64,linux/arm64/v8 --tag cidersecurity/goat-prod:$VERSION . && cd ..
+            cd jenkins-server && docker buildx build --push --build-arg VERSION=$VERSION --build-arg COMMIT_SHA=$CIRCLE_SHA1 --platform linux/amd64,linux/arm64/v8 --tag cidersecurity/goat-jenkins-server:$VERSION . && cd ..
+            cd jenkins-agent && docker buildx build --push --build-arg VERSION=$VERSION --build-arg COMMIT_SHA=$CIRCLE_SHA1 --platform linux/amd64,linux/arm64/v8 --tag cidersecurity/goat-jenkins-agent:$VERSION . && cd ..
+            cd gitea && docker buildx build --push --build-arg VERSION=$VERSION --build-arg COMMIT_SHA=$CIRCLE_SHA1 --platform linux/amd64,linux/arm64/v8 --tag cidersecurity/goat-gitea:$VERSION . && cd ..
 
 workflows:
   version: 2
@@ -141,4 +96,6 @@ workflows:
       not:
         equal: [ "", << pipeline.parameters.VERSION >> ]
     jobs:
-      - release
+      - release:
+          context:
+            - dockerhub

@@ -48,7 +48,7 @@ pipeline {
                 stage ('Deploy') {
                     steps {
                         sh "set +x && echo \"${KEY}\" > key && chmod 400 key && set -x"
-                        sh 'scp -o StrictHostKeyChecking=no -i key reportcov.sh root@lighttpd:/var/www/localhost/htdocs'
+                        sh 'scp -o StrictHostKeyChecking=no -i key reportcov.sh root@prod:/var/www/localhost/htdocs'
                     }
                 }
             }

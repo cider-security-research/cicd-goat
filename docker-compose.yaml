@@ -5,8 +5,7 @@ networks:
     driver: bridge
 
 services:
-  jenkins_server:
-    platform: "linux/amd64"
+  jenkins-server:
     image: cidersecurity/goat-jenkins-server:latest
     networks:
       - goat
@@ -15,9 +14,10 @@ services:
     ports:
       - "8080:8080"
       - "50000:50000"
-  jenkins_agent:
+  jenkins-agent:
     image: cidersecurity/goat-jenkins-agent:latest
     container_name: jenkins-agent
+    restart: always
     networks:
       - goat
     environment:
@@ -25,10 +25,10 @@ services:
   gitea:
     image: cidersecurity/goat-gitea:latest
     container_name: gitea
+    restart: always
     environment:
       - USER_UID=1000
       - USER_GID=1000
-    restart: always
     networks:
       - goat
     ports:
@@ -36,20 +36,67 @@ services:
   ctfd:
     image: cidersecurity/goat-ctfd:latest
     container_name: ctfd
+    restart: always
     ports:
       - "8000:8000"
     networks:
       - goat
   localstack:
-    container_name: localstack
     image: localstack/localstack:0.14.1-amd64
+    container_name: localstack
+    restart: always
     networks:
       - goat
-  lighttpd:
-    image: cidersecurity/goat-lighttpd:latest
-    container_name: lighttpd
+  prod:
+    image: cidersecurity/goat-prod:latest
+    container_name: prod
+    privileged: true
+    restart: always
     networks:
       - goat
     ports:
       - "8008:80"
       - "2222:22"
+  gitlab:
+    image: cidersecurity/goat-gitlab:latest
+    container_name: gitlab
+    restart: always
+    hostname: 'gitlab'
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        external_url 'http://gitlab'
+        registry_external_url 'https://gitlab:5050'
+        letsencrypt['enable'] = false
+        gitlab_rails['initial_shared_runners_registration_token'] = "GR1348hansd87fyzDiqyZeuHuxe"
+        gitlab_rails['smtp_enable'] = false
+        gitlab_kas['enable'] = false
+        sentinel['enable'] = false
+        logrotate['enable'] = false
+        pages_nginx['enable'] = false
+        grafana['enable'] = false
+        prometheus_monitoring['enable'] = false
+        alertmanager['enable'] = false
+    networks:
+      - goat
+    ports:
+      - '4000:80'
+      - '5050:5050'
+    shm_size: '256m'
+  gitlab-runner:
+    image: cidersecurity/goat-gitlab-runner:latest
+    privileged: true
+    container_name: gitlab-runner
+    restart: always
+    networks:
+      - goat
+    shm_size: '256m'
+  docker:
+    image: docker:20.10.21-dind
+    privileged: true
+    container_name: docker
+    restart: always
+    environment:
+      DOCKER_TLS_CERTDIR: ""
+    command: --insecure-registry=gitlab:5050
+    networks:
+      - goat

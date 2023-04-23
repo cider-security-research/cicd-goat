@@ -1,0 +1,30 @@
+image: "python:3.9.15-alpine3.16"
+
+stages:
+  - test
+  - deploy
+
+test-job:
+  stage: test
+  script:
+    - pip3 install -r requirements.txt
+    - export FLAG11=test
+    - python3 -m venv tmp
+    - source tmp/bin/activate
+    - pytest test_login.py
+    - deactivate
+
+deploy-job:
+  stage: deploy
+  environment: production
+  script:
+    - apk add docker-cli openssh-client
+    - echo $SSH_KEY | base64 -d > key && chmod 400 key
+    - set -m
+    - ssh -fN -o StrictHostKeyChecking=no -i key -L 1111:127.0.0.1:2376 root@prod
+    - export DOCKER_HOST=tcp://127.0.0.1:1111
+    - docker build --pull -t web:latest .
+    - docker stop web || true
+    - docker rm web || true
+    - docker login -u gryphon -p $TOKEN $CI_REGISTRY
+    - docker run -d -e FLAG11=$FLAG11 -p 5000:5000 --name web web:latest

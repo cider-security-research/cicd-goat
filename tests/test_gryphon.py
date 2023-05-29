@@ -10,7 +10,8 @@ def wait_for_pipeline(project, pipeline_id):
         if pipeline.status == 'success':
             break
         elif pipeline.status == 'failed':
-            assert str(project + pipeline_id) == ''
+            print(project)
+            assert pipeline_id is None
         sleep(1)
 
 

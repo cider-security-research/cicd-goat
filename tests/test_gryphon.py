@@ -10,8 +10,13 @@ def wait_for_pipeline(project, pipeline_id):
         if pipeline.status == 'success':
             break
         elif pipeline.status == 'failed':
-            print(project)
-            assert pipeline_id is None
+            if pipeline_id is not None:
+                print(project.name)
+                for job in pipeline.jobs.list():
+                    if job.status == 'failed':
+                        print(job.name)
+                        print(job.trace())
+                        assert pipeline_id is None
         sleep(1)
 
 

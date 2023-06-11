@@ -5,19 +5,21 @@ from time import sleep
 
 
 def wait_for_pipeline(project, pipeline_id):
-    while 1:
+    # Wait 5 minutes for the pipeline to finish
+    for _ in range(300):
         pipeline = project.pipelines.get(pipeline_id)
         if pipeline.status == 'success':
             break
         elif pipeline.status == 'failed':
             if pipeline_id is not None:
-                print(project.name)
-                for job in pipeline.jobs.list():
+                for job_entry in pipeline.jobs.list():
+                    job = project.jobs.get(job_entry.id)
                     if job.status == 'failed':
-                        print(job.name)
-                        print(job.trace())
+                        print(f'Project: {project.name}, Job: {job.name}, Trace:\n{job.trace()}')
                         assert pipeline_id is None
         sleep(1)
+    else:
+        assert pipeline_id is None
 
 
 def test_gryphon():

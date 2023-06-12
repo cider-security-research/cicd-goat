@@ -99,9 +99,9 @@ Build and upload this package to the gryphon package registry (after configuring
 
 Conveniently you may use these files to build the package:  
 
-[.pypirc](/tests/data/pygryphon./.pypirc)
+[.pypirc](/tests/data/pygryphon/.pypirc)
 
-[pyproject.toml](/tests/data/pygryphon./pyproject.toml)
+[pyproject.toml](/tests/data/pygryphon/pyproject.toml)
 
 
 ```sh

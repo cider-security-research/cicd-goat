@@ -9,7 +9,7 @@ JOB_NAME = f'{OWNER.lower()}-{REPO_NAME}'
 
 def test_cheshire_cat(gitea_client, jenkins_client):
     admin_jenkins_client = JenkinsClient('http://localhost:8080', username='admin', password='ciderland5#',
-                                         useCrumb=True)
+                                         use_crumb=True)
     assert b'Only build jobs with label expressions matching this node' in \
            admin_jenkins_client.get('/computer/(built-in)/configure').content
     repo = Repo.clone_from(f'{GITEA_GIT_BASE}/{OWNER}/{REPO_NAME}.git',

@@ -33,7 +33,7 @@ def test_reportcov_and_dormouse(gitea_client, jenkins_client):
     res = gitea_client.post(f'/repos/{COV_ORG}/{COV_REPO_NAME}/pulls',
                             json={'head': f'{FORK_ORG}:main', 'base': 'main', 'title': '`env`'})
     sleep(20)
-    admin_client = JenkinsClient('http://localhost:8080', username='admin', password='ciderland5#', useCrumb=True)
+    admin_client = JenkinsClient('http://localhost:8080', username='admin', password='ciderland5#', use_crumb=True)
     assert admin_client.find_in_last_build_console(COV_JOB_NAME, PART_PRIVATE_KEY, start_job=False)
     assert res.status_code == 201
     result = run(CHMOD_CMD, capture_output=True, text=True, shell=True)

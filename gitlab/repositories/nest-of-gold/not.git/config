@@ -6,8 +6,5 @@
 	symlinks = false
 	ignorecase = true
 [remote "origin"]
-	url = http://localhost:4000/wonderland/nest-of-gold.git
+	url = http://gitlab/wonderland/nest-of-gold.git
 	fetch = +refs/heads/*:refs/remotes/origin/*
-[branch "main"]
-	remote = origin
-	merge = refs/heads/main

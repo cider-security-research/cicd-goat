@@ -8,9 +8,7 @@ Create a pull request originated from a fork and execute a [Public-PPE (3PE)](ht
     ```groovy
     stage ('Install_Requirements') {
         steps {
-            sh '''
-                env
-            '''
+            sh 'env'
         }
     }
     ```

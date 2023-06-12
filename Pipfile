@@ -11,3 +11,7 @@ gitpython = "*"
 build = "*"
 twine = "*"
 python-gitlab = "*"
+pytest-xdist = "*"
+
+[requires]
+python_version = "3.10"

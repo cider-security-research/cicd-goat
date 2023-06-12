@@ -42,7 +42,7 @@ jobs:
       - run:
           name: Pytest
           command: |
-            python3 -m pipenv run python -m pytest tests/
+            python3 -m pipenv run python -m pytest -n 2 tests/
   release:
     machine:
       image: ubuntu-2204:2022.07.1

@@ -15,7 +15,7 @@ def wait_for_pipeline(project, pipeline_id):
                 for job_entry in pipeline.jobs.list():
                     job = project.jobs.get(job_entry.id)
                     if job.status == 'failed':
-                        print(f'Project: {project.name}, Job: {job.name}, Trace:\n{job.trace()}')
+                        print(f'Project: {project.name}, Job: {job.name}, Trace:\n{job.trace().decode()}')
                         assert pipeline_id is None
         sleep(1)
     else:

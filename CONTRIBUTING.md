@@ -28,7 +28,7 @@
     ```
 7. Run tests:
    ```shell
-   pytest tests/
+   pytest -n 2 tests/
    ```
 8. Rename .git folders to allow push:
     ```shell

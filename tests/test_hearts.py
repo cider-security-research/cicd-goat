@@ -5,7 +5,7 @@ CMD = 'docker logs prod'
 
 
 def test_hearts():
-    jenkins_client = JenkinsClient('http://localhost:8080', username='knave', password='rockme', useCrumb=True)
+    jenkins_client = JenkinsClient('http://localhost:8080', username='knave', password='rockme', use_crumb=True)
     config = {
         "name": 'test',
         "type": "hudson.slaves.DumbSlave",

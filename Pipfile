@@ -11,6 +11,7 @@ gitpython = "*"
 build = "*"
 twine = "*"
 python-gitlab = "*"
+pytest-xdist = "*"
 
 [dev-packages]
 

@@ -5,6 +5,7 @@ on:
 jobs:
   trigger-circleci-release:
     runs-on: ubuntu-latest
+    permissions: {}
     steps:
       - name: Trigger CircleCI release
         run: |

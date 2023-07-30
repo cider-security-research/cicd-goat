@@ -1,7 +1,7 @@
-[![cicd-goat](images/banner.png)](https://www.cidersecurity.io/)
+[![cicd-goat](images/banner.png)](https://www.paloaltonetworks.com/prisma/cloud/cloud-code-security)
 
-[![Maintained by Cider Security](https://img.shields.io/badge/maintained%20by-Cider%20Security-brightgreen)](https://www.cidersecurity.io/?utm_source=github&utm_medium=github_page&utm_campaign=ci%2fcd%20goat%20_060422)
-[![](https://img.shields.io/badge/Top%2010%20Risks-8%2F10-2de4fd)](https://www.cidersecurity.io/top-10-cicd-security-risks/?utm_source=github&utm_medium=github_page&utm_campaign=ci%2fcd%20goat_060422)
+[![maintained by](https://img.shields.io/badge/maintained%20by-Palo%20Alto%20Networks-orangered)](https://www.paloaltonetworks.com/prisma/cloud/cloud-code-security)
+[![top 10](https://img.shields.io/badge/Top%2010%20Risks-8%2F10-2de4fd)](https://www.cidersecurity.io/top-10-cicd-security-risks/?utm_source=github&utm_medium=github_page&utm_campaign=ci%2fcd%20goat_060422)
 [![.github/workflows/release.yaml](https://github.com/cider-security-research/cicd-goat/actions/workflows/release.yaml/badge.svg)](https://github.com/cider-security-research/cicd-goat/actions/workflows/release.yaml)
 [![CircleCI](https://circleci.com/gh/cider-security-research/cicd-goat/tree/main.svg?style=svg)](https://circleci.com/gh/cider-security-research/cicd-goat/tree/main)
 ![Docker pulls](https://badgen.net/docker/pulls/cidersecurity/goat-jenkins-server)
@@ -11,7 +11,7 @@
 Deliberately vulnerable CI/CD environment.
 Hack CI/CD pipelines, capture the flags. :triangular_flag_on_post:
 
-Created by [Cider Security](https://www.cidersecurity.io/?utm_source=github&utm_medium=github_page&utm_campaign=ci%2fcd%20goat%20_060422).
+Created by Cider Security [(Acquired by Palo Alto Networks)](https://www.paloaltonetworks.com/prisma/cloud/cloud-code-security).
 
 ## Table of Contents
 

@@ -1,4 +1,4 @@
-FROM docker:24.0.5-dind
+FROM docker:dind
 ARG COMMIT_SHA
 ARG VERSION
 
@@ -11,7 +11,8 @@ LABEL org.opencontainers.image.vendor="Cider Security" \
     org.opencontainers.image.version=$VERSION \
     org.opencontainers.image.revision=$COMMIT_SHA
 
-RUN apk add --no-cache openssh \
+RUN apk add --no-cache openssh-client-default \
+    && apk add --no-cache openssh \
     && ssh-keygen -A \
     && mkdir /root/.ssh \
     && chmod 0700 /root/.ssh

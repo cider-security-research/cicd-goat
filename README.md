@@ -1,6 +1,6 @@
 [![cicd-goat](images/banner.png)](https://www.paloaltonetworks.com/prisma/cloud/cloud-code-security)
 
-[![maintained by](https://img.shields.io/badge/maintained%20by-Palo%20Alto%20Networks-orangered)](https://www.paloaltonetworks.com/prisma/cloud/cloud-code-security)
+[![maintained by](https://img.shields.io/badge/maintained%20by-Palo%20Alto%20Networks-orange)](https://www.paloaltonetworks.com/prisma/cloud/cloud-code-security)
 [![top 10](https://img.shields.io/badge/Top%2010%20Risks-8%2F10-2de4fd)](https://owasp.org/www-project-top-10-ci-cd-security-risks/)
 [![.github/workflows/release.yaml](https://github.com/cider-security-research/cicd-goat/actions/workflows/release.yaml/badge.svg)](https://github.com/cider-security-research/cicd-goat/actions/workflows/release.yaml)
 [![CircleCI](https://circleci.com/gh/cider-security-research/cicd-goat/tree/main.svg?style=svg)](https://circleci.com/gh/cider-security-research/cicd-goat/tree/main)

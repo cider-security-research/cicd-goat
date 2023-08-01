@@ -8,8 +8,3 @@ requests = "*"
 click = "*"
 pyyaml = "*"
 gitpython = "*"
-
-[dev-packages]
-
-[requires]
-python_version = "3.8"

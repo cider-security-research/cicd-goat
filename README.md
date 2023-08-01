@@ -1,7 +1,7 @@
-[![cicd-goat](images/banner.png)](https://www.cidersecurity.io/)
+[![cicd-goat](images/banner.png)](https://www.paloaltonetworks.com/prisma/cloud/cloud-code-security)
 
-[![Maintained by Cider Security](https://img.shields.io/badge/maintained%20by-Cider%20Security-brightgreen)](https://www.cidersecurity.io/?utm_source=github&utm_medium=github_page&utm_campaign=ci%2fcd%20goat%20_060422)
-[![](https://img.shields.io/badge/Top%2010%20Risks-8%2F10-2de4fd)](https://www.cidersecurity.io/top-10-cicd-security-risks/?utm_source=github&utm_medium=github_page&utm_campaign=ci%2fcd%20goat_060422)
+[![maintained by](https://img.shields.io/badge/maintained%20by-Palo%20Alto%20Networks-orange)](https://www.paloaltonetworks.com/prisma/cloud/cloud-code-security)
+[![top 10](https://img.shields.io/badge/Top%2010%20Risks-8%2F10-2de4fd)](https://owasp.org/www-project-top-10-ci-cd-security-risks/)
 [![.github/workflows/release.yaml](https://github.com/cider-security-research/cicd-goat/actions/workflows/release.yaml/badge.svg)](https://github.com/cider-security-research/cicd-goat/actions/workflows/release.yaml)
 [![CircleCI](https://circleci.com/gh/cider-security-research/cicd-goat/tree/main.svg?style=svg)](https://circleci.com/gh/cider-security-research/cicd-goat/tree/main)
 ![Docker pulls](https://badgen.net/docker/pulls/cidersecurity/goat-jenkins-server)
@@ -11,7 +11,7 @@
 Deliberately vulnerable CI/CD environment.
 Hack CI/CD pipelines, capture the flags. :triangular_flag_on_post:
 
-Created by [Cider Security](https://www.cidersecurity.io/?utm_source=github&utm_medium=github_page&utm_campaign=ci%2fcd%20goat%20_060422).
+Created by Cider Security [(Acquired by Palo Alto Networks)](https://www.paloaltonetworks.com/prisma/cloud/cloud-code-security).
 
 ## Table of Contents
 
@@ -29,7 +29,7 @@ Created by [Cider Security](https://www.cidersecurity.io/?utm_source=github&utm_
 ## Description
 The CI/CD Goat project allows engineers and security practitioners to learn and practice CI/CD security through a set of 11 challenges, enacted against a real, full blown CI/CD environment. The scenarios are of varying difficulty levels, with each scenario focusing on one primary attack vector.
 
-The challenges cover the [Top 10 CI/CD Security Risks](https://www.cidersecurity.io/top-10-cicd-security-risks/?utm_source=github&utm_medium=github_page&utm_campaign=ci%2fcd%20goat_060422), including Insufficient Flow Control Mechanisms, PPE (Poisoned Pipeline Execution), Dependency Chain Abuse, PBAC (Pipeline-Based Access Controls), and more.\
+The challenges cover the [Top 10 CI/CD Security Risks](https://owasp.org/www-project-top-10-ci-cd-security-risks/), including Insufficient Flow Control Mechanisms, PPE (Poisoned Pipeline Execution), Dependency Chain Abuse, PBAC (Pipeline-Based Access Controls), and more.\
 The different challenges are inspired by Alice in Wonderland, each one is themed as a different character.
 
 The project’s environment is based on Docker containers and can be run locally. These containers are: 

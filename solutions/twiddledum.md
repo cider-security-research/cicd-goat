@@ -1,4 +1,4 @@
-[![CICD-SEC-3 Dependency Chain Abuse](https://img.shields.io/badge/CICD--SEC--3-Dependency%20Chain%20Abuse-brightgreen)](https://www.cidersecurity.io/top-10-cicd-security-risks/dependency-chain-abuse/?utm_source=github&utm_medium=github_page&utm_campaign=ci%2fcd%20goat_100422)
+[![CICD-SEC-3 Dependency Chain Abuse](https://img.shields.io/badge/CICD--SEC--3-Dependency%20Chain%20Abuse-brightgreen)](https://owasp.org/www-project-top-10-ci-cd-security-risks/CICD-SEC-03-Dependency-Chain-Abuse)
 
 The _Wonderland/Twiddledum_ repository is a JS app that uses _Wonderland/Twiddledee_ as a dependency (view its _package.json_ file).
 

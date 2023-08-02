@@ -1,5 +1,5 @@
-[![CICD-SEC-3 Dependency Chain Abuse](https://img.shields.io/badge/CICD--SEC--3-Dependency%20Chain%20Abuse-brightgreen)](https://www.cidersecurity.io/top-10-cicd-security-risks/dependency-chain-abuse/?utm_source=github&utm_medium=github_page&utm_campaign=ci%2fcd%20goat_100422)
-[![CICD-SEC-6 Insufficient Credential Hygiene](https://img.shields.io/badge/CICD--SEC--6-Insufficient%20Credential%20Hygiene-brightgreen)](https://www.cidersecurity.io/top-10-cicd-security-risks/insufficient-credential-hygiene/?utm_source=github&utm_medium=github_page&utm_campaign=ci%2fcd%20goat_100422)
+[![CICD-SEC-3 Dependency Chain Abuse](https://img.shields.io/badge/CICD--SEC--3-Dependency%20Chain%20Abuse-brightgreen)](https://owasp.org/www-project-top-10-ci-cd-security-risks/CICD-SEC-03-Dependency-Chain-Abuse)
+[![CICD-SEC-6 Insufficient Credential Hygiene](https://img.shields.io/badge/CICD--SEC--6-Insufficient%20Credential%20Hygiene-brightgreen)](https://owasp.org/www-project-top-10-ci-cd-security-risks/CICD-SEC-06-Insufficient-Credential-Hygiene)
 
 Let's explore what we have when signing in to the compromised GitLab user account:
 

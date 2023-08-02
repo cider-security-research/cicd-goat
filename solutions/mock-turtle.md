@@ -1,4 +1,4 @@
-[![CICD-SEC-1 Insufficient Flow Control Mechanisms](https://img.shields.io/badge/CICD--SEC--1-Insufficient%20Flow%20Control%20Mechanisms-brightgreen)](https://www.cidersecurity.io/top-10-cicd-security-risks/insufficient-flow-control-mechanisms/?utm_source=github&utm_medium=github_page&utm_campaign=ci%2fcd%20goat_100422)
+[![CICD-SEC-1 Insufficient Flow Control Mechanisms](https://img.shields.io/badge/CICD--SEC--1-Insufficient%20Flow%20Control%20Mechanisms-brightgreen)](https://owasp.org/www-project-top-10-ci-cd-security-risks/CICD-SEC-01-Insufficient-Flow-Control-Mechanisms)
 
 The _mock-turtle_ pipeline is used to automatically merge code into the main branch if it introduces just a version bump (stored in the _version_ file). The auto-merge code can be bypassed to merge malicious code into the main branch. The code was inspired by this [blog post](https://blog.ryotak.me/post/homebrew-security-incident-en/) by Ryotak, and this [Stack Overflow answer](https://stackoverflow.com/a/31823590/6691195) about counting words diff.
 

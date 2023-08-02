@@ -1,4 +1,4 @@
-[![CICD-SEC-1 Insufficient Flow Control Mechanisms](https://img.shields.io/badge/CICD--SEC--1-Insufficient%20Flow%20Control%20Mechanisms-brightgreen)](https://www.cidersecurity.io/top-10-cicd-security-risks/insufficient-flow-control-mechanisms/?utm_source=github&utm_medium=github_page&utm_campaign=ci%2fcd%20goat_100422)
+[![CICD-SEC-1 Insufficient Flow Control Mechanisms](https://img.shields.io/badge/CICD--SEC--1-Insufficient%20Flow%20Control%20Mechanisms-brightgreen)](https://owasp.org/www-project-top-10-ci-cd-security-risks/CICD-SEC-01-Insufficient-Flow-Control-Mechanisms)
 
 Running security scans in CI pipelines is a common practice. [Checkov](https://github.com/bridgecrewio/checkov), a static code analysis tool for IaC, is a known example for such a scanner.
 

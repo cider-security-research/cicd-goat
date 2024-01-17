@@ -17,7 +17,7 @@ Trying to add pre or post-install scripts with malicious code should fail, as th
 
 
 3. Commit the changes to the main branch.
-4. Create a new tag `1.2.0` for the last commit and push it:
+4. Create a new tag `1.2.0` for the last commit and push it (see [NPM's docs](https://docs.npmjs.com/cli/v9/configuring-npm/package-json#git-urls-as-dependencies) for further details on git version reference):
     ```bash
     git tag 1.2.0 HEAD
     git push origin 1.2.0

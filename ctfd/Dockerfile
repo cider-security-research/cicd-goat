@@ -1,4 +1,4 @@
-FROM ctfd/ctfd:mark-3.3.1
+FROM ctfd/ctfd:3.5.1
 ARG VERSION
 ARG COMMIT_SHA
 

@@ -42,7 +42,7 @@ services:
     networks:
       - goat
   localstack:
-    image: localstack/localstack:0.14.1-amd64
+    image: localstack/localstack:3.0.2
     container_name: localstack
     restart: always
     networks:

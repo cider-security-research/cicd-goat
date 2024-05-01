@@ -25,7 +25,7 @@ Execute the _cheshire-cat_ pipeline on the Jenkins Controller by executing a [Di
         stages {
             stage ('Install_Requirements') {
                 steps {
-                    sh 'cat ~/flag5'
+                    sh 'cat ~/flag5.txt'
                 }
             }
         }

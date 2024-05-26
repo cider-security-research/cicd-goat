@@ -8,7 +8,7 @@ parameters:
 jobs:
   ci:
     machine:
-      image: ubuntu-2204:2024.04.4
+      image: ubuntu-2204:2023.07.2
     resource_class: large
     steps:
       - checkout
@@ -45,7 +45,7 @@ jobs:
             python3 -m pipenv run python -m pytest -n 2 tests/
   release:
     machine:
-      image: ubuntu-2204:2022.07.1
+      image: ubuntu-2204:2023.07.2
     resource_class: large
     environment:
       ORG: cidersecurity

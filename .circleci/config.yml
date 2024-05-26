@@ -34,7 +34,7 @@ jobs:
           name: Install testing dependencies
           command: |
             python3 --version
-            python3 -m pip install pipenv==2022.8.30 
+            python3 -m pip install pipenv==2023.12.1 
             python3 -m pipenv install --deploy
       - run:
           name: Wait for services to start
@@ -42,7 +42,7 @@ jobs:
       - run:
           name: Pytest
           command: |
-            python3 -m pipenv run python -m pytest -n 2 tests/
+            python3 -m pipenv run python -m pytest -v -n 2 tests/
   release:
     machine:
       image: ubuntu-2204:2023.07.2

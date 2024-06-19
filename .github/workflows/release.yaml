@@ -4,19 +4,19 @@ on:
   push:
     branches:
       - main
-      - '**/feature/**'  # Optional: Include other branches if necessary
+      - '**/feature/**'
   pull_request:
     branches:
       - main
-      - '**/feature/**'  # Include other branches as needed
-      
+      - '**/feature/**'
+
 jobs:
-  example-job:
-    name: Example Job
+  build-and-sbom:
+    name: Build and Generate SBOM
     runs-on: ubuntu-latest
     
     steps:
-      - name: Checkout code
+      - name: argonsecurity/scanner-action
         uses: actions/checkout@v2
 
       - name: Set up Python
@@ -28,18 +28,49 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-      
-      - name: SBOM generation
-      - uses: anchore/sbom-action@v0
+
+      - name: Install Syft
+        run: |
+          echo "Installing Syft..."
+          curl -sSfL https://raw.githubusercontent.com/anchore/syft/main/install.sh | sh -s -- -b /usr/local/bin
+
+      - name: Verify Syft installation
+        run: |
+          syft version
+
+      - name: Build project and generate SBOM
+        run: |
+          echo "Building the project..."
+          mkdir -p ./build  # Ensure build directory exists
+
+          # Add your build commands here, for example:
+          # python setup.py build
+
+          echo "Generating SBOM..."
+          syft ./build -o sbom.cyclonedx --format cyclonedx-json
+
+          echo "metadata_build=true" >> $GITHUB_ENV  # Set build metadata to true
+
+      - name: Upload SBOM artifact
+        if: always()
+        uses: actions/upload-artifact@v3
         with:
-          path: ./build/
+          name: sbom
+          path: sbom.sbom
 
-    environment: development  # Example environment variable
+      - name: Set metadata.build to true
+        run: |
+          echo "Setting metadata.build to true..."
+          echo "metadata_build=true" >> $GITHUB_ENV  # Ensure the environment variable is set
+        env:
+          METADATA_BUILD: true
 
-    permissions:  # Token permissions for the job
+    environment: development
+
+    permissions:
       contents: read
       issues: write
 
-    concurrency:  # Concurrency control
+    concurrency:
       group: example-group
       cancel-in-progress: true

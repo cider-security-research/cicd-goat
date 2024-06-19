@@ -1,4 +1,4 @@
-name: Example Pipeline
+name: Compliance Pipeline
 
 on:
   push:
@@ -16,13 +16,9 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      - name: Vulnetability Scan Task
-        uses: argonsecurity/scanner-action
+      - name: Action Checkout
+        uses: actions/checkout@8f4b7f84864484a7bf31766abe9204da3cbe65b3
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.9'
 
       - name: Install dependencies
         run: |
@@ -54,12 +50,6 @@ jobs:
           echo "Running Secret Scan..."
           git secrets --scan
 
-      - name: Upload SBOM artifact
-        if: always()
-        uses: actions/upload-artifact@v3
-        with:
-          name: sbom
-          path: sbom.json
 
       - name: Set metadata.build to true
         run: |

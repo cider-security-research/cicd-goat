@@ -1,4 +1,4 @@
-name: Example Pipeline
+name: Compliance Check
 
 on:
   push:

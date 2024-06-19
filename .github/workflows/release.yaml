@@ -12,11 +12,11 @@ on:
 
 jobs:
   build-and-sbom:
-    name: Build and Generate SBOM
+    name: Build, Secret Scan, and Generate SBOM
     runs-on: ubuntu-latest
     
     steps:
-      - name: argonsecurity/scanner-action
+      - name: Checkout code
         uses: actions/checkout@v2
 
       - name: Set up Python
@@ -33,30 +33,33 @@ jobs:
         run: |
           echo "Installing Syft..."
           curl -sSfL https://raw.githubusercontent.com/anchore/syft/main/install.sh | sh -s -- -b /usr/local/bin
+          syft version  # Verify installation
 
-      - name: Verify Syft installation
-        run: |
-          syft version
-
-      - name: Build project and generate SBOM
+      - name: Build project
         run: |
           echo "Building the project..."
           mkdir -p ./build  # Ensure build directory exists
 
-          # Add your build commands here, for example:
-          # python setup.py build
+          # Replace this with your actual build command
+          # For example, for a Python project: python setup.py build
+          # Or for a Node.js project: npm run build
 
           echo "Generating SBOM..."
-          syft ./build -o sbom.cyclonedx --format cyclonedx-json
+          syft ./build -o sbom.json -f syft-json  # Use the correct flag for format
 
           echo "metadata_build=true" >> $GITHUB_ENV  # Set build metadata to true
+
+      - name: Secret Scan Command
+        run: |
+          echo "Running Secret Scan..."
+          git secrets --scan
 
       - name: Upload SBOM artifact
         if: always()
         uses: actions/upload-artifact@v3
         with:
           name: sbom
-          path: sbom.sbom
+          path: sbom.json
 
       - name: Set metadata.build to true
         run: |

@@ -1,16 +1,40 @@
-on:
-  release:
-    types: [published]
+name: Example Pipeline
 
+on:
+  push:
+    branches:
+      - main
+      - '**/feature/**'  # Optional: Include other branches if necessary
+  pull_request:
+    branches:
+      - main
+      - '**/feature/**'  # Include other branches as needed
+      
 jobs:
-  trigger-circleci-release:
+  example-job:
+    name: Example Job
     runs-on: ubuntu-latest
-    permissions: {}
+    
     steps:
-      - name: Trigger CircleCI release
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install dependencies
         run: |
-          curl --request POST \
-            --url https://circleci.com/api/v2/project/gh/cider-security-research/cicd-goat/pipeline \
-            -u "${{ secrets.CCI_TOKEN }}:" \
-            --header 'content-type: application/json' \
-            --data '{"parameters":{"VERSION":"${{ github.event.release.tag_name }}"}}'
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+    environment: development  # Example environment variable
+
+    permissions:  # Token permissions for the job
+      contents: read
+      issues: write
+
+    concurrency:  # Concurrency control
+      group: example-group
+      cancel-in-progress: true

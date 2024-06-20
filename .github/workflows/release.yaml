@@ -50,6 +50,8 @@ jobs:
           echo "Running Secret Scan..."
           git secrets --scan
 
+      - name: Argon Security
+        uses: argonsecurity/scanner-action@v1.0
 
       - name: Set metadata.build to true
         run: |

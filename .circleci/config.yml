@@ -8,7 +8,7 @@ parameters:
 jobs:
   ci:
     machine:
-      image: ubuntu-2204:2022.07.1
+      image: ubuntu-2204:2024.04.4
     resource_class: large
     steps:
       - checkout
@@ -18,7 +18,7 @@ jobs:
             python3 rename.py git
             cp -R ctfd/data/ tmp-ctfd/
             sudo apt-get update
-            sudo apt-get install -y qemu qemu-user-static
+            sudo apt-get install -y qemu qemu-user-static python3.10-venv
             docker buildx create --name mybuilder --use --bootstrap
 
             cd gitlab && docker buildx build --load --tag cidersecurity/goat-gitlab:latest . && cd ..
@@ -34,7 +34,7 @@ jobs:
           name: Install testing dependencies
           command: |
             python3 --version
-            python3 -m pip install pipenv==2022.8.30 
+            python3 -m pip install pipenv==2023.12.1 
             python3 -m pipenv install --deploy
       - run:
           name: Wait for services to start
@@ -42,10 +42,10 @@ jobs:
       - run:
           name: Pytest
           command: |
-            python3 -m pipenv run python -m pytest -n 2 tests/
+            python3 -m pipenv run python -m pytest -v -n 2 tests/
   release:
     machine:
-      image: ubuntu-2204:2022.07.1
+      image: ubuntu-2204:2024.04.4
     resource_class: large
     environment:
       ORG: cidersecurity
@@ -58,7 +58,7 @@ jobs:
             python3 rename.py git
             cp -R ctfd/data/ tmp-ctfd/
             sudo apt-get update
-            sudo apt-get install -y qemu qemu-user-static
+            sudo apt-get install -y qemu qemu-user-static python3.10-venv
             docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
             docker buildx create --name mybuilder --use --bootstrap
 

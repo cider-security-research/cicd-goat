@@ -1,4 +1,1 @@
-0000000000000000000000000000000000000000 11fd3c837c41f7ae57c40ed8ad11bd66bd8f9e60 Asaf Greenholts <88270351+asi-cider@users.noreply.github.com> 1686561363 +0300	clone: from http://localhost:4000/wonderland/nest-of-gold.git
-11fd3c837c41f7ae57c40ed8ad11bd66bd8f9e60 8ff28df905462493135b7eb419dde20d7980acbf Asaf Greenholts <88270351+asi-cider@users.noreply.github.com> 1686561419 +0300	commit: update flask
-8ff28df905462493135b7eb419dde20d7980acbf 6b6d8ad744b7e8a86d3ee50ddea699c46fe035bf asi-cider <88270351+asi-cider@users.noreply.github.com> 1705484699 +0200	commit: update dependencies
-6b6d8ad744b7e8a86d3ee50ddea699c46fe035bf 7943cdd0c1a97741a4509a46290012462ec6e50d asi-cider <88270351+asi-cider@users.noreply.github.com> 1720525268 +0300	commit: Update requirements.txt
+0000000000000000000000000000000000000000 ef4b6efd28bafa635fa52d63d0ba1735931e74d8 asi-cider <88270351+asi-cider@users.noreply.github.com> 1720535121 +0300	commit (initial): Initial commit

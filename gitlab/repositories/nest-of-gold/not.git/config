@@ -3,7 +3,6 @@
 	filemode = false
 	bare = false
 	logallrefupdates = true
-	symlinks = false
 	ignorecase = true
 [remote "origin"]
 	url = http://gitlab/wonderland/nest-of-gold.git

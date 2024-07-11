@@ -14,7 +14,7 @@ do
   fi
   sleep 5
 done
-echo "started setup"
+echo "Starting setup"
 gitlab-rails runner "
 user = User.find_by_username('root');
 user.password = 'ciderland5#';
@@ -26,6 +26,7 @@ token.save!;
 puts 'root token created';
 "
 cd /setup
+terraform init
 terraform apply -target=null_resource.gryphon_sh -auto-approve
 terraform apply -auto-approve
 ./repositories.sh

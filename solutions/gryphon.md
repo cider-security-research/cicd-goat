@@ -110,3 +110,6 @@ pipenv run python3 -m twine upload -r gitlab
 ```
 
 Now prepare a cup of coffe ☕️ wait for the two pipeline scheduling to take place, and expect the flag to arrive at your http server.
+
+Solution summary:
+![diagram](../images/gryphon-2.png)

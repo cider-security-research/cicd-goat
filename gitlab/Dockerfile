@@ -1,4 +1,4 @@
-FROM gitlab/gitlab-ee:15.6.2-ee.0 AS base
+FROM gitlab/gitlab-ee:15.11.13-ee.0 AS base
 ARG VERSION
 ARG COMMIT_SHA
 
@@ -37,7 +37,7 @@ RUN apt-get install -y ca-certificates curl && \
 
 RUN pip3 install --user --no-cache-dir twine
 
-FROM gitlab/gitlab-ee:15.6.2-ee.0
+FROM gitlab/gitlab-ee:15.11.13-ee.0
 COPY --from=base /root/.local /root/.local
 COPY --from=base /usr/bin/terraform /usr/bin/terraform
 COPY --from=base /usr/bin/docker /usr/bin/docker

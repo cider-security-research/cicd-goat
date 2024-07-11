@@ -12,8 +12,8 @@ LABEL org.opencontainers.image.vendor="Cider Security" \
     org.opencontainers.image.revision=$COMMIT_SHA
 
 
-ENV JAVA_OPTS "-Djenkins.install.runSetupWizard=false"
-ENV SECRETS_FILE /var/jenkins_home/secrets.properties
+ENV JAVA_OPTS="-Djenkins.install.runSetupWizard=false"
+ENV SECRETS_FILE=/var/jenkins_home/secrets.properties
 
 COPY --chown=jenkins:jenkins flag5.txt /var/jenkins_home/flag5.txt
 COPY --chown=jenkins:jenkins run.sh /var/jenkins_home/run.sh

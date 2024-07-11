@@ -18,7 +18,7 @@ jobs:
             python3 rename.py git
             cp -R ctfd/data/ tmp-ctfd/
             sudo apt-get update
-            sudo apt-get install -y qemu qemu-user-static python3.10-venv
+            sudo apt-get install -y qemu qemu-user-static
             docker buildx create --name mybuilder --use --bootstrap
 
             cd gitlab && docker buildx build --load --tag cidersecurity/goat-gitlab:latest . && cd ..
@@ -58,7 +58,7 @@ jobs:
             python3 rename.py git
             cp -R ctfd/data/ tmp-ctfd/
             sudo apt-get update
-            sudo apt-get install -y qemu qemu-user-static python3.10-venv
+            sudo apt-get install -y qemu qemu-user-static
             docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
             docker buildx create --name mybuilder --use --bootstrap
 

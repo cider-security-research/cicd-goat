@@ -2,7 +2,7 @@ terraform {
   required_providers {
     gitlab = {
       source = "gitlabhq/gitlab"
-      version = "3.18.0"
+      version = "17.1.0"
     }
   }
 }
@@ -33,7 +33,7 @@ resource "null_resource" "gryphon_sh" {
 resource "gitlab_user" "alice" {
   name             = "alice"
   username         = "alice"
-  password         = "alice1234"
+  password         = "ali12345"
   email            = "alice@wonderland.com"
   is_admin         = false
   projects_limit   = 0
@@ -97,19 +97,19 @@ resource "gitlab_project" "awesome_app_project" {
 
 ### Memberships ###
 resource "gitlab_project_membership" "nest_of_gold_membership" {
-  project_id   = gitlab_project.nest_of_gold_project.id
+  project   = gitlab_project.nest_of_gold_project.id
   user_id      = gitlab_user.gryphon.id
-  access_level = "developer"
+  access_level = "maintainer"
 }
 
 resource "gitlab_project_membership" "awesome_app_membership" {
-  project_id   = gitlab_project.awesome_app_project.id
+  project   = gitlab_project.awesome_app_project.id
   user_id      = gitlab_user.gryphon.id
-  access_level = "developer"
+  access_level = "maintainer"
 }
 
 resource "gitlab_project_membership" "pgryphon_membership" {
-  project_id   = gitlab_project.pygryphon_project.id
+  project   = gitlab_project.pygryphon_project.id
   user_id      = gitlab_user.alice.id
   access_level = "maintainer"
 }

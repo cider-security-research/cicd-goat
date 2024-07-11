@@ -89,7 +89,7 @@ docker compose up -d
      * Password: `thealice`
    * GitLab http://localhost:4000
      * Username: `alice`
-     * Password: `alice1234`
+     * Password: `ali12345`
 
 4. Insert the flags on CTFd and find out if you got it right.
 

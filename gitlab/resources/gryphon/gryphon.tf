@@ -2,7 +2,7 @@ terraform {
   required_providers {
     gitlab = {
       source = "gitlabhq/gitlab"
-      version = "3.18.0"
+      version = "17.1.0"
     }
   }
 }
@@ -32,12 +32,12 @@ resource "gitlab_pipeline_schedule" "nest_of_gold_schedule" {
   project     = var.nest_of_gold_project_id
   description = "Schedule main"
   ref         = "main"
-  cron        = "*/1 * * * *"
+  cron        = "*/10 * * * *"
 }
 
 resource "gitlab_pipeline_schedule" "awesome_app_schedule" {
   project     = var.awesome_app_project_id
   description = "Schedule main"
   ref         = "main"
-  cron        = "*/1 * * * *"
+  cron        = "*/10 * * * *"
 }

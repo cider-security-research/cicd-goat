@@ -14,7 +14,7 @@ do
   fi
   sleep 5
 done
-echo "started setup"
+echo "Starting setup"
 gitlab-rails runner "
 user = User.find_by_username('root');
 user.password = 'ciderland5#';

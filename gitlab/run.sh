@@ -26,8 +26,7 @@ token.save!;
 puts 'root token created';
 "
 cd /setup
-chmod +x .terraform/providers/registry.terraform.io/gitlabhq/gitlab/17.1.0/linux_amd64/terraform-pro
-vider-gitlab_v17.1.0
+chmod +x .terraform/providers/registry.terraform.io/gitlabhq/gitlab/17.1.0/linux_amd64/terraform-provider-gitlab_v17.1.0
 chmod +x .terraform/providers/registry.terraform.io/hashicorp/null/3.2.2/linux_amd64/terraform-provider-null_v3.2.2_x5
 terraform apply -target=null_resource.gryphon_sh -auto-approve
 terraform apply -auto-approve
